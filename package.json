@@ -1,0 +1,15 @@
+{
+  "name": "Tonyu2",
+  "main": "www/index.html",
+  "single-instance": false,
+  "window": {
+    "width": 1024,
+    "height": 768,
+    "icon": "www/images/tonyu.png",
+	"toolbar"	: true
+  },
+  "config": {
+     "a":3,
+     "prjDirs": ["Projects","Samples","fs/Tonyu/Projects"]
+  }
+}

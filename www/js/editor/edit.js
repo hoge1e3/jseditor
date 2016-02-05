@@ -8,6 +8,7 @@ define(function (require, exports, module) {
     var EditorSet=require("EditorSet");
     var KeyEventChecker=require("KeyEventChecker");
     var FileList=require("FileList");
+    var Util=require("Util");
     
     C.make(
         ["div",{id:"fileViewer","class":"col-xs-3"},
@@ -28,11 +29,14 @@ define(function (require, exports, module) {
             {label:"コピー",id:"cpFile"},
             {label:"削除", id:"rmFile"}
         ]},
-        {label:"ツール",sub:[
+        /*{label:"ツール",sub:[
             //{label:"検索",id:"find",action:find,key:"ctrl+f"},
             {label:"新規ツール...",id:"newTool"}
+        ]},*/
+        {label:"ウィンドウ",sub:[
+            {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
+            {label:"ブックマーク...",id:"bookmark",action:newWindow}
         ]},
-
         /*{label:"実行",sub:[
               {label:"実行(F9)",id:"runMenu",action:run},
         ]},*/
@@ -42,23 +46,38 @@ define(function (require, exports, module) {
         ]}
     ]);
     var es;
-    var cwd=FS.get(process.cwd());
+    var cwd=FS.get(Util.getQueryString("dir") || process.cwd()  );
     var fl=new FileList($("#fileItemList"),{
         open:function (f) {
             es.save();
             es.open(f);
         }
     });
+    function newWindow() {
+        window.open(location.href,
+        'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
+    }
     function find() {
         return finder.find();
     }
     function newFile() {
         var dir=fl.curDir;
         if (!dir) return;
+        var nf;
         UIDiag.prompt("ファイル名").then(function (n) {
-            return dir.rel(n).text("//new file!");
+            nf=dir.rel(n);
+            if (nf.isDir()) {
+                dir=nf;
+                return nf.mkdir();
+            } else {
+                return nf.text("");
+            }
         }).then(function () {
             return fl.open(dir);
+        }).then(function () {
+            if (!nf.isDir()) {
+                return es.open(nf);
+            }
         });
     }
     function textSize() {
@@ -85,7 +104,7 @@ define(function (require, exports, module) {
         es=new EditorSet( $("#progs"), $("#fileLabel"), {height:editorH});
         finder=new Finder(es);
         if (typeof SplashScreen!="undefined") SplashScreen.hide();
-        return fl.open(cwd.rel("www/js/editor"));
+        return fl.open(cwd);
     });
 
 });

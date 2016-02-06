@@ -61,6 +61,9 @@ var reqConf={
             },
             FileSaver: {
                 exports:"saveAs"
+            },
+            tonyuCompiled: {
+                deps:["Tonyu"]
             }
         },
         "paths": {
@@ -205,6 +208,7 @@ var reqConf={
             "EditorSet": "editor/EditorSet",
             "FileList": "editor/FileList",
             "Finder": "editor/Finder",
+            "TonyuC":"editor/TonyuC",
 
             "foo":"bar"
         },

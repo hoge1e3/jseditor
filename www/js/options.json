@@ -1,0 +1,15 @@
+{
+    "compiler":{
+        "namespace":"jseditor",
+        "commentLastPos":true,
+        "diagnose":false,
+        "outputFile":"tonyuCompiled.js"
+    },
+    "run":{
+        "mainClass":"Main",
+        "bootClass":"Boot"
+    },
+    "kernelEditable":false,
+    "plugins":{}
+    
+}

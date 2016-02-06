@@ -9,6 +9,8 @@ define(function (require, exports, module) {
     var KeyEventChecker=require("KeyEventChecker");
     var FileList=require("FileList");
     var Util=require("Util");
+    var TonyuC=require("TonyuC");
+    require("tonyuCompiled");
     
     C.make(
         ["div",{id:"fileViewer","class":"col-xs-3"},
@@ -29,10 +31,11 @@ define(function (require, exports, module) {
             {label:"コピー",id:"cpFile"},
             {label:"削除", id:"rmFile"}
         ]},
-        /*{label:"ツール",sub:[
+        {label:"ツール",sub:[
             //{label:"検索",id:"find",action:find,key:"ctrl+f"},
-            {label:"新規ツール...",id:"newTool"}
-        ]},*/
+            //{label:"新規ツール...",id:"newTool"}
+            {label:"TonyuC", id:"tonyuC",action:tonyuC}
+        ]},
         {label:"ウィンドウ",sub:[
             {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
             {label:"ブックマーク...",id:"bookmark",action:newWindow}
@@ -53,6 +56,14 @@ define(function (require, exports, module) {
             es.open(f);
         }
     });
+    function tonyuC() {
+        return TonyuC.compile(FS.get(process.cwd()).rel("www/js")).then(function (){
+            alert("Compiled");
+        }).fail(function (e) {
+            alert("Compile fail"+e);
+            console.log(e);
+        });
+    }
     function newWindow() {
         window.open(location.href,
         'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');

@@ -6,4 +6,9 @@ define(function (require, exports, module) {
    exports.get=function (path) {
        return new SFile(rfs, path);
    };
+   exports.resolve=function(path,base) {
+       if (SFile.is(path)) return path; 
+       if (!base) return exports.get(path);
+       return exports.get(base).rel(path);
+   };
 });

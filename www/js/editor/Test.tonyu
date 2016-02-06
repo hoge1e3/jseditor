@@ -1,0 +1,4 @@
+native console;
+\foo(x) {
+    console.log("test",x);
+}

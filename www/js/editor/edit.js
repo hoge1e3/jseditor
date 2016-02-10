@@ -10,7 +10,9 @@ define(function (require, exports, module) {
     var FileList=require("FileList");
     var Util=require("Util");
     var TonyuC=require("TonyuC");
-    require("tonyuCompiled");
+    var JSONConf=require("JSONConf");
+    var Test=require("Test");
+    //require("tonyuCompiled");
     
     C.make(
         ["div",{id:"fileViewer","class":"col-xs-3"},
@@ -34,7 +36,8 @@ define(function (require, exports, module) {
         {label:"ツール",sub:[
             //{label:"検索",id:"find",action:find,key:"ctrl+f"},
             //{label:"新規ツール...",id:"newTool"}
-            {label:"TonyuC", id:"tonyuC",action:tonyuC}
+            {label:"TonyuC", id:"tonyuC",action:tonyuC},
+            {label:"test", id:"test",action:test}
         ]},
         {label:"ウィンドウ",sub:[
             {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
@@ -48,8 +51,14 @@ define(function (require, exports, module) {
                 id:"textsize",action:textSize}
         ]}
     ]);
+    function test() {
+        new Test().foo();
+    }
     var es;
     var cwd=FS.get(Util.getQueryString("dir") || process.cwd()  );
+    var etc=FS.get(process.cwd()).rel(".jsetc/");
+    var desktopEnv=new JSONConf(etc.rel("desktop.json"));
+    desktopEnv.load();
     var fl=new FileList($("#fileItemList"),{
         open:function (f) {
             es.save();
@@ -92,6 +101,14 @@ define(function (require, exports, module) {
         });
     }
     function textSize() {
+        UIDiag.prompt(
+            "エディタの文字の大きさ", 
+            desktopEnv.data.editorFontSize||12
+        ).then(function (s) {
+            desktopEnv.data.editorFontSize=parseInt(s);
+            if (es) es.setFontSize(desktopEnv.data.editorFontSize||12);
+            return desktopEnv.save();
+        });
     }
     function save(e) {
         es.save();
@@ -112,7 +129,10 @@ define(function (require, exports, module) {
     $(window).resize(onResize);
     requirejs(["ace"],function (){
         console.log("ace loaded:",ace);
-        es=new EditorSet( $("#progs"), $("#fileLabel"), {height:editorH});
+        es=new EditorSet( $("#progs"), $("#fileLabel"), {
+            height:editorH, 
+            fontSize:( desktopEnv.data && desktopEnv.data.editorFontSize || 12 )
+        });
         finder=new Finder(es);
         if (typeof SplashScreen!="undefined") SplashScreen.hide();
         return fl.open(cwd);

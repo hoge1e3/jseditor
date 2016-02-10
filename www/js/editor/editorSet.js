@@ -25,26 +25,26 @@ define(function (require, exports, module) {
         if (f.isDir()) {
             return;
         }
+        var options=this.options;
         var editors=this.editors;
         if (this.curDOM) this.curDOM.hide();
         var inf=editors[f.path()];
         if (!inf) {
-            var progDOM=$("<pre>").
+            var editorDOM=$("<pre>").
                 css("height", (this.options.height||300)+"px").
                 text(f.text()).
                 appendTo(progs);
-            var prog=ace.edit(progDOM[0]);
-            /*if (typeof desktopEnv.editorFontSize=="number") prog.setFontSize(desktopEnv.editorFontSize);*/
-            //prog.setFontSize(20);
-            prog.setTheme("ace/theme/eclipse");
+            var editor=ace.edit(editorDOM[0]);
+            if (typeof options.fontSize=="number") editor.setFontSize(options.fontSize);
+            editor.setTheme("ace/theme/eclipse");
             var type=f.ext().replace(".","");
             type=types[type]||type;
-            prog.getSession().setMode("ace/mode/"+type);
-            editors[f.path()]=inf={file:f , editor: prog, dom:progDOM};
-            prog.setReadOnly(false);
-            prog.clearSelection();
-            prog.focus();
-            this.curDOM=progDOM;
+            editor.getSession().setMode("ace/mode/"+type);
+            editors[f.path()]=inf={file:f , editor: editor, dom:editorDOM};
+            editor.setReadOnly(false);
+            editor.clearSelection();
+            editor.focus();
+            this.curDOM=editorDOM;
         } else {
             inf.dom.show();
             inf.editor.focus();
@@ -54,6 +54,12 @@ define(function (require, exports, module) {
         inf.lastTimeStamp=f.lastUpdate();
         this.fileLabel.text(f.name());
     };
+    p.setFontSize=function (s) {
+        this.options.fontSize=s;
+        var inf=this.getCurrentEditorInfo();
+        if (!inf) return;
+        inf.editor.setFontSize(s);
+    };
     p.getCurrentEditorInfo=function () {
         if (!this.curFile) return null;
         return this.editors[this.curFile.path()];
@@ -62,11 +68,11 @@ define(function (require, exports, module) {
         var inf=this.getCurrentEditorInfo();
         if (!inf) return;
         var curFile=inf.file; //fl.curFile();
-        var prog=inf.editor; //getCurrentEditor();
-        if (curFile && prog && !curFile.isReadOnly()) {
-            //if (curFile.ext()==EXT) fixEditorIndent(prog);
+        var editor=inf.editor; //getCurrentEditor();
+        if (curFile && editor && !curFile.isReadOnly()) {
+            //if (curFile.ext()==EXT) fixEditorIndent(editor);
             var old=curFile.text();
-            var nw=prog.getValue();
+            var nw=editor.getValue();
             if (old!=nw) {
                 this.curFile.text(nw);
                 inf.lastTimeStamp=this.curFile.lastUpdate();

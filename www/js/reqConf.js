@@ -209,6 +209,8 @@ var reqConf={
             "FileList": "editor/FileList",
             "Finder": "editor/Finder",
             "TonyuC":"editor/TonyuC",
+            JSONConf:"editor/JSONConf",
+            Test:"editor/Test",
 
             "foo":"bar"
         },

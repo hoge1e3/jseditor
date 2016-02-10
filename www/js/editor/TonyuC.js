@@ -4,6 +4,7 @@ define(function (require){
     var TonyuC={};
     TonyuC.compile=function compile(dir) {
         var prj=TPRC(dir);
+        prj.setModulePaths(reqConf.paths);
         return prj.compile();
     };
     return TonyuC;

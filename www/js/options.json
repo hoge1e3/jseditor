@@ -3,7 +3,8 @@
         "namespace":"jseditor",
         "commentLastPos":true,
         "diagnose":false,
-        "outputFile":"tonyuCompiled.js"
+        "outputFile":"tonyuCompiled.js",
+        "genModule":true
     },
     "run":{
         "mainClass":"Main",

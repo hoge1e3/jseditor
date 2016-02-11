@@ -1,0 +1,24 @@
+extends WaitMod;
+//    var UIDiag=require("UIDiag");
+\new (env) {
+    es=env.editorSet;
+    fl=env.fileList;
+}
+\newFile() {
+    var dir=fl.curDir;
+    if (!dir) return;
+    var nf,n,isd;
+    n=waitFor(UIDiag.prompt("ファイル名"));
+    nf=dir.rel(n);
+    isd=waitFor(nf.isDir());
+    if (isd) {
+        dir=nf;
+        waitFor(nf.mkdir());
+    } else {
+        waitFor(nf.text(""));
+    }
+    waitFor(fl.open(dir));
+    if (!isd) {
+        es.open(nf);
+    }
+}

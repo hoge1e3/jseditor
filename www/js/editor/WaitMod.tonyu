@@ -1,4 +1,3 @@
-native $;
 \waitFor(f) {
     if (_thread) {
         _thread.waitFor(f);

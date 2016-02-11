@@ -74,7 +74,8 @@ define(function (require, exports, module) {
         });
     }
     function newWindow() {
-        window.open(location.href,
+        var genID=""+Math.random();
+        window.open(location.href,genID,
         'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
     }
     function find() {

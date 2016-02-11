@@ -7,10 +7,9 @@ extends WaitMod;
 \newFile() {
     var dir=fl.curDir;
     if (!dir) return;
-    var nf,n,isd;
-    n=waitFor(UIDiag.prompt("ファイル名"));
-    nf=dir.rel(n);
-    isd=waitFor(nf.isDir());
+    var n=waitFor(UIDiag.prompt("ファイル名"));
+    var nf=dir.rel(n);
+    var isd=waitFor(nf.isDir());
     if (isd) {
         dir=nf;
         waitFor(nf.mkdir());

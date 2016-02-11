@@ -1,4 +1,5 @@
 includes WaitMod;
+native console;
 
 \new(p) {
     Tonyu.extend(this,p);
@@ -9,6 +10,7 @@ includes WaitMod;
     var dir=fl.curDir;
     if (!dir) return;
     var n=waitFor(UIDiag.prompt("ファイル名"));
+    console.log("fn",n);
     var nf=dir.rel(n);
     var isd=waitFor(nf.isDir());
     if (isd) {

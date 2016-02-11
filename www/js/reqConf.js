@@ -211,6 +211,8 @@ var reqConf={
             "TonyuC":"editor/TonyuC",
             JSONConf:"editor/JSONConf",
             Test:"editor/Test",
+            FileMenu:"editor/FileMenu",
+            WaitMod:"editor/WaitMod",
 
             "foo":"bar"
         },

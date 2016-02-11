@@ -1,5 +1,19 @@
+\new(p) {
+    Tonyu.extend(this,p);
+}
 \waitFor(f) {
     if (_thread) {
         _thread.waitFor(f);
     }
+}
+nowait \parallel() {
+     var args=[];
+     for (var i=1; i<arguments.length; i++) {
+         args.push(arguments[i]);
+     }
+     var name=arguments[0];
+     var th=Tonyu.thread();
+     th.apply(this,name,args);
+     th.steps();
+     return th;
 }

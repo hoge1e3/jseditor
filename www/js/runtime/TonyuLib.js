@@ -25,7 +25,9 @@ return Tonyu=function () {
         if (Tonyu.onRuntimeError) {
             Tonyu.onRuntimeError(e);
         } else {
+            if (typeof $LASTPOS=="undefined") $LASTPOS=0;
             alert ("エラー! at "+$LASTPOS+" メッセージ  : "+e);
+            console.log(e.stack);
             throw e;
         }
     }
@@ -79,14 +81,18 @@ return Tonyu=function () {
         delete prot.initialize;
         var res;
         res=(init?
-            (parent? function () {
+            /*(parent? function () {
                 if (!(this instanceof res)) useNew(fullName);
                 if (Tonyu.runMode) init.apply(this,arguments);
                 else parent.apply(this,arguments);
             }:function () {
                 if (!(this instanceof res)) useNew(fullName);
                 if (Tonyu.runMode) init.apply(this,arguments);
-            }):
+            })*/
+            function () {
+                if (!(this instanceof res)) useNew(fullName);
+                init.apply(this,arguments);
+            }:
             (parent? function () {
                 if (!(this instanceof res)) useNew(fullName);
                 parent.apply(this,arguments);
@@ -160,7 +166,8 @@ return Tonyu=function () {
     };
     function bless( klass, val) {
         if (!klass) return val;
-        return extend( new klass() , val);
+        return extend( Object.create(klass.prototype) , val);
+        //return extend( new klass() , val);
     }
     function extend (dst, src) {
         if (src && typeof src=="object") {

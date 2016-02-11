@@ -12,6 +12,7 @@ define(function (require, exports, module) {
     var TonyuC=require("TonyuC");
     var JSONConf=require("JSONConf");
     var Test=require("Test");
+    var FileMenu=require("FileMenu");
     //require("tonyuCompiled");
     
     C.make(
@@ -54,6 +55,7 @@ define(function (require, exports, module) {
     function test() {
         new Test().foo();
     }
+    var fileMenu;
     var es;
     var cwd=FS.get(Util.getQueryString("dir") || process.cwd()  );
     var etc=FS.get(process.cwd()).rel(".jsetc/");
@@ -82,6 +84,8 @@ define(function (require, exports, module) {
         return finder.find();
     }
     function newFile() {
+        return fileMenu.parallel("newFile");
+        
         var dir=fl.curDir;
         if (!dir) return;
         var nf;
@@ -136,6 +140,7 @@ define(function (require, exports, module) {
         });
         finder=new Finder(es);
         if (typeof SplashScreen!="undefined") SplashScreen.hide();
+        fileMenu=new FileMenu({editorSet:es,fileList:fl});
         return fl.open(cwd);
     });
 

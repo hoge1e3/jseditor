@@ -1,14 +1,17 @@
 includes WaitMod, ShellMod;
-
+native console;
 \new(p) {
     Tonyu.extend(this,p);
 }
 
-\prompt(m) {
-    var n=waitFor(UIDiag.prompt(m));
+\prompt(m,v) {
+    var n=waitFor(UIDiag.prompt(m,v));
     return n;
 }
 \confirm(m) {
     var n=waitFor(UIDiag.confirm(m));
     return n;
+}
+\print() {
+    console.log.apply(console,arguments);
 }

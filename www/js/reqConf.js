@@ -215,6 +215,7 @@ var reqConf={
             WaitMod:"editor/WaitMod",
             ShellMod:"editor/ShellMod",
             Base:"editor/Base",
+            Bookmark:"editor/Bookmark",
 
             "foo":"bar"
         },

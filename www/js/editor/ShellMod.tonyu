@@ -25,7 +25,7 @@ nowait \resolve(f) {
 \mv(src,dst) {
     src=resolve(src);
     dst=resolve(dst);
-    waitFor(src.mv(dst));
+    waitFor(dst.moveFrom(src));
 }
 \isDir(file) {
     file=resolve(file);

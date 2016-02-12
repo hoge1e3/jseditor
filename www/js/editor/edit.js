@@ -12,6 +12,7 @@ define(function (require, exports, module) {
     var TonyuC=require("TonyuC");
     var JSONConf=require("JSONConf");
     var FileMenu=require("FileMenu");
+    var Bookmark=require("Bookmark");
     //require("tonyuCompiled");
     
     C.make(
@@ -28,7 +29,7 @@ define(function (require, exports, module) {
         {label:"Home",href:"index.html"},
         {label:"ファイル",sub:[
             {label:"新規",id:"newFile",action:newFile},
-            {label:"名前変更",id:"mvFile"},
+            {label:"名前変更",id:"mvFile",action:mvFile},
             {label:"上書き保存",id:"saveFile",action:save,key:"ctrl+s"},
             {label:"コピー",id:"cpFile"},
             {label:"削除", id:"rmFile",action:rmFile}
@@ -36,11 +37,11 @@ define(function (require, exports, module) {
         {label:"ツール",sub:[
             //{label:"検索",id:"find",action:find,key:"ctrl+f"},
             //{label:"新規ツール...",id:"newTool"}
-            {label:"TonyuC", id:"tonyuC",action:tonyuC}
+            {label:"TonyuC", id:"tonyuC",action:tonyuC, key:"ctrl+shift+t"}
         ]},
         {label:"ウィンドウ",sub:[
             {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
-            {label:"ブックマーク...",id:"bookmark",action:newWindow}
+            {label:"ブックマーク...",id:"bookmark",action:openBookmark}
         ]},
         /*{label:"実行",sub:[
               {label:"実行(F9)",id:"runMenu",action:run},
@@ -63,13 +64,20 @@ define(function (require, exports, module) {
             es.open(f);
         }
     });
+    var bookmark=new Bookmark({
+        file:etc.rel("bookmark.json"),
+        fileList:fl
+    });
     function tonyuC() {
         return TonyuC.compile(FS.get(process.cwd()).rel("www/js")).then(function (){
-            alert("Compiled");
+            UIDiag.alert("Compiled");
         }).fail(function (e) {
-            alert("Compile fail"+e);
+            UIDiag.alert("Compile fail"+e);
             console.log(e);
         });
+    }
+    function openBookmark() {
+        bookmark.open();
     }
     function newWindow() {
         var genID=""+Math.random();
@@ -78,6 +86,9 @@ define(function (require, exports, module) {
     }
     function find() {
         return finder.find();
+    }
+    function mvFile() {
+        return fileMenu.parallel("rename");
     }
     function rmFile() {
         return fileMenu.parallel("remove");

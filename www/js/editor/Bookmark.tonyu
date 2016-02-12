@@ -1,0 +1,45 @@
+extends Base;
+native location;
+\new(p) {
+    super(p);
+    conf=new JSONConf(file);
+    conf.load();
+}
+\open() {
+    var items=UI("div");
+    var d=UI("div",{title:"ブックマーク"},
+        items,
+        ["div",
+            ["button",{on:{click:add}},"Add current"],
+            ["button",{on:{click:edit}},"Open bookmark.json"],
+            ["button",{on:{click:ok}},"OK"]
+        ]
+    );
+    d.dialog();
+    refresh();
+    \refresh() {
+        items.empty();
+        conf.data.forEach \(d) {
+            var item=UI("div",
+                ["a", {href: d.url}, d.title]
+            );
+            items.append(item);
+        };
+    }
+    \ok() {
+        d.dialog("close");
+    }
+    \edit() {
+        fileList.open(file);
+    }
+    \add() {
+        var urlHead=location.href.replace(/\?.*/,"");
+        conf.data.push{
+            name:fileList.curDir.name(),
+            url: urlHead+"?dir="+fileList.curDir.path()
+        };
+        conf.save();
+        refresh();
+    }
+}
+

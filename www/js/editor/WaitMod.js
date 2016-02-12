@@ -21,20 +21,13 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
-      initialize :function _trc_WaitMod_initialize(p) {
-        "use strict";
-        var _this=this;
-        
-        //$LASTPOS=2000014;//jseditor.WaitMod:14
-        Tonyu.extend(_this,p);
-      },
       waitFor :function _trc_WaitMod_waitFor(f) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=2000056;//jseditor.WaitMod:56
+        //$LASTPOS=2000019;//jseditor.WaitMod:19
         if (null) {
-          //$LASTPOS=2000079;//jseditor.WaitMod:79
+          //$LASTPOS=2000042;//jseditor.WaitMod:42
           null.waitFor(f);
           
         }
@@ -45,9 +38,9 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=2000056;//jseditor.WaitMod:56
+        //$LASTPOS=2000019;//jseditor.WaitMod:19
         if (_thread) {
-          //$LASTPOS=2000079;//jseditor.WaitMod:79
+          //$LASTPOS=2000042;//jseditor.WaitMod:42
           _thread.waitFor(f);
           
         }
@@ -62,32 +55,32 @@ define(function (require) {
         var name;
         var th;
         
-        //$LASTPOS=2000133;//jseditor.WaitMod:133
+        //$LASTPOS=2000096;//jseditor.WaitMod:96
         args = [];
         
-        //$LASTPOS=2000151;//jseditor.WaitMod:151
-        //$LASTPOS=2000156;//jseditor.WaitMod:156
+        //$LASTPOS=2000114;//jseditor.WaitMod:114
+        //$LASTPOS=2000119;//jseditor.WaitMod:119
         i = 1;
         for (; i<arguments.length ; i++) {
           {
-            //$LASTPOS=2000201;//jseditor.WaitMod:201
+            //$LASTPOS=2000164;//jseditor.WaitMod:164
             args.push(arguments[i]);
           }
         }
-        //$LASTPOS=2000238;//jseditor.WaitMod:238
+        //$LASTPOS=2000201;//jseditor.WaitMod:201
         name = arguments[0];
         
-        //$LASTPOS=2000266;//jseditor.WaitMod:266
+        //$LASTPOS=2000229;//jseditor.WaitMod:229
         th = Tonyu.thread();
         
-        //$LASTPOS=2000294;//jseditor.WaitMod:294
+        //$LASTPOS=2000257;//jseditor.WaitMod:257
         th.apply(_this,name,args);
-        //$LASTPOS=2000325;//jseditor.WaitMod:325
+        //$LASTPOS=2000288;//jseditor.WaitMod:288
         th.steps();
         return th;
       },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"waitFor":{"nowait":false},"parallel":{"nowait":true}}}
+    decls: {"methods":{"main":{"nowait":false},"waitFor":{"nowait":false},"parallel":{"nowait":true}}}
   });
 });

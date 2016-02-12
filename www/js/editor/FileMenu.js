@@ -1,13 +1,12 @@
 define(function (require) {
   var Tonyu=require('Tonyu');
-  var Tonyu=require('Tonyu');
-  var UIDiag=require('UIDiag');
-  var WaitMod=require('WaitMod');
+  var Base=require('Base');
   return Tonyu.klass.define({
     fullName: 'jseditor.FileMenu',
     shortName: 'FileMenu',
     namespace: 'jseditor',
-    includes: [Tonyu.classes.jseditor.WaitMod],
+    superclass: Tonyu.classes.jseditor.Base,
+    includes: [],
     methods: {
       main :function _trc_FileMenu_main() {
         "use strict";
@@ -23,14 +22,7 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
-      initialize :function _trc_FileMenu_initialize(p) {
-        "use strict";
-        var _this=this;
-        
-        //$LASTPOS=3000049;//jseditor.FileMenu:49
-        Tonyu.extend(_this,p);
-      },
-      newFile :function _trc_FileMenu_newFile() {
+      create :function _trc_FileMenu_create() {
         "use strict";
         var _this=this;
         var es;
@@ -40,52 +32,56 @@ define(function (require) {
         var nf;
         var isd;
         
-        //$LASTPOS=3000090;//jseditor.FileMenu:90
+        //$LASTPOS=5000047;//jseditor.FileMenu:47
         es = _this.editorSet;
         
-        //$LASTPOS=3000112;//jseditor.FileMenu:112
+        //$LASTPOS=5000069;//jseditor.FileMenu:69
         fl = _this.fileList;
         
-        //$LASTPOS=3000133;//jseditor.FileMenu:133
-        dir = fl.curDir;
+        //$LASTPOS=5000090;//jseditor.FileMenu:90
+        dir = _this.curDir;
         
-        //$LASTPOS=3000156;//jseditor.FileMenu:156
+        //$LASTPOS=5000110;//jseditor.FileMenu:110
         if (! dir) {
           return _this;
         }
-        //$LASTPOS=3000178;//jseditor.FileMenu:178
-        n = _this.waitFor(UIDiag.prompt("ファイル名"));
+        //$LASTPOS=5000132;//jseditor.FileMenu:132
+        n = _this.prompt("ファイル名");
         
-        //$LASTPOS=3000221;//jseditor.FileMenu:221
+        //$LASTPOS=5000159;//jseditor.FileMenu:159
+        if (! n) {
+          return _this;
+        }
+        //$LASTPOS=5000179;//jseditor.FileMenu:179
         console.log("fn",n);
-        //$LASTPOS=3000246;//jseditor.FileMenu:246
+        //$LASTPOS=5000204;//jseditor.FileMenu:204
         nf = dir.rel(n);
         
-        //$LASTPOS=3000269;//jseditor.FileMenu:269
-        isd = _this.waitFor(nf.isDir());
+        //$LASTPOS=5000227;//jseditor.FileMenu:227
+        isd = _this.isDir(nf);
         
-        //$LASTPOS=3000302;//jseditor.FileMenu:302
+        //$LASTPOS=5000250;//jseditor.FileMenu:250
         if (isd) {
-          //$LASTPOS=3000321;//jseditor.FileMenu:321
+          //$LASTPOS=5000269;//jseditor.FileMenu:269
           dir=nf;
-          //$LASTPOS=3000337;//jseditor.FileMenu:337
-          _this.waitFor(nf.mkdir());
+          //$LASTPOS=5000285;//jseditor.FileMenu:285
+          _this.mkdir(nf);
           
         } else {
-          //$LASTPOS=3000379;//jseditor.FileMenu:379
-          _this.waitFor(nf.text(""));
+          //$LASTPOS=5000317;//jseditor.FileMenu:317
+          _this.writeFile(nf,"");
           
         }
-        //$LASTPOS=3000411;//jseditor.FileMenu:411
+        //$LASTPOS=5000345;//jseditor.FileMenu:345
         _this.waitFor(fl.open(dir));
-        //$LASTPOS=3000438;//jseditor.FileMenu:438
+        //$LASTPOS=5000372;//jseditor.FileMenu:372
         if (! isd) {
-          //$LASTPOS=3000458;//jseditor.FileMenu:458
+          //$LASTPOS=5000392;//jseditor.FileMenu:392
           es.open(nf);
           
         }
       },
-      fiber$newFile :function _trc_FileMenu_f_newFile(_thread) {
+      fiber$create :function _trc_FileMenu_f_create(_thread) {
         "use strict";
         var _this=this;
         //var _arguments=Tonyu.A(arguments);
@@ -97,69 +93,74 @@ define(function (require) {
         var nf;
         var isd;
         
-        //$LASTPOS=3000090;//jseditor.FileMenu:90
+        //$LASTPOS=5000047;//jseditor.FileMenu:47
         es = _this.editorSet;
         
-        //$LASTPOS=3000112;//jseditor.FileMenu:112
+        //$LASTPOS=5000069;//jseditor.FileMenu:69
         fl = _this.fileList;
         
-        //$LASTPOS=3000133;//jseditor.FileMenu:133
-        dir = fl.curDir;
+        //$LASTPOS=5000090;//jseditor.FileMenu:90
+        dir = _this.curDir;
         
-        //$LASTPOS=3000156;//jseditor.FileMenu:156
+        //$LASTPOS=5000110;//jseditor.FileMenu:110
         if (! dir) {
           _thread.retVal=_this;return;
           
         }
         
-        _thread.enter(function _trc_FileMenu_ent_newFile(_thread) {
+        _thread.enter(function _trc_FileMenu_ent_create(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000178;//jseditor.FileMenu:178
-              _this.fiber$waitFor(_thread, UIDiag.prompt("ファイル名"));
+              //$LASTPOS=5000132;//jseditor.FileMenu:132
+              _this.fiber$prompt(_thread, "ファイル名");
               __pc=1;return;
             case 1:
               n=_thread.retVal;
               
-              //$LASTPOS=3000221;//jseditor.FileMenu:221
+              //$LASTPOS=5000159;//jseditor.FileMenu:159
+              if (!(! n)) { __pc=2; break; }
+              _thread.exit(_this);return;
+            case 2:
+              
+              //$LASTPOS=5000179;//jseditor.FileMenu:179
               console.log("fn",n);
-              //$LASTPOS=3000246;//jseditor.FileMenu:246
+              //$LASTPOS=5000204;//jseditor.FileMenu:204
               nf = dir.rel(n);
               
-              //$LASTPOS=3000269;//jseditor.FileMenu:269
-              _this.fiber$waitFor(_thread, nf.isDir());
-              __pc=2;return;
-            case 2:
-              isd=_thread.retVal;
-              
-              //$LASTPOS=3000302;//jseditor.FileMenu:302
-              if (!(isd)) { __pc=4; break; }
-              //$LASTPOS=3000321;//jseditor.FileMenu:321
-              dir=nf;
-              //$LASTPOS=3000337;//jseditor.FileMenu:337
-              _this.fiber$waitFor(_thread, nf.mkdir());
+              //$LASTPOS=5000227;//jseditor.FileMenu:227
+              _this.fiber$isDir(_thread, nf);
               __pc=3;return;
             case 3:
+              isd=_thread.retVal;
               
-              __pc=6;break;
+              //$LASTPOS=5000250;//jseditor.FileMenu:250
+              if (!(isd)) { __pc=5; break; }
+              //$LASTPOS=5000269;//jseditor.FileMenu:269
+              dir=nf;
+              //$LASTPOS=5000285;//jseditor.FileMenu:285
+              _this.fiber$mkdir(_thread, nf);
+              __pc=4;return;
             case 4:
-              //$LASTPOS=3000379;//jseditor.FileMenu:379
-              _this.fiber$waitFor(_thread, nf.text(""));
-              __pc=5;return;
-            case 5:
               
+              __pc=7;break;
+            case 5:
+              //$LASTPOS=5000317;//jseditor.FileMenu:317
+              _this.fiber$writeFile(_thread, nf, "");
+              __pc=6;return;
             case 6:
               
-              //$LASTPOS=3000411;//jseditor.FileMenu:411
-              _this.fiber$waitFor(_thread, fl.open(dir));
-              __pc=7;return;
             case 7:
               
-              //$LASTPOS=3000438;//jseditor.FileMenu:438
+              //$LASTPOS=5000345;//jseditor.FileMenu:345
+              _this.fiber$waitFor(_thread, fl.open(dir));
+              __pc=8;return;
+            case 8:
+              
+              //$LASTPOS=5000372;//jseditor.FileMenu:372
               if (! isd) {
-                //$LASTPOS=3000458;//jseditor.FileMenu:458
+                //$LASTPOS=5000392;//jseditor.FileMenu:392
                 es.open(nf);
                 
               }
@@ -168,8 +169,130 @@ define(function (require) {
           }
         });
       },
+      rename :function _trc_FileMenu_rename() {
+        "use strict";
+        var _this=this;
+        
+      },
+      fiber$rename :function _trc_FileMenu_f_rename(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        
+        _thread.retVal=_this;return;
+      },
+      copy :function _trc_FileMenu_copy() {
+        "use strict";
+        var _this=this;
+        
+      },
+      fiber$copy :function _trc_FileMenu_f_copy(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        
+        _thread.retVal=_this;return;
+      },
+      __getter__curDir :function _trc_FileMenu___getter__curDir() {
+        "use strict";
+        var _this=this;
+        
+        return _this.fileList.curDir;
+      },
+      remove :function _trc_FileMenu_remove() {
+        "use strict";
+        var _this=this;
+        var fl;
+        var f;
+        var r;
+        
+        //$LASTPOS=5000506;//jseditor.FileMenu:506
+        fl = _this.fileList;
+        
+        //$LASTPOS=5000527;//jseditor.FileMenu:527
+        f = fl.lastSelected;
+        
+        //$LASTPOS=5000554;//jseditor.FileMenu:554
+        if (! f) {
+          return _this;
+        }
+        //$LASTPOS=5000574;//jseditor.FileMenu:574
+        r = _this.confirm(f.path()+"を削除しますか？");
+        
+        //$LASTPOS=5000614;//jseditor.FileMenu:614
+        if (! r) {
+          return _this;
+        }
+        //$LASTPOS=5000634;//jseditor.FileMenu:634
+        _this.rm(f);
+        //$LASTPOS=5000645;//jseditor.FileMenu:645
+        if (_this.curDir) {
+          //$LASTPOS=5000657;//jseditor.FileMenu:657
+          _this.waitFor(fl.open(_this.curDir));
+        }
+      },
+      fiber$remove :function _trc_FileMenu_f_remove(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        var fl;
+        var f;
+        var r;
+        
+        //$LASTPOS=5000506;//jseditor.FileMenu:506
+        fl = _this.fileList;
+        
+        //$LASTPOS=5000527;//jseditor.FileMenu:527
+        f = fl.lastSelected;
+        
+        //$LASTPOS=5000554;//jseditor.FileMenu:554
+        if (! f) {
+          _thread.retVal=_this;return;
+          
+        }
+        
+        _thread.enter(function _trc_FileMenu_ent_remove(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=5000574;//jseditor.FileMenu:574
+              _this.fiber$confirm(_thread, f.path()+"を削除しますか？");
+              __pc=1;return;
+            case 1:
+              r=_thread.retVal;
+              
+              //$LASTPOS=5000614;//jseditor.FileMenu:614
+              if (!(! r)) { __pc=2; break; }
+              _thread.exit(_this);return;
+            case 2:
+              
+              //$LASTPOS=5000634;//jseditor.FileMenu:634
+              _this.fiber$rm(_thread, f);
+              __pc=3;return;
+            case 3:
+              
+              //$LASTPOS=5000645;//jseditor.FileMenu:645
+              if (!(_this.curDir)) { __pc=5; break; }
+              //$LASTPOS=5000657;//jseditor.FileMenu:657
+              _this.fiber$waitFor(_thread, fl.open(_this.curDir));
+              __pc=4;return;
+            case 4:
+              
+            case 5:
+              
+              _thread.exit(_this);return;
+            }
+          }
+        });
+      },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"newFile":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"create":{"nowait":false},"rename":{"nowait":false},"copy":{"nowait":false},"__getter__curDir":{"nowait":true},"remove":{"nowait":false}}}
   });
 });

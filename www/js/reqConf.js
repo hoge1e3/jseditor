@@ -213,6 +213,8 @@ var reqConf={
             Test:"editor/Test",
             FileMenu:"editor/FileMenu",
             WaitMod:"editor/WaitMod",
+            ShellMod:"editor/ShellMod",
+            Base:"editor/Base",
 
             "foo":"bar"
         },

@@ -8,7 +8,10 @@ define(function (require) {
     p.open=function (d) {
         var t=this;
         var list=t.list;
-        if (!d.isDir()) return t.on.open(d);
+        this.lastSelected=d;
+        if (!d.isDir()) {
+            return t.on.open(d);
+        }
         list.empty();
         addItem(d.up(),"[UP]");
         this.curDir=d;

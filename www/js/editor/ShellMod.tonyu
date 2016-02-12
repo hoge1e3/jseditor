@@ -1,0 +1,25 @@
+includes WaitMod;
+
+\listFiles(dir) {
+    var r=waitFor(dir.listFiles());
+    return r;
+}
+\readFile(file) {
+    var r=waitFor(file.text(cont));
+    return r;
+}
+\writeFile(file,cont) {
+    waitFor(file.text(cont));
+}
+\isDir(f) {
+    var r=waitFor(f.isDir());
+    return r;
+}
+\mkdir(f) {
+    var r=waitFor(f.mkdir());
+    return r;
+}
+\rm(f) {
+    var r=waitFor(f.rm());
+    return r;
+}

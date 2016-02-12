@@ -1,26 +1,43 @@
-includes WaitMod;
+extends Base;
 native console;
 
-\new(p) {
-    Tonyu.extend(this,p);
-}
-\newFile() {
+\create() {
     var es=editorSet;
     var fl=fileList;
-    var dir=fl.curDir;
+    var dir=curDir;
     if (!dir) return;
-    var n=waitFor(UIDiag.prompt("ファイル名"));
-    console.log("fn",n);
+    var n=prompt("ファイル名");
+    if (!n) return;
     var nf=dir.rel(n);
-    var isd=waitFor(nf.isDir());
+    var isd=isDir(nf);
     if (isd) {
         dir=nf;
-        waitFor(nf.mkdir());
+        mkdir(nf);
     } else {
-        waitFor(nf.text(""));
+        writeFile(nf,"");
     }
     waitFor(fl.open(dir));
     if (!isd) {
         es.open(nf);
     }
+}
+
+\rename() {
+    
+}
+\copy() {
+    
+}
+\curDir {
+    return fileList.curDir;
+}
+\remove() {
+    var fl=fileList;
+    var f=fl.lastSelected;
+    if (!f) return;
+    var r=confirm(f.path()+"を削除しますか？");
+    if (!r) return;
+    rm(f);
+    es.close(f);
+    if (curDir) waitFor(fl.open(curDir));
 }

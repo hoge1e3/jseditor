@@ -1,0 +1,14 @@
+includes WaitMod, ShellMod;
+
+\new(p) {
+    Tonyu.extend(this,p);
+}
+
+\prompt(m) {
+    var n=waitFor(UIDiag.prompt(m));
+    return n;
+}
+\confirm(m) {
+    var n=waitFor(UIDiag.confirm(m));
+    return n;
+}

@@ -80,5 +80,12 @@ define(function (require, exports, module) {
         }
         this.fileLabel.text(curFile.name());
     };
+    p.close=function (f) {
+        var inf=this.editors[f.path()];
+        if (!inf) return;
+        inf.prog.destroy();
+        inf.dom.remove();
+        delete this.editors[f.path()];
+    };
 	return EditorSet;
 });

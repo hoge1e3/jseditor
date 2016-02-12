@@ -11,7 +11,6 @@ define(function (require, exports, module) {
     var Util=require("Util");
     var TonyuC=require("TonyuC");
     var JSONConf=require("JSONConf");
-    var Test=require("Test");
     var FileMenu=require("FileMenu");
     //require("tonyuCompiled");
     
@@ -32,13 +31,12 @@ define(function (require, exports, module) {
             {label:"名前変更",id:"mvFile"},
             {label:"上書き保存",id:"saveFile",action:save,key:"ctrl+s"},
             {label:"コピー",id:"cpFile"},
-            {label:"削除", id:"rmFile"}
+            {label:"削除", id:"rmFile",action:rmFile}
         ]},
         {label:"ツール",sub:[
             //{label:"検索",id:"find",action:find,key:"ctrl+f"},
             //{label:"新規ツール...",id:"newTool"}
-            {label:"TonyuC", id:"tonyuC",action:tonyuC},
-            {label:"test", id:"test",action:test}
+            {label:"TonyuC", id:"tonyuC",action:tonyuC}
         ]},
         {label:"ウィンドウ",sub:[
             {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
@@ -52,9 +50,6 @@ define(function (require, exports, module) {
                 id:"textsize",action:textSize}
         ]}
     ]);
-    function test() {
-        new Test().foo();
-    }
     var fileMenu;
     var es;
     var cwd=FS.get(Util.getQueryString("dir") || process.cwd()  );
@@ -63,6 +58,7 @@ define(function (require, exports, module) {
     desktopEnv.load();
     var fl=new FileList($("#fileItemList"),{
         open:function (f) {
+            console.log("opening",f);
             es.save();
             es.open(f);
         }
@@ -83,10 +79,13 @@ define(function (require, exports, module) {
     function find() {
         return finder.find();
     }
+    function rmFile() {
+        return fileMenu.parallel("remove");
+    }
     function newFile() {
-        return fileMenu.parallel("newFile");
+        return fileMenu.parallel("create");
         
-        var dir=fl.curDir;
+        /*var dir=fl.curDir;
         if (!dir) return;
         var nf;
         UIDiag.prompt("ファイル名").then(function (n) {
@@ -103,7 +102,7 @@ define(function (require, exports, module) {
             if (!nf.isDir()) {
                 return es.open(nf);
             }
-        });
+        });*/
     }
     function textSize() {
         UIDiag.prompt(

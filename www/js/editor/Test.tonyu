@@ -1,5 +1,0 @@
-native console;
-
-\foo(x) {
-    UI("div","Tonyu で dialog").dialog();
-}

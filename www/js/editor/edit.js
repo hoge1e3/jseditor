@@ -84,25 +84,6 @@ define(function (require, exports, module) {
     }
     function newFile() {
         return fileMenu.parallel("create");
-        
-        /*var dir=fl.curDir;
-        if (!dir) return;
-        var nf;
-        UIDiag.prompt("ファイル名").then(function (n) {
-            nf=dir.rel(n);
-            if (nf.isDir()) {
-                dir=nf;
-                return nf.mkdir();
-            } else {
-                return nf.text("");
-            }
-        }).then(function () {
-            return fl.open(dir);
-        }).then(function () {
-            if (!nf.isDir()) {
-                return es.open(nf);
-            }
-        });*/
     }
     function textSize() {
         UIDiag.prompt(
@@ -117,7 +98,6 @@ define(function (require, exports, module) {
     function save(e) {
         es.save();
     }
-    //KeyEventChecker.down(document,"ctrl+s",);
     var screenH,editorH;
     function onResize() {
         var h=$(window).height()-$("#navBar").height()-$("#tabTop").height();

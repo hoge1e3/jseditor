@@ -83,7 +83,7 @@ define(function (require, exports, module) {
     p.close=function (f) {
         var inf=this.editors[f.path()];
         if (!inf) return;
-        inf.prog.destroy();
+        inf.editor.destroy();
         inf.dom.remove();
         delete this.editors[f.path()];
     };

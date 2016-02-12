@@ -18,7 +18,7 @@ native console;
     }
     waitFor(fl.open(dir));
     if (!isd) {
-        es.open(nf);
+        waitFor(fl.open(nf));
     }
 }
 
@@ -38,6 +38,6 @@ native console;
     var r=confirm(f.path()+"を削除しますか？");
     if (!r) return;
     rm(f);
-    es.close(f);
+    editorSet.close(f);
     if (curDir) waitFor(fl.open(curDir));
 }

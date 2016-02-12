@@ -2,8 +2,6 @@ extends Base;
 native console;
 
 \create() {
-    var es=editorSet;
-    var fl=fileList;
     var dir=curDir;
     if (!dir) return;
     var n=prompt("ファイル名");
@@ -11,19 +9,26 @@ native console;
     var nf=dir.rel(n);
     var isd=isDir(nf);
     if (isd) {
-        dir=nf;
         mkdir(nf);
     } else {
         writeFile(nf,"");
     }
-    waitFor(fl.open(dir));
-    if (!isd) {
-        waitFor(fl.open(nf));
-    }
+    waitFor(fileList.open(nf));
 }
 
+\cdfl() {
+    if (curDir) cd(curDir);
+}
 \rename() {
-    
+    cdfl();
+    var f=fileList.lastSelected;
+    if (!f) return;
+    var nf=prompt("ファイル名の変更",f.path());
+    if (!nf) return;
+    mv(f,nf);
+    editorSet.close(f);
+    waitFor(fl.open(nf));
+    if (curDir) waitFor(fl.open(curDir));
 }
 \copy() {
     

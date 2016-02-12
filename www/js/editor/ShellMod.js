@@ -1,5 +1,6 @@
 define(function (require) {
   var Tonyu=require('Tonyu');
+  var SFile=require('SFile');
   var WaitMod=require('WaitMod');
   return Tonyu.klass.define({
     fullName: 'jseditor.ShellMod',
@@ -21,12 +22,36 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
+      cd :function _trc_ShellMod_cd(dir) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=2000041;//jseditor.ShellMod:41
+        _this.cwd=_this.resolve(dir);
+      },
+      resolve :function _trc_ShellMod_resolve(f) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=2000086;//jseditor.ShellMod:86
+        if (SFile["is"](f)) {
+          return f;
+        }
+        //$LASTPOS=2000120;//jseditor.ShellMod:120
+        if (! _this.cwd) {
+          throw new Error("CWD is not set");
+          
+        }
+        return _this.cwd.rel(f);
+      },
       listFiles :function _trc_ShellMod_listFiles(dir) {
         "use strict";
         var _this=this;
         var r;
         
-        //$LASTPOS=3000041;//jseditor.ShellMod:41
+        //$LASTPOS=2000212;//jseditor.ShellMod:212
+        dir=_this.resolve(dir);
+        //$LASTPOS=2000234;//jseditor.ShellMod:234
         r = _this.waitFor(dir.listFiles());
         
         return r;
@@ -38,13 +63,15 @@ define(function (require) {
         var __pc=0;
         var r;
         
+        //$LASTPOS=2000212;//jseditor.ShellMod:212
+        dir=_this.resolve(dir);
         
         _thread.enter(function _trc_ShellMod_ent_listFiles(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000041;//jseditor.ShellMod:41
+              //$LASTPOS=2000234;//jseditor.ShellMod:234
               _this.fiber$waitFor(_thread, dir.listFiles());
               __pc=1;return;
             case 1:
@@ -61,7 +88,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=3000111;//jseditor.ShellMod:111
+        //$LASTPOS=2000304;//jseditor.ShellMod:304
+        file=_this.resolve(file);
+        //$LASTPOS=2000328;//jseditor.ShellMod:328
         r = _this.waitFor(file.text(_this.cont));
         
         return r;
@@ -73,13 +102,15 @@ define(function (require) {
         var __pc=0;
         var r;
         
+        //$LASTPOS=2000304;//jseditor.ShellMod:304
+        file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_readFile(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000111;//jseditor.ShellMod:111
+              //$LASTPOS=2000328;//jseditor.ShellMod:328
               _this.fiber$waitFor(_thread, file.text(_this.cont));
               __pc=1;return;
             case 1:
@@ -95,7 +126,9 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000187;//jseditor.ShellMod:187
+        //$LASTPOS=2000404;//jseditor.ShellMod:404
+        file=_this.resolve(file);
+        //$LASTPOS=2000428;//jseditor.ShellMod:428
         _this.waitFor(file.text(cont));
       },
       fiber$writeFile :function _trc_ShellMod_f_writeFile(_thread,file,cont) {
@@ -104,13 +137,15 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
+        //$LASTPOS=2000404;//jseditor.ShellMod:404
+        file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_writeFile(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000187;//jseditor.ShellMod:187
+              //$LASTPOS=2000428;//jseditor.ShellMod:428
               _this.fiber$waitFor(_thread, file.text(cont));
               __pc=1;return;
             case 1:
@@ -120,31 +155,72 @@ define(function (require) {
           }
         });
       },
-      isDir :function _trc_ShellMod_isDir(f) {
+      mv :function _trc_ShellMod_mv(src,dst) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=2000475;//jseditor.ShellMod:475
+        src=_this.resolve(src);
+        //$LASTPOS=2000497;//jseditor.ShellMod:497
+        dst=_this.resolve(dst);
+        //$LASTPOS=2000519;//jseditor.ShellMod:519
+        _this.waitFor(src.mv(dst));
+      },
+      fiber$mv :function _trc_ShellMod_f_mv(_thread,src,dst) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=2000475;//jseditor.ShellMod:475
+        src=_this.resolve(src);
+        //$LASTPOS=2000497;//jseditor.ShellMod:497
+        dst=_this.resolve(dst);
+        
+        _thread.enter(function _trc_ShellMod_ent_mv(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=2000519;//jseditor.ShellMod:519
+              _this.fiber$waitFor(_thread, src.mv(dst));
+              __pc=1;return;
+            case 1:
+              
+              _thread.exit(_this);return;
+            }
+          }
+        });
+      },
+      isDir :function _trc_ShellMod_isDir(file) {
         "use strict";
         var _this=this;
         var r;
         
-        //$LASTPOS=3000231;//jseditor.ShellMod:231
-        r = _this.waitFor(f.isDir());
+        //$LASTPOS=2000562;//jseditor.ShellMod:562
+        file=_this.resolve(file);
+        //$LASTPOS=2000586;//jseditor.ShellMod:586
+        r = _this.waitFor(file.isDir());
         
         return r;
       },
-      fiber$isDir :function _trc_ShellMod_f_isDir(_thread,f) {
+      fiber$isDir :function _trc_ShellMod_f_isDir(_thread,file) {
         "use strict";
         var _this=this;
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         var r;
         
+        //$LASTPOS=2000562;//jseditor.ShellMod:562
+        file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_isDir(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000231;//jseditor.ShellMod:231
-              _this.fiber$waitFor(_thread, f.isDir());
+              //$LASTPOS=2000586;//jseditor.ShellMod:586
+              _this.fiber$waitFor(_thread, file.isDir());
               __pc=1;return;
             case 1:
               r=_thread.retVal;
@@ -155,31 +231,35 @@ define(function (require) {
           }
         });
       },
-      mkdir :function _trc_ShellMod_mkdir(f) {
+      mkdir :function _trc_ShellMod_mkdir(file) {
         "use strict";
         var _this=this;
         var r;
         
-        //$LASTPOS=3000289;//jseditor.ShellMod:289
-        r = _this.waitFor(f.mkdir());
+        //$LASTPOS=2000650;//jseditor.ShellMod:650
+        file=_this.resolve(file);
+        //$LASTPOS=2000674;//jseditor.ShellMod:674
+        r = _this.waitFor(file.mkdir());
         
         return r;
       },
-      fiber$mkdir :function _trc_ShellMod_f_mkdir(_thread,f) {
+      fiber$mkdir :function _trc_ShellMod_f_mkdir(_thread,file) {
         "use strict";
         var _this=this;
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         var r;
         
+        //$LASTPOS=2000650;//jseditor.ShellMod:650
+        file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_mkdir(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000289;//jseditor.ShellMod:289
-              _this.fiber$waitFor(_thread, f.mkdir());
+              //$LASTPOS=2000674;//jseditor.ShellMod:674
+              _this.fiber$waitFor(_thread, file.mkdir());
               __pc=1;return;
             case 1:
               r=_thread.retVal;
@@ -190,31 +270,35 @@ define(function (require) {
           }
         });
       },
-      rm :function _trc_ShellMod_rm(f) {
+      rm :function _trc_ShellMod_rm(file) {
         "use strict";
         var _this=this;
         var r;
         
-        //$LASTPOS=3000344;//jseditor.ShellMod:344
-        r = _this.waitFor(f.rm());
+        //$LASTPOS=2000735;//jseditor.ShellMod:735
+        file=_this.resolve(file);
+        //$LASTPOS=2000759;//jseditor.ShellMod:759
+        r = _this.waitFor(file.rm());
         
         return r;
       },
-      fiber$rm :function _trc_ShellMod_f_rm(_thread,f) {
+      fiber$rm :function _trc_ShellMod_f_rm(_thread,file) {
         "use strict";
         var _this=this;
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         var r;
         
+        //$LASTPOS=2000735;//jseditor.ShellMod:735
+        file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_rm(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000344;//jseditor.ShellMod:344
-              _this.fiber$waitFor(_thread, f.rm());
+              //$LASTPOS=2000759;//jseditor.ShellMod:759
+              _this.fiber$waitFor(_thread, file.rm());
               __pc=1;return;
             case 1:
               r=_thread.retVal;
@@ -227,6 +311,6 @@ define(function (require) {
       },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"listFiles":{"nowait":false},"readFile":{"nowait":false},"writeFile":{"nowait":false},"isDir":{"nowait":false},"mkdir":{"nowait":false},"rm":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"cd":{"nowait":true},"resolve":{"nowait":true},"listFiles":{"nowait":false},"readFile":{"nowait":false},"writeFile":{"nowait":false},"mv":{"nowait":false},"isDir":{"nowait":false},"mkdir":{"nowait":false},"rm":{"nowait":false}}}
   });
 });

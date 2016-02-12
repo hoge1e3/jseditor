@@ -1,25 +1,44 @@
 includes WaitMod;
 
+nowait \cd(dir) {
+    cwd=resolve(dir);
+}
+nowait \resolve(f) {
+    if (SFile["is"](f)) return f;
+    if (!cwd) throw new Error("CWD is not set");
+    return cwd.rel(f);
+}
 \listFiles(dir) {
+    dir=resolve(dir);
     var r=waitFor(dir.listFiles());
     return r;
 }
 \readFile(file) {
+    file=resolve(file);
     var r=waitFor(file.text(cont));
     return r;
 }
 \writeFile(file,cont) {
+    file=resolve(file);
     waitFor(file.text(cont));
 }
-\isDir(f) {
-    var r=waitFor(f.isDir());
+\mv(src,dst) {
+    src=resolve(src);
+    dst=resolve(dst);
+    waitFor(src.mv(dst));
+}
+\isDir(file) {
+    file=resolve(file);
+    var r=waitFor(file.isDir());
     return r;
 }
-\mkdir(f) {
-    var r=waitFor(f.mkdir());
+\mkdir(file) {
+    file=resolve(file);
+    var r=waitFor(file.mkdir());
     return r;
 }
-\rm(f) {
-    var r=waitFor(f.rm());
+\rm(file) {
+    file=resolve(file);
+    var r=waitFor(file.rm());
     return r;
 }

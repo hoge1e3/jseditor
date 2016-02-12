@@ -28,7 +28,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=4000043;//jseditor.Base:43
+        //$LASTPOS=3000043;//jseditor.Base:43
         Tonyu.extend(_this,p);
       },
       prompt :function _trc_Base_prompt(m) {
@@ -36,7 +36,7 @@ define(function (require) {
         var _this=this;
         var n;
         
-        //$LASTPOS=4000085;//jseditor.Base:85
+        //$LASTPOS=3000085;//jseditor.Base:85
         n = _this.waitFor(UIDiag.prompt(m));
         
         return n;
@@ -54,7 +54,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=4000085;//jseditor.Base:85
+              //$LASTPOS=3000085;//jseditor.Base:85
               _this.fiber$waitFor(_thread, UIDiag.prompt(m));
               __pc=1;return;
             case 1:
@@ -71,7 +71,7 @@ define(function (require) {
         var _this=this;
         var n;
         
-        //$LASTPOS=4000152;//jseditor.Base:152
+        //$LASTPOS=3000152;//jseditor.Base:152
         n = _this.waitFor(UIDiag.confirm(m));
         
         return n;
@@ -89,7 +89,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=4000152;//jseditor.Base:152
+              //$LASTPOS=3000152;//jseditor.Base:152
               _this.fiber$waitFor(_thread, UIDiag.confirm(m));
               __pc=1;return;
             case 1:

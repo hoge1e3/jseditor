@@ -1,0 +1,25 @@
+extends Base;
+native reqConf;
+
+\compile(dir) {
+    var elem=UI("div","Compiling...");
+    UIDiag.custom(elem) {
+        width:500,ok:true, title:"Tonyu Compiler"
+    };
+    update();
+    $currentProject=ProjectCompiler(dir);
+    $currentProject.setModulePaths(reqConf.paths);
+    try {
+        waitFor( $currentProject.compile() );
+        elem.text("Compiled");
+        for (var n,c in $currentProject.env.classes) {
+            if (SFile["is"](c.src.js) && !reqConf.paths[c.shortName]) {
+                $reqConfBuilder.addPath(c.shortName, c.src.js);
+            }
+        }
+        $reqConfBuilder.save();
+    } catch (e) {
+        print(e.stack);
+        elem.text("Error "+e);
+    }
+}

@@ -4,6 +4,9 @@ native console;
     Tonyu.extend(this,p);
 }
 
+\alert(m) {
+    waitFor(UIDiag.alert(m));
+}
 \prompt(m,v) {
     var n=waitFor(UIDiag.prompt(m,v));
     return n;
@@ -14,4 +17,7 @@ native console;
 }
 \print() {
     console.log.apply(console,arguments);
+}
+\update(t) {
+    waitFor(DeferredUtil.timeout(t||0));
 }

@@ -2,7 +2,12 @@ extends Base;
 native reqConf;
 native JSON;
 
+\new(o) {
+    super(o);
+    base=htmlDir.rel(reqConf.baseUrl);
+}
 \save(data) {
+    if (!data) data=reqConf;
     var js=JSON.stringify(data,null,4);
     writeFile(output,
         "var reqConf="+js+";\n"+
@@ -11,13 +16,12 @@ native JSON;
         "}\n"
     );
 }
-\addPath(paths) {
+\addPath(name, file) {
+    var tf=file.up().rel(file.truncExt());
+    reqConf.paths[name]=tf.relPath(base);
     Tonyu.extend(reqConf.paths, paths);
-    save(reqConf);
 }
 \cleanUnused() {
-    var base=htmlDir.rel(reqConf.baseUrl);
-    print(base.path());
     var newPaths={};
     for (var k,v in reqConf.paths) {
         var f=base.rel(v+".js");

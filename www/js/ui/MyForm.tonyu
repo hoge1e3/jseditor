@@ -1,0 +1,19 @@
+extends UIForm;
+
+parse(["div",
+    ["h1","てすと！"],
+    ["span",{name:"num"},0],
+    ["button",{on:{click:inc}},"+"]
+]);
+parallel("count");
+\count() {
+    i=0;
+    while(i<10) {
+        inc();
+        update(100);
+    }
+}
+\inc() {
+    i++;
+    num.text(i);
+}

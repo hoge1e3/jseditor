@@ -9,6 +9,7 @@ define(function (require, exports, module) {
     var KeyEventChecker=require("KeyEventChecker");
     var FileList=require("FileList");
     var Util=require("Util");
+    var Tonyu=require("Tonyu");
     var TonyuC=require("TonyuC");
     var JSONConf=require("JSONConf");
     var FileMenu=require("FileMenu");
@@ -57,9 +58,13 @@ define(function (require, exports, module) {
     var fileMenu;
     var es;
     var cwd=FS.get(Util.getQueryString("dir") || process.cwd().replace(/\\/g,"/")  );
-    var projectTop=FS.get(process.cwd().replace(/\\/g,"/")  );
+    var projectTop=FS.get(process.cwd().replace(/\\/g,"/")  ).rel("www/");
     var etc=FS.get(process.cwd()).rel(".jsetc/");
     var desktopEnv=new JSONConf(etc.rel("desktop.json"));
+    Tonyu.globals.$reqConfBuilder=new ReqConfBuilder({
+        output:projectTop.rel("js/reqConfTest.js"),
+        htmlDir:projectTop
+    });
     desktopEnv.load();
     var fl=new FileList($("#fileItemList"),{
         open:function (f) {
@@ -73,21 +78,21 @@ define(function (require, exports, module) {
         fileList:fl
     });
     function genReqConf() {
-        var b=new ReqConfBuilder({
-            output:projectTop.rel("www/js/reqConfTest.js"),
-            htmlDir:projectTop.rel("www/")
-        });
+        var b=Tonyu.globals.$reqConfBuilder;
         b.build();
     }
     function tonyuC() {
-        var mesg=UI("div","Compiling...");
+        var tc=new TonyuC;
+        //tc.compile(projectTop.rel("js/"));
+        tc.parallel("compile",projectTop.rel("js/"));
+        /*var mesg=UI("div","Compiling...");
         UIDiag.alert(mesg);
-        return TonyuC.compile(FS.get(process.cwd()).rel("www/js")).then(function (){
+        return (new TonyuC).compile(FS.get(process.cwd()).rel("www/js")).then(function (){
             mesg.text("Compiled");
         }).fail(function (e) {
             mesg.text("Compile fail"+e);
             console.log(e);
-        });
+        });*/
     }
     function openBookmark() {
         bookmark.open();

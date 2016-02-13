@@ -1,0 +1,120 @@
+define(function (require) {
+  var Tonyu=require('Tonyu');
+  var UIForm=require('UIForm');
+  return Tonyu.klass.define({
+    fullName: 'jseditor.MyForm',
+    shortName: 'MyForm',
+    namespace: 'jseditor',
+    superclass: Tonyu.classes.jseditor.UIForm,
+    includes: [],
+    methods: {
+      main :function _trc_MyForm_main() {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=9000017;//jseditor.MyForm:17
+        _this.parse(["div",["h1","てすと！"],["span",{name: "num"},0],["button",{on: {click: Tonyu.bindFunc(_this,_this.inc)}},"+"]]);
+        //$LASTPOS=9000119;//jseditor.MyForm:119
+        _this.parallel("count");
+      },
+      fiber$main :function _trc_MyForm_f_main(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        
+        _thread.enter(function _trc_MyForm_ent_main(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=9000017;//jseditor.MyForm:17
+              _this.fiber$parse(_thread, ["div",["h1","てすと！"],["span",{name: "num"},0],["button",{on: {click: Tonyu.bindFunc(_this,_this.inc)}},"+"]]);
+              __pc=1;return;
+            case 1:
+              
+              //$LASTPOS=9000119;//jseditor.MyForm:119
+              _this.parallel("count");
+              _thread.exit(_this);return;
+            }
+          }
+        });
+      },
+      count :function _trc_MyForm_count() {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=9000153;//jseditor.MyForm:153
+        _this.i=0;
+        //$LASTPOS=9000162;//jseditor.MyForm:162
+        while (_this.i<10) {
+          //$LASTPOS=9000184;//jseditor.MyForm:184
+          _this.inc();
+          //$LASTPOS=9000199;//jseditor.MyForm:199
+          _this.update(100);
+          
+        }
+      },
+      fiber$count :function _trc_MyForm_f_count(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=9000153;//jseditor.MyForm:153
+        _this.i=0;
+        
+        _thread.enter(function _trc_MyForm_ent_count(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=9000162;//jseditor.MyForm:162
+            case 1:
+              if (!(_this.i<10)) { __pc=4; break; }
+              //$LASTPOS=9000184;//jseditor.MyForm:184
+              _this.fiber$inc(_thread);
+              __pc=2;return;
+            case 2:
+              
+              //$LASTPOS=9000199;//jseditor.MyForm:199
+              _this.fiber$update(_thread, 100);
+              __pc=3;return;
+            case 3:
+              
+              __pc=1;break;
+            case 4:
+              
+              _thread.exit(_this);return;
+            }
+          }
+        });
+      },
+      inc :function _trc_MyForm_inc() {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=9000233;//jseditor.MyForm:233
+        _this.i++;
+        //$LASTPOS=9000242;//jseditor.MyForm:242
+        _this.num.text(_this.i);
+      },
+      fiber$inc :function _trc_MyForm_f_inc(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=9000233;//jseditor.MyForm:233
+        _this.i++;
+        //$LASTPOS=9000242;//jseditor.MyForm:242
+        _this.num.text(_this.i);
+        
+        _thread.retVal=_this;return;
+      },
+      __dummy: false
+    },
+    decls: {"methods":{"main":{"nowait":false},"count":{"nowait":false},"inc":{"nowait":false}}}
+  });
+});

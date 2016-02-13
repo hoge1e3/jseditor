@@ -35,7 +35,7 @@ native location;
     \add() {
         var urlHead=location.href.replace(/\?.*/,"").replace(/#/,"");
         conf.data.push{
-            name:fileList.curDir.name(),
+            title:fileList.curDir.name(),
             url: urlHead+"?dir="+fileList.curDir.path()
         };
         conf.save();

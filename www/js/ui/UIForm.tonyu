@@ -1,0 +1,85 @@
+extends Base;
+native $;
+\new(o) {
+    super(o);
+    listeners=[];
+    main();
+}
+\appendTo(dom) {
+    jqdom.append(dom);
+}
+\dialog(options) {
+    jqdom.dialog(options);
+}
+function parse(expr) {
+    if (expr instanceof Array) return parseArray(expr);
+    else if (typeof expr=="string") return parseString(expr);
+    else return expr;
+}
+function parseArray(a) {
+    var tag=a[0];
+    var i=0;
+    var svjq=jqdom,res;
+    if (typeof tag=="string") {
+        res=jqdom=$("<"+tag+">");
+        i=1;
+        if (typeof a[i]=="object" && 
+        !(a[i] instanceof Array) && 
+        !(a[i] instanceof $) ) {
+            parseAttr(a[i]);
+            i++;
+        }
+    }
+    while (i<a.length) {
+        res.append(parse(a[i]));
+        i++;
+    }
+    if (svjq) jqdom=svjq;
+    return res;
+}
+function parseAttr(o) {
+    for (var k,v in o) {
+        if (k=="on") {
+            for (var eType,li in o.on) parseOn(eType,li);
+        } else if (k=="name") {
+            this[v]=jqdom;
+            jqdom.attr(k,v);
+        } else if (k=="css" && v!=null) {
+            jqdom.css(v);
+        } else if (Util.startsWith(k,"$") ) {
+            if (k=="$bind") {
+                
+            }
+        } else if (v!=null) {
+            jqdom.attr(k,v);
+        }
+    }
+}
+function parseOn(eType, li) {
+    if (!li) return;
+    if (eType=="enterkey") {
+        jqdom.on("keypress") \(ev) {
+            if (ev.which==13) li.apply(jqdom,arguments);
+        };
+    } else if (eType=="realtimechange") {
+        var first=true, prev;
+        listeners.push \() {
+            var cur;
+            if (o.type=="checkbox") {
+                cur=!!jqdom.prop("checked");
+            } else {
+                cur=jqdom.val();
+            }
+            if (first || prev!=cur) {
+                li.apply(jqdom,[cur,prev]);
+                prev=cur;
+            }
+            first=false;
+        };
+    } else {
+        jqdom.on(eType, li);
+    }
+}
+function parseString(str) {
+    return str;//$("<span>").text(str);
+}

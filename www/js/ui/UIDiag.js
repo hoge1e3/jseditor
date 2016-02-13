@@ -43,6 +43,36 @@ define(["UI"],function (UI) {
         return d.promise();
 
     };
+    UIDiag.custom=function (mesg,options) {
+        var di=UI("div",{title:options.title||""},
+            mesg,
+            (options.ok ? ["button",{on:{click:ok}},"OK"] : ""),
+            (options.cancel ? ["button",{on:{click:cancel}},"キャンセル"]:"")
+        );
+        var res=(typeof options.onCancel!="function") && options.onCancel;
+        di.dialog({
+            width:options.width || "auto",
+            close:function (){
+                di.dialog("close");
+                di.remove();
+                d.resolve(res);
+            }
+        });
+        var d=$.Deferred();
+        function ok() {
+            if (options.onOK) {
+                res=options.onOK();
+            }
+            di.dialog("close");
+        }
+        function cancel() {
+            if (typeof options.onCancel=="function") {
+                res=options.onCancel();
+            }
+            di.dialog("close");
+        }
+        return d.promise();
+    };
     if (typeof window!="undefined") window.UIDiag=UIDiag;
     return UIDiag;
 });

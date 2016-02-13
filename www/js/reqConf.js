@@ -103,7 +103,9 @@ var reqConf={
         "ShellMod": "editor/ShellMod",
         "Base": "editor/Base",
         "ReqConfBuilder": "build/ReqConfBuilder",
-        "Bookmark": "editor/Bookmark"
+        "Bookmark": "editor/Bookmark",
+        "MyForm": "ui/MyForm",
+        "UIForm": "ui/UIForm"
     },
     "baseUrl": "./js/"
 };

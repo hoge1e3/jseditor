@@ -67,10 +67,10 @@ define(function (require) {
           urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
           //$LASTPOS=4000826;//jseditor.Bookmark:826
-          _this.conf.data.push({name: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=4000958;//jseditor.Bookmark:958
+          _this.conf.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
+          //$LASTPOS=4000959;//jseditor.Bookmark:959
           _this.conf.save();
-          //$LASTPOS=4000979;//jseditor.Bookmark:979
+          //$LASTPOS=4000980;//jseditor.Bookmark:980
           refresh();
         }
         //$LASTPOS=4000100;//jseditor.Bookmark:100
@@ -126,10 +126,10 @@ define(function (require) {
           urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
           //$LASTPOS=4000826;//jseditor.Bookmark:826
-          _this.conf.data.push({name: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=4000958;//jseditor.Bookmark:958
+          _this.conf.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
+          //$LASTPOS=4000959;//jseditor.Bookmark:959
           _this.conf.save();
-          //$LASTPOS=4000979;//jseditor.Bookmark:979
+          //$LASTPOS=4000980;//jseditor.Bookmark:980
           refresh();
         }
         //$LASTPOS=4000100;//jseditor.Bookmark:100

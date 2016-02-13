@@ -23,15 +23,29 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
+      initialize :function _trc_ReqConfBuilder_initialize(o) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=8000058;//jseditor.ReqConfBuilder:58
+        Tonyu.classes.jseditor.Base.apply( _this, [o]);
+        //$LASTPOS=8000072;//jseditor.ReqConfBuilder:72
+        _this.base=_this.htmlDir.rel(reqConf.baseUrl);
+      },
       save :function _trc_ReqConfBuilder_save(data) {
         "use strict";
         var _this=this;
         var js;
         
-        //$LASTPOS=6000062;//jseditor.ReqConfBuilder:62
+        //$LASTPOS=8000127;//jseditor.ReqConfBuilder:127
+        if (! data) {
+          //$LASTPOS=8000138;//jseditor.ReqConfBuilder:138
+          data=reqConf;
+        }
+        //$LASTPOS=8000156;//jseditor.ReqConfBuilder:156
         js = JSON.stringify(data,null,4);
         
-        //$LASTPOS=6000102;//jseditor.ReqConfBuilder:102
+        //$LASTPOS=8000196;//jseditor.ReqConfBuilder:196
         _this.writeFile(_this.output,"var reqConf="+js+";\n"+"if (typeof module!==\"undefined\") {\n"+"    module.exports=reqConf;\n"+"}\n");
       },
       fiber$save :function _trc_ReqConfBuilder_f_save(_thread,data) {
@@ -41,7 +55,12 @@ define(function (require) {
         var __pc=0;
         var js;
         
-        //$LASTPOS=6000062;//jseditor.ReqConfBuilder:62
+        //$LASTPOS=8000127;//jseditor.ReqConfBuilder:127
+        if (! data) {
+          //$LASTPOS=8000138;//jseditor.ReqConfBuilder:138
+          data=reqConf;
+        }
+        //$LASTPOS=8000156;//jseditor.ReqConfBuilder:156
         js = JSON.stringify(data,null,4);
         
         
@@ -50,7 +69,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=6000102;//jseditor.ReqConfBuilder:102
+              //$LASTPOS=8000196;//jseditor.ReqConfBuilder:196
               _this.fiber$writeFile(_thread, _this.output, "var reqConf="+js+";\n"+"if (typeof module!==\"undefined\") {\n"+"    module.exports=reqConf;\n"+"}\n");
               __pc=1;return;
             case 1:
@@ -60,75 +79,66 @@ define(function (require) {
           }
         });
       },
-      addPath :function _trc_ReqConfBuilder_addPath(paths) {
+      addPath :function _trc_ReqConfBuilder_addPath(name,file) {
         "use strict";
         var _this=this;
+        var tf;
         
-        //$LASTPOS=6000289;//jseditor.ReqConfBuilder:289
-        Tonyu.extend(reqConf.paths,paths);
-        //$LASTPOS=6000329;//jseditor.ReqConfBuilder:329
-        _this.save(reqConf);
+        //$LASTPOS=8000388;//jseditor.ReqConfBuilder:388
+        tf = file.up().rel(file.truncExt());
+        
+        //$LASTPOS=8000431;//jseditor.ReqConfBuilder:431
+        reqConf.paths[name]=tf.relPath(_this.base);
+        //$LASTPOS=8000473;//jseditor.ReqConfBuilder:473
+        Tonyu.extend(reqConf.paths,_this.paths);
       },
-      fiber$addPath :function _trc_ReqConfBuilder_f_addPath(_thread,paths) {
+      fiber$addPath :function _trc_ReqConfBuilder_f_addPath(_thread,name,file) {
         "use strict";
         var _this=this;
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
+        var tf;
         
-        //$LASTPOS=6000289;//jseditor.ReqConfBuilder:289
-        Tonyu.extend(reqConf.paths,paths);
+        //$LASTPOS=8000388;//jseditor.ReqConfBuilder:388
+        tf = file.up().rel(file.truncExt());
         
-        _thread.enter(function _trc_ReqConfBuilder_ent_addPath(_thread) {
-          if (_thread.lastEx) __pc=_thread.catchPC;
-          for(var __cnt=100 ; __cnt--;) {
-            switch (__pc) {
-            case 0:
-              //$LASTPOS=6000329;//jseditor.ReqConfBuilder:329
-              _this.fiber$save(_thread, reqConf);
-              __pc=1;return;
-            case 1:
-              
-              _thread.exit(_this);return;
-            }
-          }
-        });
+        //$LASTPOS=8000431;//jseditor.ReqConfBuilder:431
+        reqConf.paths[name]=tf.relPath(_this.base);
+        //$LASTPOS=8000473;//jseditor.ReqConfBuilder:473
+        Tonyu.extend(reqConf.paths,_this.paths);
+        
+        _thread.retVal=_this;return;
       },
       cleanUnused :function _trc_ReqConfBuilder_cleanUnused() {
         "use strict";
         var _this=this;
-        var base;
         var newPaths;
         var k;
         var v;
-        var _it_31;
+        var _it_54;
         var f;
         
-        //$LASTPOS=6000367;//jseditor.ReqConfBuilder:367
-        base = _this.htmlDir.rel(reqConf.baseUrl);
-        
-        //$LASTPOS=6000410;//jseditor.ReqConfBuilder:410
-        _this.print(base.path());
-        //$LASTPOS=6000434;//jseditor.ReqConfBuilder:434
+        //$LASTPOS=8000532;//jseditor.ReqConfBuilder:532
         newPaths = {};
         
-        //$LASTPOS=6000455;//jseditor.ReqConfBuilder:455
-        _it_31=Tonyu.iterator(reqConf.paths,2);
-        while(_it_31.next()) {
-          k=_it_31[0];
-          v=_it_31[1];
+        //$LASTPOS=8000553;//jseditor.ReqConfBuilder:553
+        _it_54=Tonyu.iterator(reqConf.paths,2);
+        while(_it_54.next()) {
+          k=_it_54[0];
+          v=_it_54[1];
           
-          //$LASTPOS=6000496;//jseditor.ReqConfBuilder:496
-          f = base.rel(v+".js");
+          //$LASTPOS=8000594;//jseditor.ReqConfBuilder:594
+          f = _this.base.rel(v+".js");
           
-          //$LASTPOS=6000529;//jseditor.ReqConfBuilder:529
+          //$LASTPOS=8000627;//jseditor.ReqConfBuilder:627
           if (f.exists()) {
-            //$LASTPOS=6000559;//jseditor.ReqConfBuilder:559
+            //$LASTPOS=8000657;//jseditor.ReqConfBuilder:657
             newPaths[k]=v;
             
           }
           
         }
-        //$LASTPOS=6000594;//jseditor.ReqConfBuilder:594
+        //$LASTPOS=8000692;//jseditor.ReqConfBuilder:692
         _this.save({shim: reqConf.shim,paths: newPaths,baseUrl: reqConf.baseUrl});
       },
       fiber$cleanUnused :function _trc_ReqConfBuilder_f_cleanUnused(_thread) {
@@ -136,51 +146,42 @@ define(function (require) {
         var _this=this;
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
-        var base;
         var newPaths;
         var k;
         var v;
-        var _it_31;
+        var _it_54;
         var f;
         
-        //$LASTPOS=6000367;//jseditor.ReqConfBuilder:367
-        base = _this.htmlDir.rel(reqConf.baseUrl);
+        //$LASTPOS=8000532;//jseditor.ReqConfBuilder:532
+        newPaths = {};
         
+        //$LASTPOS=8000553;//jseditor.ReqConfBuilder:553
+        _it_54=Tonyu.iterator(reqConf.paths,2);
+        while(_it_54.next()) {
+          k=_it_54[0];
+          v=_it_54[1];
+          
+          //$LASTPOS=8000594;//jseditor.ReqConfBuilder:594
+          f = _this.base.rel(v+".js");
+          
+          //$LASTPOS=8000627;//jseditor.ReqConfBuilder:627
+          if (f.exists()) {
+            //$LASTPOS=8000657;//jseditor.ReqConfBuilder:657
+            newPaths[k]=v;
+            
+          }
+          
+        }
         
         _thread.enter(function _trc_ReqConfBuilder_ent_cleanUnused(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=6000410;//jseditor.ReqConfBuilder:410
-              _this.fiber$print(_thread, base.path());
+              //$LASTPOS=8000692;//jseditor.ReqConfBuilder:692
+              _this.fiber$save(_thread, {shim: reqConf.shim,paths: newPaths,baseUrl: reqConf.baseUrl});
               __pc=1;return;
             case 1:
-              
-              //$LASTPOS=6000434;//jseditor.ReqConfBuilder:434
-              newPaths = {};
-              
-              //$LASTPOS=6000455;//jseditor.ReqConfBuilder:455
-              _it_31=Tonyu.iterator(reqConf.paths,2);
-              while(_it_31.next()) {
-                k=_it_31[0];
-                v=_it_31[1];
-                
-                //$LASTPOS=6000496;//jseditor.ReqConfBuilder:496
-                f = base.rel(v+".js");
-                
-                //$LASTPOS=6000529;//jseditor.ReqConfBuilder:529
-                if (f.exists()) {
-                  //$LASTPOS=6000559;//jseditor.ReqConfBuilder:559
-                  newPaths[k]=v;
-                  
-                }
-                
-              }
-              //$LASTPOS=6000594;//jseditor.ReqConfBuilder:594
-              _this.fiber$save(_thread, {shim: reqConf.shim,paths: newPaths,baseUrl: reqConf.baseUrl});
-              __pc=2;return;
-            case 2:
               
               _thread.exit(_this);return;
             }
@@ -189,6 +190,6 @@ define(function (require) {
       },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"save":{"nowait":false},"addPath":{"nowait":false},"cleanUnused":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"save":{"nowait":false},"addPath":{"nowait":false},"cleanUnused":{"nowait":false}}}
   });
 });

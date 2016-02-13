@@ -2,7 +2,20 @@ extends Base;
 native reqConf;
 native JSON;
 
-\build() {
+\save(data) {
+    var js=JSON.stringify(data,null,4);
+    writeFile(output,
+        "var reqConf="+js+";\n"+
+        "if (typeof module!==\"undefined\") {\n"+
+        "    module.exports=reqConf;\n"+
+        "}\n"
+    );
+}
+\addPath(paths) {
+    Tonyu.extend(reqConf.paths, paths);
+    save(reqConf);
+}
+\cleanUnused() {
     var base=htmlDir.rel(reqConf.baseUrl);
     print(base.path());
     var newPaths={};
@@ -11,19 +24,10 @@ native JSON;
         if (f.exists()) {
             newPaths[k]=v;
         }
-        //print(k,v,f.path(),f.exists());
     }
-    
-    var js=JSON.stringify({
+    save{
         shim:reqConf.shim,
         paths: newPaths,
         baseUrl:reqConf.baseUrl
-    },null,4);
-    
-    writeFile(output,
-        "var reqConf="+js+";\n"+
-        "if (typeof module!==\"undefined\") {\n"+
-        "    module.exports=reqConf;\n"+
-        "}\n"
-    );
+    };
 }

@@ -13,6 +13,7 @@ define(function (require, exports, module) {
     var JSONConf=require("JSONConf");
     var FileMenu=require("FileMenu");
     var Bookmark=require("Bookmark");
+    var ReqConfBuilder=require("ReqConfBuilder");
     //require("tonyuCompiled");
     
     C.make(
@@ -37,7 +38,9 @@ define(function (require, exports, module) {
         {label:"ツール",sub:[
             //{label:"検索",id:"find",action:find,key:"ctrl+f"},
             //{label:"新規ツール...",id:"newTool"}
-            {label:"TonyuC", id:"tonyuC",action:tonyuC, key:"ctrl+shift+t"}
+            {label:"TonyuC", id:"tonyuC",action:tonyuC, key:"f9"},
+            {label:"genReqConf", id:"genReqConf",action:genReqConf}
+
         ]},
         {label:"ウィンドウ",sub:[
             {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
@@ -53,7 +56,8 @@ define(function (require, exports, module) {
     ]);
     var fileMenu;
     var es;
-    var cwd=FS.get(Util.getQueryString("dir") || process.cwd()  );
+    var cwd=FS.get(Util.getQueryString("dir") || process.cwd().replace(/\\/g,"/")  );
+    var projectTop=FS.get(process.cwd().replace(/\\/g,"/")  );
     var etc=FS.get(process.cwd()).rel(".jsetc/");
     var desktopEnv=new JSONConf(etc.rel("desktop.json"));
     desktopEnv.load();
@@ -68,11 +72,20 @@ define(function (require, exports, module) {
         file:etc.rel("bookmark.json"),
         fileList:fl
     });
+    function genReqConf() {
+        var b=new ReqConfBuilder({
+            output:projectTop.rel("www/js/reqConfTest.js"),
+            htmlDir:projectTop.rel("www/")
+        });
+        b.build();
+    }
     function tonyuC() {
+        var mesg=UI("div","Compiling...");
+        UIDiag.alert(mesg);
         return TonyuC.compile(FS.get(process.cwd()).rel("www/js")).then(function (){
-            UIDiag.alert("Compiled");
+            mesg.text("Compiled");
         }).fail(function (e) {
-            UIDiag.alert("Compile fail"+e);
+            mesg.text("Compile fail"+e);
             console.log(e);
         });
     }

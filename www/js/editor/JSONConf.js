@@ -14,7 +14,9 @@ define(function (require) {
     };
     p.save=function () {
         if (this.data) {
-            return this.file.obj(this.data);
+            return this.file.text(
+                JSON.stringify(this.data,null,4)
+            );
         }
     };
     return JSONConf;

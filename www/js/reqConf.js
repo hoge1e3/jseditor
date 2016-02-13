@@ -1,4 +1,3 @@
-//"var reqConf="+JSON.stringify( getReq.genConf({base:"http://localhost:3002/js/", baseUrl:"js"})+";"
 var reqConf={
         "shim": {
             difflib: {
@@ -215,10 +214,13 @@ var reqConf={
             WaitMod:"editor/WaitMod",
             ShellMod:"editor/ShellMod",
             Base:"editor/Base",
+            ReqConfBuilder:"build/ReqConfBuilder",
             Bookmark:"editor/Bookmark",
 
             "foo":"bar"
         },
         "baseUrl": "./js"
 };
-if (typeof exports!=="undefined") exports.conf=reqConf;
+if (typeof module!=="undefined") {
+    module.exports=reqConf;
+}

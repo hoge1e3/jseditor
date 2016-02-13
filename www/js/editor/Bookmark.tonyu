@@ -3,9 +3,9 @@ native location;
 \new(p) {
     super(p);
     conf=new JSONConf(file);
-    conf.load();
 }
 \open() {
+    conf.load();
     var items=UI("div");
     var d=UI("div",{title:"ブックマーク"},
         items,
@@ -15,7 +15,7 @@ native location;
             ["button",{on:{click:ok}},"OK"]
         ]
     );
-    d.dialog();
+    d.dialog({width:600});
     refresh();
     \refresh() {
         items.empty();
@@ -33,7 +33,7 @@ native location;
         fileList.open(file);
     }
     \add() {
-        var urlHead=location.href.replace(/\?.*/,"");
+        var urlHead=location.href.replace(/\?.*/,"").replace(/#/,"");
         conf.data.push{
             name:fileList.curDir.name(),
             url: urlHead+"?dir="+fileList.curDir.path()

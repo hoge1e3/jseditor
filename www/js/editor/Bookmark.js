@@ -32,8 +32,6 @@ define(function (require) {
         Tonyu.classes.jseditor.Base.apply( _this, [p]);
         //$LASTPOS=4000059;//jseditor.Bookmark:59
         _this.conf=new JSONConf(_this.file);
-        //$LASTPOS=4000088;//jseditor.Bookmark:88
-        _this.conf.load();
       },
       open :function _trc_Bookmark_open() {
         "use strict";
@@ -42,39 +40,41 @@ define(function (require) {
         var d;
         function refresh() {
           
-          //$LASTPOS=4000441;//jseditor.Bookmark:441
+          //$LASTPOS=4000452;//jseditor.Bookmark:452
           items.empty();
-          //$LASTPOS=4000464;//jseditor.Bookmark:464
-          _this.conf.data.forEach((function anonymous_482(d) {
+          //$LASTPOS=4000475;//jseditor.Bookmark:475
+          _this.conf.data.forEach((function anonymous_493(d) {
             var item;
             
-            //$LASTPOS=4000501;//jseditor.Bookmark:501
+            //$LASTPOS=4000512;//jseditor.Bookmark:512
             item = UI("div",["a",{href: d.url},d.title]);
             
-            //$LASTPOS=4000593;//jseditor.Bookmark:593
+            //$LASTPOS=4000604;//jseditor.Bookmark:604
             items.append(item);
           }));
         }function ok() {
           
-          //$LASTPOS=4000650;//jseditor.Bookmark:650
+          //$LASTPOS=4000661;//jseditor.Bookmark:661
           d.dialog("close");
         }function edit() {
           
-          //$LASTPOS=4000697;//jseditor.Bookmark:697
+          //$LASTPOS=4000708;//jseditor.Bookmark:708
           _this.fileList.open(_this.file);
         }function add() {
           var urlHead;
           
-          //$LASTPOS=4000745;//jseditor.Bookmark:745
-          urlHead = location.href.replace(/\?.*/,"");
+          //$LASTPOS=4000756;//jseditor.Bookmark:756
+          urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
-          //$LASTPOS=4000799;//jseditor.Bookmark:799
+          //$LASTPOS=4000826;//jseditor.Bookmark:826
           _this.conf.data.push({name: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=4000931;//jseditor.Bookmark:931
+          //$LASTPOS=4000958;//jseditor.Bookmark:958
           _this.conf.save();
-          //$LASTPOS=4000952;//jseditor.Bookmark:952
+          //$LASTPOS=4000979;//jseditor.Bookmark:979
           refresh();
         }
+        //$LASTPOS=4000100;//jseditor.Bookmark:100
+        _this.conf.load();
         //$LASTPOS=4000117;//jseditor.Bookmark:117
         items = UI("div");
         
@@ -82,8 +82,8 @@ define(function (require) {
         d = UI("div",{title: "ブックマーク"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
         
         //$LASTPOS=4000389;//jseditor.Bookmark:389
-        d.dialog();
-        //$LASTPOS=4000405;//jseditor.Bookmark:405
+        d.dialog({width: 600});
+        //$LASTPOS=4000416;//jseditor.Bookmark:416
         refresh();
         
         
@@ -99,39 +99,41 @@ define(function (require) {
         var d;
         function refresh() {
           
-          //$LASTPOS=4000441;//jseditor.Bookmark:441
+          //$LASTPOS=4000452;//jseditor.Bookmark:452
           items.empty();
-          //$LASTPOS=4000464;//jseditor.Bookmark:464
-          _this.conf.data.forEach((function anonymous_482(d) {
+          //$LASTPOS=4000475;//jseditor.Bookmark:475
+          _this.conf.data.forEach((function anonymous_493(d) {
             var item;
             
-            //$LASTPOS=4000501;//jseditor.Bookmark:501
+            //$LASTPOS=4000512;//jseditor.Bookmark:512
             item = UI("div",["a",{href: d.url},d.title]);
             
-            //$LASTPOS=4000593;//jseditor.Bookmark:593
+            //$LASTPOS=4000604;//jseditor.Bookmark:604
             items.append(item);
           }));
         }function ok() {
           
-          //$LASTPOS=4000650;//jseditor.Bookmark:650
+          //$LASTPOS=4000661;//jseditor.Bookmark:661
           d.dialog("close");
         }function edit() {
           
-          //$LASTPOS=4000697;//jseditor.Bookmark:697
+          //$LASTPOS=4000708;//jseditor.Bookmark:708
           _this.fileList.open(_this.file);
         }function add() {
           var urlHead;
           
-          //$LASTPOS=4000745;//jseditor.Bookmark:745
-          urlHead = location.href.replace(/\?.*/,"");
+          //$LASTPOS=4000756;//jseditor.Bookmark:756
+          urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
-          //$LASTPOS=4000799;//jseditor.Bookmark:799
+          //$LASTPOS=4000826;//jseditor.Bookmark:826
           _this.conf.data.push({name: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=4000931;//jseditor.Bookmark:931
+          //$LASTPOS=4000958;//jseditor.Bookmark:958
           _this.conf.save();
-          //$LASTPOS=4000952;//jseditor.Bookmark:952
+          //$LASTPOS=4000979;//jseditor.Bookmark:979
           refresh();
         }
+        //$LASTPOS=4000100;//jseditor.Bookmark:100
+        _this.conf.load();
         //$LASTPOS=4000117;//jseditor.Bookmark:117
         items = UI("div");
         
@@ -139,8 +141,8 @@ define(function (require) {
         d = UI("div",{title: "ブックマーク"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
         
         //$LASTPOS=4000389;//jseditor.Bookmark:389
-        d.dialog();
-        //$LASTPOS=4000405;//jseditor.Bookmark:405
+        d.dialog({width: 600});
+        //$LASTPOS=4000416;//jseditor.Bookmark:416
         refresh();
         
         

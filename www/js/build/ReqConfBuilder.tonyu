@@ -1,0 +1,29 @@
+extends Base;
+native reqConf;
+native JSON;
+
+\build() {
+    var base=htmlDir.rel(reqConf.baseUrl);
+    print(base.path());
+    var newPaths={};
+    for (var k,v in reqConf.paths) {
+        var f=base.rel(v+".js");
+        if (f.exists()) {
+            newPaths[k]=v;
+        }
+        //print(k,v,f.path(),f.exists());
+    }
+    
+    var js=JSON.stringify({
+        shim:reqConf.shim,
+        paths: newPaths,
+        baseUrl:reqConf.baseUrl
+    },null,4);
+    
+    writeFile(output,
+        "var reqConf="+js+";\n"+
+        "if (typeof module!==\"undefined\") {\n"+
+        "    module.exports=reqConf;\n"+
+        "}\n"
+    );
+}

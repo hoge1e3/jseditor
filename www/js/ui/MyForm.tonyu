@@ -1,19 +1,26 @@
 extends UIForm;
 
-parse(["div",
-    ["h1","てすと！"],
-    ["span",{name:"num"},0],
-    ["button",{on:{click:inc}},"+"]
-]);
-parallel("count");
+tag("div") \{
+    tag("h1","てすと2！");
+    num=tag("span", 0);
+    tag("br");
+    tag("button",{on:{click:inc}},"+");
+    tag("button",{on:{click:countP}},"+10");
+};
+i=0;
+\countP() { parallel("count"); }
 \count() {
-    i=0;
-    while(i<10) {
+    for (var i=0; i<10;i++) {
         inc();
-        update(100);
+        update(50);
     }
 }
 \inc() {
     i++;
     num.text(i);
+}
+\test() {
+    change(num) \{
+
+    };
 }

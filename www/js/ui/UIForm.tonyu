@@ -11,9 +11,20 @@ native $;
 \dialog(options) {
     jqdom.dialog(options);
 }
+\tag() {
+    var d;
+    if (jqdom) {
+        d=parseArray(arguments);
+        jqdom.append(d);
+    } else {
+        d=parseArray(arguments);
+    }
+    return d;
+}
 function parse(expr) {
     if (expr instanceof Array) return parseArray(expr);
     else if (typeof expr=="string") return parseString(expr);
+    else if (typeof expr=="function") return expr(jqdom);
     else return expr;
 }
 function parseArray(a) {
@@ -31,7 +42,8 @@ function parseArray(a) {
         }
     }
     while (i<a.length) {
-        res.append(parse(a[i]));
+        var s=parse(a[i]);
+        if (s) res.append(s);
         i++;
     }
     if (svjq) jqdom=svjq;

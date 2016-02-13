@@ -70,19 +70,84 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
+      tag :function _trc_UIForm_tag() {
+        "use strict";
+        var _this=this;
+        var d;
+        
+        
+        //$LASTPOS=7000209;//jseditor.UIForm:209
+        if (_this.jqdom) {
+          //$LASTPOS=7000231;//jseditor.UIForm:231
+          d=_this.parseArray(arguments);
+          //$LASTPOS=7000265;//jseditor.UIForm:265
+          _this.jqdom.append(d);
+          
+        } else {
+          //$LASTPOS=7000305;//jseditor.UIForm:305
+          d=_this.parseArray(arguments);
+          
+        }
+        return d;
+      },
+      fiber$tag :function _trc_UIForm_f_tag(_thread) {
+        "use strict";
+        var _this=this;
+        var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        var d;
+        
+        
+        
+        _thread.enter(function _trc_UIForm_ent_tag(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=7000209;//jseditor.UIForm:209
+              if (!(_this.jqdom)) { __pc=2; break; }
+              //$LASTPOS=7000231;//jseditor.UIForm:231
+              _this.fiber$parseArray(_thread, _arguments);
+              __pc=1;return;
+            case 1:
+              d=_thread.retVal;
+              
+              //$LASTPOS=7000265;//jseditor.UIForm:265
+              _this.jqdom.append(d);
+              __pc=4;break;
+            case 2:
+              //$LASTPOS=7000305;//jseditor.UIForm:305
+              _this.fiber$parseArray(_thread, _arguments);
+              __pc=3;return;
+            case 3:
+              d=_thread.retVal;
+              
+            case 4:
+              
+              _thread.exit(d);return;
+              _thread.exit(_this);return;
+            }
+          }
+        });
+      },
       parse :function _trc_UIForm_parse(expr) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=7000211;//jseditor.UIForm:211
+        //$LASTPOS=7000384;//jseditor.UIForm:384
         if (expr instanceof Array) {
           return _this.parseArray(expr);
         } else {
-          //$LASTPOS=7000273;//jseditor.UIForm:273
+          //$LASTPOS=7000446;//jseditor.UIForm:446
           if (typeof  expr=="string") {
             return _this.parseString(expr);
           } else {
-            return expr;
+            //$LASTPOS=7000509;//jseditor.UIForm:509
+            if (typeof  expr=="function") {
+              return expr(_this.jqdom);
+            } else {
+              return expr;
+            }
           }
         }
       },
@@ -92,18 +157,24 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=7000211;//jseditor.UIForm:211
+        //$LASTPOS=7000384;//jseditor.UIForm:384
         if (expr instanceof Array) {
           _thread.retVal=_this.parseArray(expr);return;
           
         } else {
-          //$LASTPOS=7000273;//jseditor.UIForm:273
+          //$LASTPOS=7000446;//jseditor.UIForm:446
           if (typeof  expr=="string") {
             _thread.retVal=_this.parseString(expr);return;
             
           } else {
-            _thread.retVal=expr;return;
-            
+            //$LASTPOS=7000509;//jseditor.UIForm:509
+            if (typeof  expr=="function") {
+              _thread.retVal=expr(_this.jqdom);return;
+              
+            } else {
+              _thread.retVal=expr;return;
+              
+            }
           }
         }
         
@@ -116,43 +187,50 @@ define(function (require) {
         var i;
         var svjq;
         var res;
+        var s;
         
-        //$LASTPOS=7000383;//jseditor.UIForm:383
+        //$LASTPOS=7000615;//jseditor.UIForm:615
         tag = a[0];
         
-        //$LASTPOS=7000402;//jseditor.UIForm:402
+        //$LASTPOS=7000634;//jseditor.UIForm:634
         i = 0;
         
-        //$LASTPOS=7000416;//jseditor.UIForm:416
+        //$LASTPOS=7000648;//jseditor.UIForm:648
         svjq = _this.jqdom;
         
-        //$LASTPOS=7000441;//jseditor.UIForm:441
+        //$LASTPOS=7000673;//jseditor.UIForm:673
         if (typeof  tag=="string") {
-          //$LASTPOS=7000478;//jseditor.UIForm:478
+          //$LASTPOS=7000710;//jseditor.UIForm:710
           res=_this.jqdom=$("<"+tag+">");
-          //$LASTPOS=7000513;//jseditor.UIForm:513
+          //$LASTPOS=7000745;//jseditor.UIForm:745
           i=1;
-          //$LASTPOS=7000527;//jseditor.UIForm:527
+          //$LASTPOS=7000759;//jseditor.UIForm:759
           if (typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $)) {
-            //$LASTPOS=7000642;//jseditor.UIForm:642
+            //$LASTPOS=7000874;//jseditor.UIForm:874
             _this.parseAttr(a[i]);
-            //$LASTPOS=7000672;//jseditor.UIForm:672
+            //$LASTPOS=7000904;//jseditor.UIForm:904
             i++;
             
           }
           
         }
-        //$LASTPOS=7000700;//jseditor.UIForm:700
+        //$LASTPOS=7000932;//jseditor.UIForm:932
         while (i<a.length) {
-          //$LASTPOS=7000730;//jseditor.UIForm:730
-          res.append(_this.parse(a[i]));
-          //$LASTPOS=7000764;//jseditor.UIForm:764
+          //$LASTPOS=7000962;//jseditor.UIForm:962
+          s = _this.parse(a[i]);
+          
+          //$LASTPOS=7000990;//jseditor.UIForm:990
+          if (s) {
+            //$LASTPOS=7000997;//jseditor.UIForm:997
+            res.append(s);
+          }
+          //$LASTPOS=7001021;//jseditor.UIForm:1021
           i++;
           
         }
-        //$LASTPOS=7000781;//jseditor.UIForm:781
+        //$LASTPOS=7001038;//jseditor.UIForm:1038
         if (svjq) {
-          //$LASTPOS=7000791;//jseditor.UIForm:791
+          //$LASTPOS=7001048;//jseditor.UIForm:1048
           _this.jqdom=svjq;
         }
         return res;
@@ -166,14 +244,15 @@ define(function (require) {
         var i;
         var svjq;
         var res;
+        var s;
         
-        //$LASTPOS=7000383;//jseditor.UIForm:383
+        //$LASTPOS=7000615;//jseditor.UIForm:615
         tag = a[0];
         
-        //$LASTPOS=7000402;//jseditor.UIForm:402
+        //$LASTPOS=7000634;//jseditor.UIForm:634
         i = 0;
         
-        //$LASTPOS=7000416;//jseditor.UIForm:416
+        //$LASTPOS=7000648;//jseditor.UIForm:648
         svjq = _this.jqdom;
         
         
@@ -182,40 +261,47 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7000441;//jseditor.UIForm:441
+              //$LASTPOS=7000673;//jseditor.UIForm:673
               if (!(typeof  tag=="string")) { __pc=3; break; }
-              //$LASTPOS=7000478;//jseditor.UIForm:478
+              //$LASTPOS=7000710;//jseditor.UIForm:710
               res=_this.jqdom=$("<"+tag+">");
-              //$LASTPOS=7000513;//jseditor.UIForm:513
+              //$LASTPOS=7000745;//jseditor.UIForm:745
               i=1;
-              //$LASTPOS=7000527;//jseditor.UIForm:527
+              //$LASTPOS=7000759;//jseditor.UIForm:759
               if (!(typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $))) { __pc=2; break; }
-              //$LASTPOS=7000642;//jseditor.UIForm:642
+              //$LASTPOS=7000874;//jseditor.UIForm:874
               _this.fiber$parseAttr(_thread, a[i]);
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=7000672;//jseditor.UIForm:672
+              //$LASTPOS=7000904;//jseditor.UIForm:904
               i++;
             case 2:
               
             case 3:
               
-              //$LASTPOS=7000700;//jseditor.UIForm:700
+              //$LASTPOS=7000932;//jseditor.UIForm:932
             case 4:
-              if (!(i<a.length)) { __pc=5; break; }
-              {
-                //$LASTPOS=7000730;//jseditor.UIForm:730
-                res.append(_this.parse(a[i]));
-                //$LASTPOS=7000764;//jseditor.UIForm:764
-                i++;
-              }
-              __pc=4;break;
+              if (!(i<a.length)) { __pc=6; break; }
+              //$LASTPOS=7000962;//jseditor.UIForm:962
+              _this.fiber$parse(_thread, a[i]);
+              __pc=5;return;
             case 5:
+              s=_thread.retVal;
               
-              //$LASTPOS=7000781;//jseditor.UIForm:781
+              //$LASTPOS=7000990;//jseditor.UIForm:990
+              if (s) {
+                //$LASTPOS=7000997;//jseditor.UIForm:997
+                res.append(s);
+              }
+              //$LASTPOS=7001021;//jseditor.UIForm:1021
+              i++;
+              __pc=4;break;
+            case 6:
+              
+              //$LASTPOS=7001038;//jseditor.UIForm:1038
               if (svjq) {
-                //$LASTPOS=7000791;//jseditor.UIForm:791
+                //$LASTPOS=7001048;//jseditor.UIForm:1048
                 _this.jqdom=svjq;
               }
               _thread.exit(res);return;
@@ -229,56 +315,56 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_40;
+        var _it_42;
         var eType;
         var li;
-        var _it_41;
+        var _it_43;
         
-        //$LASTPOS=7000853;//jseditor.UIForm:853
-        _it_40=Tonyu.iterator(o,2);
-        while(_it_40.next()) {
-          k=_it_40[0];
-          v=_it_40[1];
+        //$LASTPOS=7001110;//jseditor.UIForm:1110
+        _it_42=Tonyu.iterator(o,2);
+        while(_it_42.next()) {
+          k=_it_42[0];
+          v=_it_42[1];
           
-          //$LASTPOS=7000883;//jseditor.UIForm:883
+          //$LASTPOS=7001140;//jseditor.UIForm:1140
           if (k=="on") {
-            //$LASTPOS=7000911;//jseditor.UIForm:911
-            _it_41=Tonyu.iterator(o.on,2);
-            while(_it_41.next()) {
-              eType=_it_41[0];
-              li=_it_41[1];
+            //$LASTPOS=7001168;//jseditor.UIForm:1168
+            _it_43=Tonyu.iterator(o.on,2);
+            while(_it_43.next()) {
+              eType=_it_43[0];
+              li=_it_43[1];
               
-              //$LASTPOS=7000938;//jseditor.UIForm:938
+              //$LASTPOS=7001195;//jseditor.UIForm:1195
               _this.parseOn(eType,li);
             }
             
           } else {
-            //$LASTPOS=7000973;//jseditor.UIForm:973
+            //$LASTPOS=7001230;//jseditor.UIForm:1230
             if (k=="name") {
-              //$LASTPOS=7001003;//jseditor.UIForm:1003
+              //$LASTPOS=7001260;//jseditor.UIForm:1260
               _this[v]=_this.jqdom;
-              //$LASTPOS=7001031;//jseditor.UIForm:1031
+              //$LASTPOS=7001288;//jseditor.UIForm:1288
               _this.jqdom.attr(k,v);
               
             } else {
-              //$LASTPOS=7001064;//jseditor.UIForm:1064
+              //$LASTPOS=7001321;//jseditor.UIForm:1321
               if (k=="css"&&v!=null) {
-                //$LASTPOS=7001104;//jseditor.UIForm:1104
+                //$LASTPOS=7001361;//jseditor.UIForm:1361
                 _this.jqdom.css(v);
                 
               } else {
-                //$LASTPOS=7001134;//jseditor.UIForm:1134
+                //$LASTPOS=7001391;//jseditor.UIForm:1391
                 if (Util.startsWith(k,"$")) {
-                  //$LASTPOS=7001178;//jseditor.UIForm:1178
+                  //$LASTPOS=7001435;//jseditor.UIForm:1435
                   if (k=="$bind") {
                     
                     
                   }
                   
                 } else {
-                  //$LASTPOS=7001245;//jseditor.UIForm:1245
+                  //$LASTPOS=7001502;//jseditor.UIForm:1502
                   if (v!=null) {
-                    //$LASTPOS=7001273;//jseditor.UIForm:1273
+                    //$LASTPOS=7001530;//jseditor.UIForm:1530
                     _this.jqdom.attr(k,v);
                     
                   }
@@ -296,10 +382,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_40;
+        var _it_42;
         var eType;
         var li;
-        var _it_41;
+        var _it_43;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -307,23 +393,23 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7000853;//jseditor.UIForm:853
-              _it_40=Tonyu.iterator(o,2);
+              //$LASTPOS=7001110;//jseditor.UIForm:1110
+              _it_42=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_40.next())) { __pc=7; break; }
-              k=_it_40[0];
-              v=_it_40[1];
+              if (!(_it_42.next())) { __pc=7; break; }
+              k=_it_42[0];
+              v=_it_42[1];
               
-              //$LASTPOS=7000883;//jseditor.UIForm:883
+              //$LASTPOS=7001140;//jseditor.UIForm:1140
               if (!(k=="on")) { __pc=5; break; }
-              //$LASTPOS=7000911;//jseditor.UIForm:911
-              _it_41=Tonyu.iterator(o.on,2);
+              //$LASTPOS=7001168;//jseditor.UIForm:1168
+              _it_43=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_41.next())) { __pc=4; break; }
-              eType=_it_41[0];
-              li=_it_41[1];
+              if (!(_it_43.next())) { __pc=4; break; }
+              eType=_it_43[0];
+              li=_it_43[1];
               
-              //$LASTPOS=7000938;//jseditor.UIForm:938
+              //$LASTPOS=7001195;//jseditor.UIForm:1195
               _this.fiber$parseOn(_thread, eType, li);
               __pc=3;return;
             case 3:
@@ -333,32 +419,32 @@ define(function (require) {
               
               __pc=6;break;
             case 5:
-              //$LASTPOS=7000973;//jseditor.UIForm:973
+              //$LASTPOS=7001230;//jseditor.UIForm:1230
               if (k=="name") {
-                //$LASTPOS=7001003;//jseditor.UIForm:1003
+                //$LASTPOS=7001260;//jseditor.UIForm:1260
                 _this[v]=_this.jqdom;
-                //$LASTPOS=7001031;//jseditor.UIForm:1031
+                //$LASTPOS=7001288;//jseditor.UIForm:1288
                 _this.jqdom.attr(k,v);
                 
               } else {
-                //$LASTPOS=7001064;//jseditor.UIForm:1064
+                //$LASTPOS=7001321;//jseditor.UIForm:1321
                 if (k=="css"&&v!=null) {
-                  //$LASTPOS=7001104;//jseditor.UIForm:1104
+                  //$LASTPOS=7001361;//jseditor.UIForm:1361
                   _this.jqdom.css(v);
                   
                 } else {
-                  //$LASTPOS=7001134;//jseditor.UIForm:1134
+                  //$LASTPOS=7001391;//jseditor.UIForm:1391
                   if (Util.startsWith(k,"$")) {
-                    //$LASTPOS=7001178;//jseditor.UIForm:1178
+                    //$LASTPOS=7001435;//jseditor.UIForm:1435
                     if (k=="$bind") {
                       
                       
                     }
                     
                   } else {
-                    //$LASTPOS=7001245;//jseditor.UIForm:1245
+                    //$LASTPOS=7001502;//jseditor.UIForm:1502
                     if (v!=null) {
-                      //$LASTPOS=7001273;//jseditor.UIForm:1273
+                      //$LASTPOS=7001530;//jseditor.UIForm:1530
                       _this.jqdom.attr(k,v);
                       
                     }
@@ -381,57 +467,57 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=7001347;//jseditor.UIForm:1347
+        //$LASTPOS=7001604;//jseditor.UIForm:1604
         if (! li) {
           return _this;
         }
-        //$LASTPOS=7001369;//jseditor.UIForm:1369
+        //$LASTPOS=7001626;//jseditor.UIForm:1626
         if (eType=="enterkey") {
-          //$LASTPOS=7001403;//jseditor.UIForm:1403
-          _this.jqdom.on("keypress",(function anonymous_1424(ev) {
+          //$LASTPOS=7001660;//jseditor.UIForm:1660
+          _this.jqdom.on("keypress",(function anonymous_1681(ev) {
             
-            //$LASTPOS=7001445;//jseditor.UIForm:1445
+            //$LASTPOS=7001702;//jseditor.UIForm:1702
             if (ev.which==13) {
-              //$LASTPOS=7001463;//jseditor.UIForm:1463
+              //$LASTPOS=7001720;//jseditor.UIForm:1720
               li.apply(_this.jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=7001514;//jseditor.UIForm:1514
+          //$LASTPOS=7001771;//jseditor.UIForm:1771
           if (eType=="realtimechange") {
-            //$LASTPOS=7001554;//jseditor.UIForm:1554
+            //$LASTPOS=7001811;//jseditor.UIForm:1811
             first = true;
             
-            //$LASTPOS=7001585;//jseditor.UIForm:1585
-            _this.listeners.push((function anonymous_1600() {
+            //$LASTPOS=7001842;//jseditor.UIForm:1842
+            _this.listeners.push((function anonymous_1857() {
               var cur;
               
               
-              //$LASTPOS=7001641;//jseditor.UIForm:1641
+              //$LASTPOS=7001898;//jseditor.UIForm:1898
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=7001684;//jseditor.UIForm:1684
+                //$LASTPOS=7001941;//jseditor.UIForm:1941
                 cur=! ! _this.jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=7001752;//jseditor.UIForm:1752
+                //$LASTPOS=7002009;//jseditor.UIForm:2009
                 cur=_this.jqdom.val();
                 
               }
-              //$LASTPOS=7001797;//jseditor.UIForm:1797
+              //$LASTPOS=7002054;//jseditor.UIForm:2054
               if (first||prev!=cur) {
-                //$LASTPOS=7001840;//jseditor.UIForm:1840
+                //$LASTPOS=7002097;//jseditor.UIForm:2097
                 li.apply(_this.jqdom,[cur,prev]);
-                //$LASTPOS=7001885;//jseditor.UIForm:1885
+                //$LASTPOS=7002142;//jseditor.UIForm:2142
                 prev=cur;
                 
               }
-              //$LASTPOS=7001923;//jseditor.UIForm:1923
+              //$LASTPOS=7002180;//jseditor.UIForm:2180
               first=false;
             }));
             
           } else {
-            //$LASTPOS=7001971;//jseditor.UIForm:1971
+            //$LASTPOS=7002228;//jseditor.UIForm:2228
             _this.jqdom.on(eType,li);
             
           }
@@ -445,58 +531,58 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=7001347;//jseditor.UIForm:1347
+        //$LASTPOS=7001604;//jseditor.UIForm:1604
         if (! li) {
           _thread.retVal=_this;return;
           
         }
-        //$LASTPOS=7001369;//jseditor.UIForm:1369
+        //$LASTPOS=7001626;//jseditor.UIForm:1626
         if (eType=="enterkey") {
-          //$LASTPOS=7001403;//jseditor.UIForm:1403
-          _this.jqdom.on("keypress",(function anonymous_1424(ev) {
+          //$LASTPOS=7001660;//jseditor.UIForm:1660
+          _this.jqdom.on("keypress",(function anonymous_1681(ev) {
             
-            //$LASTPOS=7001445;//jseditor.UIForm:1445
+            //$LASTPOS=7001702;//jseditor.UIForm:1702
             if (ev.which==13) {
-              //$LASTPOS=7001463;//jseditor.UIForm:1463
+              //$LASTPOS=7001720;//jseditor.UIForm:1720
               li.apply(_this.jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=7001514;//jseditor.UIForm:1514
+          //$LASTPOS=7001771;//jseditor.UIForm:1771
           if (eType=="realtimechange") {
-            //$LASTPOS=7001554;//jseditor.UIForm:1554
+            //$LASTPOS=7001811;//jseditor.UIForm:1811
             first = true;
             
-            //$LASTPOS=7001585;//jseditor.UIForm:1585
-            _this.listeners.push((function anonymous_1600() {
+            //$LASTPOS=7001842;//jseditor.UIForm:1842
+            _this.listeners.push((function anonymous_1857() {
               var cur;
               
               
-              //$LASTPOS=7001641;//jseditor.UIForm:1641
+              //$LASTPOS=7001898;//jseditor.UIForm:1898
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=7001684;//jseditor.UIForm:1684
+                //$LASTPOS=7001941;//jseditor.UIForm:1941
                 cur=! ! _this.jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=7001752;//jseditor.UIForm:1752
+                //$LASTPOS=7002009;//jseditor.UIForm:2009
                 cur=_this.jqdom.val();
                 
               }
-              //$LASTPOS=7001797;//jseditor.UIForm:1797
+              //$LASTPOS=7002054;//jseditor.UIForm:2054
               if (first||prev!=cur) {
-                //$LASTPOS=7001840;//jseditor.UIForm:1840
+                //$LASTPOS=7002097;//jseditor.UIForm:2097
                 li.apply(_this.jqdom,[cur,prev]);
-                //$LASTPOS=7001885;//jseditor.UIForm:1885
+                //$LASTPOS=7002142;//jseditor.UIForm:2142
                 prev=cur;
                 
               }
-              //$LASTPOS=7001923;//jseditor.UIForm:1923
+              //$LASTPOS=7002180;//jseditor.UIForm:2180
               first=false;
             }));
             
           } else {
-            //$LASTPOS=7001971;//jseditor.UIForm:1971
+            //$LASTPOS=7002228;//jseditor.UIForm:2228
             _this.jqdom.on(eType,li);
             
           }
@@ -523,6 +609,6 @@ define(function (require) {
       },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"parse":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"tag":{"nowait":false},"parse":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false}}}
   });
 });

@@ -1,6 +1,5 @@
 define(function (require) {
   var Tonyu=require('Tonyu');
-  var Tonyu=require('Tonyu');
   var Base=require('Base');
   return Tonyu.klass.define({
     fullName: 'jseditor.ReqConfBuilder',

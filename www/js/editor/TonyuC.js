@@ -45,33 +45,33 @@ define(function (require) {
         //$LASTPOS=7000187;//jseditor.TonyuC:187
         Tonyu.globals.$currentProject=ProjectCompiler(dir);
         //$LASTPOS=7000229;//jseditor.TonyuC:229
-        Tonyu.globals.$currentProject.setModulePaths(reqConf.paths);
+        Tonyu.globals.$currentProject.setAMDPaths(reqConf.paths);
         try {
-          //$LASTPOS=7000294;//jseditor.TonyuC:294
+          //$LASTPOS=7000291;//jseditor.TonyuC:291
           _this.waitFor(Tonyu.globals.$currentProject.compile());
-          //$LASTPOS=7000340;//jseditor.TonyuC:340
+          //$LASTPOS=7000337;//jseditor.TonyuC:337
           elem.text("Compiled");
-          //$LASTPOS=7000371;//jseditor.TonyuC:371
+          //$LASTPOS=7000368;//jseditor.TonyuC:368
           _it_35=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
           while(_it_35.next()) {
             n=_it_35[0];
             c=_it_35[1];
             
-            //$LASTPOS=7000430;//jseditor.TonyuC:430
+            //$LASTPOS=7000427;//jseditor.TonyuC:427
             if (SFile["is"](c.src.js)&&! reqConf.paths[c.shortName]) {
-              //$LASTPOS=7000506;//jseditor.TonyuC:506
+              //$LASTPOS=7000503;//jseditor.TonyuC:503
               Tonyu.globals.$reqConfBuilder.addPath(c.shortName,c.src.js);
               
             }
             
           }
-          //$LASTPOS=7000586;//jseditor.TonyuC:586
+          //$LASTPOS=7000583;//jseditor.TonyuC:583
           Tonyu.globals.$reqConfBuilder.save();
           
         } catch (e) {
-          //$LASTPOS=7000636;//jseditor.TonyuC:636
+          //$LASTPOS=7000633;//jseditor.TonyuC:633
           _this.print(e.stack);
-          //$LASTPOS=7000660;//jseditor.TonyuC:660
+          //$LASTPOS=7000657;//jseditor.TonyuC:657
           elem.text("Error "+e);
           
         }
@@ -106,41 +106,41 @@ define(function (require) {
               //$LASTPOS=7000187;//jseditor.TonyuC:187
               Tonyu.globals.$currentProject=ProjectCompiler(dir);
               //$LASTPOS=7000229;//jseditor.TonyuC:229
-              Tonyu.globals.$currentProject.setModulePaths(reqConf.paths);
+              Tonyu.globals.$currentProject.setAMDPaths(reqConf.paths);
               _thread.enterTry(3);
-              //$LASTPOS=7000294;//jseditor.TonyuC:294
+              //$LASTPOS=7000291;//jseditor.TonyuC:291
               _this.fiber$waitFor(_thread, Tonyu.globals.$currentProject.compile());
               __pc=2;return;
             case 2:
               
-              //$LASTPOS=7000340;//jseditor.TonyuC:340
+              //$LASTPOS=7000337;//jseditor.TonyuC:337
               elem.text("Compiled");
-              //$LASTPOS=7000371;//jseditor.TonyuC:371
+              //$LASTPOS=7000368;//jseditor.TonyuC:368
               _it_35=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
               while(_it_35.next()) {
                 n=_it_35[0];
                 c=_it_35[1];
                 
-                //$LASTPOS=7000430;//jseditor.TonyuC:430
+                //$LASTPOS=7000427;//jseditor.TonyuC:427
                 if (SFile["is"](c.src.js)&&! reqConf.paths[c.shortName]) {
-                  //$LASTPOS=7000506;//jseditor.TonyuC:506
+                  //$LASTPOS=7000503;//jseditor.TonyuC:503
                   Tonyu.globals.$reqConfBuilder.addPath(c.shortName,c.src.js);
                   
                 }
                 
               }
-              //$LASTPOS=7000586;//jseditor.TonyuC:586
+              //$LASTPOS=7000583;//jseditor.TonyuC:583
               Tonyu.globals.$reqConfBuilder.save();_thread.exitTry();
               __pc=5;break;
             case 3:
               e=_thread.startCatch();
               _thread.exitTry();
-              //$LASTPOS=7000636;//jseditor.TonyuC:636
+              //$LASTPOS=7000633;//jseditor.TonyuC:633
               _this.fiber$print(_thread, e.stack);
               __pc=4;return;
             case 4:
               
-              //$LASTPOS=7000660;//jseditor.TonyuC:660
+              //$LASTPOS=7000657;//jseditor.TonyuC:657
               elem.text("Error "+e);
             case 5:
               

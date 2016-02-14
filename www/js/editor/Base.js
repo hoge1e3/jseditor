@@ -1,6 +1,5 @@
 define(function (require) {
   var Tonyu=require('Tonyu');
-  var Tonyu=require('Tonyu');
   var UIDiag=require('UIDiag');
   var DeferredUtil=require('DeferredUtil');
   var WaitMod=require('WaitMod');

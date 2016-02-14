@@ -4,6 +4,7 @@
         "commentLastPos":true,
         "diagnose":false,
         "outputFile":"tonyuCompiled.js",
+        "genAMD":true,
         "genModule":true
     },
     "run":{

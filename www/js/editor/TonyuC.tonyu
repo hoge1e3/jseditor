@@ -8,7 +8,7 @@ native reqConf;
     };
     update();
     $currentProject=ProjectCompiler(dir);
-    $currentProject.setModulePaths(reqConf.paths);
+    $currentProject.setAMDPaths(reqConf.paths);
     try {
         waitFor( $currentProject.compile() );
         elem.text("Compiled");

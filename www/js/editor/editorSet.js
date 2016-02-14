@@ -46,6 +46,11 @@ define(function (require, exports, module) {
             editor.focus();
             this.curDOM=editorDOM;
         } else {
+            if (inf.lastTimeStamp<inf.file.lastUpdate()) {
+                inf.editor.setValue(inf.file.text());
+                inf.editor.clearSelection();
+                inf.lastTimeStamp=inf.file.lastUpdate();
+            }
             inf.dom.show();
             inf.editor.focus();
             this.curDOM=inf.dom;

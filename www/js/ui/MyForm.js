@@ -20,11 +20,13 @@ define(function (require) {
           //$LASTPOS=9000058;//jseditor.MyForm:58
           _this.num=_this.tag("span",0);
           //$LASTPOS=9000082;//jseditor.MyForm:82
+          _this.tag("br");
+          //$LASTPOS=9000097;//jseditor.MyForm:97
           _this.tag("button",{on: {click: Tonyu.bindFunc(_this,_this.inc)}},"+");
-          //$LASTPOS=9000122;//jseditor.MyForm:122
+          //$LASTPOS=9000137;//jseditor.MyForm:137
           _this.tag("button",{on: {click: Tonyu.bindFunc(_this,_this.countP)}},"+10");
         }));
-        //$LASTPOS=9000166;//jseditor.MyForm:166
+        //$LASTPOS=9000181;//jseditor.MyForm:181
         _this.i=0;
       },
       fiber$main :function _trc_MyForm_f_main(_thread) {
@@ -47,14 +49,16 @@ define(function (require) {
                 //$LASTPOS=9000058;//jseditor.MyForm:58
                 _this.num=_this.tag("span",0);
                 //$LASTPOS=9000082;//jseditor.MyForm:82
+                _this.tag("br");
+                //$LASTPOS=9000097;//jseditor.MyForm:97
                 _this.tag("button",{on: {click: Tonyu.bindFunc(_this,_this.inc)}},"+");
-                //$LASTPOS=9000122;//jseditor.MyForm:122
+                //$LASTPOS=9000137;//jseditor.MyForm:137
                 _this.tag("button",{on: {click: Tonyu.bindFunc(_this,_this.countP)}},"+10");
               }));
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=9000166;//jseditor.MyForm:166
+              //$LASTPOS=9000181;//jseditor.MyForm:181
               _this.i=0;
               _thread.exit(_this);return;
             }
@@ -65,7 +69,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=9000183;//jseditor.MyForm:183
+        //$LASTPOS=9000198;//jseditor.MyForm:198
         _this.parallel("count");
       },
       fiber$countP :function _trc_MyForm_f_countP(_thread) {
@@ -74,7 +78,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=9000183;//jseditor.MyForm:183
+        //$LASTPOS=9000198;//jseditor.MyForm:198
         _this.parallel("count");
         
         _thread.retVal=_this;return;
@@ -84,14 +88,14 @@ define(function (require) {
         var _this=this;
         var i;
         
-        //$LASTPOS=9000219;//jseditor.MyForm:219
-        //$LASTPOS=9000224;//jseditor.MyForm:224
+        //$LASTPOS=9000234;//jseditor.MyForm:234
+        //$LASTPOS=9000239;//jseditor.MyForm:239
         i = 0;
         for (; i<10 ; i++) {
           {
-            //$LASTPOS=9000253;//jseditor.MyForm:253
-            _this.inc();
             //$LASTPOS=9000268;//jseditor.MyForm:268
+            _this.inc();
+            //$LASTPOS=9000283;//jseditor.MyForm:283
             _this.update(50);
           }
         }
@@ -109,18 +113,18 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=9000219;//jseditor.MyForm:219
-              //$LASTPOS=9000224;//jseditor.MyForm:224
+              //$LASTPOS=9000234;//jseditor.MyForm:234
+              //$LASTPOS=9000239;//jseditor.MyForm:239
               i = 0;
               
             case 1:
               if (!(i<10)) { __pc=5; break; }
-              //$LASTPOS=9000253;//jseditor.MyForm:253
+              //$LASTPOS=9000268;//jseditor.MyForm:268
               _this.fiber$inc(_thread);
               __pc=2;return;
             case 2:
               
-              //$LASTPOS=9000268;//jseditor.MyForm:268
+              //$LASTPOS=9000283;//jseditor.MyForm:283
               _this.fiber$update(_thread, 50);
               __pc=3;return;
             case 3:
@@ -139,9 +143,9 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=9000301;//jseditor.MyForm:301
+        //$LASTPOS=9000316;//jseditor.MyForm:316
         _this.i++;
-        //$LASTPOS=9000310;//jseditor.MyForm:310
+        //$LASTPOS=9000325;//jseditor.MyForm:325
         _this.num.text(_this.i);
       },
       fiber$inc :function _trc_MyForm_f_inc(_thread) {
@@ -150,15 +154,37 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=9000301;//jseditor.MyForm:301
+        //$LASTPOS=9000316;//jseditor.MyForm:316
         _this.i++;
-        //$LASTPOS=9000310;//jseditor.MyForm:310
+        //$LASTPOS=9000325;//jseditor.MyForm:325
         _this.num.text(_this.i);
+        
+        _thread.retVal=_this;return;
+      },
+      test :function _trc_MyForm_test() {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=9000354;//jseditor.MyForm:354
+        _this.change(_this.num,(function anonymous_366() {
+          
+        }));
+      },
+      fiber$test :function _trc_MyForm_f_test(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=9000354;//jseditor.MyForm:354
+        _this.change(_this.num,(function anonymous_366() {
+          
+        }));
         
         _thread.retVal=_this;return;
       },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"countP":{"nowait":false},"count":{"nowait":false},"inc":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"countP":{"nowait":false},"count":{"nowait":false},"inc":{"nowait":false},"test":{"nowait":false}}}
   });
 });

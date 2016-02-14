@@ -75,19 +75,11 @@ define(function (require) {
         var _this=this;
         var d;
         
+        //$LASTPOS=7000197;//jseditor.UIForm:197
+        d = _this.parseArray(arguments);
         
-        //$LASTPOS=7000209;//jseditor.UIForm:209
-        if (_this.jqdom) {
-          //$LASTPOS=7000231;//jseditor.UIForm:231
-          d=_this.parseArray(arguments);
-          //$LASTPOS=7000265;//jseditor.UIForm:265
-          _this.jqdom.append(d);
-          
-        } else {
-          //$LASTPOS=7000305;//jseditor.UIForm:305
-          d=_this.parseArray(arguments);
-          
-        }
+        //$LASTPOS=7000231;//jseditor.UIForm:231
+        (_this._jqdom||_this.jqdom).append(d);
         return d;
       },
       fiber$tag :function _trc_UIForm_f_tag(_thread) {
@@ -98,32 +90,19 @@ define(function (require) {
         var d;
         
         
-        
         _thread.enter(function _trc_UIForm_ent_tag(_thread) {
           if (_thread.lastEx) __pc=_thread.catchPC;
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7000209;//jseditor.UIForm:209
-              if (!(_this.jqdom)) { __pc=2; break; }
-              //$LASTPOS=7000231;//jseditor.UIForm:231
+              //$LASTPOS=7000197;//jseditor.UIForm:197
               _this.fiber$parseArray(_thread, _arguments);
               __pc=1;return;
             case 1:
               d=_thread.retVal;
               
-              //$LASTPOS=7000265;//jseditor.UIForm:265
-              _this.jqdom.append(d);
-              __pc=4;break;
-            case 2:
-              //$LASTPOS=7000305;//jseditor.UIForm:305
-              _this.fiber$parseArray(_thread, _arguments);
-              __pc=3;return;
-            case 3:
-              d=_thread.retVal;
-              
-            case 4:
-              
+              //$LASTPOS=7000231;//jseditor.UIForm:231
+              (_this._jqdom||_this.jqdom).append(d);
               _thread.exit(d);return;
               _thread.exit(_this);return;
             }
@@ -134,17 +113,17 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=7000384;//jseditor.UIForm:384
+        //$LASTPOS=7000305;//jseditor.UIForm:305
         if (expr instanceof Array) {
           return _this.parseArray(expr);
         } else {
-          //$LASTPOS=7000446;//jseditor.UIForm:446
+          //$LASTPOS=7000367;//jseditor.UIForm:367
           if (typeof  expr=="string") {
             return _this.parseString(expr);
           } else {
-            //$LASTPOS=7000509;//jseditor.UIForm:509
+            //$LASTPOS=7000430;//jseditor.UIForm:430
             if (typeof  expr=="function") {
-              return expr(_this.jqdom);
+              return expr(_this._jqdom);
             } else {
               return expr;
             }
@@ -157,19 +136,19 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=7000384;//jseditor.UIForm:384
+        //$LASTPOS=7000305;//jseditor.UIForm:305
         if (expr instanceof Array) {
           _thread.retVal=_this.parseArray(expr);return;
           
         } else {
-          //$LASTPOS=7000446;//jseditor.UIForm:446
+          //$LASTPOS=7000367;//jseditor.UIForm:367
           if (typeof  expr=="string") {
             _thread.retVal=_this.parseString(expr);return;
             
           } else {
-            //$LASTPOS=7000509;//jseditor.UIForm:509
+            //$LASTPOS=7000430;//jseditor.UIForm:430
             if (typeof  expr=="function") {
-              _thread.retVal=expr(_this.jqdom);return;
+              _thread.retVal=expr(_this._jqdom);return;
               
             } else {
               _thread.retVal=expr;return;
@@ -189,50 +168,52 @@ define(function (require) {
         var res;
         var s;
         
-        //$LASTPOS=7000615;//jseditor.UIForm:615
+        //$LASTPOS=7000537;//jseditor.UIForm:537
         tag = a[0];
         
-        //$LASTPOS=7000634;//jseditor.UIForm:634
+        //$LASTPOS=7000556;//jseditor.UIForm:556
         i = 0;
         
-        //$LASTPOS=7000648;//jseditor.UIForm:648
-        svjq = _this.jqdom;
+        //$LASTPOS=7000570;//jseditor.UIForm:570
+        svjq = _this._jqdom;
         
-        //$LASTPOS=7000673;//jseditor.UIForm:673
+        //$LASTPOS=7000596;//jseditor.UIForm:596
         if (typeof  tag=="string") {
-          //$LASTPOS=7000710;//jseditor.UIForm:710
-          res=_this.jqdom=$("<"+tag+">");
-          //$LASTPOS=7000745;//jseditor.UIForm:745
+          //$LASTPOS=7000633;//jseditor.UIForm:633
+          res=_this._jqdom=$("<"+tag+">");
+          //$LASTPOS=7000669;//jseditor.UIForm:669
+          if (! _this.jqdom) {
+            //$LASTPOS=7000681;//jseditor.UIForm:681
+            _this.jqdom=_this._jqdom;
+          }
+          //$LASTPOS=7000704;//jseditor.UIForm:704
           i=1;
-          //$LASTPOS=7000759;//jseditor.UIForm:759
+          //$LASTPOS=7000718;//jseditor.UIForm:718
           if (typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $)) {
-            //$LASTPOS=7000874;//jseditor.UIForm:874
+            //$LASTPOS=7000833;//jseditor.UIForm:833
             _this.parseAttr(a[i]);
-            //$LASTPOS=7000904;//jseditor.UIForm:904
+            //$LASTPOS=7000863;//jseditor.UIForm:863
             i++;
             
           }
           
         }
-        //$LASTPOS=7000932;//jseditor.UIForm:932
+        //$LASTPOS=7000891;//jseditor.UIForm:891
         while (i<a.length) {
-          //$LASTPOS=7000962;//jseditor.UIForm:962
+          //$LASTPOS=7000921;//jseditor.UIForm:921
           s = _this.parse(a[i]);
           
-          //$LASTPOS=7000990;//jseditor.UIForm:990
+          //$LASTPOS=7000949;//jseditor.UIForm:949
           if (s) {
-            //$LASTPOS=7000997;//jseditor.UIForm:997
+            //$LASTPOS=7000956;//jseditor.UIForm:956
             res.append(s);
           }
-          //$LASTPOS=7001021;//jseditor.UIForm:1021
+          //$LASTPOS=7000980;//jseditor.UIForm:980
           i++;
           
         }
-        //$LASTPOS=7001038;//jseditor.UIForm:1038
-        if (svjq) {
-          //$LASTPOS=7001048;//jseditor.UIForm:1048
-          _this.jqdom=svjq;
-        }
+        //$LASTPOS=7000997;//jseditor.UIForm:997
+        _this._jqdom=svjq;
         return res;
       },
       fiber$parseArray :function _trc_UIForm_f_parseArray(_thread,a) {
@@ -246,14 +227,14 @@ define(function (require) {
         var res;
         var s;
         
-        //$LASTPOS=7000615;//jseditor.UIForm:615
+        //$LASTPOS=7000537;//jseditor.UIForm:537
         tag = a[0];
         
-        //$LASTPOS=7000634;//jseditor.UIForm:634
+        //$LASTPOS=7000556;//jseditor.UIForm:556
         i = 0;
         
-        //$LASTPOS=7000648;//jseditor.UIForm:648
-        svjq = _this.jqdom;
+        //$LASTPOS=7000570;//jseditor.UIForm:570
+        svjq = _this._jqdom;
         
         
         _thread.enter(function _trc_UIForm_ent_parseArray(_thread) {
@@ -261,49 +242,51 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7000673;//jseditor.UIForm:673
+              //$LASTPOS=7000596;//jseditor.UIForm:596
               if (!(typeof  tag=="string")) { __pc=3; break; }
-              //$LASTPOS=7000710;//jseditor.UIForm:710
-              res=_this.jqdom=$("<"+tag+">");
-              //$LASTPOS=7000745;//jseditor.UIForm:745
+              //$LASTPOS=7000633;//jseditor.UIForm:633
+              res=_this._jqdom=$("<"+tag+">");
+              //$LASTPOS=7000669;//jseditor.UIForm:669
+              if (! _this.jqdom) {
+                //$LASTPOS=7000681;//jseditor.UIForm:681
+                _this.jqdom=_this._jqdom;
+              }
+              //$LASTPOS=7000704;//jseditor.UIForm:704
               i=1;
-              //$LASTPOS=7000759;//jseditor.UIForm:759
+              //$LASTPOS=7000718;//jseditor.UIForm:718
               if (!(typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $))) { __pc=2; break; }
-              //$LASTPOS=7000874;//jseditor.UIForm:874
+              //$LASTPOS=7000833;//jseditor.UIForm:833
               _this.fiber$parseAttr(_thread, a[i]);
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=7000904;//jseditor.UIForm:904
+              //$LASTPOS=7000863;//jseditor.UIForm:863
               i++;
             case 2:
               
             case 3:
               
-              //$LASTPOS=7000932;//jseditor.UIForm:932
+              //$LASTPOS=7000891;//jseditor.UIForm:891
             case 4:
               if (!(i<a.length)) { __pc=6; break; }
-              //$LASTPOS=7000962;//jseditor.UIForm:962
+              //$LASTPOS=7000921;//jseditor.UIForm:921
               _this.fiber$parse(_thread, a[i]);
               __pc=5;return;
             case 5:
               s=_thread.retVal;
               
-              //$LASTPOS=7000990;//jseditor.UIForm:990
+              //$LASTPOS=7000949;//jseditor.UIForm:949
               if (s) {
-                //$LASTPOS=7000997;//jseditor.UIForm:997
+                //$LASTPOS=7000956;//jseditor.UIForm:956
                 res.append(s);
               }
-              //$LASTPOS=7001021;//jseditor.UIForm:1021
+              //$LASTPOS=7000980;//jseditor.UIForm:980
               i++;
               __pc=4;break;
             case 6:
               
-              //$LASTPOS=7001038;//jseditor.UIForm:1038
-              if (svjq) {
-                //$LASTPOS=7001048;//jseditor.UIForm:1048
-                _this.jqdom=svjq;
-              }
+              //$LASTPOS=7000997;//jseditor.UIForm:997
+              _this._jqdom=svjq;
               _thread.exit(res);return;
               _thread.exit(_this);return;
             }
@@ -320,52 +303,52 @@ define(function (require) {
         var li;
         var _it_43;
         
-        //$LASTPOS=7001110;//jseditor.UIForm:1110
+        //$LASTPOS=7001060;//jseditor.UIForm:1060
         _it_42=Tonyu.iterator(o,2);
         while(_it_42.next()) {
           k=_it_42[0];
           v=_it_42[1];
           
-          //$LASTPOS=7001140;//jseditor.UIForm:1140
+          //$LASTPOS=7001090;//jseditor.UIForm:1090
           if (k=="on") {
-            //$LASTPOS=7001168;//jseditor.UIForm:1168
+            //$LASTPOS=7001118;//jseditor.UIForm:1118
             _it_43=Tonyu.iterator(o.on,2);
             while(_it_43.next()) {
               eType=_it_43[0];
               li=_it_43[1];
               
-              //$LASTPOS=7001195;//jseditor.UIForm:1195
+              //$LASTPOS=7001145;//jseditor.UIForm:1145
               _this.parseOn(eType,li);
             }
             
           } else {
-            //$LASTPOS=7001230;//jseditor.UIForm:1230
+            //$LASTPOS=7001180;//jseditor.UIForm:1180
             if (k=="name") {
-              //$LASTPOS=7001260;//jseditor.UIForm:1260
-              _this[v]=_this.jqdom;
-              //$LASTPOS=7001288;//jseditor.UIForm:1288
-              _this.jqdom.attr(k,v);
+              //$LASTPOS=7001210;//jseditor.UIForm:1210
+              _this[v]=_this._jqdom;
+              //$LASTPOS=7001239;//jseditor.UIForm:1239
+              _this._jqdom.attr(k,v);
               
             } else {
-              //$LASTPOS=7001321;//jseditor.UIForm:1321
+              //$LASTPOS=7001273;//jseditor.UIForm:1273
               if (k=="css"&&v!=null) {
-                //$LASTPOS=7001361;//jseditor.UIForm:1361
-                _this.jqdom.css(v);
+                //$LASTPOS=7001313;//jseditor.UIForm:1313
+                _this._jqdom.css(v);
                 
               } else {
-                //$LASTPOS=7001391;//jseditor.UIForm:1391
+                //$LASTPOS=7001344;//jseditor.UIForm:1344
                 if (Util.startsWith(k,"$")) {
-                  //$LASTPOS=7001435;//jseditor.UIForm:1435
+                  //$LASTPOS=7001388;//jseditor.UIForm:1388
                   if (k=="$bind") {
                     
                     
                   }
                   
                 } else {
-                  //$LASTPOS=7001502;//jseditor.UIForm:1502
+                  //$LASTPOS=7001455;//jseditor.UIForm:1455
                   if (v!=null) {
-                    //$LASTPOS=7001530;//jseditor.UIForm:1530
-                    _this.jqdom.attr(k,v);
+                    //$LASTPOS=7001483;//jseditor.UIForm:1483
+                    _this._jqdom.attr(k,v);
                     
                   }
                 }
@@ -393,23 +376,23 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7001110;//jseditor.UIForm:1110
+              //$LASTPOS=7001060;//jseditor.UIForm:1060
               _it_42=Tonyu.iterator(o,2);
             case 1:
               if (!(_it_42.next())) { __pc=7; break; }
               k=_it_42[0];
               v=_it_42[1];
               
-              //$LASTPOS=7001140;//jseditor.UIForm:1140
+              //$LASTPOS=7001090;//jseditor.UIForm:1090
               if (!(k=="on")) { __pc=5; break; }
-              //$LASTPOS=7001168;//jseditor.UIForm:1168
+              //$LASTPOS=7001118;//jseditor.UIForm:1118
               _it_43=Tonyu.iterator(o.on,2);
             case 2:
               if (!(_it_43.next())) { __pc=4; break; }
               eType=_it_43[0];
               li=_it_43[1];
               
-              //$LASTPOS=7001195;//jseditor.UIForm:1195
+              //$LASTPOS=7001145;//jseditor.UIForm:1145
               _this.fiber$parseOn(_thread, eType, li);
               __pc=3;return;
             case 3:
@@ -419,33 +402,33 @@ define(function (require) {
               
               __pc=6;break;
             case 5:
-              //$LASTPOS=7001230;//jseditor.UIForm:1230
+              //$LASTPOS=7001180;//jseditor.UIForm:1180
               if (k=="name") {
-                //$LASTPOS=7001260;//jseditor.UIForm:1260
-                _this[v]=_this.jqdom;
-                //$LASTPOS=7001288;//jseditor.UIForm:1288
-                _this.jqdom.attr(k,v);
+                //$LASTPOS=7001210;//jseditor.UIForm:1210
+                _this[v]=_this._jqdom;
+                //$LASTPOS=7001239;//jseditor.UIForm:1239
+                _this._jqdom.attr(k,v);
                 
               } else {
-                //$LASTPOS=7001321;//jseditor.UIForm:1321
+                //$LASTPOS=7001273;//jseditor.UIForm:1273
                 if (k=="css"&&v!=null) {
-                  //$LASTPOS=7001361;//jseditor.UIForm:1361
-                  _this.jqdom.css(v);
+                  //$LASTPOS=7001313;//jseditor.UIForm:1313
+                  _this._jqdom.css(v);
                   
                 } else {
-                  //$LASTPOS=7001391;//jseditor.UIForm:1391
+                  //$LASTPOS=7001344;//jseditor.UIForm:1344
                   if (Util.startsWith(k,"$")) {
-                    //$LASTPOS=7001435;//jseditor.UIForm:1435
+                    //$LASTPOS=7001388;//jseditor.UIForm:1388
                     if (k=="$bind") {
                       
                       
                     }
                     
                   } else {
-                    //$LASTPOS=7001502;//jseditor.UIForm:1502
+                    //$LASTPOS=7001455;//jseditor.UIForm:1455
                     if (v!=null) {
-                      //$LASTPOS=7001530;//jseditor.UIForm:1530
-                      _this.jqdom.attr(k,v);
+                      //$LASTPOS=7001483;//jseditor.UIForm:1483
+                      _this._jqdom.attr(k,v);
                       
                     }
                   }
@@ -467,58 +450,58 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=7001604;//jseditor.UIForm:1604
+        //$LASTPOS=7001558;//jseditor.UIForm:1558
         if (! li) {
           return _this;
         }
-        //$LASTPOS=7001626;//jseditor.UIForm:1626
+        //$LASTPOS=7001580;//jseditor.UIForm:1580
         if (eType=="enterkey") {
-          //$LASTPOS=7001660;//jseditor.UIForm:1660
-          _this.jqdom.on("keypress",(function anonymous_1681(ev) {
+          //$LASTPOS=7001614;//jseditor.UIForm:1614
+          _this._jqdom.on("keypress",(function anonymous_1636(ev) {
             
-            //$LASTPOS=7001702;//jseditor.UIForm:1702
+            //$LASTPOS=7001657;//jseditor.UIForm:1657
             if (ev.which==13) {
-              //$LASTPOS=7001720;//jseditor.UIForm:1720
-              li.apply(_this.jqdom,arguments);
+              //$LASTPOS=7001675;//jseditor.UIForm:1675
+              li.apply(_this._jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=7001771;//jseditor.UIForm:1771
+          //$LASTPOS=7001727;//jseditor.UIForm:1727
           if (eType=="realtimechange") {
-            //$LASTPOS=7001811;//jseditor.UIForm:1811
+            //$LASTPOS=7001767;//jseditor.UIForm:1767
             first = true;
             
-            //$LASTPOS=7001842;//jseditor.UIForm:1842
-            _this.listeners.push((function anonymous_1857() {
+            //$LASTPOS=7001798;//jseditor.UIForm:1798
+            _this.listeners.push((function anonymous_1813() {
               var cur;
               
               
-              //$LASTPOS=7001898;//jseditor.UIForm:1898
+              //$LASTPOS=7001854;//jseditor.UIForm:1854
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=7001941;//jseditor.UIForm:1941
-                cur=! ! _this.jqdom.prop("checked");
+                //$LASTPOS=7001897;//jseditor.UIForm:1897
+                cur=! ! _this._jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=7002009;//jseditor.UIForm:2009
-                cur=_this.jqdom.val();
+                //$LASTPOS=7001966;//jseditor.UIForm:1966
+                cur=_this._jqdom.val();
                 
               }
-              //$LASTPOS=7002054;//jseditor.UIForm:2054
+              //$LASTPOS=7002012;//jseditor.UIForm:2012
               if (first||prev!=cur) {
-                //$LASTPOS=7002097;//jseditor.UIForm:2097
-                li.apply(_this.jqdom,[cur,prev]);
-                //$LASTPOS=7002142;//jseditor.UIForm:2142
+                //$LASTPOS=7002055;//jseditor.UIForm:2055
+                li.apply(_this._jqdom,[cur,prev]);
+                //$LASTPOS=7002101;//jseditor.UIForm:2101
                 prev=cur;
                 
               }
-              //$LASTPOS=7002180;//jseditor.UIForm:2180
+              //$LASTPOS=7002139;//jseditor.UIForm:2139
               first=false;
             }));
             
           } else {
-            //$LASTPOS=7002228;//jseditor.UIForm:2228
-            _this.jqdom.on(eType,li);
+            //$LASTPOS=7002187;//jseditor.UIForm:2187
+            _this._jqdom.on(eType,li);
             
           }
         }
@@ -531,59 +514,59 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=7001604;//jseditor.UIForm:1604
+        //$LASTPOS=7001558;//jseditor.UIForm:1558
         if (! li) {
           _thread.retVal=_this;return;
           
         }
-        //$LASTPOS=7001626;//jseditor.UIForm:1626
+        //$LASTPOS=7001580;//jseditor.UIForm:1580
         if (eType=="enterkey") {
-          //$LASTPOS=7001660;//jseditor.UIForm:1660
-          _this.jqdom.on("keypress",(function anonymous_1681(ev) {
+          //$LASTPOS=7001614;//jseditor.UIForm:1614
+          _this._jqdom.on("keypress",(function anonymous_1636(ev) {
             
-            //$LASTPOS=7001702;//jseditor.UIForm:1702
+            //$LASTPOS=7001657;//jseditor.UIForm:1657
             if (ev.which==13) {
-              //$LASTPOS=7001720;//jseditor.UIForm:1720
-              li.apply(_this.jqdom,arguments);
+              //$LASTPOS=7001675;//jseditor.UIForm:1675
+              li.apply(_this._jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=7001771;//jseditor.UIForm:1771
+          //$LASTPOS=7001727;//jseditor.UIForm:1727
           if (eType=="realtimechange") {
-            //$LASTPOS=7001811;//jseditor.UIForm:1811
+            //$LASTPOS=7001767;//jseditor.UIForm:1767
             first = true;
             
-            //$LASTPOS=7001842;//jseditor.UIForm:1842
-            _this.listeners.push((function anonymous_1857() {
+            //$LASTPOS=7001798;//jseditor.UIForm:1798
+            _this.listeners.push((function anonymous_1813() {
               var cur;
               
               
-              //$LASTPOS=7001898;//jseditor.UIForm:1898
+              //$LASTPOS=7001854;//jseditor.UIForm:1854
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=7001941;//jseditor.UIForm:1941
-                cur=! ! _this.jqdom.prop("checked");
+                //$LASTPOS=7001897;//jseditor.UIForm:1897
+                cur=! ! _this._jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=7002009;//jseditor.UIForm:2009
-                cur=_this.jqdom.val();
+                //$LASTPOS=7001966;//jseditor.UIForm:1966
+                cur=_this._jqdom.val();
                 
               }
-              //$LASTPOS=7002054;//jseditor.UIForm:2054
+              //$LASTPOS=7002012;//jseditor.UIForm:2012
               if (first||prev!=cur) {
-                //$LASTPOS=7002097;//jseditor.UIForm:2097
-                li.apply(_this.jqdom,[cur,prev]);
-                //$LASTPOS=7002142;//jseditor.UIForm:2142
+                //$LASTPOS=7002055;//jseditor.UIForm:2055
+                li.apply(_this._jqdom,[cur,prev]);
+                //$LASTPOS=7002101;//jseditor.UIForm:2101
                 prev=cur;
                 
               }
-              //$LASTPOS=7002180;//jseditor.UIForm:2180
+              //$LASTPOS=7002139;//jseditor.UIForm:2139
               first=false;
             }));
             
           } else {
-            //$LASTPOS=7002228;//jseditor.UIForm:2228
-            _this.jqdom.on(eType,li);
+            //$LASTPOS=7002187;//jseditor.UIForm:2187
+            _this._jqdom.on(eType,li);
             
           }
         }

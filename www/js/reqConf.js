@@ -105,7 +105,9 @@ var reqConf={
         "ReqConfBuilder": "build/ReqConfBuilder",
         "Bookmark": "editor/Bookmark",
         "MyForm": "ui/MyForm",
-        "UIForm": "ui/UIForm"
+        "UIForm": "ui/UIForm",
+        "TEdit": "editor/TEdit",
+        main:"editor/main"
     },
     "baseUrl": "./js/"
 };

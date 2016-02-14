@@ -1,6 +1,11 @@
+extends Base;
 native process;
 native Math;
 native $;
+native requirejs;
+native console;
+native window;
+
 Columns.make(
     ["div",{id:"fileViewer","class":"col-xs-3"},
         ["div",{id:"fileItemList"}]
@@ -89,14 +94,13 @@ function newFile() {
     return fileMenu.parallel("create");
 }
 function textSize() {
-    UIDiag.prompt(
+    var s=prompt(
         "エディタの文字の大きさ", 
         desktopEnv.data.editorFontSize||12
-    ).then(function (s) {
-        desktopEnv.data.editorFontSize=parseInt(s);
-        if (es) es.setFontSize(desktopEnv.data.editorFontSize||12);
-        return desktopEnv.save();
-    });
+    );  
+    desktopEnv.data.editorFontSize=parseInt(s);
+    if (es) es.setFontSize(desktopEnv.data.editorFontSize||12);
+    return desktopEnv.save();
 }
 function save(e) {
     es.save();
@@ -116,10 +120,10 @@ onResize();
 $(window).resize(onResize);
 requirejs(["ace"],function (){
     console.log("ace loaded:",ace);
-    es=new EditorSet( $("#progs"), $("#fileLabel"), {
+    es=new EditorSet( $("#progs"), $("#fileLabel")) {
         height:editorH, 
         fontSize:( desktopEnv.data && desktopEnv.data.editorFontSize || 12 )
-    });
+    };
     finder=new Finder(es);
     if (typeof SplashScreen!="undefined") SplashScreen.hide();
     fileMenu=new FileMenu({editorSet:es,fileList:fl});

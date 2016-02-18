@@ -10,7 +10,7 @@ native reqConf;
     $currentProject=ProjectCompiler(dir);
     $currentProject.setAMDPaths(reqConf.paths);
     try {
-        waitFor( $currentProject.compile() );
+        waitFor( $currentProject.compile());
         elem.text("Compiled");
         for (var n,c in $currentProject.env.classes) {
             if (SFile["is"](c.src.js) && !reqConf.paths[c.shortName]) {

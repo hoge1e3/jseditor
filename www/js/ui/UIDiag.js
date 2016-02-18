@@ -11,7 +11,7 @@ define(["UI"],function (UI) {
         return d.promise();
     };
     UIDiag.alert=function (mesg) {
-        var di=UI("div",{title:"確認"},["div",mesg],
+        var di=UI("div",{title:"確認"},["div",{},mesg],
                 ["button",{on:{click:sendF(true)}},"OK"]).dialog({width:"auto",close:sendF(false)});
         var d=$.Deferred();
         function sendF(r) {

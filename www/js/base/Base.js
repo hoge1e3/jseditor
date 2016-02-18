@@ -28,14 +28,14 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000058;//jseditor.Base:58
+        //$LASTPOS=4000058;//jseditor.Base:58
         Tonyu.extend(_this,p);
       },
       alert :function _trc_Base_alert(m) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000099;//jseditor.Base:99
+        //$LASTPOS=4000099;//jseditor.Base:99
         _this.waitFor(UIDiag.alert(m));
       },
       fiber$alert :function _trc_Base_f_alert(_thread,m) {
@@ -50,7 +50,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000099;//jseditor.Base:99
+              //$LASTPOS=4000099;//jseditor.Base:99
               _this.fiber$waitFor(_thread, UIDiag.alert(m));
               __pc=1;return;
             case 1:
@@ -65,7 +65,7 @@ define(function (require) {
         var _this=this;
         var n;
         
-        //$LASTPOS=3000146;//jseditor.Base:146
+        //$LASTPOS=4000146;//jseditor.Base:146
         n = _this.waitFor(UIDiag.prompt(m,v));
         
         return n;
@@ -83,7 +83,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000146;//jseditor.Base:146
+              //$LASTPOS=4000146;//jseditor.Base:146
               _this.fiber$waitFor(_thread, UIDiag.prompt(m,v));
               __pc=1;return;
             case 1:
@@ -100,7 +100,7 @@ define(function (require) {
         var _this=this;
         var n;
         
-        //$LASTPOS=3000215;//jseditor.Base:215
+        //$LASTPOS=4000215;//jseditor.Base:215
         n = _this.waitFor(UIDiag.confirm(m));
         
         return n;
@@ -118,7 +118,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000215;//jseditor.Base:215
+              //$LASTPOS=4000215;//jseditor.Base:215
               _this.fiber$waitFor(_thread, UIDiag.confirm(m));
               __pc=1;return;
             case 1:
@@ -134,7 +134,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000280;//jseditor.Base:280
+        //$LASTPOS=4000280;//jseditor.Base:280
         console.log.apply(console,arguments);
       },
       fiber$print :function _trc_Base_f_print(_thread) {
@@ -143,7 +143,7 @@ define(function (require) {
         var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=3000280;//jseditor.Base:280
+        //$LASTPOS=4000280;//jseditor.Base:280
         console.log.apply(console,_arguments);
         
         _thread.retVal=_this;return;
@@ -152,7 +152,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000337;//jseditor.Base:337
+        //$LASTPOS=4000337;//jseditor.Base:337
         _this.waitFor(DeferredUtil.timeout(t||0));
       },
       fiber$update :function _trc_Base_f_update(_thread,t) {
@@ -167,7 +167,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000337;//jseditor.Base:337
+              //$LASTPOS=4000337;//jseditor.Base:337
               _this.fiber$waitFor(_thread, DeferredUtil.timeout(t||0));
               __pc=1;return;
             case 1:

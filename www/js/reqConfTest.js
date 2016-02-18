@@ -108,7 +108,8 @@ var reqConf={
         "UIForm": "ui/UIForm",
         "TEdit": "editor/TEdit",
         "main": "editor/main",
-        "rescueCompile": "editor/rescueCompile"
+        "rescueCompile": "editor/rescueCompile",
+        "TMenu": "ui/TMenu"
     },
     "baseUrl": "./js/"
 };

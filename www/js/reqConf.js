@@ -99,15 +99,16 @@ var reqConf={
         "Finder": "editor/Finder",
         "TonyuC": "editor/TonyuC",
         "JSONConf": "editor/JSONConf",
-        "WaitMod": "editor/WaitMod",
-        "ShellMod": "editor/ShellMod",
-        "Base": "editor/Base",
+        "WaitMod": "base/WaitMod",
+        "ShellMod": "base/ShellMod",
+        "Base": "base/Base",
         "ReqConfBuilder": "build/ReqConfBuilder",
         "Bookmark": "editor/Bookmark",
         "MyForm": "ui/MyForm",
         "UIForm": "ui/UIForm",
         "TEdit": "editor/TEdit",
-        main:"editor/main"
+        main:"editor/main",
+        rescueCompile:"editor/rescueCompile"
     },
     "baseUrl": "./js/"
 };

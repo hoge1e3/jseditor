@@ -17,7 +17,7 @@ native reqConf;
                 $reqConfBuilder.addPath(c.shortName, c.src.js);
             }
         }
-        $reqConfBuilder.save();
+        if ($reqConfBuilder) $reqConfBuilder.save();
     } catch (e) {
         print(e.stack);
         elem.text("Error "+e);

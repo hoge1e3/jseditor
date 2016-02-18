@@ -27,18 +27,18 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=8000041;//jseditor.UIForm:41
+        //$LASTPOS=9000041;//jseditor.UIForm:41
         Tonyu.classes.jseditor.Base.apply( _this, [o]);
-        //$LASTPOS=8000056;//jseditor.UIForm:56
+        //$LASTPOS=9000056;//jseditor.UIForm:56
         _this.listeners=[];
-        //$LASTPOS=8000075;//jseditor.UIForm:75
+        //$LASTPOS=9000075;//jseditor.UIForm:75
         _this.main();
       },
       appendTo :function _trc_UIForm_appendTo(dom) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=8000109;//jseditor.UIForm:109
+        //$LASTPOS=9000109;//jseditor.UIForm:109
         _this.jqdom.append(dom);
       },
       fiber$appendTo :function _trc_UIForm_f_appendTo(_thread,dom) {
@@ -47,7 +47,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=8000109;//jseditor.UIForm:109
+        //$LASTPOS=9000109;//jseditor.UIForm:109
         _this.jqdom.append(dom);
         
         _thread.retVal=_this;return;
@@ -56,7 +56,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=8000156;//jseditor.UIForm:156
+        //$LASTPOS=9000156;//jseditor.UIForm:156
         _this.jqdom.dialog(options);
       },
       fiber$dialog :function _trc_UIForm_f_dialog(_thread,options) {
@@ -65,7 +65,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=8000156;//jseditor.UIForm:156
+        //$LASTPOS=9000156;//jseditor.UIForm:156
         _this.jqdom.dialog(options);
         
         _thread.retVal=_this;return;
@@ -75,10 +75,10 @@ define(function (require) {
         var _this=this;
         var d;
         
-        //$LASTPOS=8000197;//jseditor.UIForm:197
+        //$LASTPOS=9000197;//jseditor.UIForm:197
         d = _this.parseArray(arguments);
         
-        //$LASTPOS=8000231;//jseditor.UIForm:231
+        //$LASTPOS=9000231;//jseditor.UIForm:231
         (_this._jqdom||_this.jqdom).append(d);
         return d;
       },
@@ -95,13 +95,13 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=8000197;//jseditor.UIForm:197
+              //$LASTPOS=9000197;//jseditor.UIForm:197
               _this.fiber$parseArray(_thread, _arguments);
               __pc=1;return;
             case 1:
               d=_thread.retVal;
               
-              //$LASTPOS=8000231;//jseditor.UIForm:231
+              //$LASTPOS=9000231;//jseditor.UIForm:231
               (_this._jqdom||_this.jqdom).append(d);
               _thread.exit(d);return;
               _thread.exit(_this);return;
@@ -114,14 +114,14 @@ define(function (require) {
         var _this=this;
         var sv;
         
-        //$LASTPOS=8000303;//jseditor.UIForm:303
+        //$LASTPOS=9000303;//jseditor.UIForm:303
         sv = _this._jqdom;
         
-        //$LASTPOS=8000323;//jseditor.UIForm:323
+        //$LASTPOS=9000323;//jseditor.UIForm:323
         _this._jqdom=elem;
-        //$LASTPOS=8000341;//jseditor.UIForm:341
+        //$LASTPOS=9000341;//jseditor.UIForm:341
         _this.find();
-        //$LASTPOS=8000354;//jseditor.UIForm:354
+        //$LASTPOS=9000354;//jseditor.UIForm:354
         _this._jqdom=sv;
       },
       fiber$change :function _trc_UIForm_f_change(_thread,elem,func) {
@@ -131,14 +131,14 @@ define(function (require) {
         var __pc=0;
         var sv;
         
-        //$LASTPOS=8000303;//jseditor.UIForm:303
+        //$LASTPOS=9000303;//jseditor.UIForm:303
         sv = _this._jqdom;
         
-        //$LASTPOS=8000323;//jseditor.UIForm:323
+        //$LASTPOS=9000323;//jseditor.UIForm:323
         _this._jqdom=elem;
-        //$LASTPOS=8000341;//jseditor.UIForm:341
+        //$LASTPOS=9000341;//jseditor.UIForm:341
         _this.find();
-        //$LASTPOS=8000354;//jseditor.UIForm:354
+        //$LASTPOS=9000354;//jseditor.UIForm:354
         _this._jqdom=sv;
         
         _thread.retVal=_this;return;
@@ -147,15 +147,15 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=8000397;//jseditor.UIForm:397
+        //$LASTPOS=9000397;//jseditor.UIForm:397
         if (expr instanceof Array) {
           return _this.parseArray(expr);
         } else {
-          //$LASTPOS=8000459;//jseditor.UIForm:459
+          //$LASTPOS=9000459;//jseditor.UIForm:459
           if (typeof  expr=="string") {
             return _this.parseString(expr);
           } else {
-            //$LASTPOS=8000522;//jseditor.UIForm:522
+            //$LASTPOS=9000522;//jseditor.UIForm:522
             if (typeof  expr=="function") {
               return expr(_this._jqdom);
             } else {
@@ -170,17 +170,17 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=8000397;//jseditor.UIForm:397
+        //$LASTPOS=9000397;//jseditor.UIForm:397
         if (expr instanceof Array) {
           _thread.retVal=_this.parseArray(expr);return;
           
         } else {
-          //$LASTPOS=8000459;//jseditor.UIForm:459
+          //$LASTPOS=9000459;//jseditor.UIForm:459
           if (typeof  expr=="string") {
             _thread.retVal=_this.parseString(expr);return;
             
           } else {
-            //$LASTPOS=8000522;//jseditor.UIForm:522
+            //$LASTPOS=9000522;//jseditor.UIForm:522
             if (typeof  expr=="function") {
               _thread.retVal=expr(_this._jqdom);return;
               
@@ -202,51 +202,51 @@ define(function (require) {
         var res;
         var s;
         
-        //$LASTPOS=8000629;//jseditor.UIForm:629
+        //$LASTPOS=9000629;//jseditor.UIForm:629
         tag = a[0];
         
-        //$LASTPOS=8000648;//jseditor.UIForm:648
+        //$LASTPOS=9000648;//jseditor.UIForm:648
         i = 0;
         
-        //$LASTPOS=8000662;//jseditor.UIForm:662
+        //$LASTPOS=9000662;//jseditor.UIForm:662
         svjq = _this._jqdom;
         
-        //$LASTPOS=8000688;//jseditor.UIForm:688
+        //$LASTPOS=9000688;//jseditor.UIForm:688
         if (typeof  tag=="string") {
-          //$LASTPOS=8000725;//jseditor.UIForm:725
+          //$LASTPOS=9000725;//jseditor.UIForm:725
           res=_this._jqdom=$("<"+tag+">");
-          //$LASTPOS=8000761;//jseditor.UIForm:761
+          //$LASTPOS=9000761;//jseditor.UIForm:761
           if (! _this.jqdom) {
-            //$LASTPOS=8000773;//jseditor.UIForm:773
+            //$LASTPOS=9000773;//jseditor.UIForm:773
             _this.jqdom=_this._jqdom;
           }
-          //$LASTPOS=8000796;//jseditor.UIForm:796
+          //$LASTPOS=9000796;//jseditor.UIForm:796
           i=1;
-          //$LASTPOS=8000810;//jseditor.UIForm:810
+          //$LASTPOS=9000810;//jseditor.UIForm:810
           if (typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $)) {
-            //$LASTPOS=8000925;//jseditor.UIForm:925
+            //$LASTPOS=9000925;//jseditor.UIForm:925
             _this.parseAttr(a[i]);
-            //$LASTPOS=8000955;//jseditor.UIForm:955
+            //$LASTPOS=9000955;//jseditor.UIForm:955
             i++;
             
           }
           
         }
-        //$LASTPOS=8000983;//jseditor.UIForm:983
+        //$LASTPOS=9000983;//jseditor.UIForm:983
         while (i<a.length) {
-          //$LASTPOS=8001013;//jseditor.UIForm:1013
+          //$LASTPOS=9001013;//jseditor.UIForm:1013
           s = _this.parse(a[i]);
           
-          //$LASTPOS=8001041;//jseditor.UIForm:1041
+          //$LASTPOS=9001041;//jseditor.UIForm:1041
           if (s) {
-            //$LASTPOS=8001048;//jseditor.UIForm:1048
+            //$LASTPOS=9001048;//jseditor.UIForm:1048
             res.append(s);
           }
-          //$LASTPOS=8001072;//jseditor.UIForm:1072
+          //$LASTPOS=9001072;//jseditor.UIForm:1072
           i++;
           
         }
-        //$LASTPOS=8001089;//jseditor.UIForm:1089
+        //$LASTPOS=9001089;//jseditor.UIForm:1089
         _this._jqdom=svjq;
         return res;
       },
@@ -261,13 +261,13 @@ define(function (require) {
         var res;
         var s;
         
-        //$LASTPOS=8000629;//jseditor.UIForm:629
+        //$LASTPOS=9000629;//jseditor.UIForm:629
         tag = a[0];
         
-        //$LASTPOS=8000648;//jseditor.UIForm:648
+        //$LASTPOS=9000648;//jseditor.UIForm:648
         i = 0;
         
-        //$LASTPOS=8000662;//jseditor.UIForm:662
+        //$LASTPOS=9000662;//jseditor.UIForm:662
         svjq = _this._jqdom;
         
         
@@ -276,50 +276,50 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=8000688;//jseditor.UIForm:688
+              //$LASTPOS=9000688;//jseditor.UIForm:688
               if (!(typeof  tag=="string")) { __pc=3; break; }
-              //$LASTPOS=8000725;//jseditor.UIForm:725
+              //$LASTPOS=9000725;//jseditor.UIForm:725
               res=_this._jqdom=$("<"+tag+">");
-              //$LASTPOS=8000761;//jseditor.UIForm:761
+              //$LASTPOS=9000761;//jseditor.UIForm:761
               if (! _this.jqdom) {
-                //$LASTPOS=8000773;//jseditor.UIForm:773
+                //$LASTPOS=9000773;//jseditor.UIForm:773
                 _this.jqdom=_this._jqdom;
               }
-              //$LASTPOS=8000796;//jseditor.UIForm:796
+              //$LASTPOS=9000796;//jseditor.UIForm:796
               i=1;
-              //$LASTPOS=8000810;//jseditor.UIForm:810
+              //$LASTPOS=9000810;//jseditor.UIForm:810
               if (!(typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $))) { __pc=2; break; }
-              //$LASTPOS=8000925;//jseditor.UIForm:925
+              //$LASTPOS=9000925;//jseditor.UIForm:925
               _this.fiber$parseAttr(_thread, a[i]);
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=8000955;//jseditor.UIForm:955
+              //$LASTPOS=9000955;//jseditor.UIForm:955
               i++;
             case 2:
               
             case 3:
               
-              //$LASTPOS=8000983;//jseditor.UIForm:983
+              //$LASTPOS=9000983;//jseditor.UIForm:983
             case 4:
               if (!(i<a.length)) { __pc=6; break; }
-              //$LASTPOS=8001013;//jseditor.UIForm:1013
+              //$LASTPOS=9001013;//jseditor.UIForm:1013
               _this.fiber$parse(_thread, a[i]);
               __pc=5;return;
             case 5:
               s=_thread.retVal;
               
-              //$LASTPOS=8001041;//jseditor.UIForm:1041
+              //$LASTPOS=9001041;//jseditor.UIForm:1041
               if (s) {
-                //$LASTPOS=8001048;//jseditor.UIForm:1048
+                //$LASTPOS=9001048;//jseditor.UIForm:1048
                 res.append(s);
               }
-              //$LASTPOS=8001072;//jseditor.UIForm:1072
+              //$LASTPOS=9001072;//jseditor.UIForm:1072
               i++;
               __pc=4;break;
             case 6:
               
-              //$LASTPOS=8001089;//jseditor.UIForm:1089
+              //$LASTPOS=9001089;//jseditor.UIForm:1089
               _this._jqdom=svjq;
               _thread.exit(res);return;
               _thread.exit(_this);return;
@@ -332,56 +332,56 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_49;
+        var _it_57;
         var eType;
         var li;
-        var _it_50;
+        var _it_58;
         
-        //$LASTPOS=8001152;//jseditor.UIForm:1152
-        _it_49=Tonyu.iterator(o,2);
-        while(_it_49.next()) {
-          k=_it_49[0];
-          v=_it_49[1];
+        //$LASTPOS=9001152;//jseditor.UIForm:1152
+        _it_57=Tonyu.iterator(o,2);
+        while(_it_57.next()) {
+          k=_it_57[0];
+          v=_it_57[1];
           
-          //$LASTPOS=8001182;//jseditor.UIForm:1182
+          //$LASTPOS=9001182;//jseditor.UIForm:1182
           if (k=="on") {
-            //$LASTPOS=8001210;//jseditor.UIForm:1210
-            _it_50=Tonyu.iterator(o.on,2);
-            while(_it_50.next()) {
-              eType=_it_50[0];
-              li=_it_50[1];
+            //$LASTPOS=9001210;//jseditor.UIForm:1210
+            _it_58=Tonyu.iterator(o.on,2);
+            while(_it_58.next()) {
+              eType=_it_58[0];
+              li=_it_58[1];
               
-              //$LASTPOS=8001237;//jseditor.UIForm:1237
+              //$LASTPOS=9001237;//jseditor.UIForm:1237
               _this.parseOn(eType,li);
             }
             
           } else {
-            //$LASTPOS=8001272;//jseditor.UIForm:1272
+            //$LASTPOS=9001272;//jseditor.UIForm:1272
             if (k=="name") {
-              //$LASTPOS=8001302;//jseditor.UIForm:1302
+              //$LASTPOS=9001302;//jseditor.UIForm:1302
               _this[v]=_this._jqdom;
-              //$LASTPOS=8001331;//jseditor.UIForm:1331
+              //$LASTPOS=9001331;//jseditor.UIForm:1331
               _this._jqdom.attr(k,v);
               
             } else {
-              //$LASTPOS=8001365;//jseditor.UIForm:1365
+              //$LASTPOS=9001365;//jseditor.UIForm:1365
               if (k=="css"&&v!=null) {
-                //$LASTPOS=8001405;//jseditor.UIForm:1405
+                //$LASTPOS=9001405;//jseditor.UIForm:1405
                 _this._jqdom.css(v);
                 
               } else {
-                //$LASTPOS=8001436;//jseditor.UIForm:1436
+                //$LASTPOS=9001436;//jseditor.UIForm:1436
                 if (Util.startsWith(k,"$")) {
-                  //$LASTPOS=8001480;//jseditor.UIForm:1480
+                  //$LASTPOS=9001480;//jseditor.UIForm:1480
                   if (k=="$bind") {
                     
                     
                   }
                   
                 } else {
-                  //$LASTPOS=8001547;//jseditor.UIForm:1547
+                  //$LASTPOS=9001547;//jseditor.UIForm:1547
                   if (v!=null) {
-                    //$LASTPOS=8001575;//jseditor.UIForm:1575
+                    //$LASTPOS=9001575;//jseditor.UIForm:1575
                     _this._jqdom.attr(k,v);
                     
                   }
@@ -399,10 +399,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_49;
+        var _it_57;
         var eType;
         var li;
-        var _it_50;
+        var _it_58;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -410,23 +410,23 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=8001152;//jseditor.UIForm:1152
-              _it_49=Tonyu.iterator(o,2);
+              //$LASTPOS=9001152;//jseditor.UIForm:1152
+              _it_57=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_49.next())) { __pc=7; break; }
-              k=_it_49[0];
-              v=_it_49[1];
+              if (!(_it_57.next())) { __pc=7; break; }
+              k=_it_57[0];
+              v=_it_57[1];
               
-              //$LASTPOS=8001182;//jseditor.UIForm:1182
+              //$LASTPOS=9001182;//jseditor.UIForm:1182
               if (!(k=="on")) { __pc=5; break; }
-              //$LASTPOS=8001210;//jseditor.UIForm:1210
-              _it_50=Tonyu.iterator(o.on,2);
+              //$LASTPOS=9001210;//jseditor.UIForm:1210
+              _it_58=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_50.next())) { __pc=4; break; }
-              eType=_it_50[0];
-              li=_it_50[1];
+              if (!(_it_58.next())) { __pc=4; break; }
+              eType=_it_58[0];
+              li=_it_58[1];
               
-              //$LASTPOS=8001237;//jseditor.UIForm:1237
+              //$LASTPOS=9001237;//jseditor.UIForm:1237
               _this.fiber$parseOn(_thread, eType, li);
               __pc=3;return;
             case 3:
@@ -436,32 +436,32 @@ define(function (require) {
               
               __pc=6;break;
             case 5:
-              //$LASTPOS=8001272;//jseditor.UIForm:1272
+              //$LASTPOS=9001272;//jseditor.UIForm:1272
               if (k=="name") {
-                //$LASTPOS=8001302;//jseditor.UIForm:1302
+                //$LASTPOS=9001302;//jseditor.UIForm:1302
                 _this[v]=_this._jqdom;
-                //$LASTPOS=8001331;//jseditor.UIForm:1331
+                //$LASTPOS=9001331;//jseditor.UIForm:1331
                 _this._jqdom.attr(k,v);
                 
               } else {
-                //$LASTPOS=8001365;//jseditor.UIForm:1365
+                //$LASTPOS=9001365;//jseditor.UIForm:1365
                 if (k=="css"&&v!=null) {
-                  //$LASTPOS=8001405;//jseditor.UIForm:1405
+                  //$LASTPOS=9001405;//jseditor.UIForm:1405
                   _this._jqdom.css(v);
                   
                 } else {
-                  //$LASTPOS=8001436;//jseditor.UIForm:1436
+                  //$LASTPOS=9001436;//jseditor.UIForm:1436
                   if (Util.startsWith(k,"$")) {
-                    //$LASTPOS=8001480;//jseditor.UIForm:1480
+                    //$LASTPOS=9001480;//jseditor.UIForm:1480
                     if (k=="$bind") {
                       
                       
                     }
                     
                   } else {
-                    //$LASTPOS=8001547;//jseditor.UIForm:1547
+                    //$LASTPOS=9001547;//jseditor.UIForm:1547
                     if (v!=null) {
-                      //$LASTPOS=8001575;//jseditor.UIForm:1575
+                      //$LASTPOS=9001575;//jseditor.UIForm:1575
                       _this._jqdom.attr(k,v);
                       
                     }
@@ -484,57 +484,57 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=8001650;//jseditor.UIForm:1650
+        //$LASTPOS=9001650;//jseditor.UIForm:1650
         if (! li) {
           return _this;
         }
-        //$LASTPOS=8001672;//jseditor.UIForm:1672
+        //$LASTPOS=9001672;//jseditor.UIForm:1672
         if (eType=="enterkey") {
-          //$LASTPOS=8001706;//jseditor.UIForm:1706
+          //$LASTPOS=9001706;//jseditor.UIForm:1706
           _this._jqdom.on("keypress",(function anonymous_1728(ev) {
             
-            //$LASTPOS=8001749;//jseditor.UIForm:1749
+            //$LASTPOS=9001749;//jseditor.UIForm:1749
             if (ev.which==13) {
-              //$LASTPOS=8001767;//jseditor.UIForm:1767
+              //$LASTPOS=9001767;//jseditor.UIForm:1767
               li.apply(_this._jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=8001819;//jseditor.UIForm:1819
+          //$LASTPOS=9001819;//jseditor.UIForm:1819
           if (eType=="realtimechange") {
-            //$LASTPOS=8001859;//jseditor.UIForm:1859
+            //$LASTPOS=9001859;//jseditor.UIForm:1859
             first = true;
             
-            //$LASTPOS=8001890;//jseditor.UIForm:1890
+            //$LASTPOS=9001890;//jseditor.UIForm:1890
             _this.listeners.push((function anonymous_1905() {
               var cur;
               
               
-              //$LASTPOS=8001946;//jseditor.UIForm:1946
+              //$LASTPOS=9001946;//jseditor.UIForm:1946
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=8001989;//jseditor.UIForm:1989
+                //$LASTPOS=9001989;//jseditor.UIForm:1989
                 cur=! ! _this._jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=8002058;//jseditor.UIForm:2058
+                //$LASTPOS=9002058;//jseditor.UIForm:2058
                 cur=_this._jqdom.val();
                 
               }
-              //$LASTPOS=8002104;//jseditor.UIForm:2104
+              //$LASTPOS=9002104;//jseditor.UIForm:2104
               if (first||prev!=cur) {
-                //$LASTPOS=8002147;//jseditor.UIForm:2147
+                //$LASTPOS=9002147;//jseditor.UIForm:2147
                 li.apply(_this._jqdom,[cur,prev]);
-                //$LASTPOS=8002193;//jseditor.UIForm:2193
+                //$LASTPOS=9002193;//jseditor.UIForm:2193
                 prev=cur;
                 
               }
-              //$LASTPOS=8002231;//jseditor.UIForm:2231
+              //$LASTPOS=9002231;//jseditor.UIForm:2231
               first=false;
             }));
             
           } else {
-            //$LASTPOS=8002279;//jseditor.UIForm:2279
+            //$LASTPOS=9002279;//jseditor.UIForm:2279
             _this._jqdom.on(eType,li);
             
           }
@@ -548,58 +548,58 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=8001650;//jseditor.UIForm:1650
+        //$LASTPOS=9001650;//jseditor.UIForm:1650
         if (! li) {
           _thread.retVal=_this;return;
           
         }
-        //$LASTPOS=8001672;//jseditor.UIForm:1672
+        //$LASTPOS=9001672;//jseditor.UIForm:1672
         if (eType=="enterkey") {
-          //$LASTPOS=8001706;//jseditor.UIForm:1706
+          //$LASTPOS=9001706;//jseditor.UIForm:1706
           _this._jqdom.on("keypress",(function anonymous_1728(ev) {
             
-            //$LASTPOS=8001749;//jseditor.UIForm:1749
+            //$LASTPOS=9001749;//jseditor.UIForm:1749
             if (ev.which==13) {
-              //$LASTPOS=8001767;//jseditor.UIForm:1767
+              //$LASTPOS=9001767;//jseditor.UIForm:1767
               li.apply(_this._jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=8001819;//jseditor.UIForm:1819
+          //$LASTPOS=9001819;//jseditor.UIForm:1819
           if (eType=="realtimechange") {
-            //$LASTPOS=8001859;//jseditor.UIForm:1859
+            //$LASTPOS=9001859;//jseditor.UIForm:1859
             first = true;
             
-            //$LASTPOS=8001890;//jseditor.UIForm:1890
+            //$LASTPOS=9001890;//jseditor.UIForm:1890
             _this.listeners.push((function anonymous_1905() {
               var cur;
               
               
-              //$LASTPOS=8001946;//jseditor.UIForm:1946
+              //$LASTPOS=9001946;//jseditor.UIForm:1946
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=8001989;//jseditor.UIForm:1989
+                //$LASTPOS=9001989;//jseditor.UIForm:1989
                 cur=! ! _this._jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=8002058;//jseditor.UIForm:2058
+                //$LASTPOS=9002058;//jseditor.UIForm:2058
                 cur=_this._jqdom.val();
                 
               }
-              //$LASTPOS=8002104;//jseditor.UIForm:2104
+              //$LASTPOS=9002104;//jseditor.UIForm:2104
               if (first||prev!=cur) {
-                //$LASTPOS=8002147;//jseditor.UIForm:2147
+                //$LASTPOS=9002147;//jseditor.UIForm:2147
                 li.apply(_this._jqdom,[cur,prev]);
-                //$LASTPOS=8002193;//jseditor.UIForm:2193
+                //$LASTPOS=9002193;//jseditor.UIForm:2193
                 prev=cur;
                 
               }
-              //$LASTPOS=8002231;//jseditor.UIForm:2231
+              //$LASTPOS=9002231;//jseditor.UIForm:2231
               first=false;
             }));
             
           } else {
-            //$LASTPOS=8002279;//jseditor.UIForm:2279
+            //$LASTPOS=9002279;//jseditor.UIForm:2279
             _this._jqdom.on(eType,li);
             
           }

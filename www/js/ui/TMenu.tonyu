@@ -1,0 +1,71 @@
+\runMenuItem(item) {
+    if (!item.action) return;
+    if (typeof item.action=="string") {
+        var a=item.action;
+        var r=/(\$[\$_A-Za-z0-9]*)\.([\$_A-Za-z0-9]+)/.exec(a);
+        if (r) {
+            Tonyu.globals(r[1]).parallel(r[2]);
+        } else {
+            parallel(a);   
+        }
+    } else if (typeof item.action=="function") {
+        return item.action();
+    }
+}
+\make (title, hier) {
+    /*
+       hier:[{label:"main1",id:"main1",sub:[{label:"sub1", id:"sub1", action:f}]]
+     */
+    var ul1=UI("ul", {"class":"nav navbar-nav"});
+    for (var mainMenuItem in hier) {
+        var li=UI("li",
+            ["a",{
+                href:(mainMenuItem.href||"#"),
+                id:mainMenuItem.id,
+                "class":(mainMenuItem.sub?"dropdown-toggle":null),
+                "data-toggle":(mainMenuItem.sub?"dropdown":null)
+            }, mainMenuItem.label]
+        );
+        ul1.append(li);
+        if (mainMenuItem.sub) {
+            var ul2=UI("ul",{"class":"dropdown-menu"});
+            for (var subMenuItem in mainMenuItem.sub) {
+                if (subMenuItem.key) {
+                    KeyEventChecker.down(document,subMenuItem.key) \(e) {
+                        runMenuItem(subMenuItem);
+                    	e.stopPropagation();
+                    	e.preventDefault();
+	                    return false;
+                    };
+                }
+                ul2.append(UI("li",
+                    ["a", {
+                         id:subMenuItem.id||subMeniItem.action,
+                         href:subMenuItem.href||"#",
+                         on:{
+                             click: runMenuItem(subMenuItem)
+                         }
+                    },subMenuItem.label]
+                ));
+            }
+            li.append(ul2);
+        }
+    };
+    var menu=UI("div",{"class":"collapse navbar-collapse"},ul1);
+    $("body").append(UI(
+      "div",{"class":"navbar navbar-inverse navbar-fixed-top",id:"navBar"},
+            ["div",{"class":"container"},
+                ["div", {"class":"navbar-header"}
+                    ["button",{type:"button", "class":"navbar-toggle",
+                        "data-toggle":"collapse",
+                        "data-target":".navbar-collapse"},
+                        ["span",{"class":"icon-bar"}],
+                        ["span",{"class":"icon-bar"}],
+                        ["span",{"class":"icon-bar"}]
+                    ],
+                    ["a", {"class":"navbar-brand" ,href:"#"},title]
+                ],
+                menu
+            ]
+    ));
+}

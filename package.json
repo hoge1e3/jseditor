@@ -1,5 +1,5 @@
 {
-  "name": "Tonyu2",
+  "name": "JS Editor",
   "main": "www/index.html",
   "single-instance": false,
   "window": {

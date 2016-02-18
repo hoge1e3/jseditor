@@ -40,37 +40,37 @@ define(function (require) {
         var d;
         function refresh() {
           
-          //$LASTPOS=4000453;//jseditor.Bookmark:453
+          //$LASTPOS=4000452;//jseditor.Bookmark:452
           items.empty();
-          //$LASTPOS=4000476;//jseditor.Bookmark:476
-          _this.conf.data.forEach((function anonymous_494(d) {
+          //$LASTPOS=4000475;//jseditor.Bookmark:475
+          _this.conf.data.forEach((function anonymous_493(d) {
             var item;
             
-            //$LASTPOS=4000513;//jseditor.Bookmark:513
+            //$LASTPOS=4000512;//jseditor.Bookmark:512
             item = UI("div",["a",{href: d.url},d.title]);
             
-            //$LASTPOS=4000605;//jseditor.Bookmark:605
+            //$LASTPOS=4000604;//jseditor.Bookmark:604
             items.append(item);
           }));
         }function ok() {
           
-          //$LASTPOS=4000662;//jseditor.Bookmark:662
+          //$LASTPOS=4000661;//jseditor.Bookmark:661
           d.dialog("close");
         }function edit() {
           
-          //$LASTPOS=4000709;//jseditor.Bookmark:709
+          //$LASTPOS=4000708;//jseditor.Bookmark:708
           _this.fileList.open(_this.file);
         }function add() {
           var urlHead;
           
-          //$LASTPOS=4000757;//jseditor.Bookmark:757
+          //$LASTPOS=4000756;//jseditor.Bookmark:756
           urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
-          //$LASTPOS=4000827;//jseditor.Bookmark:827
+          //$LASTPOS=4000826;//jseditor.Bookmark:826
           _this.conf.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=4000960;//jseditor.Bookmark:960
+          //$LASTPOS=4000959;//jseditor.Bookmark:959
           _this.conf.save();
-          //$LASTPOS=4000981;//jseditor.Bookmark:981
+          //$LASTPOS=4000980;//jseditor.Bookmark:980
           refresh();
         }
         //$LASTPOS=4000100;//jseditor.Bookmark:100
@@ -79,11 +79,11 @@ define(function (require) {
         items = UI("div");
         
         //$LASTPOS=4000142;//jseditor.Bookmark:142
-        d = UI("div",{title: "ブックマーク_"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
+        d = UI("div",{title: "ブックマーク"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
         
-        //$LASTPOS=4000390;//jseditor.Bookmark:390
+        //$LASTPOS=4000389;//jseditor.Bookmark:389
         d.dialog({width: 600});
-        //$LASTPOS=4000417;//jseditor.Bookmark:417
+        //$LASTPOS=4000416;//jseditor.Bookmark:416
         refresh();
         
         
@@ -99,37 +99,37 @@ define(function (require) {
         var d;
         function refresh() {
           
-          //$LASTPOS=4000453;//jseditor.Bookmark:453
+          //$LASTPOS=4000452;//jseditor.Bookmark:452
           items.empty();
-          //$LASTPOS=4000476;//jseditor.Bookmark:476
-          _this.conf.data.forEach((function anonymous_494(d) {
+          //$LASTPOS=4000475;//jseditor.Bookmark:475
+          _this.conf.data.forEach((function anonymous_493(d) {
             var item;
             
-            //$LASTPOS=4000513;//jseditor.Bookmark:513
+            //$LASTPOS=4000512;//jseditor.Bookmark:512
             item = UI("div",["a",{href: d.url},d.title]);
             
-            //$LASTPOS=4000605;//jseditor.Bookmark:605
+            //$LASTPOS=4000604;//jseditor.Bookmark:604
             items.append(item);
           }));
         }function ok() {
           
-          //$LASTPOS=4000662;//jseditor.Bookmark:662
+          //$LASTPOS=4000661;//jseditor.Bookmark:661
           d.dialog("close");
         }function edit() {
           
-          //$LASTPOS=4000709;//jseditor.Bookmark:709
+          //$LASTPOS=4000708;//jseditor.Bookmark:708
           _this.fileList.open(_this.file);
         }function add() {
           var urlHead;
           
-          //$LASTPOS=4000757;//jseditor.Bookmark:757
+          //$LASTPOS=4000756;//jseditor.Bookmark:756
           urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
-          //$LASTPOS=4000827;//jseditor.Bookmark:827
+          //$LASTPOS=4000826;//jseditor.Bookmark:826
           _this.conf.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=4000960;//jseditor.Bookmark:960
+          //$LASTPOS=4000959;//jseditor.Bookmark:959
           _this.conf.save();
-          //$LASTPOS=4000981;//jseditor.Bookmark:981
+          //$LASTPOS=4000980;//jseditor.Bookmark:980
           refresh();
         }
         //$LASTPOS=4000100;//jseditor.Bookmark:100
@@ -138,11 +138,11 @@ define(function (require) {
         items = UI("div");
         
         //$LASTPOS=4000142;//jseditor.Bookmark:142
-        d = UI("div",{title: "ブックマーク_"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
+        d = UI("div",{title: "ブックマーク"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
         
-        //$LASTPOS=4000390;//jseditor.Bookmark:390
+        //$LASTPOS=4000389;//jseditor.Bookmark:389
         d.dialog({width: 600});
-        //$LASTPOS=4000417;//jseditor.Bookmark:417
+        //$LASTPOS=4000416;//jseditor.Bookmark:416
         refresh();
         
         

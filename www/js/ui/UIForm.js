@@ -332,24 +332,24 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_48;
+        var _it_49;
         var eType;
         var li;
-        var _it_49;
+        var _it_50;
         
         //$LASTPOS=8001152;//jseditor.UIForm:1152
-        _it_48=Tonyu.iterator(o,2);
-        while(_it_48.next()) {
-          k=_it_48[0];
-          v=_it_48[1];
+        _it_49=Tonyu.iterator(o,2);
+        while(_it_49.next()) {
+          k=_it_49[0];
+          v=_it_49[1];
           
           //$LASTPOS=8001182;//jseditor.UIForm:1182
           if (k=="on") {
             //$LASTPOS=8001210;//jseditor.UIForm:1210
-            _it_49=Tonyu.iterator(o.on,2);
-            while(_it_49.next()) {
-              eType=_it_49[0];
-              li=_it_49[1];
+            _it_50=Tonyu.iterator(o.on,2);
+            while(_it_50.next()) {
+              eType=_it_50[0];
+              li=_it_50[1];
               
               //$LASTPOS=8001237;//jseditor.UIForm:1237
               _this.parseOn(eType,li);
@@ -399,10 +399,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_48;
+        var _it_49;
         var eType;
         var li;
-        var _it_49;
+        var _it_50;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -411,20 +411,20 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=8001152;//jseditor.UIForm:1152
-              _it_48=Tonyu.iterator(o,2);
+              _it_49=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_48.next())) { __pc=7; break; }
-              k=_it_48[0];
-              v=_it_48[1];
+              if (!(_it_49.next())) { __pc=7; break; }
+              k=_it_49[0];
+              v=_it_49[1];
               
               //$LASTPOS=8001182;//jseditor.UIForm:1182
               if (!(k=="on")) { __pc=5; break; }
               //$LASTPOS=8001210;//jseditor.UIForm:1210
-              _it_49=Tonyu.iterator(o.on,2);
+              _it_50=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_49.next())) { __pc=4; break; }
-              eType=_it_49[0];
-              li=_it_49[1];
+              if (!(_it_50.next())) { __pc=4; break; }
+              eType=_it_50[0];
+              li=_it_50[1];
               
               //$LASTPOS=8001237;//jseditor.UIForm:1237
               _this.fiber$parseOn(_thread, eType, li);

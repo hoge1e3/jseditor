@@ -1,10 +1,12 @@
+native $;
+native document;
 \runMenuItem(item) {
     if (!item.action) return;
     if (typeof item.action=="string") {
         var a=item.action;
         var r=/(\$[\$_A-Za-z0-9]*)\.([\$_A-Za-z0-9]+)/.exec(a);
         if (r) {
-            Tonyu.globals(r[1]).parallel(r[2]);
+            Tonyu.globals[r[1]].parallel(r[2]);
         } else {
             parallel(a);   
         }
@@ -29,7 +31,7 @@
         ul1.append(li);
         if (mainMenuItem.sub) {
             var ul2=UI("ul",{"class":"dropdown-menu"});
-            for (var subMenuItem in mainMenuItem.sub) {
+            mainMenuItem.sub.forEach \(subMenuItem) {
                 if (subMenuItem.key) {
                     KeyEventChecker.down(document,subMenuItem.key) \(e) {
                         runMenuItem(subMenuItem);
@@ -43,11 +45,11 @@
                          id:subMenuItem.id||subMeniItem.action,
                          href:subMenuItem.href||"#",
                          on:{
-                             click: runMenuItem(subMenuItem)
+                             click: \{ runMenuItem(subMenuItem); }
                          }
                     },subMenuItem.label]
                 ));
-            }
+            };
             li.append(ul2);
         }
     }

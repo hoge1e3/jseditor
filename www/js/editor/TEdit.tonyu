@@ -17,25 +17,26 @@ Columns.make(
         ["div",{id:"progs"}]
     ]
 );
+
 var finder;
-Menu.make("JS Editor", [
+(new TMenu).make("JS Editor", [
     {label:"Home",href:"index.html"},
     {label:"ファイル",sub:[
-        {label:"新規",id:"newFile",action:newFile},
-        {label:"名前変更",id:"mvFile",action:mvFile},
-        {label:"上書き保存",id:"saveFile",action:save,key:"ctrl+s"},
+        {label:"新規",id:"newFile",action:"$fileMenu.create"},
+        {label:"名前変更",id:"mvFile",action:"$fileMenu.rename"/*mvFile*/},
+        {label:"上書き保存",id:"saveFile",action:"$editorSet.save",key:"ctrl+s"},
         {label:"コピー",id:"cpFile"},
-        {label:"削除", id:"rmFile",action:rmFile}
+        {label:"削除", id:"rmFile",action:"$fileMenu.remove"}
     ]},
     {label:"ツール",sub:[
-        //{label:"検索",id:"find",action:find,key:"ctrl+f"},
+        //{label:"検索",id:"find",action:"$finder.find",key:"ctrl+f"},
         //{label:"新規ツール...",id:"newTool"}
         {label:"TonyuC", id:"tonyuC",action:tonyuC, key:"f9"}
         
     ]},
     {label:"ウィンドウ",sub:[
         {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
-        {label:"ブックマーク...",id:"bookmark",action:openBookmark}
+        {label:"ブックマーク...",id:"bookmark",action:"$bookmark.open"}
     ]},
     /*{label:"実行",sub:[
           {label:"実行(F9)",id:"runMenu",action:run},
@@ -56,18 +57,18 @@ var etc=localStorage.etc ?
     FS.get(process.cwd()).rel(".jsetc/");
 var desktopEnv=new JSONConf(etc.rel("desktop.json"));
 $reqConfBuilder=new ReqConfBuilder{
-    output:projectTop.rel("js/reqConfTest.js"),
+    output:projectTop.rel("js/reqConf.js"),
     htmlDir:projectTop
 };
 desktopEnv.load();
-var fl=new FileList($("#fileItemList")) {
+var fl=$fileList=new FileList($("#fileItemList")) {
     open:function (f) {
         console.log("opening",f);
         es.save();
         es.open(f);
     }
 };
-var bookmark=new Bookmark{
+$bookmark=new Bookmark{
     file:etc.rel("bookmark.json"),
     fileList:fl
 };
@@ -81,32 +82,14 @@ var bookmark=new Bookmark{
         location.reload();
     }
 }
-function genReqConf() {
-    $reqConfBuilder.build();
-}
 function tonyuC() {
     var tc=new TonyuC;
     tc.parallel("compile",projectTop.rel("js/"));
-}
-function openBookmark() {
-    bookmark.open();
 }
 function newWindow() {
     var genID=""+Math.random();
     window.open(location.href,genID,
     'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
-}
-function find() {
-    return finder.find();
-}
-function mvFile() {
-    return fileMenu.parallel("rename");
-}
-function rmFile() {
-    return fileMenu.parallel("remove");
-}
-function newFile() {
-    return fileMenu.parallel("create");
 }
 function textSize() {
     parallel("textSizeP");
@@ -119,9 +102,6 @@ function textSizeP() {
     desktopEnv.data.editorFontSize=window.parseInt(s);
     if (es) es.setFontSize(desktopEnv.data.editorFontSize||12);
     return desktopEnv.save();
-}
-function save(e) {
-    es.save();
 }
 var screenH,editorH;
 function onResize() {
@@ -138,13 +118,13 @@ onResize();
 $(window).resize(onResize);
 requirejs(["ace"],function (){
     console.log("ace loaded:",ace);
-    es=new EditorSet( $("#progs"), $("#fileLabel")) {
+    $editorSet=es=new EditorSet( $("#progs"), $("#fileLabel")) {
         height:editorH, 
         fontSize:( desktopEnv.data && desktopEnv.data.editorFontSize || 12 )
     };
-    finder=new Finder(es);
+    $finder=new Finder(es);
     if (typeof SplashScreen!="undefined") SplashScreen.hide();
-    fileMenu=new FileMenu({editorSet:es,fileList:fl});
+    $fileMenu=fileMenu=new FileMenu({editorSet:es,fileList:fl});
     return fl.open(cwd);
 });
 

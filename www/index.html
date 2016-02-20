@@ -51,6 +51,7 @@ requirejs(["Util"],function (Util){
     }
     requirejs([run], function(R){
         SplashScreen.hide();
+        console.log("loaded:",R,R.prototype);
         if (R.prototype && R.prototype.runApp) {
             (new R).runApp();
         }

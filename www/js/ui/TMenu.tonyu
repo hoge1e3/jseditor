@@ -6,7 +6,10 @@ native document;
         var a=item.action;
         var r=/(\$[\$_A-Za-z0-9]*)\.([\$_A-Za-z0-9]+)/.exec(a);
         if (r) {
-            Tonyu.globals[r[1]].parallel(r[2]);
+            var obj=Tonyu.globals[r[1]];
+            if (!obj) throw new Error(r[1]+" not found");
+            if (obj.parallel) obj.parallel(r[2]);
+            else obj[r[2]]();
         } else {
             parallel(a);   
         }

@@ -139,10 +139,13 @@ define(["DeferredUtil","Class"],function (DU,Class) {
             var fb=this;
             fb._isWaiting=true;
             fb.suspend();
-            return DU.ensureDefer(j).then(function (r) {
+            return DU.ensureDefer(j/*.fail(function (e) {
+                console.log("ERA2",e);
+            })*/).then(function (r) {
                 fb.retVal=r;
                 fb.steps();
             }).fail(function (e) {
+                console.log("waitFor","Error",e);
                 if (e instanceof Error) {
                     fb.gotoCatch(e);
                 } else {

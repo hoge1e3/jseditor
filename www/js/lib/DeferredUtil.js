@@ -12,6 +12,14 @@ define([], function () {
                     } else {
                         d.resolve(r);
                     }
+                }).fail(function (r) {
+                    if (!isDeferred) {
+                        setTimeout(function () {
+                            d.reject(r);
+                        },0);
+                    } else {
+                        d.reject(r);
+                    }
                 });
                 isDeferred=true;
                 return d.promise();

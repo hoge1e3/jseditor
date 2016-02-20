@@ -109,7 +109,10 @@ var reqConf={
         "TEdit": "editor/TEdit",
         "main": "editor/main",
         "rescueCompile": "editor/rescueCompile",
-        "TMenu": "ui/TMenu"
+        "TMenu": "ui/TMenu",
+        "JSEProject": "editor/JSEProject",
+        "ProjectSel": "editor/ProjectSel",
+        "TEditorSet": "editor/TEditorSet"
     },
     "baseUrl": "./js/"
 };

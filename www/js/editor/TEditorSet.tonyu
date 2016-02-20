@@ -1,0 +1,95 @@
+extends Base;
+\new(progs,fileLabel,options) {
+    this.progs=assert(progs,"progs");
+    this.options=options||{};
+    this.fileLabel=assert(fileLabel,"fileLabel");
+    editors={};
+    parallel("watchLoop");
+    types={js:"javascript"};
+}
+\watchLoop() {
+    while (true) {
+        watch();
+        update(1000);
+    }
+}
+\watch() {
+    var inf=getCurrentEditorInfo();
+    if (!inf) return;
+    if (inf.lastTimeStamp<inf.file.lastUpdate()) {
+        inf.editor.setValue(inf.file.text());
+        inf.editor.clearSelection();
+        inf.lastTimeStamp=inf.file.lastUpdate();
+    }
+    var unmod=inf.file.text()==inf.editor.getValue();
+    fileLabel.text(inf.file.name()+(unmod?"":"*"));
+}
+\open(f) {
+    if (f.isDir()) {
+        return;
+    }
+    if (curDOM) curDOM.hide();
+    var inf=editors[f.path()];
+    if (!inf) {
+        var editorDOM=$("<pre>").
+            css("height", (this.options.height||300)+"px").
+            text(f.text()).
+            appendTo(progs);
+        var editor=ace.edit(editorDOM[0]);
+        if (typeof options.fontSize=="number") editor.setFontSize(options.fontSize);
+        editor.setTheme("ace/theme/eclipse");
+        var type=f.ext().replace(".","");
+        type=types[type]||type;
+        editor.getSession().setMode("ace/mode/"+type);
+        editors[f.path()]=inf={file:f , editor: editor, dom:editorDOM};
+        editor.setReadOnly(false);
+        editor.clearSelection();
+        editor.focus();
+        curDOM=editorDOM;
+    } else {
+        if (inf.lastTimeStamp<inf.file.lastUpdate()) {
+            inf.editor.setValue(inf.file.text());
+            inf.editor.clearSelection();
+            inf.lastTimeStamp=inf.file.lastUpdate();
+        }
+        inf.dom.show();
+        inf.editor.focus();
+        curDOM=inf.dom;
+    }
+    curFile=f;
+    inf.lastTimeStamp=f.lastUpdate();
+    fileLabel.text(f.name());
+}
+\setFontSize(s) {
+    options.fontSize=s;
+    var inf=getCurrentEditorInfo();
+    if (!inf) return;
+    inf.editor.setFontSize(s);
+}
+\getCurrentEditorInfo() {
+    if (!curFile) return null;
+    return editors[curFile.path()];
+}
+\save() {
+    var inf=getCurrentEditorInfo();
+    if (!inf) return;
+    var curFile=inf.file; //fl.curFile();
+    var editor=inf.editor; //getCurrentEditor();
+    if (curFile && editor && !curFile.isReadOnly()) {
+        //if (curFile.ext()==EXT) fixEditorIndent(editor);
+        var old=curFile.text();
+        var nw=editor.getValue();
+        if (old!=nw) {
+            curFile.text(nw);
+            inf.lastTimeStamp=curFile.lastUpdate();
+        }
+    }
+    fileLabel.text(curFile.name());
+}
+\close(f) {
+    var inf=editors[f.path()];
+    if (!inf) return;
+    inf.editor.destroy();
+    inf.dom.remove();
+    delete editors[f.path()];
+}

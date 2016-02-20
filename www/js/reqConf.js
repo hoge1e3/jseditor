@@ -95,7 +95,7 @@ var reqConf={
         "Class": "lib/Class",
         "Columns": "ui/Columns",
         "Menu": "ui/Menu",
-        "EditorSet": "editor/EditorSet",
+        "EditorSet": "editor/jeditorSet",
         "Finder": "editor/Finder",
         "TonyuC": "editor/TonyuC",
         "JSONConf": "editor/JSONConf",
@@ -109,7 +109,10 @@ var reqConf={
         "TEdit": "editor/TEdit",
         "main": "editor/main",
         "rescueCompile": "editor/rescueCompile",
-        "TMenu": "ui/TMenu"
+        "TMenu": "ui/TMenu",
+        "JSEProject": "editor/JSEProject",
+        "ProjectSel": "editor/ProjectSel",
+        "TEditorSet": "editor/TEditorSet"
     },
     "baseUrl": "./js/"
 };

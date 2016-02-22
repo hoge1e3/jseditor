@@ -1,4 +1,5 @@
 extends Base;
+native $;
 \new(progs,fileLabel,options) {
     this.progs=assert(progs,"progs");
     this.options=options||{};
@@ -23,6 +24,13 @@ extends Base;
     }
     var unmod=inf.file.text()==inf.editor.getValue();
     fileLabel.text(inf.file.name()+(unmod?"":"*"));
+}
+\allModified() {
+    var res=[];
+    for (var k,inf in editors) {
+        if (inf.file.text()!=inf.editor.getValue()) res.push(inf.file);
+    }
+    return res;
 }
 \open(f) {
     if (f.isDir()) {

@@ -166,16 +166,16 @@ define(function (require) {
         var res;
         var k;
         var inf;
-        var _it_61;
+        var _it_63;
         
         //$LASTPOS=9000744;//jseditor.TEditorSet:744
         res = [];
         
         //$LASTPOS=9000761;//jseditor.TEditorSet:761
-        _it_61=Tonyu.iterator(_this.editors,2);
-        while(_it_61.next()) {
-          k=_it_61[0];
-          inf=_it_61[1];
+        _it_63=Tonyu.iterator(_this.editors,2);
+        while(_it_63.next()) {
+          k=_it_63[0];
+          inf=_it_63[1];
           
           //$LASTPOS=9000799;//jseditor.TEditorSet:799
           if (inf.file.text()!=inf.editor.getValue()) {
@@ -194,16 +194,16 @@ define(function (require) {
         var res;
         var k;
         var inf;
-        var _it_61;
+        var _it_63;
         
         //$LASTPOS=9000744;//jseditor.TEditorSet:744
         res = [];
         
         //$LASTPOS=9000761;//jseditor.TEditorSet:761
-        _it_61=Tonyu.iterator(_this.editors,2);
-        while(_it_61.next()) {
-          k=_it_61[0];
-          inf=_it_61[1];
+        _it_63=Tonyu.iterator(_this.editors,2);
+        while(_it_63.next()) {
+          k=_it_63[0];
+          inf=_it_63[1];
           
           //$LASTPOS=9000799;//jseditor.TEditorSet:799
           if (inf.file.text()!=inf.editor.getValue()) {

@@ -32,7 +32,7 @@ define(function (require) {
         var elem;
         var n;
         var c;
-        var _it_77;
+        var _it_79;
         var e;
         
         //$LASTPOS=10000051;//jseditor.TonyuC:51
@@ -52,10 +52,10 @@ define(function (require) {
           //$LASTPOS=10000390;//jseditor.TonyuC:390
           elem.text("Compiled");
           //$LASTPOS=10000421;//jseditor.TonyuC:421
-          _it_77=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
-          while(_it_77.next()) {
-            n=_it_77[0];
-            c=_it_77[1];
+          _it_79=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
+          while(_it_79.next()) {
+            n=_it_79[0];
+            c=_it_79[1];
             
             //$LASTPOS=10000480;//jseditor.TonyuC:480
             if (SFile["is"](c.src.js)&&! reqConf.paths[c.shortName]) {
@@ -87,7 +87,7 @@ define(function (require) {
         var elem;
         var n;
         var c;
-        var _it_77;
+        var _it_79;
         var e;
         
         //$LASTPOS=10000051;//jseditor.TonyuC:51
@@ -119,10 +119,10 @@ define(function (require) {
               //$LASTPOS=10000390;//jseditor.TonyuC:390
               elem.text("Compiled");
               //$LASTPOS=10000421;//jseditor.TonyuC:421
-              _it_77=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
-              while(_it_77.next()) {
-                n=_it_77[0];
-                c=_it_77[1];
+              _it_79=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
+              while(_it_79.next()) {
+                n=_it_79[0];
+                c=_it_79[1];
                 
                 //$LASTPOS=10000480;//jseditor.TonyuC:480
                 if (SFile["is"](c.src.js)&&! reqConf.paths[c.shortName]) {

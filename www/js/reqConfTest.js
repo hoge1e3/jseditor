@@ -2,7 +2,7 @@ var reqConf={
     "shim": {
         "difflib": {
             "exports": "difflib"
-        },
+        }, 
         "diffview": {
             "exports": "diffview"
         },

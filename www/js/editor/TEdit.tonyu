@@ -7,6 +7,7 @@ native console;
 native window;
 native localStorage;
 native location;
+native nwDispatcher;
 
 Columns.make(
     ["div",{id:"fileViewer","class":"col-xs-3"},
@@ -127,14 +128,32 @@ requirejs(["ace"],function (){
     $fileMenu=fileMenu=new FileMenu({editorSet:es,fileList:fl});
     return fl.open(cwd);
 });
-$(window).on("beforeunload") \(e) {
+\shouldConfirmClose() {
     var m=($editorSet && $editorSet.allModified()) || [];
     if (m.length>0) {
-        return "保存されていないファイルがあります: "+m.map \(f) {
-            return f.path();
+        return "保存しないで終了しますか？: "+m.map \(f) {
+            return f.name();
         }.join(",");
+    }
+}
+$(window).on("beforeunload") \(e) {
+    var s=shouldConfirmClose();
+    if (s) {
+        return s;
     } else {
         e.preventDefault();
     }
 };
+var gui = nwDispatcher.requireNwGui(); 
+var win = gui.Window.get();
+win.on('close', function() {
+    var s=shouldConfirmClose();
+    if (s) {
+        if (window.confirm(s)) {
+           win.close(true);
+        }
+    } else {
+        win.close(true);
+    }
+});
 

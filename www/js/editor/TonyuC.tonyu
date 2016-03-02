@@ -1,7 +1,15 @@
 extends Base;
 native reqConf;
 
-\compile(dir) {
+\new(prj) {
+    this.prj=prj;
+    reqConfBuilder=new ReqConfBuilder{
+        output:prj.reqConf,
+        htmlDir:prj.www
+    };
+}
+\compile() {
+    var dir=prj.tonyuC;
     var elem=UI("div","Compiling...");
     UIDiag.custom(elem) {
         width:500,ok:true, title:"Tonyu Compiler"
@@ -19,7 +27,7 @@ native reqConf;
                 $reqConfBuilder.addPath(c.shortName, c.src.js);
             }
         }
-        if ($reqConfBuilder) $reqConfBuilder.save();
+        if (reqConfBuilder) reqConfBuilder.save();
     } catch (e) {
         print(e.stack);
         elem.text("Error "+e);

@@ -26,9 +26,9 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=5000058;//jseditor.ReqConfBuilder:58
+        //$LASTPOS=6000058;//jseditor.ReqConfBuilder:58
         Tonyu.classes.jseditor.Base.apply( _this, [o]);
-        //$LASTPOS=5000072;//jseditor.ReqConfBuilder:72
+        //$LASTPOS=6000072;//jseditor.ReqConfBuilder:72
         _this.base=_this.htmlDir.rel(reqConf.baseUrl);
       },
       save :function _trc_ReqConfBuilder_save(data) {
@@ -36,15 +36,15 @@ define(function (require) {
         var _this=this;
         var js;
         
-        //$LASTPOS=5000127;//jseditor.ReqConfBuilder:127
+        //$LASTPOS=6000127;//jseditor.ReqConfBuilder:127
         if (! data) {
-          //$LASTPOS=5000138;//jseditor.ReqConfBuilder:138
+          //$LASTPOS=6000138;//jseditor.ReqConfBuilder:138
           data=reqConf;
         }
-        //$LASTPOS=5000156;//jseditor.ReqConfBuilder:156
+        //$LASTPOS=6000156;//jseditor.ReqConfBuilder:156
         js = JSON.stringify(data,null,4);
         
-        //$LASTPOS=5000196;//jseditor.ReqConfBuilder:196
+        //$LASTPOS=6000196;//jseditor.ReqConfBuilder:196
         _this.writeFile(_this.output,"var reqConf="+js+";\n"+"if (typeof module!==\"undefined\") {\n"+"    module.exports=reqConf;\n"+"}\n");
       },
       fiber$save :function _trc_ReqConfBuilder_f_save(_thread,data) {
@@ -54,12 +54,12 @@ define(function (require) {
         var __pc=0;
         var js;
         
-        //$LASTPOS=5000127;//jseditor.ReqConfBuilder:127
+        //$LASTPOS=6000127;//jseditor.ReqConfBuilder:127
         if (! data) {
-          //$LASTPOS=5000138;//jseditor.ReqConfBuilder:138
+          //$LASTPOS=6000138;//jseditor.ReqConfBuilder:138
           data=reqConf;
         }
-        //$LASTPOS=5000156;//jseditor.ReqConfBuilder:156
+        //$LASTPOS=6000156;//jseditor.ReqConfBuilder:156
         js = JSON.stringify(data,null,4);
         
         
@@ -68,7 +68,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=5000196;//jseditor.ReqConfBuilder:196
+              //$LASTPOS=6000196;//jseditor.ReqConfBuilder:196
               _this.fiber$writeFile(_thread, _this.output, "var reqConf="+js+";\n"+"if (typeof module!==\"undefined\") {\n"+"    module.exports=reqConf;\n"+"}\n");
               __pc=1;return;
             case 1:
@@ -83,12 +83,12 @@ define(function (require) {
         var _this=this;
         var tf;
         
-        //$LASTPOS=5000388;//jseditor.ReqConfBuilder:388
+        //$LASTPOS=6000388;//jseditor.ReqConfBuilder:388
         tf = file.up().rel(file.truncExt());
         
-        //$LASTPOS=5000431;//jseditor.ReqConfBuilder:431
+        //$LASTPOS=6000431;//jseditor.ReqConfBuilder:431
         reqConf.paths[name]=tf.relPath(_this.base);
-        //$LASTPOS=5000473;//jseditor.ReqConfBuilder:473
+        //$LASTPOS=6000473;//jseditor.ReqConfBuilder:473
         Tonyu.extend(reqConf.paths,_this.paths);
       },
       fiber$addPath :function _trc_ReqConfBuilder_f_addPath(_thread,name,file) {
@@ -98,12 +98,12 @@ define(function (require) {
         var __pc=0;
         var tf;
         
-        //$LASTPOS=5000388;//jseditor.ReqConfBuilder:388
+        //$LASTPOS=6000388;//jseditor.ReqConfBuilder:388
         tf = file.up().rel(file.truncExt());
         
-        //$LASTPOS=5000431;//jseditor.ReqConfBuilder:431
+        //$LASTPOS=6000431;//jseditor.ReqConfBuilder:431
         reqConf.paths[name]=tf.relPath(_this.base);
-        //$LASTPOS=5000473;//jseditor.ReqConfBuilder:473
+        //$LASTPOS=6000473;//jseditor.ReqConfBuilder:473
         Tonyu.extend(reqConf.paths,_this.paths);
         
         _thread.retVal=_this;return;
@@ -117,27 +117,27 @@ define(function (require) {
         var _it_26;
         var f;
         
-        //$LASTPOS=5000532;//jseditor.ReqConfBuilder:532
+        //$LASTPOS=6000532;//jseditor.ReqConfBuilder:532
         newPaths = {};
         
-        //$LASTPOS=5000553;//jseditor.ReqConfBuilder:553
+        //$LASTPOS=6000553;//jseditor.ReqConfBuilder:553
         _it_26=Tonyu.iterator(reqConf.paths,2);
         while(_it_26.next()) {
           k=_it_26[0];
           v=_it_26[1];
           
-          //$LASTPOS=5000594;//jseditor.ReqConfBuilder:594
+          //$LASTPOS=6000594;//jseditor.ReqConfBuilder:594
           f = _this.base.rel(v+".js");
           
-          //$LASTPOS=5000627;//jseditor.ReqConfBuilder:627
+          //$LASTPOS=6000627;//jseditor.ReqConfBuilder:627
           if (f.exists()) {
-            //$LASTPOS=5000657;//jseditor.ReqConfBuilder:657
+            //$LASTPOS=6000657;//jseditor.ReqConfBuilder:657
             newPaths[k]=v;
             
           }
           
         }
-        //$LASTPOS=5000692;//jseditor.ReqConfBuilder:692
+        //$LASTPOS=6000692;//jseditor.ReqConfBuilder:692
         _this.save({shim: reqConf.shim,paths: newPaths,baseUrl: reqConf.baseUrl});
       },
       fiber$cleanUnused :function _trc_ReqConfBuilder_f_cleanUnused(_thread) {
@@ -151,21 +151,21 @@ define(function (require) {
         var _it_26;
         var f;
         
-        //$LASTPOS=5000532;//jseditor.ReqConfBuilder:532
+        //$LASTPOS=6000532;//jseditor.ReqConfBuilder:532
         newPaths = {};
         
-        //$LASTPOS=5000553;//jseditor.ReqConfBuilder:553
+        //$LASTPOS=6000553;//jseditor.ReqConfBuilder:553
         _it_26=Tonyu.iterator(reqConf.paths,2);
         while(_it_26.next()) {
           k=_it_26[0];
           v=_it_26[1];
           
-          //$LASTPOS=5000594;//jseditor.ReqConfBuilder:594
+          //$LASTPOS=6000594;//jseditor.ReqConfBuilder:594
           f = _this.base.rel(v+".js");
           
-          //$LASTPOS=5000627;//jseditor.ReqConfBuilder:627
+          //$LASTPOS=6000627;//jseditor.ReqConfBuilder:627
           if (f.exists()) {
-            //$LASTPOS=5000657;//jseditor.ReqConfBuilder:657
+            //$LASTPOS=6000657;//jseditor.ReqConfBuilder:657
             newPaths[k]=v;
             
           }
@@ -177,7 +177,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=5000692;//jseditor.ReqConfBuilder:692
+              //$LASTPOS=6000692;//jseditor.ReqConfBuilder:692
               _this.fiber$save(_thread, {shim: reqConf.shim,paths: newPaths,baseUrl: reqConf.baseUrl});
               __pc=1;return;
             case 1:

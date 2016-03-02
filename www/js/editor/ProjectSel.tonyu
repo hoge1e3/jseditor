@@ -1,10 +1,38 @@
 extends UIForm;
+native process;
+native location;
 
 \runApp() {
     appendTo("body");
 }
 
+etc=new Etc;
 tag("div") \{
-    tag("div","プロジェクト一覧...");
-    
+    tag("h1","プロジェクト一覧...");
+    plist=tag("div");
+    parallel("list");
+    //tag("button", {on:{click:edit}}, "編集");
 };
+
+\edit() {
+    $editorSet.open(prj.file);
+}
+\add() {
+    var e={name:"Name", path:process.cwd()};
+    prj.data.push(e);
+    addItem(e);
+}
+
+\list() {
+    prj=etc.conf("projects.json");
+    var l=waitFor(prj.load());
+    l.forEach(addItem);
+}
+\addItem(e) {
+    var url=location.href.replace(/\?.*/,"");
+    change(plist) \{
+        tag("div") \{
+            tag("a",{href:url+"?prj="+e.name},e.name);
+        };
+    };
+}

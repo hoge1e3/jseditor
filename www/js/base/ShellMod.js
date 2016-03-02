@@ -26,18 +26,18 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000041;//jseditor.ShellMod:41
+        //$LASTPOS=4000041;//jseditor.ShellMod:41
         _this.cwd=_this.resolve(dir);
       },
       resolve :function _trc_ShellMod_resolve(f) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000086;//jseditor.ShellMod:86
+        //$LASTPOS=4000086;//jseditor.ShellMod:86
         if (SFile["is"](f)) {
           return f;
         }
-        //$LASTPOS=3000120;//jseditor.ShellMod:120
+        //$LASTPOS=4000120;//jseditor.ShellMod:120
         if (! _this.cwd) {
           throw new Error("CWD is not set");
           
@@ -49,9 +49,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=3000212;//jseditor.ShellMod:212
+        //$LASTPOS=4000212;//jseditor.ShellMod:212
         dir=_this.resolve(dir);
-        //$LASTPOS=3000234;//jseditor.ShellMod:234
+        //$LASTPOS=4000234;//jseditor.ShellMod:234
         r = _this.waitFor(dir.listFiles());
         
         return r;
@@ -63,7 +63,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=3000212;//jseditor.ShellMod:212
+        //$LASTPOS=4000212;//jseditor.ShellMod:212
         dir=_this.resolve(dir);
         
         _thread.enter(function _trc_ShellMod_ent_listFiles(_thread) {
@@ -71,7 +71,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000234;//jseditor.ShellMod:234
+              //$LASTPOS=4000234;//jseditor.ShellMod:234
               _this.fiber$waitFor(_thread, dir.listFiles());
               __pc=1;return;
             case 1:
@@ -88,9 +88,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=3000304;//jseditor.ShellMod:304
+        //$LASTPOS=4000304;//jseditor.ShellMod:304
         file=_this.resolve(file);
-        //$LASTPOS=3000328;//jseditor.ShellMod:328
+        //$LASTPOS=4000328;//jseditor.ShellMod:328
         r = _this.waitFor(file.text(_this.cont));
         
         return r;
@@ -102,7 +102,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=3000304;//jseditor.ShellMod:304
+        //$LASTPOS=4000304;//jseditor.ShellMod:304
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_readFile(_thread) {
@@ -110,7 +110,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000328;//jseditor.ShellMod:328
+              //$LASTPOS=4000328;//jseditor.ShellMod:328
               _this.fiber$waitFor(_thread, file.text(_this.cont));
               __pc=1;return;
             case 1:
@@ -126,9 +126,9 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000404;//jseditor.ShellMod:404
+        //$LASTPOS=4000404;//jseditor.ShellMod:404
         file=_this.resolve(file);
-        //$LASTPOS=3000428;//jseditor.ShellMod:428
+        //$LASTPOS=4000428;//jseditor.ShellMod:428
         _this.waitFor(file.text(cont));
       },
       fiber$writeFile :function _trc_ShellMod_f_writeFile(_thread,file,cont) {
@@ -137,7 +137,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=3000404;//jseditor.ShellMod:404
+        //$LASTPOS=4000404;//jseditor.ShellMod:404
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_writeFile(_thread) {
@@ -145,7 +145,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000428;//jseditor.ShellMod:428
+              //$LASTPOS=4000428;//jseditor.ShellMod:428
               _this.fiber$waitFor(_thread, file.text(cont));
               __pc=1;return;
             case 1:
@@ -159,11 +159,11 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=3000475;//jseditor.ShellMod:475
+        //$LASTPOS=4000475;//jseditor.ShellMod:475
         src=_this.resolve(src);
-        //$LASTPOS=3000497;//jseditor.ShellMod:497
+        //$LASTPOS=4000497;//jseditor.ShellMod:497
         dst=_this.resolve(dst);
-        //$LASTPOS=3000519;//jseditor.ShellMod:519
+        //$LASTPOS=4000519;//jseditor.ShellMod:519
         _this.waitFor(dst.moveFrom(src));
       },
       fiber$mv :function _trc_ShellMod_f_mv(_thread,src,dst) {
@@ -172,9 +172,9 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=3000475;//jseditor.ShellMod:475
+        //$LASTPOS=4000475;//jseditor.ShellMod:475
         src=_this.resolve(src);
-        //$LASTPOS=3000497;//jseditor.ShellMod:497
+        //$LASTPOS=4000497;//jseditor.ShellMod:497
         dst=_this.resolve(dst);
         
         _thread.enter(function _trc_ShellMod_ent_mv(_thread) {
@@ -182,7 +182,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000519;//jseditor.ShellMod:519
+              //$LASTPOS=4000519;//jseditor.ShellMod:519
               _this.fiber$waitFor(_thread, dst.moveFrom(src));
               __pc=1;return;
             case 1:
@@ -197,9 +197,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=3000568;//jseditor.ShellMod:568
+        //$LASTPOS=4000568;//jseditor.ShellMod:568
         file=_this.resolve(file);
-        //$LASTPOS=3000592;//jseditor.ShellMod:592
+        //$LASTPOS=4000592;//jseditor.ShellMod:592
         r = _this.waitFor(file.isDir());
         
         return r;
@@ -211,7 +211,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=3000568;//jseditor.ShellMod:568
+        //$LASTPOS=4000568;//jseditor.ShellMod:568
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_isDir(_thread) {
@@ -219,7 +219,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000592;//jseditor.ShellMod:592
+              //$LASTPOS=4000592;//jseditor.ShellMod:592
               _this.fiber$waitFor(_thread, file.isDir());
               __pc=1;return;
             case 1:
@@ -236,9 +236,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=3000656;//jseditor.ShellMod:656
+        //$LASTPOS=4000656;//jseditor.ShellMod:656
         file=_this.resolve(file);
-        //$LASTPOS=3000680;//jseditor.ShellMod:680
+        //$LASTPOS=4000680;//jseditor.ShellMod:680
         r = _this.waitFor(file.mkdir());
         
         return r;
@@ -250,7 +250,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=3000656;//jseditor.ShellMod:656
+        //$LASTPOS=4000656;//jseditor.ShellMod:656
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_mkdir(_thread) {
@@ -258,7 +258,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000680;//jseditor.ShellMod:680
+              //$LASTPOS=4000680;//jseditor.ShellMod:680
               _this.fiber$waitFor(_thread, file.mkdir());
               __pc=1;return;
             case 1:
@@ -275,9 +275,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=3000741;//jseditor.ShellMod:741
+        //$LASTPOS=4000741;//jseditor.ShellMod:741
         file=_this.resolve(file);
-        //$LASTPOS=3000765;//jseditor.ShellMod:765
+        //$LASTPOS=4000765;//jseditor.ShellMod:765
         r = _this.waitFor(file.rm());
         
         return r;
@@ -289,7 +289,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=3000741;//jseditor.ShellMod:741
+        //$LASTPOS=4000741;//jseditor.ShellMod:741
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_rm(_thread) {
@@ -297,7 +297,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=3000765;//jseditor.ShellMod:765
+              //$LASTPOS=4000765;//jseditor.ShellMod:765
               _this.fiber$waitFor(_thread, file.rm());
               __pc=1;return;
             case 1:

@@ -1,0 +1,13 @@
+native localStorage;
+
+\new() {
+    dir=localStorage.etc ? 
+    FS.get(localStorage.etc) : 
+    FS.get(process.cwd()).rel(".jsetc/");
+}
+\conf(path) {
+    return new JSONConf(dir.rel(path));
+}
+\rel(p) {
+    return dir.rel(p);
+}

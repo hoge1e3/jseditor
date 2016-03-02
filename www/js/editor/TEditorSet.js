@@ -28,28 +28,28 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=9000063;//jseditor.TEditorSet:63
+        //$LASTPOS=10000063;//jseditor.TEditorSet:63
         _this.progs=assert(progs,"progs");
-        //$LASTPOS=9000102;//jseditor.TEditorSet:102
+        //$LASTPOS=10000102;//jseditor.TEditorSet:102
         _this.options=options||{};
-        //$LASTPOS=9000133;//jseditor.TEditorSet:133
+        //$LASTPOS=10000133;//jseditor.TEditorSet:133
         _this.fileLabel=assert(fileLabel,"fileLabel");
-        //$LASTPOS=9000184;//jseditor.TEditorSet:184
+        //$LASTPOS=10000184;//jseditor.TEditorSet:184
         _this.editors={};
-        //$LASTPOS=9000201;//jseditor.TEditorSet:201
+        //$LASTPOS=10000201;//jseditor.TEditorSet:201
         _this.parallel("watchLoop");
-        //$LASTPOS=9000229;//jseditor.TEditorSet:229
+        //$LASTPOS=10000229;//jseditor.TEditorSet:229
         _this.types={js: "javascript"};
       },
       watchLoop :function _trc_TEditorSet_watchLoop() {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=9000278;//jseditor.TEditorSet:278
+        //$LASTPOS=10000278;//jseditor.TEditorSet:278
         while (true) {
-          //$LASTPOS=9000302;//jseditor.TEditorSet:302
+          //$LASTPOS=10000302;//jseditor.TEditorSet:302
           _this.watch();
-          //$LASTPOS=9000320;//jseditor.TEditorSet:320
+          //$LASTPOS=10000320;//jseditor.TEditorSet:320
           _this.update(1000);
           
         }
@@ -66,14 +66,14 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=9000278;//jseditor.TEditorSet:278
+              //$LASTPOS=10000278;//jseditor.TEditorSet:278
             case 1:
-              //$LASTPOS=9000302;//jseditor.TEditorSet:302
+              //$LASTPOS=10000302;//jseditor.TEditorSet:302
               _this.fiber$watch(_thread);
               __pc=2;return;
             case 2:
               
-              //$LASTPOS=9000320;//jseditor.TEditorSet:320
+              //$LASTPOS=10000320;//jseditor.TEditorSet:320
               _this.fiber$update(_thread, 1000);
               __pc=3;return;
             case 3:
@@ -92,27 +92,27 @@ define(function (require) {
         var inf;
         var unmod;
         
-        //$LASTPOS=9000361;//jseditor.TEditorSet:361
+        //$LASTPOS=10000361;//jseditor.TEditorSet:361
         inf = _this.getCurrentEditorInfo();
         
-        //$LASTPOS=9000398;//jseditor.TEditorSet:398
+        //$LASTPOS=10000398;//jseditor.TEditorSet:398
         if (! inf) {
           return _this;
         }
-        //$LASTPOS=9000421;//jseditor.TEditorSet:421
+        //$LASTPOS=10000421;//jseditor.TEditorSet:421
         if (inf.lastTimeStamp<inf.file.lastUpdate()) {
-          //$LASTPOS=9000477;//jseditor.TEditorSet:477
+          //$LASTPOS=10000477;//jseditor.TEditorSet:477
           inf.editor.setValue(inf.file.text());
-          //$LASTPOS=9000524;//jseditor.TEditorSet:524
+          //$LASTPOS=10000524;//jseditor.TEditorSet:524
           inf.editor.clearSelection();
-          //$LASTPOS=9000562;//jseditor.TEditorSet:562
+          //$LASTPOS=10000562;//jseditor.TEditorSet:562
           inf.lastTimeStamp=inf.file.lastUpdate();
           
         }
-        //$LASTPOS=9000615;//jseditor.TEditorSet:615
+        //$LASTPOS=10000615;//jseditor.TEditorSet:615
         unmod = inf.file.text()==inf.editor.getValue();
         
-        //$LASTPOS=9000670;//jseditor.TEditorSet:670
+        //$LASTPOS=10000670;//jseditor.TEditorSet:670
         _this.fileLabel.text(inf.file.name()+(unmod?"":"*"));
       },
       fiber$watch :function _trc_TEditorSet_f_watch(_thread) {
@@ -129,31 +129,31 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=9000361;//jseditor.TEditorSet:361
+              //$LASTPOS=10000361;//jseditor.TEditorSet:361
               _this.fiber$getCurrentEditorInfo(_thread);
               __pc=1;return;
             case 1:
               inf=_thread.retVal;
               
-              //$LASTPOS=9000398;//jseditor.TEditorSet:398
+              //$LASTPOS=10000398;//jseditor.TEditorSet:398
               if (!(! inf)) { __pc=2; break; }
               _thread.exit(_this);return;
             case 2:
               
-              //$LASTPOS=9000421;//jseditor.TEditorSet:421
+              //$LASTPOS=10000421;//jseditor.TEditorSet:421
               if (inf.lastTimeStamp<inf.file.lastUpdate()) {
-                //$LASTPOS=9000477;//jseditor.TEditorSet:477
+                //$LASTPOS=10000477;//jseditor.TEditorSet:477
                 inf.editor.setValue(inf.file.text());
-                //$LASTPOS=9000524;//jseditor.TEditorSet:524
+                //$LASTPOS=10000524;//jseditor.TEditorSet:524
                 inf.editor.clearSelection();
-                //$LASTPOS=9000562;//jseditor.TEditorSet:562
+                //$LASTPOS=10000562;//jseditor.TEditorSet:562
                 inf.lastTimeStamp=inf.file.lastUpdate();
                 
               }
-              //$LASTPOS=9000615;//jseditor.TEditorSet:615
+              //$LASTPOS=10000615;//jseditor.TEditorSet:615
               unmod = inf.file.text()==inf.editor.getValue();
               
-              //$LASTPOS=9000670;//jseditor.TEditorSet:670
+              //$LASTPOS=10000670;//jseditor.TEditorSet:670
               _this.fileLabel.text(inf.file.name()+(unmod?"":"*"));
               _thread.exit(_this);return;
             }
@@ -166,20 +166,20 @@ define(function (require) {
         var res;
         var k;
         var inf;
-        var _it_63;
+        var _it_64;
         
-        //$LASTPOS=9000744;//jseditor.TEditorSet:744
+        //$LASTPOS=10000744;//jseditor.TEditorSet:744
         res = [];
         
-        //$LASTPOS=9000761;//jseditor.TEditorSet:761
-        _it_63=Tonyu.iterator(_this.editors,2);
-        while(_it_63.next()) {
-          k=_it_63[0];
-          inf=_it_63[1];
+        //$LASTPOS=10000761;//jseditor.TEditorSet:761
+        _it_64=Tonyu.iterator(_this.editors,2);
+        while(_it_64.next()) {
+          k=_it_64[0];
+          inf=_it_64[1];
           
-          //$LASTPOS=9000799;//jseditor.TEditorSet:799
+          //$LASTPOS=10000799;//jseditor.TEditorSet:799
           if (inf.file.text()!=inf.editor.getValue()) {
-            //$LASTPOS=9000843;//jseditor.TEditorSet:843
+            //$LASTPOS=10000843;//jseditor.TEditorSet:843
             res.push(inf.file);
           }
           
@@ -194,20 +194,20 @@ define(function (require) {
         var res;
         var k;
         var inf;
-        var _it_63;
+        var _it_64;
         
-        //$LASTPOS=9000744;//jseditor.TEditorSet:744
+        //$LASTPOS=10000744;//jseditor.TEditorSet:744
         res = [];
         
-        //$LASTPOS=9000761;//jseditor.TEditorSet:761
-        _it_63=Tonyu.iterator(_this.editors,2);
-        while(_it_63.next()) {
-          k=_it_63[0];
-          inf=_it_63[1];
+        //$LASTPOS=10000761;//jseditor.TEditorSet:761
+        _it_64=Tonyu.iterator(_this.editors,2);
+        while(_it_64.next()) {
+          k=_it_64[0];
+          inf=_it_64[1];
           
-          //$LASTPOS=9000799;//jseditor.TEditorSet:799
+          //$LASTPOS=10000799;//jseditor.TEditorSet:799
           if (inf.file.text()!=inf.editor.getValue()) {
-            //$LASTPOS=9000843;//jseditor.TEditorSet:843
+            //$LASTPOS=10000843;//jseditor.TEditorSet:843
             res.push(inf.file);
           }
           
@@ -225,76 +225,76 @@ define(function (require) {
         var editor;
         var type;
         
-        //$LASTPOS=9000907;//jseditor.TEditorSet:907
+        //$LASTPOS=10000907;//jseditor.TEditorSet:907
         if (f.isDir()) {
           return _this;
           
         }
-        //$LASTPOS=9000953;//jseditor.TEditorSet:953
+        //$LASTPOS=10000953;//jseditor.TEditorSet:953
         if (_this.curDOM) {
-          //$LASTPOS=9000965;//jseditor.TEditorSet:965
+          //$LASTPOS=10000965;//jseditor.TEditorSet:965
           _this.curDOM.hide();
         }
-        //$LASTPOS=9000985;//jseditor.TEditorSet:985
+        //$LASTPOS=10000985;//jseditor.TEditorSet:985
         inf = _this.editors[f.path()];
         
-        //$LASTPOS=9001017;//jseditor.TEditorSet:1017
+        //$LASTPOS=10001017;//jseditor.TEditorSet:1017
         if (! inf) {
-          //$LASTPOS=9001038;//jseditor.TEditorSet:1038
+          //$LASTPOS=10001038;//jseditor.TEditorSet:1038
           editorDOM = $("<pre>").css("height",(_this.options.height||300)+"px").text(f.text()).appendTo(_this.progs);
           
-          //$LASTPOS=9001193;//jseditor.TEditorSet:1193
+          //$LASTPOS=10001193;//jseditor.TEditorSet:1193
           editor = ace.edit(editorDOM[0]);
           
-          //$LASTPOS=9001237;//jseditor.TEditorSet:1237
+          //$LASTPOS=10001237;//jseditor.TEditorSet:1237
           if (typeof  _this.options.fontSize=="number") {
-            //$LASTPOS=9001276;//jseditor.TEditorSet:1276
+            //$LASTPOS=10001276;//jseditor.TEditorSet:1276
             editor.setFontSize(_this.options.fontSize);
           }
-          //$LASTPOS=9001323;//jseditor.TEditorSet:1323
+          //$LASTPOS=10001323;//jseditor.TEditorSet:1323
           editor.setTheme("ace/theme/eclipse");
-          //$LASTPOS=9001370;//jseditor.TEditorSet:1370
-          type = f.ext().replace(".","");
+          //$LASTPOS=10001370;//jseditor.TEditorSet:1370
+          type = (f.ext()||"").replace(".","");
           
-          //$LASTPOS=9001413;//jseditor.TEditorSet:1413
+          //$LASTPOS=10001419;//jseditor.TEditorSet:1419
           type=_this.types[type]||type;
-          //$LASTPOS=9001446;//jseditor.TEditorSet:1446
+          //$LASTPOS=10001452;//jseditor.TEditorSet:1452
           editor.getSession().setMode("ace/mode/"+type);
-          //$LASTPOS=9001502;//jseditor.TEditorSet:1502
+          //$LASTPOS=10001508;//jseditor.TEditorSet:1508
           _this.editors[f.path()]=inf={file: f,editor: editor,dom: editorDOM};
-          //$LASTPOS=9001575;//jseditor.TEditorSet:1575
+          //$LASTPOS=10001581;//jseditor.TEditorSet:1581
           editor.setReadOnly(false);
-          //$LASTPOS=9001611;//jseditor.TEditorSet:1611
+          //$LASTPOS=10001617;//jseditor.TEditorSet:1617
           editor.clearSelection();
-          //$LASTPOS=9001645;//jseditor.TEditorSet:1645
+          //$LASTPOS=10001651;//jseditor.TEditorSet:1651
           editor.focus();
-          //$LASTPOS=9001670;//jseditor.TEditorSet:1670
+          //$LASTPOS=10001676;//jseditor.TEditorSet:1676
           _this.curDOM=editorDOM;
           
         } else {
-          //$LASTPOS=9001711;//jseditor.TEditorSet:1711
+          //$LASTPOS=10001717;//jseditor.TEditorSet:1717
           if (inf.lastTimeStamp<inf.file.lastUpdate()) {
-            //$LASTPOS=9001771;//jseditor.TEditorSet:1771
+            //$LASTPOS=10001777;//jseditor.TEditorSet:1777
             inf.editor.setValue(inf.file.text());
-            //$LASTPOS=9001822;//jseditor.TEditorSet:1822
+            //$LASTPOS=10001828;//jseditor.TEditorSet:1828
             inf.editor.clearSelection();
-            //$LASTPOS=9001864;//jseditor.TEditorSet:1864
+            //$LASTPOS=10001870;//jseditor.TEditorSet:1870
             inf.lastTimeStamp=inf.file.lastUpdate();
             
           }
-          //$LASTPOS=9001925;//jseditor.TEditorSet:1925
+          //$LASTPOS=10001931;//jseditor.TEditorSet:1931
           inf.dom.show();
-          //$LASTPOS=9001950;//jseditor.TEditorSet:1950
+          //$LASTPOS=10001956;//jseditor.TEditorSet:1956
           inf.editor.focus();
-          //$LASTPOS=9001979;//jseditor.TEditorSet:1979
+          //$LASTPOS=10001985;//jseditor.TEditorSet:1985
           _this.curDOM=inf.dom;
           
         }
-        //$LASTPOS=9002007;//jseditor.TEditorSet:2007
+        //$LASTPOS=10002013;//jseditor.TEditorSet:2013
         _this.curFile=f;
-        //$LASTPOS=9002023;//jseditor.TEditorSet:2023
+        //$LASTPOS=10002029;//jseditor.TEditorSet:2029
         inf.lastTimeStamp=f.lastUpdate();
-        //$LASTPOS=9002062;//jseditor.TEditorSet:2062
+        //$LASTPOS=10002068;//jseditor.TEditorSet:2068
         _this.fileLabel.text(f.name());
       },
       fiber$open :function _trc_TEditorSet_f_open(_thread,f) {
@@ -307,77 +307,77 @@ define(function (require) {
         var editor;
         var type;
         
-        //$LASTPOS=9000907;//jseditor.TEditorSet:907
+        //$LASTPOS=10000907;//jseditor.TEditorSet:907
         if (f.isDir()) {
           _thread.retVal=_this;return;
           
           
         }
-        //$LASTPOS=9000953;//jseditor.TEditorSet:953
+        //$LASTPOS=10000953;//jseditor.TEditorSet:953
         if (_this.curDOM) {
-          //$LASTPOS=9000965;//jseditor.TEditorSet:965
+          //$LASTPOS=10000965;//jseditor.TEditorSet:965
           _this.curDOM.hide();
         }
-        //$LASTPOS=9000985;//jseditor.TEditorSet:985
+        //$LASTPOS=10000985;//jseditor.TEditorSet:985
         inf = _this.editors[f.path()];
         
-        //$LASTPOS=9001017;//jseditor.TEditorSet:1017
+        //$LASTPOS=10001017;//jseditor.TEditorSet:1017
         if (! inf) {
-          //$LASTPOS=9001038;//jseditor.TEditorSet:1038
+          //$LASTPOS=10001038;//jseditor.TEditorSet:1038
           editorDOM = $("<pre>").css("height",(_this.options.height||300)+"px").text(f.text()).appendTo(_this.progs);
           
-          //$LASTPOS=9001193;//jseditor.TEditorSet:1193
+          //$LASTPOS=10001193;//jseditor.TEditorSet:1193
           editor = ace.edit(editorDOM[0]);
           
-          //$LASTPOS=9001237;//jseditor.TEditorSet:1237
+          //$LASTPOS=10001237;//jseditor.TEditorSet:1237
           if (typeof  _this.options.fontSize=="number") {
-            //$LASTPOS=9001276;//jseditor.TEditorSet:1276
+            //$LASTPOS=10001276;//jseditor.TEditorSet:1276
             editor.setFontSize(_this.options.fontSize);
           }
-          //$LASTPOS=9001323;//jseditor.TEditorSet:1323
+          //$LASTPOS=10001323;//jseditor.TEditorSet:1323
           editor.setTheme("ace/theme/eclipse");
-          //$LASTPOS=9001370;//jseditor.TEditorSet:1370
-          type = f.ext().replace(".","");
+          //$LASTPOS=10001370;//jseditor.TEditorSet:1370
+          type = (f.ext()||"").replace(".","");
           
-          //$LASTPOS=9001413;//jseditor.TEditorSet:1413
+          //$LASTPOS=10001419;//jseditor.TEditorSet:1419
           type=_this.types[type]||type;
-          //$LASTPOS=9001446;//jseditor.TEditorSet:1446
+          //$LASTPOS=10001452;//jseditor.TEditorSet:1452
           editor.getSession().setMode("ace/mode/"+type);
-          //$LASTPOS=9001502;//jseditor.TEditorSet:1502
+          //$LASTPOS=10001508;//jseditor.TEditorSet:1508
           _this.editors[f.path()]=inf={file: f,editor: editor,dom: editorDOM};
-          //$LASTPOS=9001575;//jseditor.TEditorSet:1575
+          //$LASTPOS=10001581;//jseditor.TEditorSet:1581
           editor.setReadOnly(false);
-          //$LASTPOS=9001611;//jseditor.TEditorSet:1611
+          //$LASTPOS=10001617;//jseditor.TEditorSet:1617
           editor.clearSelection();
-          //$LASTPOS=9001645;//jseditor.TEditorSet:1645
+          //$LASTPOS=10001651;//jseditor.TEditorSet:1651
           editor.focus();
-          //$LASTPOS=9001670;//jseditor.TEditorSet:1670
+          //$LASTPOS=10001676;//jseditor.TEditorSet:1676
           _this.curDOM=editorDOM;
           
         } else {
-          //$LASTPOS=9001711;//jseditor.TEditorSet:1711
+          //$LASTPOS=10001717;//jseditor.TEditorSet:1717
           if (inf.lastTimeStamp<inf.file.lastUpdate()) {
-            //$LASTPOS=9001771;//jseditor.TEditorSet:1771
+            //$LASTPOS=10001777;//jseditor.TEditorSet:1777
             inf.editor.setValue(inf.file.text());
-            //$LASTPOS=9001822;//jseditor.TEditorSet:1822
+            //$LASTPOS=10001828;//jseditor.TEditorSet:1828
             inf.editor.clearSelection();
-            //$LASTPOS=9001864;//jseditor.TEditorSet:1864
+            //$LASTPOS=10001870;//jseditor.TEditorSet:1870
             inf.lastTimeStamp=inf.file.lastUpdate();
             
           }
-          //$LASTPOS=9001925;//jseditor.TEditorSet:1925
+          //$LASTPOS=10001931;//jseditor.TEditorSet:1931
           inf.dom.show();
-          //$LASTPOS=9001950;//jseditor.TEditorSet:1950
+          //$LASTPOS=10001956;//jseditor.TEditorSet:1956
           inf.editor.focus();
-          //$LASTPOS=9001979;//jseditor.TEditorSet:1979
+          //$LASTPOS=10001985;//jseditor.TEditorSet:1985
           _this.curDOM=inf.dom;
           
         }
-        //$LASTPOS=9002007;//jseditor.TEditorSet:2007
+        //$LASTPOS=10002013;//jseditor.TEditorSet:2013
         _this.curFile=f;
-        //$LASTPOS=9002023;//jseditor.TEditorSet:2023
+        //$LASTPOS=10002029;//jseditor.TEditorSet:2029
         inf.lastTimeStamp=f.lastUpdate();
-        //$LASTPOS=9002062;//jseditor.TEditorSet:2062
+        //$LASTPOS=10002068;//jseditor.TEditorSet:2068
         _this.fileLabel.text(f.name());
         
         _thread.retVal=_this;return;
@@ -387,16 +387,16 @@ define(function (require) {
         var _this=this;
         var inf;
         
-        //$LASTPOS=9002115;//jseditor.TEditorSet:2115
+        //$LASTPOS=10002121;//jseditor.TEditorSet:2121
         _this.options.fontSize=s;
-        //$LASTPOS=9002140;//jseditor.TEditorSet:2140
+        //$LASTPOS=10002146;//jseditor.TEditorSet:2146
         inf = _this.getCurrentEditorInfo();
         
-        //$LASTPOS=9002177;//jseditor.TEditorSet:2177
+        //$LASTPOS=10002183;//jseditor.TEditorSet:2183
         if (! inf) {
           return _this;
         }
-        //$LASTPOS=9002200;//jseditor.TEditorSet:2200
+        //$LASTPOS=10002206;//jseditor.TEditorSet:2206
         inf.editor.setFontSize(s);
       },
       fiber$setFontSize :function _trc_TEditorSet_f_setFontSize(_thread,s) {
@@ -406,7 +406,7 @@ define(function (require) {
         var __pc=0;
         var inf;
         
-        //$LASTPOS=9002115;//jseditor.TEditorSet:2115
+        //$LASTPOS=10002121;//jseditor.TEditorSet:2121
         _this.options.fontSize=s;
         
         _thread.enter(function _trc_TEditorSet_ent_setFontSize(_thread) {
@@ -414,18 +414,18 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=9002140;//jseditor.TEditorSet:2140
+              //$LASTPOS=10002146;//jseditor.TEditorSet:2146
               _this.fiber$getCurrentEditorInfo(_thread);
               __pc=1;return;
             case 1:
               inf=_thread.retVal;
               
-              //$LASTPOS=9002177;//jseditor.TEditorSet:2177
+              //$LASTPOS=10002183;//jseditor.TEditorSet:2183
               if (!(! inf)) { __pc=2; break; }
               _thread.exit(_this);return;
             case 2:
               
-              //$LASTPOS=9002200;//jseditor.TEditorSet:2200
+              //$LASTPOS=10002206;//jseditor.TEditorSet:2206
               inf.editor.setFontSize(s);
               _thread.exit(_this);return;
             }
@@ -436,7 +436,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=9002262;//jseditor.TEditorSet:2262
+        //$LASTPOS=10002268;//jseditor.TEditorSet:2268
         if (! _this.curFile) {
           return null;
         }
@@ -448,7 +448,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=9002262;//jseditor.TEditorSet:2262
+        //$LASTPOS=10002268;//jseditor.TEditorSet:2268
         if (! _this.curFile) {
           _thread.retVal=null;return;
           
@@ -467,38 +467,38 @@ define(function (require) {
         var old;
         var nw;
         
-        //$LASTPOS=9002345;//jseditor.TEditorSet:2345
+        //$LASTPOS=10002351;//jseditor.TEditorSet:2351
         inf = _this.getCurrentEditorInfo();
         
-        //$LASTPOS=9002382;//jseditor.TEditorSet:2382
+        //$LASTPOS=10002388;//jseditor.TEditorSet:2388
         if (! inf) {
           return _this;
         }
-        //$LASTPOS=9002405;//jseditor.TEditorSet:2405
+        //$LASTPOS=10002411;//jseditor.TEditorSet:2411
         curFile = inf.file;
         
-        //$LASTPOS=9002448;//jseditor.TEditorSet:2448
+        //$LASTPOS=10002454;//jseditor.TEditorSet:2454
         editor = inf.editor;
         
-        //$LASTPOS=9002498;//jseditor.TEditorSet:2498
+        //$LASTPOS=10002504;//jseditor.TEditorSet:2504
         if (curFile&&editor&&! curFile.isReadOnly()) {
-          //$LASTPOS=9002617;//jseditor.TEditorSet:2617
+          //$LASTPOS=10002623;//jseditor.TEditorSet:2623
           old = curFile.text();
           
-          //$LASTPOS=9002650;//jseditor.TEditorSet:2650
+          //$LASTPOS=10002656;//jseditor.TEditorSet:2656
           nw = editor.getValue();
           
-          //$LASTPOS=9002685;//jseditor.TEditorSet:2685
+          //$LASTPOS=10002691;//jseditor.TEditorSet:2691
           if (old!=nw) {
-            //$LASTPOS=9002713;//jseditor.TEditorSet:2713
+            //$LASTPOS=10002719;//jseditor.TEditorSet:2719
             curFile.text(nw);
-            //$LASTPOS=9002744;//jseditor.TEditorSet:2744
+            //$LASTPOS=10002750;//jseditor.TEditorSet:2750
             inf.lastTimeStamp=curFile.lastUpdate();
             
           }
           
         }
-        //$LASTPOS=9002807;//jseditor.TEditorSet:2807
+        //$LASTPOS=10002813;//jseditor.TEditorSet:2813
         _this.fileLabel.text(curFile.name());
       },
       fiber$save :function _trc_TEditorSet_f_save(_thread) {
@@ -518,42 +518,42 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=9002345;//jseditor.TEditorSet:2345
+              //$LASTPOS=10002351;//jseditor.TEditorSet:2351
               _this.fiber$getCurrentEditorInfo(_thread);
               __pc=1;return;
             case 1:
               inf=_thread.retVal;
               
-              //$LASTPOS=9002382;//jseditor.TEditorSet:2382
+              //$LASTPOS=10002388;//jseditor.TEditorSet:2388
               if (!(! inf)) { __pc=2; break; }
               _thread.exit(_this);return;
             case 2:
               
-              //$LASTPOS=9002405;//jseditor.TEditorSet:2405
+              //$LASTPOS=10002411;//jseditor.TEditorSet:2411
               curFile = inf.file;
               
-              //$LASTPOS=9002448;//jseditor.TEditorSet:2448
+              //$LASTPOS=10002454;//jseditor.TEditorSet:2454
               editor = inf.editor;
               
-              //$LASTPOS=9002498;//jseditor.TEditorSet:2498
+              //$LASTPOS=10002504;//jseditor.TEditorSet:2504
               if (curFile&&editor&&! curFile.isReadOnly()) {
-                //$LASTPOS=9002617;//jseditor.TEditorSet:2617
+                //$LASTPOS=10002623;//jseditor.TEditorSet:2623
                 old = curFile.text();
                 
-                //$LASTPOS=9002650;//jseditor.TEditorSet:2650
+                //$LASTPOS=10002656;//jseditor.TEditorSet:2656
                 nw = editor.getValue();
                 
-                //$LASTPOS=9002685;//jseditor.TEditorSet:2685
+                //$LASTPOS=10002691;//jseditor.TEditorSet:2691
                 if (old!=nw) {
-                  //$LASTPOS=9002713;//jseditor.TEditorSet:2713
+                  //$LASTPOS=10002719;//jseditor.TEditorSet:2719
                   curFile.text(nw);
-                  //$LASTPOS=9002744;//jseditor.TEditorSet:2744
+                  //$LASTPOS=10002750;//jseditor.TEditorSet:2750
                   inf.lastTimeStamp=curFile.lastUpdate();
                   
                 }
                 
               }
-              //$LASTPOS=9002807;//jseditor.TEditorSet:2807
+              //$LASTPOS=10002813;//jseditor.TEditorSet:2813
               _this.fileLabel.text(curFile.name());
               _thread.exit(_this);return;
             }
@@ -565,18 +565,18 @@ define(function (require) {
         var _this=this;
         var inf;
         
-        //$LASTPOS=9002860;//jseditor.TEditorSet:2860
+        //$LASTPOS=10002866;//jseditor.TEditorSet:2866
         inf = _this.editors[f.path()];
         
-        //$LASTPOS=9002892;//jseditor.TEditorSet:2892
+        //$LASTPOS=10002898;//jseditor.TEditorSet:2898
         if (! inf) {
           return _this;
         }
-        //$LASTPOS=9002915;//jseditor.TEditorSet:2915
+        //$LASTPOS=10002921;//jseditor.TEditorSet:2921
         inf.editor.destroy();
-        //$LASTPOS=9002942;//jseditor.TEditorSet:2942
+        //$LASTPOS=10002948;//jseditor.TEditorSet:2948
         inf.dom.remove();
-        //$LASTPOS=9002965;//jseditor.TEditorSet:2965
+        //$LASTPOS=10002971;//jseditor.TEditorSet:2971
         delete _this.editors[f.path()];
       },
       fiber$close :function _trc_TEditorSet_f_close(_thread,f) {
@@ -586,19 +586,19 @@ define(function (require) {
         var __pc=0;
         var inf;
         
-        //$LASTPOS=9002860;//jseditor.TEditorSet:2860
+        //$LASTPOS=10002866;//jseditor.TEditorSet:2866
         inf = _this.editors[f.path()];
         
-        //$LASTPOS=9002892;//jseditor.TEditorSet:2892
+        //$LASTPOS=10002898;//jseditor.TEditorSet:2898
         if (! inf) {
           _thread.retVal=_this;return;
           
         }
-        //$LASTPOS=9002915;//jseditor.TEditorSet:2915
+        //$LASTPOS=10002921;//jseditor.TEditorSet:2921
         inf.editor.destroy();
-        //$LASTPOS=9002942;//jseditor.TEditorSet:2942
+        //$LASTPOS=10002948;//jseditor.TEditorSet:2948
         inf.dom.remove();
-        //$LASTPOS=9002965;//jseditor.TEditorSet:2965
+        //$LASTPOS=10002971;//jseditor.TEditorSet:2971
         delete _this.editors[f.path()];
         
         _thread.retVal=_this;return;

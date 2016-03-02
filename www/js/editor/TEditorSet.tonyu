@@ -46,7 +46,7 @@ native $;
         var editor=ace.edit(editorDOM[0]);
         if (typeof options.fontSize=="number") editor.setFontSize(options.fontSize);
         editor.setTheme("ace/theme/eclipse");
-        var type=f.ext().replace(".","");
+        var type=(f.ext()||"").replace(".","");
         type=types[type]||type;
         editor.getSession().setMode("ace/mode/"+type);
         editors[f.path()]=inf={file:f , editor: editor, dom:editorDOM};

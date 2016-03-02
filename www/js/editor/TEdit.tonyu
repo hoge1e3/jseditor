@@ -9,6 +9,10 @@ native localStorage;
 native location;
 native nwDispatcher;
 
+\runApp() {
+    parallel("main");
+}
+
 Columns.make(
     ["div",{id:"fileViewer","class":"col-xs-3"},
         ["div",{id:"fileItemList"}]
@@ -51,12 +55,17 @@ var finder;
 ]);
 var fileMenu;
 var es;
+var etc=new Etc;
+var prjs=waitFor(etc.conf("projects.json").load());
+var prj=new JSEProject(prjs, Util.getQueryString("prj"));
+print(prj);
+
 var cwd=FS.get(Util.getQueryString("dir") || process.cwd().replace(/\\/g,"/")  );
 var projectTop=FS.get(process.cwd().replace(/\\/g,"/")  ).rel("www/");
-var etc=localStorage.etc ? 
+/*localStorage.etc ? 
     FS.get(localStorage.etc) : 
-    FS.get(process.cwd()).rel(".jsetc/");
-var desktopEnv=new JSONConf(etc.rel("desktop.json"));
+    FS.get(process.cwd()).rel(".jsetc/");*/
+var desktopEnv=etc.conf("desktop.json");
 $reqConfBuilder=new ReqConfBuilder{
     output:projectTop.rel("js/reqConf.js"),
     htmlDir:projectTop
@@ -156,4 +165,5 @@ win.on('close', function() {
         win.close(true);
     }
 });
+
 

@@ -6,7 +6,7 @@ native $;
     main();
 }
 \appendTo(dom) {
-    jqdom.append(dom);
+    jqdom.appendTo(dom);
 }
 \dialog(options) {
     jqdom.dialog(options);
@@ -19,7 +19,7 @@ native $;
 \change(elem,func) {
     var sv=_jqdom;
     _jqdom=elem;
-    find();
+    func();
     _jqdom=sv;
 }
 function parse(expr) {

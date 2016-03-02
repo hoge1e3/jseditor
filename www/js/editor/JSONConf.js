@@ -10,6 +10,7 @@ define(function (require) {
             return e ? f.obj() : {};
         }).then(function (d) {
             t.data=d;
+            return d;
         });
     };
     p.save=function () {

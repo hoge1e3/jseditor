@@ -101,6 +101,12 @@ function initClassDecls(klass, env ) {//S
             } else if (stmt.type=="nativeDecl") {
                 natives[stmt.name.text]=stmt;
             } else {
+                if (stmt.type=="varsDecl") {
+                    stmt.decls.forEach(function (d) {
+                        console.log("varDecl", d.name.text);
+                        fields[d.name.text]=d;
+                    });
+                }
                 MAIN.stmts.push(stmt);
             }
         });

@@ -1,4 +1,5 @@
 extends Base;
+native process;
 
 var reqConf;
 \new(prjs, name) {

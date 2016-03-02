@@ -32,42 +32,42 @@ define(function (require) {
         var prj;
         
         
-        //$LASTPOS=15000064;//jseditor.JSEProject:64
-        prjs.forEach((function anonymous_77(p) {
+        //$LASTPOS=9000080;//jseditor.JSEProject:80
+        prjs.forEach((function anonymous_93(p) {
           
-          //$LASTPOS=15000092;//jseditor.JSEProject:92
+          //$LASTPOS=9000108;//jseditor.JSEProject:108
           if (p.name==name) {
-            //$LASTPOS=15000110;//jseditor.JSEProject:110
+            //$LASTPOS=9000126;//jseditor.JSEProject:126
             prj=p;
           }
         }));
-        //$LASTPOS=15000128;//jseditor.JSEProject:128
+        //$LASTPOS=9000144;//jseditor.JSEProject:144
         if (! prj) {
-          //$LASTPOS=15000148;//jseditor.JSEProject:148
+          //$LASTPOS=9000164;//jseditor.JSEProject:164
           _this.name="JSEditor";
-          //$LASTPOS=15000179;//jseditor.JSEProject:179
-          _this.path=FS.get(_this.process.cwd().replace(/\\/g,"/"));
-          //$LASTPOS=15000234;//jseditor.JSEProject:234
+          //$LASTPOS=9000195;//jseditor.JSEProject:195
+          _this.path=FS.get(process.cwd().replace(/\\/g,"/"));
+          //$LASTPOS=9000250;//jseditor.JSEProject:250
           _this.www=prj.path.rel("www/");
-          //$LASTPOS=15000268;//jseditor.JSEProject:268
+          //$LASTPOS=9000284;//jseditor.JSEProject:284
           _this.tonyuC=prj.www.rel("js/");
-          //$LASTPOS=15000303;//jseditor.JSEProject:303
+          //$LASTPOS=9000319;//jseditor.JSEProject:319
           _this.reqConf=prj.js.rel("reqConf.js");
           
         } else {
-          //$LASTPOS=15000363;//jseditor.JSEProject:363
+          //$LASTPOS=9000379;//jseditor.JSEProject:379
           _this.name=prj.name;
-          //$LASTPOS=15000391;//jseditor.JSEProject:391
+          //$LASTPOS=9000407;//jseditor.JSEProject:407
           _this.path=FS.get(prj.path.replace(/\\/g,"/"));
-          //$LASTPOS=15000441;//jseditor.JSEProject:441
+          //$LASTPOS=9000457;//jseditor.JSEProject:457
           _this.www=_this.path.rel(prj.www);
-          //$LASTPOS=15000472;//jseditor.JSEProject:472
+          //$LASTPOS=9000488;//jseditor.JSEProject:488
           _this.tonyuC=_this.path.rel(prj.tonyuC);
-          //$LASTPOS=15000509;//jseditor.JSEProject:509
+          //$LASTPOS=9000525;//jseditor.JSEProject:525
           _this.reqConf=_this.path.rel(prj.reqConf);
           
         }
-        //$LASTPOS=15000555;//jseditor.JSEProject:555
+        //$LASTPOS=9000571;//jseditor.JSEProject:571
         reqConf;
       },
       __dummy: false

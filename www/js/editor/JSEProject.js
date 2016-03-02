@@ -1,7 +1,6 @@
 define(function (require) {
   var Tonyu=require('Tonyu');
   var FS=require('FS');
-  var reqConf=require('reqConf');
   var Base=require('Base');
   return Tonyu.klass.define({
     fullName: 'jseditor.JSEProject',
@@ -48,27 +47,25 @@ define(function (require) {
           //$LASTPOS=9000195;//jseditor.JSEProject:195
           _this.path=FS.get(process.cwd().replace(/\\/g,"/"));
           //$LASTPOS=9000250;//jseditor.JSEProject:250
-          _this.www=prj.path.rel("www/");
-          //$LASTPOS=9000284;//jseditor.JSEProject:284
-          _this.tonyuC=prj.www.rel("js/");
-          //$LASTPOS=9000319;//jseditor.JSEProject:319
-          _this.reqConf=prj.js.rel("reqConf.js");
+          _this.www=_this.path.rel("www/");
+          //$LASTPOS=9000280;//jseditor.JSEProject:280
+          _this.tonyuC=_this.www.rel("js/");
+          //$LASTPOS=9000311;//jseditor.JSEProject:311
+          _this.reqConf=_this.www.rel("js/reqConf.js");
           
         } else {
-          //$LASTPOS=9000379;//jseditor.JSEProject:379
+          //$LASTPOS=9000366;//jseditor.JSEProject:366
           _this.name=prj.name;
-          //$LASTPOS=9000407;//jseditor.JSEProject:407
+          //$LASTPOS=9000394;//jseditor.JSEProject:394
           _this.path=FS.get(prj.path.replace(/\\/g,"/"));
-          //$LASTPOS=9000457;//jseditor.JSEProject:457
+          //$LASTPOS=9000444;//jseditor.JSEProject:444
           _this.www=_this.path.rel(prj.www);
-          //$LASTPOS=9000488;//jseditor.JSEProject:488
+          //$LASTPOS=9000475;//jseditor.JSEProject:475
           _this.tonyuC=_this.path.rel(prj.tonyuC);
-          //$LASTPOS=9000525;//jseditor.JSEProject:525
+          //$LASTPOS=9000512;//jseditor.JSEProject:512
           _this.reqConf=_this.path.rel(prj.reqConf);
           
         }
-        //$LASTPOS=9000571;//jseditor.JSEProject:571
-        reqConf;
       },
       __dummy: false
     },

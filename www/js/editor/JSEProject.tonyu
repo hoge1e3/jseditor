@@ -10,15 +10,14 @@ var reqConf;
     if (!prj) {
         this.name="JSEditor"; 
         path=FS.get(process.cwd().replace(/\\/g,"/"));
-        www=prj.path.rel("www/");
-        tonyuC=prj.www.rel("js/");
-        this.reqConf=prj.js.rel("reqConf.js");
+        www=path.rel("www/");
+        tonyuC=www.rel("js/");
+        reqConf=www.rel("js/reqConf.js");
     } else {
         this.name=prj.name;
         path=FS.get(prj.path.replace(/\\/g,"/"));
         www=path.rel(prj.www);
         tonyuC=path.rel(prj.tonyuC);
-        this.reqConf=path.rel(prj.reqConf);
+        reqConf=path.rel(prj.reqConf);
     }
-    reqConf;
 }

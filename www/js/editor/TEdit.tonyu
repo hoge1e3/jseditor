@@ -24,7 +24,7 @@ Columns.make(
 );
 
 var finder;
-(new TMenu).make("JS Editor", [
+(new TMenu).make("JS Editor!", [
     {label:"Home",href:"index.html"},
     {label:"ファイル",sub:[
         {label:"新規",id:"newFile",action:"$fileMenu.create"},
@@ -66,7 +66,7 @@ print(prj);
 
 var desktopEnv=etc.conf("desktop.json");
 $reqConfBuilder=new ReqConfBuilder{
-    output:prj.reqConf// projectTop.rel("js/reqConf.js"),
+    output:prj.reqConf,// projectTop.rel("js/reqConf.js"),
     htmlDir:prj.www// projectTop
 };
 desktopEnv.load();

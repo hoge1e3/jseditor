@@ -59,16 +59,15 @@ var etc=new Etc;
 var prjs=waitFor(etc.conf("projects.json").load());
 var prj=new JSEProject(prjs, Util.getQueryString("prj"));
 print(prj);
+//var name, path, www, tonyuC, reqConf;
 
-var cwd=FS.get(Util.getQueryString("dir") || process.cwd().replace(/\\/g,"/")  );
-var projectTop=FS.get(process.cwd().replace(/\\/g,"/")  ).rel("www/");
-/*localStorage.etc ? 
-    FS.get(localStorage.etc) : 
-    FS.get(process.cwd()).rel(".jsetc/");*/
+//var cwd=FS.get(Util.getQueryString("dir") || process.cwd().replace(/\\/g,"/")  );
+//var projectTop= FS.get(process.cwd().replace(/\\/g,"/")  ).rel("www/");
+
 var desktopEnv=etc.conf("desktop.json");
 $reqConfBuilder=new ReqConfBuilder{
-    output:projectTop.rel("js/reqConf.js"),
-    htmlDir:projectTop
+    output:prj.reqConf// projectTop.rel("js/reqConf.js"),
+    htmlDir:prj.www// projectTop
 };
 desktopEnv.load();
 var fl=$fileList=new FileList($("#fileItemList")) {
@@ -94,7 +93,7 @@ $bookmark=new Bookmark{
 }
 function tonyuC() {
     var tc=new TonyuC;
-    tc.parallel("compile",projectTop.rel("js/"));
+    tc.parallel("compile",prj.tonyuC); //projectTop.rel("js/"));
 }
 function newWindow() {
     var genID=""+Math.random();
@@ -135,7 +134,7 @@ requirejs(["ace"],function (){
     $finder=new Finder(es);
     if (typeof SplashScreen!="undefined") SplashScreen.hide();
     $fileMenu=fileMenu=new FileMenu({editorSet:es,fileList:fl});
-    return fl.open(cwd);
+    return fl.open(prj.path);
 });
 \shouldConfirmClose() {
     var m=($editorSet && $editorSet.allModified()) || [];

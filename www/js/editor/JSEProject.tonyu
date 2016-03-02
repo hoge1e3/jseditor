@@ -1,7 +1,7 @@
 extends Base;
 native process;
 
-var reqConf;
+var name, path, www, tonyuC, reqConf;
 \new(prjs, name) {
     var prj;
     prjs.forEach \(p) {

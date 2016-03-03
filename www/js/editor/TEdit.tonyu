@@ -58,18 +58,9 @@ var es;
 var etc=new Etc;
 var prjs=waitFor(etc.conf("projects.json").load());
 var prj=new JSEProject(prjs, Util.getQueryString("prj"));
-print(prj);
 //var name, path, www, tonyuC, reqConf;
-
-//var cwd=FS.get(Util.getQueryString("dir") || process.cwd().replace(/\\/g,"/")  );
-//var projectTop= FS.get(process.cwd().replace(/\\/g,"/")  ).rel("www/");
-
-var desktopEnv=etc.conf("desktop.json");
-/*$reqConfBuilder=new ReqConfBuilder{
-    output:prj.reqConf,// projectTop.rel("js/reqConf.js"),
-    htmlDir:prj.www// projectTop
-};*/
 var tc=new TonyuC(prj);
+var desktopEnv=etc.conf("desktop.json");
 desktopEnv.load();
 var fl=$fileList=new FileList($("#fileItemList")) {
     open:function (f) {
@@ -93,8 +84,7 @@ $bookmark=new Bookmark{
     }
 }
 function tonyuC() {
-    //var tc=new TonyuC;
-    tc.parallel("compile");//,prj.tonyuC); //projectTop.rel("js/"));
+    tc.parallel("compile");
 }
 function newWindow() {
     var genID=""+Math.random();

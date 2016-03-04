@@ -4,9 +4,22 @@ native $;
     this.progs=assert(progs,"progs");
     this.options=options||{};
     this.fileLabel=assert(fileLabel,"fileLabel");
+    fileSelBox=UI("input",{on:{change:selIn},list:"fileList"}).
+    appendTo(fileLabel);
+    modStar=UI("span").appendTo(fileLabel);
+    cands=UI("datalist",{id:"fileList"}).appendTo(fileLabel);
     editors={};
+    names={};
     parallel("watchLoop");
     types={js:"javascript"};
+}
+\selIn() {
+    var v=fileSelBox.val();
+    if (names[v]) {
+        open(names[v].file);
+    } else {
+        $finder.parallel("findFile",v);
+    }
 }
 \watchLoop() {
     while (true) {
@@ -23,7 +36,9 @@ native $;
         inf.lastTimeStamp=inf.file.lastUpdate();
     }
     var unmod=inf.file.text()==inf.editor.getValue();
-    fileLabel.text(inf.file.name()+(unmod?"":"*"));
+    //fileSelBox.val(inf.file.name());
+    modStar.text(unmod?"":"*");
+    //fileLabel.text(inf.file.name()+(unmod?"":"*"));
 }
 \allModified() {
     var res=[];
@@ -50,6 +65,10 @@ native $;
         type=types[type]||type;
         editor.getSession().setMode("ace/mode/"+type);
         editors[f.path()]=inf={file:f , editor: editor, dom:editorDOM};
+        inf.name=f.name();//UNIQ
+        names[inf.name]=inf;
+        inf.cand=UI("option",{value:inf.name});
+        cands.append(inf.cand);
         editor.setReadOnly(false);
         editor.clearSelection();
         editor.focus();
@@ -66,7 +85,9 @@ native $;
     }
     curFile=f;
     inf.lastTimeStamp=f.lastUpdate();
-    fileLabel.text(f.name());
+    fileSelBox.val(f.name());
+    //modStar.text("");
+    //    fileLabel.text(f.name());
 }
 \setFontSize(s) {
     options.fontSize=s;
@@ -92,12 +113,16 @@ native $;
             inf.lastTimeStamp=curFile.lastUpdate();
         }
     }
-    fileLabel.text(curFile.name());
+    fileSelBox.val(curFile.name());
+    modStar.text("");
+    //fileLabel.text(curFile.name());
 }
 \close(f) {
     var inf=editors[f.path()];
     if (!inf) return;
     inf.editor.destroy();
     inf.dom.remove();
+    inf.cand.remove();
     delete editors[f.path()];
+    delete names[inf.name];
 }

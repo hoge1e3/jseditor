@@ -1,0 +1,38 @@
+extends UIForm;
+
+\findFile(word) {
+    dialog{width:600};
+    res.empty();
+    var c=findFileLoop(word,$jsePrj.path);
+    mesg.text(c+" File(s) found");
+}
+\findFileLoop(word,dir) {
+    var c=0;
+    mesg.text("Searching..."+dir.name());
+    update();
+    for (var f in dir.listFiles()) {
+        if (excludeDir[f.name()]) {
+        } else if (f.isDir()) {
+            c+=findFileLoop(word,f);
+        } else if (Util.startsWith(f.name(), word)) {
+            addResult(f);           
+            c++;
+        }
+    }
+    return c;
+}
+
+\addResult(f) {
+    change(res) \{
+        tag("div") \{
+            tag("a", {
+                href:"javascript:;", on:{click:\{$editorSet.open(f);} }
+            },f.name());
+        };
+    };
+}
+excludeDir={".git/":1};
+tag("div") \{
+    mesg=tag("div");
+    res=tag("div");
+};

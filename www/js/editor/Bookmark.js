@@ -1,6 +1,5 @@
 define(function (require) {
   var Tonyu=require('Tonyu');
-  var JSONConf=require('JSONConf');
   var UI=require('UI');
   var Base=require('Base');
   return Tonyu.klass.define({
@@ -28,10 +27,8 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=7000045;//jseditor.Bookmark:45
+        //$LASTPOS=7000058;//jseditor.Bookmark:58
         Tonyu.classes.jseditor.Base.apply( _this, [p]);
-        //$LASTPOS=7000059;//jseditor.Bookmark:59
-        _this.conf=new JSONConf(_this.file);
       },
       open :function _trc_Bookmark_open() {
         "use strict";
@@ -40,50 +37,50 @@ define(function (require) {
         var d;
         function refresh() {
           
-          //$LASTPOS=7000452;//jseditor.Bookmark:452
+          //$LASTPOS=7000494;//jseditor.Bookmark:494
           items.empty();
-          //$LASTPOS=7000475;//jseditor.Bookmark:475
-          _this.conf.data.forEach((function anonymous_493(d) {
+          //$LASTPOS=7000517;//jseditor.Bookmark:517
+          _this.data.forEach((function anonymous_530(d) {
             var item;
             
-            //$LASTPOS=7000512;//jseditor.Bookmark:512
+            //$LASTPOS=7000549;//jseditor.Bookmark:549
             item = UI("div",["a",{href: d.url},d.title]);
             
-            //$LASTPOS=7000604;//jseditor.Bookmark:604
+            //$LASTPOS=7000641;//jseditor.Bookmark:641
             items.append(item);
           }));
         }function ok() {
           
-          //$LASTPOS=7000661;//jseditor.Bookmark:661
+          //$LASTPOS=7000698;//jseditor.Bookmark:698
           d.dialog("close");
         }function edit() {
           
-          //$LASTPOS=7000708;//jseditor.Bookmark:708
+          //$LASTPOS=7000745;//jseditor.Bookmark:745
           _this.fileList.open(_this.file);
         }function add() {
           var urlHead;
           
-          //$LASTPOS=7000756;//jseditor.Bookmark:756
+          //$LASTPOS=7000793;//jseditor.Bookmark:793
           urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
-          //$LASTPOS=7000826;//jseditor.Bookmark:826
-          _this.conf.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=7000959;//jseditor.Bookmark:959
-          _this.conf.save();
-          //$LASTPOS=7000980;//jseditor.Bookmark:980
+          //$LASTPOS=7000863;//jseditor.Bookmark:863
+          _this.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
+          //$LASTPOS=7000991;//jseditor.Bookmark:991
+          _this.writeFile(_this.file,JSON.stringify(_this.data,null,2));
+          //$LASTPOS=7001059;//jseditor.Bookmark:1059
           refresh();
         }
-        //$LASTPOS=7000100;//jseditor.Bookmark:100
-        _this.conf.load();
-        //$LASTPOS=7000117;//jseditor.Bookmark:117
+        //$LASTPOS=7000115;//jseditor.Bookmark:115
+        _this.data=_this.readJSON(_this.file);
+        //$LASTPOS=7000159;//jseditor.Bookmark:159
         items = UI("div");
         
-        //$LASTPOS=7000142;//jseditor.Bookmark:142
+        //$LASTPOS=7000184;//jseditor.Bookmark:184
         d = UI("div",{title: "ブックマーク"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
         
-        //$LASTPOS=7000389;//jseditor.Bookmark:389
+        //$LASTPOS=7000431;//jseditor.Bookmark:431
         d.dialog({width: 600});
-        //$LASTPOS=7000416;//jseditor.Bookmark:416
+        //$LASTPOS=7000458;//jseditor.Bookmark:458
         refresh();
         
         
@@ -99,57 +96,69 @@ define(function (require) {
         var d;
         function refresh() {
           
-          //$LASTPOS=7000452;//jseditor.Bookmark:452
+          //$LASTPOS=7000494;//jseditor.Bookmark:494
           items.empty();
-          //$LASTPOS=7000475;//jseditor.Bookmark:475
-          _this.conf.data.forEach((function anonymous_493(d) {
+          //$LASTPOS=7000517;//jseditor.Bookmark:517
+          _this.data.forEach((function anonymous_530(d) {
             var item;
             
-            //$LASTPOS=7000512;//jseditor.Bookmark:512
+            //$LASTPOS=7000549;//jseditor.Bookmark:549
             item = UI("div",["a",{href: d.url},d.title]);
             
-            //$LASTPOS=7000604;//jseditor.Bookmark:604
+            //$LASTPOS=7000641;//jseditor.Bookmark:641
             items.append(item);
           }));
         }function ok() {
           
-          //$LASTPOS=7000661;//jseditor.Bookmark:661
+          //$LASTPOS=7000698;//jseditor.Bookmark:698
           d.dialog("close");
         }function edit() {
           
-          //$LASTPOS=7000708;//jseditor.Bookmark:708
+          //$LASTPOS=7000745;//jseditor.Bookmark:745
           _this.fileList.open(_this.file);
         }function add() {
           var urlHead;
           
-          //$LASTPOS=7000756;//jseditor.Bookmark:756
+          //$LASTPOS=7000793;//jseditor.Bookmark:793
           urlHead = location.href.replace(/\?.*/,"").replace(/#/,"");
           
-          //$LASTPOS=7000826;//jseditor.Bookmark:826
-          _this.conf.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
-          //$LASTPOS=7000959;//jseditor.Bookmark:959
-          _this.conf.save();
-          //$LASTPOS=7000980;//jseditor.Bookmark:980
+          //$LASTPOS=7000863;//jseditor.Bookmark:863
+          _this.data.push({title: _this.fileList.curDir.name(),url: urlHead+"?dir="+_this.fileList.curDir.path()});
+          //$LASTPOS=7000991;//jseditor.Bookmark:991
+          _this.writeFile(_this.file,JSON.stringify(_this.data,null,2));
+          //$LASTPOS=7001059;//jseditor.Bookmark:1059
           refresh();
         }
-        //$LASTPOS=7000100;//jseditor.Bookmark:100
-        _this.conf.load();
-        //$LASTPOS=7000117;//jseditor.Bookmark:117
-        items = UI("div");
         
-        //$LASTPOS=7000142;//jseditor.Bookmark:142
-        d = UI("div",{title: "ブックマーク"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
-        
-        //$LASTPOS=7000389;//jseditor.Bookmark:389
-        d.dialog({width: 600});
-        //$LASTPOS=7000416;//jseditor.Bookmark:416
-        refresh();
-        
-        
-        
-        
-        
-        _thread.retVal=_this;return;
+        _thread.enter(function _trc_Bookmark_ent_open(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=7000115;//jseditor.Bookmark:115
+              _this.fiber$readJSON(_thread, _this.file);
+              __pc=1;return;
+            case 1:
+              _this.data=_thread.retVal;
+              
+              //$LASTPOS=7000159;//jseditor.Bookmark:159
+              items = UI("div");
+              
+              //$LASTPOS=7000184;//jseditor.Bookmark:184
+              d = UI("div",{title: "ブックマーク"},items,["div",["button",{on: {click: add}},"Add current"],["button",{on: {click: edit}},"Open bookmark.json"],["button",{on: {click: ok}},"OK"]]);
+              
+              //$LASTPOS=7000431;//jseditor.Bookmark:431
+              d.dialog({width: 600});
+              //$LASTPOS=7000458;//jseditor.Bookmark:458
+              refresh();
+              
+              
+              
+              
+              _thread.exit(_this);return;
+            }
+          }
+        });
       },
       __dummy: false
     },

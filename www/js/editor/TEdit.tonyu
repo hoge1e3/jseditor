@@ -31,6 +31,7 @@ var finder;
         {label:"名前変更",id:"mvFile",action:"$fileMenu.rename"/*mvFile*/},
         {label:"上書き保存",id:"saveFile",action:"$editorSet.save",key:"ctrl+s"},
         {label:"コピー",id:"cpFile"},
+        {label:"閉じる",id:"closeFile",action:"$editorSet.close"},
         {label:"削除", id:"rmFile",action:"$fileMenu.remove"}
     ]},
     {label:"ツール",sub:[
@@ -56,13 +57,13 @@ var finder;
 var fileMenu;
 var es;
 var etc=new Etc;
-var prjs=waitFor(etc.conf("projects.json").load());
+var prjs=readJSON(etc.rel("projects.json"));
 var prj=new JSEProject(prjs, Util.getQueryString("prj"));
 $jsePrj=prj;
 //var name, path, www, tonyuC, reqConf;
 var tc=new TonyuC(prj);
-var desktopEnv=etc.conf("desktop.json");
-desktopEnv.load();
+var desktopEnvFile=etc.rel("desktop.json");
+var desktopEnv=readJSON(desktopEnvFile);
 var fl=$fileList=new FileList($("#fileItemList")) {
     open:function (f) {
         console.log("opening",f);
@@ -98,11 +99,11 @@ function textSize() {
 function textSizeP() {
     var s=prompt(
         "エディタの文字の大きさ", 
-        desktopEnv.data.editorFontSize||12
+        desktopEnv.editorFontSize||12
     );  
-    desktopEnv.data.editorFontSize=window.parseInt(s);
-    if (es) es.setFontSize(desktopEnv.data.editorFontSize||12);
-    return desktopEnv.save();
+    desktopEnv.editorFontSize=window.parseInt(s);
+    if (es) es.setFontSize(desktopEnv.editorFontSize||12);
+    return writeJSON(desktopEnvFile, desktopEnv);
 }
 var screenH,editorH;
 function onResize() {
@@ -121,7 +122,7 @@ requirejs(["ace"],function (){
     console.log("ace loaded:",ace);
     $editorSet=es=new TEditorSet( $("#progs"), $("#fileLabel")) {
         height:editorH, 
-        fontSize:( desktopEnv.data && desktopEnv.data.editorFontSize || 12 )
+        fontSize:( desktopEnv && desktopEnv.editorFontSize || 12 )
     };
     $finder=new Finder;
     if (typeof SplashScreen!="undefined") SplashScreen.hide();

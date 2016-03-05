@@ -33,7 +33,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        return new JSONConf(_this.dir.rel(path));
+        return new JSONConf(_this.rel(path));
       },
       fiber$conf :function _trc_Etc_f_conf(_thread,path) {
         "use strict";
@@ -41,7 +41,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        _thread.retVal=new JSONConf(_this.dir.rel(path));return;
+        _thread.retVal=new JSONConf(_this.rel(path));return;
         
         
         _thread.retVal=_this;return;

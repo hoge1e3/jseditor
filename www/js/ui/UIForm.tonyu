@@ -62,7 +62,7 @@ function parseAttr(o) {
             _jqdom.css(v);
         } else if (Util.startsWith(k,"$") ) {
             if (k=="$bind") {
-                
+                bind(v);
             }
         } else if (v!=null) {
             _jqdom.attr(k,v);
@@ -96,4 +96,34 @@ function parseOn(eType, li) {
 }
 function parseString(str) {
     return str;//$("<span>").text(str);
+}
+\bind(key) {
+    _jqdom.val(model[key]);
+    parseOn("realtimechange") \(val) {
+        model[key]=val;
+    };
+    binds[key]={
+        onModelChanged:\(val) {
+            _jqdom.val(val);
+        }
+    };
+}
+\loadModel(m) {
+    if (SFile["is"](m)) {
+        modelFile=m;
+        model=readFile(modelFile);
+    } else {
+        model=m;
+    }
+}
+\saveModel() {
+    if (modelFile && model) {
+        saveJSON(modelFile,model) {indent:4};
+    } else {
+        throw new Error("Model is not loaded from file");
+    }
+}
+\attr(key,val) {
+    model[key]=val;
+    binds[key].onModelChanged(val);
 }

@@ -332,24 +332,24 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_95;
+        var _it_226;
         var eType;
         var li;
-        var _it_96;
+        var _it_227;
         
         //$LASTPOS=13001154;//jseditor.UIForm:1154
-        _it_95=Tonyu.iterator(o,2);
-        while(_it_95.next()) {
-          k=_it_95[0];
-          v=_it_95[1];
+        _it_226=Tonyu.iterator(o,2);
+        while(_it_226.next()) {
+          k=_it_226[0];
+          v=_it_226[1];
           
           //$LASTPOS=13001184;//jseditor.UIForm:1184
           if (k=="on") {
             //$LASTPOS=13001212;//jseditor.UIForm:1212
-            _it_96=Tonyu.iterator(o.on,2);
-            while(_it_96.next()) {
-              eType=_it_96[0];
-              li=_it_96[1];
+            _it_227=Tonyu.iterator(o.on,2);
+            while(_it_227.next()) {
+              eType=_it_227[0];
+              li=_it_227[1];
               
               //$LASTPOS=13001239;//jseditor.UIForm:1239
               _this.parseOn(eType,li);
@@ -374,14 +374,15 @@ define(function (require) {
                 if (Util.startsWith(k,"$")) {
                   //$LASTPOS=13001482;//jseditor.UIForm:1482
                   if (k=="$bind") {
-                    
+                    //$LASTPOS=13001517;//jseditor.UIForm:1517
+                    _this.bind(v);
                     
                   }
                   
                 } else {
-                  //$LASTPOS=13001549;//jseditor.UIForm:1549
+                  //$LASTPOS=13001557;//jseditor.UIForm:1557
                   if (v!=null) {
-                    //$LASTPOS=13001577;//jseditor.UIForm:1577
+                    //$LASTPOS=13001585;//jseditor.UIForm:1585
                     _this._jqdom.attr(k,v);
                     
                   }
@@ -399,10 +400,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_95;
+        var _it_226;
         var eType;
         var li;
-        var _it_96;
+        var _it_227;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -411,20 +412,20 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=13001154;//jseditor.UIForm:1154
-              _it_95=Tonyu.iterator(o,2);
+              _it_226=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_95.next())) { __pc=7; break; }
-              k=_it_95[0];
-              v=_it_95[1];
+              if (!(_it_226.next())) { __pc=15; break; }
+              k=_it_226[0];
+              v=_it_226[1];
               
               //$LASTPOS=13001184;//jseditor.UIForm:1184
               if (!(k=="on")) { __pc=5; break; }
               //$LASTPOS=13001212;//jseditor.UIForm:1212
-              _it_96=Tonyu.iterator(o.on,2);
+              _it_227=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_96.next())) { __pc=4; break; }
-              eType=_it_96[0];
-              li=_it_96[1];
+              if (!(_it_227.next())) { __pc=4; break; }
+              eType=_it_227[0];
+              li=_it_227[1];
               
               //$LASTPOS=13001239;//jseditor.UIForm:1239
               _this.fiber$parseOn(_thread, eType, li);
@@ -434,44 +435,55 @@ define(function (require) {
               __pc=2;break;
             case 4:
               
-              __pc=6;break;
+              __pc=14;break;
             case 5:
               //$LASTPOS=13001274;//jseditor.UIForm:1274
-              if (k=="name") {
+              if (!(k=="name")) { __pc=6; break; }
+              {
                 //$LASTPOS=13001304;//jseditor.UIForm:1304
                 _this[v]=_this._jqdom;
                 //$LASTPOS=13001333;//jseditor.UIForm:1333
                 _this._jqdom.attr(k,v);
-                
-              } else {
-                //$LASTPOS=13001367;//jseditor.UIForm:1367
-                if (k=="css"&&v!=null) {
-                  //$LASTPOS=13001407;//jseditor.UIForm:1407
-                  _this._jqdom.css(v);
-                  
-                } else {
-                  //$LASTPOS=13001438;//jseditor.UIForm:1438
-                  if (Util.startsWith(k,"$")) {
-                    //$LASTPOS=13001482;//jseditor.UIForm:1482
-                    if (k=="$bind") {
-                      
-                      
-                    }
-                    
-                  } else {
-                    //$LASTPOS=13001549;//jseditor.UIForm:1549
-                    if (v!=null) {
-                      //$LASTPOS=13001577;//jseditor.UIForm:1577
-                      _this._jqdom.attr(k,v);
-                      
-                    }
-                  }
-                }
               }
+              __pc=13;break;
             case 6:
+              //$LASTPOS=13001367;//jseditor.UIForm:1367
+              if (!(k=="css"&&v!=null)) { __pc=7; break; }
+              {
+                //$LASTPOS=13001407;//jseditor.UIForm:1407
+                _this._jqdom.css(v);
+              }
+              __pc=12;break;
+            case 7:
+              //$LASTPOS=13001438;//jseditor.UIForm:1438
+              if (!(Util.startsWith(k,"$"))) { __pc=10; break; }
+              //$LASTPOS=13001482;//jseditor.UIForm:1482
+              if (!(k=="$bind")) { __pc=9; break; }
+              //$LASTPOS=13001517;//jseditor.UIForm:1517
+              _this.fiber$bind(_thread, v);
+              __pc=8;return;
+            case 8:
+              
+            case 9:
+              
+              __pc=11;break;
+            case 10:
+              //$LASTPOS=13001557;//jseditor.UIForm:1557
+              if (v!=null) {
+                //$LASTPOS=13001585;//jseditor.UIForm:1585
+                _this._jqdom.attr(k,v);
+                
+              }
+            case 11:
+              
+            case 12:
+              
+            case 13:
+              
+            case 14:
               
               __pc=1;break;
-            case 7:
+            case 15:
               
               _thread.exit(_this);return;
             }
@@ -484,57 +496,57 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=13001652;//jseditor.UIForm:1652
+        //$LASTPOS=13001660;//jseditor.UIForm:1660
         if (! li) {
           return _this;
         }
-        //$LASTPOS=13001674;//jseditor.UIForm:1674
+        //$LASTPOS=13001682;//jseditor.UIForm:1682
         if (eType=="enterkey") {
-          //$LASTPOS=13001708;//jseditor.UIForm:1708
-          _this._jqdom.on("keypress",(function anonymous_1730(ev) {
+          //$LASTPOS=13001716;//jseditor.UIForm:1716
+          _this._jqdom.on("keypress",(function anonymous_1738(ev) {
             
-            //$LASTPOS=13001751;//jseditor.UIForm:1751
+            //$LASTPOS=13001759;//jseditor.UIForm:1759
             if (ev.which==13) {
-              //$LASTPOS=13001769;//jseditor.UIForm:1769
+              //$LASTPOS=13001777;//jseditor.UIForm:1777
               li.apply(_this._jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=13001821;//jseditor.UIForm:1821
+          //$LASTPOS=13001829;//jseditor.UIForm:1829
           if (eType=="realtimechange") {
-            //$LASTPOS=13001861;//jseditor.UIForm:1861
+            //$LASTPOS=13001869;//jseditor.UIForm:1869
             first = true;
             
-            //$LASTPOS=13001892;//jseditor.UIForm:1892
-            _this.listeners.push((function anonymous_1907() {
+            //$LASTPOS=13001900;//jseditor.UIForm:1900
+            _this.listeners.push((function anonymous_1915() {
               var cur;
               
               
-              //$LASTPOS=13001948;//jseditor.UIForm:1948
+              //$LASTPOS=13001956;//jseditor.UIForm:1956
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=13001991;//jseditor.UIForm:1991
+                //$LASTPOS=13001999;//jseditor.UIForm:1999
                 cur=! ! _this._jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=13002060;//jseditor.UIForm:2060
+                //$LASTPOS=13002068;//jseditor.UIForm:2068
                 cur=_this._jqdom.val();
                 
               }
-              //$LASTPOS=13002106;//jseditor.UIForm:2106
+              //$LASTPOS=13002114;//jseditor.UIForm:2114
               if (first||prev!=cur) {
-                //$LASTPOS=13002149;//jseditor.UIForm:2149
+                //$LASTPOS=13002157;//jseditor.UIForm:2157
                 li.apply(_this._jqdom,[cur,prev]);
-                //$LASTPOS=13002195;//jseditor.UIForm:2195
+                //$LASTPOS=13002203;//jseditor.UIForm:2203
                 prev=cur;
                 
               }
-              //$LASTPOS=13002233;//jseditor.UIForm:2233
+              //$LASTPOS=13002241;//jseditor.UIForm:2241
               first=false;
             }));
             
           } else {
-            //$LASTPOS=13002281;//jseditor.UIForm:2281
+            //$LASTPOS=13002289;//jseditor.UIForm:2289
             _this._jqdom.on(eType,li);
             
           }
@@ -548,58 +560,58 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=13001652;//jseditor.UIForm:1652
+        //$LASTPOS=13001660;//jseditor.UIForm:1660
         if (! li) {
           _thread.retVal=_this;return;
           
         }
-        //$LASTPOS=13001674;//jseditor.UIForm:1674
+        //$LASTPOS=13001682;//jseditor.UIForm:1682
         if (eType=="enterkey") {
-          //$LASTPOS=13001708;//jseditor.UIForm:1708
-          _this._jqdom.on("keypress",(function anonymous_1730(ev) {
+          //$LASTPOS=13001716;//jseditor.UIForm:1716
+          _this._jqdom.on("keypress",(function anonymous_1738(ev) {
             
-            //$LASTPOS=13001751;//jseditor.UIForm:1751
+            //$LASTPOS=13001759;//jseditor.UIForm:1759
             if (ev.which==13) {
-              //$LASTPOS=13001769;//jseditor.UIForm:1769
+              //$LASTPOS=13001777;//jseditor.UIForm:1777
               li.apply(_this._jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=13001821;//jseditor.UIForm:1821
+          //$LASTPOS=13001829;//jseditor.UIForm:1829
           if (eType=="realtimechange") {
-            //$LASTPOS=13001861;//jseditor.UIForm:1861
+            //$LASTPOS=13001869;//jseditor.UIForm:1869
             first = true;
             
-            //$LASTPOS=13001892;//jseditor.UIForm:1892
-            _this.listeners.push((function anonymous_1907() {
+            //$LASTPOS=13001900;//jseditor.UIForm:1900
+            _this.listeners.push((function anonymous_1915() {
               var cur;
               
               
-              //$LASTPOS=13001948;//jseditor.UIForm:1948
+              //$LASTPOS=13001956;//jseditor.UIForm:1956
               if (_this.o.type=="checkbox") {
-                //$LASTPOS=13001991;//jseditor.UIForm:1991
+                //$LASTPOS=13001999;//jseditor.UIForm:1999
                 cur=! ! _this._jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=13002060;//jseditor.UIForm:2060
+                //$LASTPOS=13002068;//jseditor.UIForm:2068
                 cur=_this._jqdom.val();
                 
               }
-              //$LASTPOS=13002106;//jseditor.UIForm:2106
+              //$LASTPOS=13002114;//jseditor.UIForm:2114
               if (first||prev!=cur) {
-                //$LASTPOS=13002149;//jseditor.UIForm:2149
+                //$LASTPOS=13002157;//jseditor.UIForm:2157
                 li.apply(_this._jqdom,[cur,prev]);
-                //$LASTPOS=13002195;//jseditor.UIForm:2195
+                //$LASTPOS=13002203;//jseditor.UIForm:2203
                 prev=cur;
                 
               }
-              //$LASTPOS=13002233;//jseditor.UIForm:2233
+              //$LASTPOS=13002241;//jseditor.UIForm:2241
               first=false;
             }));
             
           } else {
-            //$LASTPOS=13002281;//jseditor.UIForm:2281
+            //$LASTPOS=13002289;//jseditor.UIForm:2289
             _this._jqdom.on(eType,li);
             
           }
@@ -624,8 +636,101 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
+      bind :function _trc_UIForm_bind(key) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=13002413;//jseditor.UIForm:2413
+        _this._jqdom.val(_this.model[key]);
+        //$LASTPOS=13002442;//jseditor.UIForm:2442
+        _this.parseOn("realtimechange",(function anonymous_2468(val) {
+          
+          //$LASTPOS=13002486;//jseditor.UIForm:2486
+          _this.model[key]=val;
+        }));
+        //$LASTPOS=13002515;//jseditor.UIForm:2515
+        _this.binds[key]={onModelChanged: (function anonymous_2552(val) {
+          
+          //$LASTPOS=13002574;//jseditor.UIForm:2574
+          _this._jqdom.val(val);
+        })};
+      },
+      fiber$bind :function _trc_UIForm_f_bind(_thread,key) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=13002413;//jseditor.UIForm:2413
+        _this._jqdom.val(_this.model[key]);
+        
+        _thread.enter(function _trc_UIForm_ent_bind(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=13002442;//jseditor.UIForm:2442
+              _this.fiber$parseOn(_thread, "realtimechange", (function anonymous_2468(val) {
+                
+                //$LASTPOS=13002486;//jseditor.UIForm:2486
+                _this.model[key]=val;
+              }));
+              __pc=1;return;
+            case 1:
+              
+              //$LASTPOS=13002515;//jseditor.UIForm:2515
+              _this.binds[key]={onModelChanged: (function anonymous_2552(val) {
+                
+                //$LASTPOS=13002574;//jseditor.UIForm:2574
+                _this._jqdom.val(val);
+              })};
+              _thread.exit(_this);return;
+            }
+          }
+        });
+      },
+      loadModel :function _trc_UIForm_loadModel(m) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=13002635;//jseditor.UIForm:2635
+        _this.model=m;
+      },
+      fiber$loadModel :function _trc_UIForm_f_loadModel(_thread,m) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=13002635;//jseditor.UIForm:2635
+        _this.model=m;
+        
+        _thread.retVal=_this;return;
+      },
+      attr :function _trc_UIForm_attr(key,val) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=13002670;//jseditor.UIForm:2670
+        _this.model[key]=val;
+        //$LASTPOS=13002691;//jseditor.UIForm:2691
+        _this.binds[key].onModelChanged(val);
+      },
+      fiber$attr :function _trc_UIForm_f_attr(_thread,key,val) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=13002670;//jseditor.UIForm:2670
+        _this.model[key]=val;
+        //$LASTPOS=13002691;//jseditor.UIForm:2691
+        _this.binds[key].onModelChanged(val);
+        
+        _thread.retVal=_this;return;
+      },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"tag":{"nowait":false},"change":{"nowait":false},"parse":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"tag":{"nowait":false},"change":{"nowait":false},"parse":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false},"bind":{"nowait":false},"loadModel":{"nowait":false},"attr":{"nowait":false}}}
   });
 });

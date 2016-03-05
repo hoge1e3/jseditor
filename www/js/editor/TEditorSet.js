@@ -230,16 +230,16 @@ define(function (require) {
         var res;
         var k;
         var inf;
-        var _it_147;
+        var _it_196;
         
         //$LASTPOS=11001190;//jseditor.TEditorSet:1190
         res = [];
         
         //$LASTPOS=11001207;//jseditor.TEditorSet:1207
-        _it_147=Tonyu.iterator(_this.editors,2);
-        while(_it_147.next()) {
-          k=_it_147[0];
-          inf=_it_147[1];
+        _it_196=Tonyu.iterator(_this.editors,2);
+        while(_it_196.next()) {
+          k=_it_196[0];
+          inf=_it_196[1];
           
           //$LASTPOS=11001245;//jseditor.TEditorSet:1245
           if (inf.file.text()!=inf.editor.getValue()) {
@@ -258,16 +258,16 @@ define(function (require) {
         var res;
         var k;
         var inf;
-        var _it_147;
+        var _it_196;
         
         //$LASTPOS=11001190;//jseditor.TEditorSet:1190
         res = [];
         
         //$LASTPOS=11001207;//jseditor.TEditorSet:1207
-        _it_147=Tonyu.iterator(_this.editors,2);
-        while(_it_147.next()) {
-          k=_it_147[0];
-          inf=_it_147[1];
+        _it_196=Tonyu.iterator(_this.editors,2);
+        while(_it_196.next()) {
+          k=_it_196[0];
+          inf=_it_196[1];
           
           //$LASTPOS=11001245;//jseditor.TEditorSet:1245
           if (inf.file.text()!=inf.editor.getValue()) {
@@ -650,21 +650,21 @@ define(function (require) {
         var inf;
         
         //$LASTPOS=11003582;//jseditor.TEditorSet:3582
-        inf = _this.editors[f.path()];
+        inf = f?_this.editors[f.path()]:_this.getCurrentEditorInfo();
         
-        //$LASTPOS=11003614;//jseditor.TEditorSet:3614
+        //$LASTPOS=11003639;//jseditor.TEditorSet:3639
         if (! inf) {
           return _this;
         }
-        //$LASTPOS=11003637;//jseditor.TEditorSet:3637
+        //$LASTPOS=11003662;//jseditor.TEditorSet:3662
         inf.editor.destroy();
-        //$LASTPOS=11003664;//jseditor.TEditorSet:3664
+        //$LASTPOS=11003689;//jseditor.TEditorSet:3689
         inf.dom.remove();
-        //$LASTPOS=11003687;//jseditor.TEditorSet:3687
+        //$LASTPOS=11003712;//jseditor.TEditorSet:3712
         inf.cand.remove();
-        //$LASTPOS=11003711;//jseditor.TEditorSet:3711
-        delete _this.editors[f.path()];
-        //$LASTPOS=11003742;//jseditor.TEditorSet:3742
+        //$LASTPOS=11003736;//jseditor.TEditorSet:3736
+        delete _this.editors[inf.file.path()];
+        //$LASTPOS=11003774;//jseditor.TEditorSet:3774
         delete _this.names[inf.name];
       },
       fiber$close :function _trc_TEditorSet_f_close(_thread,f) {
@@ -675,22 +675,22 @@ define(function (require) {
         var inf;
         
         //$LASTPOS=11003582;//jseditor.TEditorSet:3582
-        inf = _this.editors[f.path()];
+        inf = f?_this.editors[f.path()]:_this.getCurrentEditorInfo();
         
-        //$LASTPOS=11003614;//jseditor.TEditorSet:3614
+        //$LASTPOS=11003639;//jseditor.TEditorSet:3639
         if (! inf) {
           _thread.retVal=_this;return;
           
         }
-        //$LASTPOS=11003637;//jseditor.TEditorSet:3637
+        //$LASTPOS=11003662;//jseditor.TEditorSet:3662
         inf.editor.destroy();
-        //$LASTPOS=11003664;//jseditor.TEditorSet:3664
+        //$LASTPOS=11003689;//jseditor.TEditorSet:3689
         inf.dom.remove();
-        //$LASTPOS=11003687;//jseditor.TEditorSet:3687
+        //$LASTPOS=11003712;//jseditor.TEditorSet:3712
         inf.cand.remove();
-        //$LASTPOS=11003711;//jseditor.TEditorSet:3711
-        delete _this.editors[f.path()];
-        //$LASTPOS=11003742;//jseditor.TEditorSet:3742
+        //$LASTPOS=11003736;//jseditor.TEditorSet:3736
+        delete _this.editors[inf.file.path()];
+        //$LASTPOS=11003774;//jseditor.TEditorSet:3774
         delete _this.names[inf.name];
         
         _thread.retVal=_this;return;

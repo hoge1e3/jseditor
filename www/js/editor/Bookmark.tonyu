@@ -1,11 +1,13 @@
 extends Base;
 native location;
+native JSON;
 \new(p) {
     super(p);
-    conf=new JSONConf(file);
+    //conf=new JSONConf(file);
 }
 \open() {
-    conf.load();
+    data=readJSON(file);
+    //conf.load();
     var items=UI("div");
     var d=UI("div",{title:"ブックマーク"},
         items,
@@ -19,7 +21,7 @@ native location;
     refresh();
     \refresh() {
         items.empty();
-        conf.data.forEach \(d) {
+        data.forEach \(d) {
             var item=UI("div",
                 ["a", {href: d.url}, d.title]
             );
@@ -34,11 +36,11 @@ native location;
     }
     \add() {
         var urlHead=location.href.replace(/\?.*/,"").replace(/#/,"");
-        conf.data.push{
+        data.push{
             title:fileList.curDir.name(),
             url: urlHead+"?dir="+fileList.curDir.path()
         };
-        conf.save();
+        writeFile(file, JSON.stringify(data,null,2));//conf.save();
         refresh();
     }
 }

@@ -15,18 +15,19 @@ tag("div") \{
 };
 
 \edit() {
-    $editorSet.open(prj.file);
+    $editorSet.open(prjFile);
 }
 \add() {
     var e={name:"Name", path:process.cwd()};
-    prj.data.push(e);
+    prjList.push(e);
+    writeFile(prjFile,prjList);
     addItem(e);
 }
 
 \list() {
-    prj=etc.conf("projects.json");
-    var l=waitFor(prj.load());
-    l.forEach(addItem);
+    prjFile=etc.rel("projects.json");
+    prjList=readJSON(prjFile); //waitFor(prj.load());
+    prjList.forEach(addItem);
 }
 \addItem(e) {
     var url=location.href.replace(/\?.*/,"");

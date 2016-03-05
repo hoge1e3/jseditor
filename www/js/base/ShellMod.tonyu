@@ -1,4 +1,5 @@
 includes WaitMod;
+native JSON;
 
 nowait \cd(dir) {
     cwd=resolve(dir);
@@ -13,14 +14,40 @@ nowait \resolve(f) {
     var r=waitFor(dir.listFiles());
     return r;
 }
+\readJSON(file) {
+    file=resolve(file);
+    var r=waitFor(file.obj());
+    return r;
+}
 \readFile(file) {
     file=resolve(file);
     var r=waitFor(file.text(cont));
     return r;
 }
+\writeJSON(file,cont,options) {
+    file=resolve(file);
+    if (typeof cont=="string") { 
+        JSON.parse(cont);
+        writeFile(file,cont);
+    } else if (typeof cont=="object") {
+        if (options&&options.indent) {
+            writeFile(file, JSON.stringify(cont,null,options.indent));
+        } else {
+            waitFor(file.obj(cont));
+        }
+    } else {
+        throw new Error("Invalid content type:"+cont);
+    }
+}
 \writeFile(file,cont) {
     file=resolve(file);
-    waitFor(file.text(cont));
+    if (typeof cont=="string") { 
+        waitFor(file.text(cont));
+    } else if (typeof cont=="object") {
+        waitFor(file.obj(cont));
+    } else {
+        throw new Error("Invalid content type:"+cont);
+    }
 }
 \mv(src,dst) {
     src=resolve(src);

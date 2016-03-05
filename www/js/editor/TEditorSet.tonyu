@@ -118,11 +118,11 @@ native $;
     //fileLabel.text(curFile.name());
 }
 \close(f) {
-    var inf=editors[f.path()];
+    var inf=f?editors[f.path()]:getCurrentEditorInfo();
     if (!inf) return;
     inf.editor.destroy();
     inf.dom.remove();
     inf.cand.remove();
-    delete editors[f.path()];
+    delete editors[inf.file.path()];
     delete names[inf.name];
 }

@@ -1,16 +1,23 @@
 extends UIForm;
 
 \findFile(word) {
-    dialog{width:600};
-    res.empty();
-    var c=findFileLoop(word,$jsePrj.path);
-    mesg.text(c+" File(s) found");
+    dialog();//{width:600};
+    clearResult();
+    var c;
+    if (filesCache) {
+        findFromCache(word).forEach(addResult);
+    } else {
+        filesCache={};
+        c=findFileLoop(word,$jsePrj.path);
+    }
+    mesg.text("Done");
 }
 \findFileLoop(word,dir) {
     var c=0;
-    mesg.text("Searching..."+dir.name());
-    update();
     for (var f in dir.listFiles()) {
+        mesg.text("Searching..."+f.name());
+        update();
+        addFileToCache(f);
         if (excludeDir[f.name()]) {
         } else if (f.isDir()) {
             c+=findFileLoop(word,f);
@@ -21,15 +28,45 @@ extends UIForm;
     }
     return c;
 }
-
+\clearResult() {
+    resC=0;
+    res.empty();
+}
 \addResult(f) {
-    change(res) \{
-        tag("div") \{
-            tag("a", {
-                href:"javascript:;", on:{click:\{$editorSet.open(f);} }
-            },f.name());
+    resC++;
+    if (resC<20) {
+        change(res) \{
+            tag("div") \{
+                tag("a", {
+                    href:"javascript:;", on:{click:\{$editorSet.open(f);} }
+                },f.name());
+            };
         };
-    };
+    }
+}
+\findFromCache(key) {
+    var head=key.substring(0,1);
+    var ent=filesCache[head];
+    var res=[];
+    if (!ent) return res;
+    for (var k,v in ent) {
+        if (Util.startsWith(k, key)) {
+            res=res.concat(v);
+        }
+    }
+    return res;
+}
+\addFileToCache(f) {
+    var key=f.name();
+    var head=key.substring(0,1);
+    var ent=filesCache[head] || (filesCache[head]={});
+    (ent[key]=ent[key]||[]).push(f);
+}
+\update() {
+    upc=(upc||0)+1;
+    if (upc%5==0) {
+        super.update();
+    }
 }
 excludeDir={".git/":1};
 tag("div") \{

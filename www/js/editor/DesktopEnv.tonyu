@@ -1,0 +1,13 @@
+extends UIForm;
+
+tag("div") \{
+    tag("div","エディタの文字の大きさ");
+    tag("input") {$bind:"editorFontSize"};
+    tag("button",{on:{click:close}},"OK");
+};
+loadModel($etc.rel("desktop.json"));
+
+\close() {
+    saveModel();
+    dialog("close");
+}

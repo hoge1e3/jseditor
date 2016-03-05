@@ -48,8 +48,10 @@ var finder;
           {label:"実行(F9)",id:"runMenu",action:run},
     ]},*/
     {label:"設定",sub:[
-          {label:"エディタの文字の大きさ...",
-            id:"textsize",action:textSize},
+          {label:"環境設定...",
+            id:"textsize",action:"$desktopEnvEditor.dialog"},
+          /*{label:"エディタの文字の大きさ...",
+            id:"textsize",action:textSize},*/
           {label:"ワークスペース切り替え...",
             id:"setEtc",action:setEtc}
     ]}
@@ -57,13 +59,18 @@ var finder;
 var fileMenu;
 var es;
 var etc=new Etc;
+$etc=etc;
+//var desktopEnvFile=etc.rel("desktop.json");
+//var desktopEnv=readJSON(desktopEnvFile);
+$desktopEnvEditor=new DesktopEnv;
+update(10);
+//$desktopEnvEditor.loadModel(desktopEnv);
+
 var prjs=readJSON(etc.rel("projects.json"));
 var prj=new JSEProject(prjs, Util.getQueryString("prj"));
 $jsePrj=prj;
 //var name, path, www, tonyuC, reqConf;
 var tc=new TonyuC(prj);
-var desktopEnvFile=etc.rel("desktop.json");
-var desktopEnv=readJSON(desktopEnvFile);
 var fl=$fileList=new FileList($("#fileItemList")) {
     open:function (f) {
         console.log("opening",f);
@@ -93,7 +100,7 @@ function newWindow() {
     window.open(location.href,genID,
     'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
 }
-function textSize() {
+/*function textSize() {
     parallel("textSizeP");
 }
 function textSizeP() {
@@ -104,7 +111,7 @@ function textSizeP() {
     desktopEnv.editorFontSize=window.parseInt(s);
     if (es) es.setFontSize(desktopEnv.editorFontSize||12);
     return writeJSON(desktopEnvFile, desktopEnv);
-}
+}*/
 var screenH,editorH;
 function onResize() {
     var h=$(window).height()-$("#navBar").height()-$("#tabTop").height();
@@ -119,6 +126,8 @@ function onResize() {
 onResize();
 $(window).resize(onResize);
 requirejs(["ace"],function (){
+    var desktopEnv=$desktopEnvEditor.model;
+    print("denv",desktopEnv && desktopEnv.editorFontSize || 12);
     console.log("ace loaded:",ace);
     $editorSet=es=new TEditorSet( $("#progs"), $("#fileLabel")) {
         height:editorH, 
@@ -127,7 +136,12 @@ requirejs(["ace"],function (){
     $finder=new Finder;
     if (typeof SplashScreen!="undefined") SplashScreen.hide();
     $fileMenu=fileMenu=new FileMenu({editorSet:es,fileList:fl});
-    return fl.open(prj.path);
+    fl.open(prj.path);
+    
+    $desktopEnvEditor.on("modelsaved") \(model) {
+        print("SAVED",model);
+        $editorSet.setFontSize(desktopEnv.editorFontSize);
+    };
 });
 \shouldConfirmClose() {
     var m=($editorSet && $editorSet.allModified()) || [];

@@ -113,7 +113,11 @@ var reqConf={
         "JSEProject": "editor/JSEProject",
         "ProjectSel": "editor/ProjectSel",
         "TEditorSet": "editor/TEditorSet",
-        "Etc": "editor/Etc"
+        "Etc": "editor/Etc",
+        "DesktopEnv": "editor/DesktopEnv",
+        "EventHandler": "base/EventHandler",
+        "EventHandlerCaller": "base/EventHandlerCaller",
+        "EventMod": "base/EventMod"
     },
     "baseUrl": "./js/"
 };

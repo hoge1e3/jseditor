@@ -1,8 +1,9 @@
 extends UIForm;
 
+modelType={editorFontSize:"number"};
 tag("div") \{
     tag("div","エディタの文字の大きさ");
-    tag("input") {$bind:"editorFontSize"};
+    tag("input") {$bind:"editorFontSize",on:{enterkey:close}};
     tag("button",{on:{click:close}},"OK");
 };
 loadModel($etc.rel("desktop.json"));

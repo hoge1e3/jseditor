@@ -16,12 +16,14 @@ nowait \resolve(f) {
 }
 \readJSON(file) {
     file=resolve(file);
-    var r=waitFor(file.obj());
+    var o=file.obj();
+    var r=waitFor(o);
+    print("rdjson",o,r);
     return r;
 }
 \readFile(file) {
     file=resolve(file);
-    var r=waitFor(file.text(cont));
+    var r=waitFor(file.text());
     return r;
 }
 \writeJSON(file,cont,options) {

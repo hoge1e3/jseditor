@@ -1,9 +1,11 @@
 extends Base;
 native $;
+native parseInt;
 \new(o) {
     super(o);
     listeners=[];
-    main();
+    binds={};
+    parallel("main");
 }
 \appendTo(dom) {
     jqdom.appendTo(dom);
@@ -70,55 +72,74 @@ function parseAttr(o) {
     }
 }
 function parseOn(eType, li) {
+    var jqdom=_jqdom;
     if (!li) return;
     if (eType=="enterkey") {
-        _jqdom.on("keypress") \(ev) {
-            if (ev.which==13) li.apply(_jqdom,arguments);
-        };
+        jqdom.on("keypress") \(ev) {
+            if (ev.which==13) li.apply(jqdom,arguments);
+        };  
     } else if (eType=="realtimechange") {
         var first=true, prev;
         listeners.push \() {
             var cur;
-            if (o.type=="checkbox") {
-                cur=!!_jqdom.prop("checked");
+            if (jqdom.attr("type")=="checkbox") {
+                cur=!!jqdom.prop("checked");
             } else {
-                cur=_jqdom.val();
+                cur=jqdom.val();
             }
             if (first || prev!=cur) {
-                li.apply(_jqdom,[cur,prev]);
+                li.apply(jqdom,[cur,prev]);
                 prev=cur;
             }
             first=false;
         };
+        if (!_listenersInvoked) {
+            _listenersInvoked=true;
+            parallel("listenerLoop");
+        }
     } else {
-        _jqdom.on(eType, li);
+        jqdom.on(eType, li);
     }
 }
 function parseString(str) {
     return str;//$("<span>").text(str);
 }
 \bind(key) {
-    _jqdom.val(model[key]);
+    var jqdom=_jqdom;
+    if (model) jqdom.val(model[key]);
+    var vtype=modelType && modelType[key] || "string";
     parseOn("realtimechange") \(val) {
-        model[key]=val;
+        print("bind-wrt",model,key,val,vtype,modelType);
+        if (model) {
+            if (vtype=="string") {
+                model[key]=val;
+            } else if(vtype="number") {
+                model[key]=parseInt(val);
+            }
+        }
     };
     binds[key]={
         onModelChanged:\(val) {
-            _jqdom.val(val);
+            jqdom.val(val);
         }
     };
 }
 \loadModel(m) {
     if (SFile["is"](m)) {
         modelFile=m;
-        model=readFile(modelFile);
+        model=readJSON(modelFile)||{};
     } else {
         model=m;
+    }
+    assert(model, "Model load error");
+    for (var key,handler in binds) {
+        handler.onModelChanged(model[key]);
     }
 }
 \saveModel() {
     if (modelFile && model) {
-        saveJSON(modelFile,model) {indent:4};
+        writeJSON(modelFile,model) {indent:4};
+        sendEvent("modelsaved",model);
     } else {
         throw new Error("Model is not loaded from file");
     }
@@ -126,4 +147,13 @@ function parseString(str) {
 \attr(key,val) {
     model[key]=val;
     binds[key].onModelChanged(val);
+    fireEvent("modelChanged", key, val);
+}
+\listenerLoop() {
+    while(true) {
+        listeners.forEach\(f) {
+            f();
+        };
+        update(100);
+    }
 }

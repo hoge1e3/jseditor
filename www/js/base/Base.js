@@ -4,11 +4,12 @@ define(function (require) {
   var DeferredUtil=require('DeferredUtil');
   var WaitMod=require('WaitMod');
   var ShellMod=require('ShellMod');
+  var EventMod=require('EventMod');
   return Tonyu.klass.define({
     fullName: 'jseditor.Base',
     shortName: 'Base',
     namespace: 'jseditor',
-    includes: [Tonyu.classes.jseditor.WaitMod,Tonyu.classes.jseditor.ShellMod],
+    includes: [Tonyu.classes.jseditor.WaitMod,Tonyu.classes.jseditor.ShellMod,Tonyu.classes.jseditor.EventMod],
     methods: {
       main :function _trc_Base_main() {
         "use strict";
@@ -28,14 +29,14 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=5000058;//jseditor.Base:58
+        //$LASTPOS=8000068;//jseditor.Base:68
         Tonyu.extend(_this,p);
       },
       alert :function _trc_Base_alert(m) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=5000099;//jseditor.Base:99
+        //$LASTPOS=8000109;//jseditor.Base:109
         _this.waitFor(UIDiag.alert(m));
       },
       fiber$alert :function _trc_Base_f_alert(_thread,m) {
@@ -50,7 +51,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=5000099;//jseditor.Base:99
+              //$LASTPOS=8000109;//jseditor.Base:109
               _this.fiber$waitFor(_thread, UIDiag.alert(m));
               __pc=1;return;
             case 1:
@@ -65,7 +66,7 @@ define(function (require) {
         var _this=this;
         var n;
         
-        //$LASTPOS=5000146;//jseditor.Base:146
+        //$LASTPOS=8000156;//jseditor.Base:156
         n = _this.waitFor(UIDiag.prompt(m,v));
         
         return n;
@@ -83,7 +84,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=5000146;//jseditor.Base:146
+              //$LASTPOS=8000156;//jseditor.Base:156
               _this.fiber$waitFor(_thread, UIDiag.prompt(m,v));
               __pc=1;return;
             case 1:
@@ -100,7 +101,7 @@ define(function (require) {
         var _this=this;
         var n;
         
-        //$LASTPOS=5000215;//jseditor.Base:215
+        //$LASTPOS=8000225;//jseditor.Base:225
         n = _this.waitFor(UIDiag.confirm(m));
         
         return n;
@@ -118,7 +119,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=5000215;//jseditor.Base:215
+              //$LASTPOS=8000225;//jseditor.Base:225
               _this.fiber$waitFor(_thread, UIDiag.confirm(m));
               __pc=1;return;
             case 1:
@@ -134,7 +135,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=5000280;//jseditor.Base:280
+        //$LASTPOS=8000290;//jseditor.Base:290
         console.log.apply(console,arguments);
       },
       fiber$print :function _trc_Base_f_print(_thread) {
@@ -143,7 +144,7 @@ define(function (require) {
         var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=5000280;//jseditor.Base:280
+        //$LASTPOS=8000290;//jseditor.Base:290
         console.log.apply(console,_arguments);
         
         _thread.retVal=_this;return;
@@ -152,7 +153,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=5000337;//jseditor.Base:337
+        //$LASTPOS=8000347;//jseditor.Base:347
         _this.waitFor(DeferredUtil.timeout(t||0));
       },
       fiber$update :function _trc_Base_f_update(_thread,t) {
@@ -167,7 +168,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=5000337;//jseditor.Base:337
+              //$LASTPOS=8000347;//jseditor.Base:347
               _this.fiber$waitFor(_thread, DeferredUtil.timeout(t||0));
               __pc=1;return;
             case 1:

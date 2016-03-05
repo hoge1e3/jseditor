@@ -24,10 +24,13 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=1000019;//jseditor.WaitMod:19
+        //$LASTPOS=3000019;//jseditor.WaitMod:19
         if (null) {
-          //$LASTPOS=1000042;//jseditor.WaitMod:42
+          //$LASTPOS=3000042;//jseditor.WaitMod:42
           null.waitFor(f);
+          
+        } else {
+          return f;
           
         }
       },
@@ -37,10 +40,14 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=1000019;//jseditor.WaitMod:19
+        //$LASTPOS=3000019;//jseditor.WaitMod:19
         if (_thread) {
-          //$LASTPOS=1000042;//jseditor.WaitMod:42
+          //$LASTPOS=3000042;//jseditor.WaitMod:42
           _thread.waitFor(f);
+          
+        } else {
+          _thread.retVal=f;return;
+          
           
         }
         
@@ -54,27 +61,27 @@ define(function (require) {
         var name;
         var th;
         
-        //$LASTPOS=1000096;//jseditor.WaitMod:96
+        //$LASTPOS=3000127;//jseditor.WaitMod:127
         args = [];
         
-        //$LASTPOS=1000114;//jseditor.WaitMod:114
-        //$LASTPOS=1000119;//jseditor.WaitMod:119
+        //$LASTPOS=3000145;//jseditor.WaitMod:145
+        //$LASTPOS=3000150;//jseditor.WaitMod:150
         i = 1;
         for (; i<arguments.length ; i++) {
           {
-            //$LASTPOS=1000164;//jseditor.WaitMod:164
+            //$LASTPOS=3000195;//jseditor.WaitMod:195
             args.push(arguments[i]);
           }
         }
-        //$LASTPOS=1000201;//jseditor.WaitMod:201
+        //$LASTPOS=3000232;//jseditor.WaitMod:232
         name = arguments[0];
         
-        //$LASTPOS=1000229;//jseditor.WaitMod:229
+        //$LASTPOS=3000260;//jseditor.WaitMod:260
         th = Tonyu.thread();
         
-        //$LASTPOS=1000257;//jseditor.WaitMod:257
+        //$LASTPOS=3000288;//jseditor.WaitMod:288
         th.apply(_this,name,args);
-        //$LASTPOS=1000288;//jseditor.WaitMod:288
+        //$LASTPOS=3000319;//jseditor.WaitMod:319
         th.steps();
         return th;
       },

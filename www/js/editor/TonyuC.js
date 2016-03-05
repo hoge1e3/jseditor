@@ -31,9 +31,9 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=12000047;//jseditor.TonyuC:47
+        //$LASTPOS=15000047;//jseditor.TonyuC:47
         _this.prj=prj;
-        //$LASTPOS=12000065;//jseditor.TonyuC:65
+        //$LASTPOS=15000065;//jseditor.TonyuC:65
         _this.reqConfBuilder=new Tonyu.classes.jseditor.ReqConfBuilder({output: prj.reqConf,htmlDir: prj.www});
       },
       compile :function _trc_TonyuC_compile() {
@@ -43,52 +43,52 @@ define(function (require) {
         var elem;
         var n;
         var c;
-        var _it_212;
+        var _it_230;
         var e;
         
-        //$LASTPOS=12000178;//jseditor.TonyuC:178
+        //$LASTPOS=15000178;//jseditor.TonyuC:178
         dir = _this.prj.tonyuC;
         
-        //$LASTPOS=12000202;//jseditor.TonyuC:202
+        //$LASTPOS=15000202;//jseditor.TonyuC:202
         elem = UI("div","Compiling...");
         
-        //$LASTPOS=12000241;//jseditor.TonyuC:241
+        //$LASTPOS=15000241;//jseditor.TonyuC:241
         UIDiag.custom(elem,{width: 500,ok: true,title: "Tonyu Compiler"});
-        //$LASTPOS=12000324;//jseditor.TonyuC:324
+        //$LASTPOS=15000324;//jseditor.TonyuC:324
         _this.update();
-        //$LASTPOS=12000338;//jseditor.TonyuC:338
+        //$LASTPOS=15000338;//jseditor.TonyuC:338
         Tonyu.globals.$currentProject=ProjectCompiler(dir);
-        //$LASTPOS=12000380;//jseditor.TonyuC:380
+        //$LASTPOS=15000380;//jseditor.TonyuC:380
         Tonyu.globals.$currentProject.setAMDPaths(reqConf.paths);
         try {
-          //$LASTPOS=12000442;//jseditor.TonyuC:442
+          //$LASTPOS=15000442;//jseditor.TonyuC:442
           _this.waitFor(Tonyu.globals.$currentProject.compile());
-          //$LASTPOS=12000541;//jseditor.TonyuC:541
+          //$LASTPOS=15000541;//jseditor.TonyuC:541
           elem.text("Compiled");
-          //$LASTPOS=12000572;//jseditor.TonyuC:572
-          _it_212=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
-          while(_it_212.next()) {
-            n=_it_212[0];
-            c=_it_212[1];
+          //$LASTPOS=15000572;//jseditor.TonyuC:572
+          _it_230=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
+          while(_it_230.next()) {
+            n=_it_230[0];
+            c=_it_230[1];
             
-            //$LASTPOS=12000631;//jseditor.TonyuC:631
+            //$LASTPOS=15000631;//jseditor.TonyuC:631
             if (SFile["is"](c.src.js)&&! reqConf.paths[c.shortName]) {
-              //$LASTPOS=12000707;//jseditor.TonyuC:707
-              Tonyu.globals.$reqConfBuilder.addPath(c.shortName,c.src.js);
+              //$LASTPOS=15000707;//jseditor.TonyuC:707
+              _this.reqConfBuilder.addPath(c.shortName,c.src.js);
               
             }
             
           }
-          //$LASTPOS=12000787;//jseditor.TonyuC:787
+          //$LASTPOS=15000786;//jseditor.TonyuC:786
           if (_this.reqConfBuilder) {
-            //$LASTPOS=12000807;//jseditor.TonyuC:807
+            //$LASTPOS=15000806;//jseditor.TonyuC:806
             _this.reqConfBuilder.save();
           }
           
         } catch (e) {
-          //$LASTPOS=12000856;//jseditor.TonyuC:856
+          //$LASTPOS=15000855;//jseditor.TonyuC:855
           _this.print(e.stack);
-          //$LASTPOS=12000880;//jseditor.TonyuC:880
+          //$LASTPOS=15000879;//jseditor.TonyuC:879
           elem.text("Error "+e);
           
         }
@@ -102,16 +102,16 @@ define(function (require) {
         var elem;
         var n;
         var c;
-        var _it_212;
+        var _it_230;
         var e;
         
-        //$LASTPOS=12000178;//jseditor.TonyuC:178
+        //$LASTPOS=15000178;//jseditor.TonyuC:178
         dir = _this.prj.tonyuC;
         
-        //$LASTPOS=12000202;//jseditor.TonyuC:202
+        //$LASTPOS=15000202;//jseditor.TonyuC:202
         elem = UI("div","Compiling...");
         
-        //$LASTPOS=12000241;//jseditor.TonyuC:241
+        //$LASTPOS=15000241;//jseditor.TonyuC:241
         UIDiag.custom(elem,{width: 500,ok: true,title: "Tonyu Compiler"});
         
         _thread.enter(function _trc_TonyuC_ent_compile(_thread) {
@@ -119,54 +119,53 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=12000324;//jseditor.TonyuC:324
+              //$LASTPOS=15000324;//jseditor.TonyuC:324
               _this.fiber$update(_thread);
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=12000338;//jseditor.TonyuC:338
+              //$LASTPOS=15000338;//jseditor.TonyuC:338
               Tonyu.globals.$currentProject=ProjectCompiler(dir);
-              //$LASTPOS=12000380;//jseditor.TonyuC:380
+              //$LASTPOS=15000380;//jseditor.TonyuC:380
               Tonyu.globals.$currentProject.setAMDPaths(reqConf.paths);
               _thread.enterTry(3);
-              //$LASTPOS=12000442;//jseditor.TonyuC:442
+              //$LASTPOS=15000442;//jseditor.TonyuC:442
               _this.fiber$waitFor(_thread, Tonyu.globals.$currentProject.compile());
               __pc=2;return;
             case 2:
               
-              //$LASTPOS=12000541;//jseditor.TonyuC:541
+              //$LASTPOS=15000541;//jseditor.TonyuC:541
               elem.text("Compiled");
-              //$LASTPOS=12000572;//jseditor.TonyuC:572
-              _it_212=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
-              while(_it_212.next()) {
-                n=_it_212[0];
-                c=_it_212[1];
+              //$LASTPOS=15000572;//jseditor.TonyuC:572
+              _it_230=Tonyu.iterator(Tonyu.globals.$currentProject.env.classes,2);
+              while(_it_230.next()) {
+                n=_it_230[0];
+                c=_it_230[1];
                 
-                //$LASTPOS=12000631;//jseditor.TonyuC:631
+                //$LASTPOS=15000631;//jseditor.TonyuC:631
                 if (SFile["is"](c.src.js)&&! reqConf.paths[c.shortName]) {
-                  //$LASTPOS=12000707;//jseditor.TonyuC:707
-                  Tonyu.globals.$reqConfBuilder.addPath(c.shortName,c.src.js);
+                  //$LASTPOS=15000707;//jseditor.TonyuC:707
+                  _this.reqConfBuilder.addPath(c.shortName,c.src.js);
                   
                 }
                 
               }
-              //$LASTPOS=12000787;//jseditor.TonyuC:787
+              //$LASTPOS=15000786;//jseditor.TonyuC:786
               if (_this.reqConfBuilder) {
-                //$LASTPOS=12000807;//jseditor.TonyuC:807
+                //$LASTPOS=15000806;//jseditor.TonyuC:806
                 _this.reqConfBuilder.save();
               }_thread.exitTry();
-              __pc=5;break;
+              __pc=4;break;
             case 3:
               e=_thread.startCatch();
               _thread.exitTry();
-              //$LASTPOS=12000856;//jseditor.TonyuC:856
-              _this.fiber$print(_thread, e.stack);
-              __pc=4;return;
+              {
+                //$LASTPOS=15000855;//jseditor.TonyuC:855
+                _this.print(e.stack);
+                //$LASTPOS=15000879;//jseditor.TonyuC:879
+                elem.text("Error "+e);
+              }
             case 4:
-              
-              //$LASTPOS=12000880;//jseditor.TonyuC:880
-              elem.text("Error "+e);
-            case 5:
               
               _thread.exit(_this);return;
             }

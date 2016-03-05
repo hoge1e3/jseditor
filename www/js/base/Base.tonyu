@@ -1,4 +1,4 @@
-includes WaitMod, ShellMod;
+includes WaitMod, ShellMod, EventMod;
 native console;
 \new(p) {
     Tonyu.extend(this,p);

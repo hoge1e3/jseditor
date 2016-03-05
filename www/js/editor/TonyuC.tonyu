@@ -24,7 +24,7 @@ native reqConf;
         elem.text("Compiled");
         for (var n,c in $currentProject.env.classes) {
             if (SFile["is"](c.src.js) && !reqConf.paths[c.shortName]) {
-                $reqConfBuilder.addPath(c.shortName, c.src.js);
+                reqConfBuilder.addPath(c.shortName, c.src.js);
             }
         }
         if (reqConfBuilder) reqConfBuilder.save();

@@ -13,14 +13,14 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=18001505;//jseditor.Finder:1505
+        //$LASTPOS=18001504;//jseditor.Finder:1504
         _this.excludeDir={".git/": 1};
-        //$LASTPOS=18001529;//jseditor.Finder:1529
-        _this.tag("div",(function anonymous_1540() {
+        //$LASTPOS=18001528;//jseditor.Finder:1528
+        _this.tag("div",(function anonymous_1539() {
           
-          //$LASTPOS=18001547;//jseditor.Finder:1547
+          //$LASTPOS=18001546;//jseditor.Finder:1546
           _this.mesg=_this.tag("div");
-          //$LASTPOS=18001568;//jseditor.Finder:1568
+          //$LASTPOS=18001567;//jseditor.Finder:1567
           _this.res=_this.tag("div");
         }));
       },
@@ -30,7 +30,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=18001505;//jseditor.Finder:1505
+        //$LASTPOS=18001504;//jseditor.Finder:1504
         _this.excludeDir={".git/": 1};
         
         _thread.enter(function _trc_Finder_ent_main(_thread) {
@@ -38,12 +38,12 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=18001529;//jseditor.Finder:1529
-              _this.fiber$tag(_thread, "div", (function anonymous_1540() {
+              //$LASTPOS=18001528;//jseditor.Finder:1528
+              _this.fiber$tag(_thread, "div", (function anonymous_1539() {
                 
-                //$LASTPOS=18001547;//jseditor.Finder:1547
+                //$LASTPOS=18001546;//jseditor.Finder:1546
                 _this.mesg=_this.tag("div");
-                //$LASTPOS=18001568;//jseditor.Finder:1568
+                //$LASTPOS=18001567;//jseditor.Finder:1567
                 _this.res=_this.tag("div");
               }));
               __pc=1;return;
@@ -133,15 +133,15 @@ define(function (require) {
         var _this=this;
         var c;
         var f;
-        var _it_360;
+        var _it_340;
         
         //$LASTPOS=18000303;//jseditor.Finder:303
         c = 0;
         
         //$LASTPOS=18000316;//jseditor.Finder:316
-        _it_360=Tonyu.iterator(dir.listFiles(),1);
-        while(_it_360.next()) {
-          f=_it_360[0];
+        _it_340=Tonyu.iterator(dir.listFiles(),1);
+        while(_it_340.next()) {
+          f=_it_340[0];
           
           //$LASTPOS=18000357;//jseditor.Finder:357
           _this.mesg.text("Searching..."+f.name());
@@ -181,7 +181,7 @@ define(function (require) {
         var __pc=0;
         var c;
         var f;
-        var _it_360;
+        var _it_340;
         
         //$LASTPOS=18000303;//jseditor.Finder:303
         c = 0;
@@ -193,10 +193,10 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=18000316;//jseditor.Finder:316
-              _it_360=Tonyu.iterator(dir.listFiles(),1);
+              _it_340=Tonyu.iterator(dir.listFiles(),1);
             case 1:
-              if (!(_it_360.next())) { __pc=11; break; }
-              f=_it_360[0];
+              if (!(_it_340.next())) { __pc=11; break; }
+              f=_it_340[0];
               
               //$LASTPOS=18000357;//jseditor.Finder:357
               _this.mesg.text("Searching..."+f.name());
@@ -291,7 +291,7 @@ define(function (require) {
               _this.tag("a",{href: "javascript:;",on: {click: (function anonymous_905() {
                 
                 //$LASTPOS=18000907;//jseditor.Finder:907
-                Tonyu.globals.$editorSet.open(f);
+                Tonyu.globals.$fileList.open(f);
               })}},f.name());
             }));
           }));
@@ -324,7 +324,7 @@ define(function (require) {
                   _this.tag("a",{href: "javascript:;",on: {click: (function anonymous_905() {
                     
                     //$LASTPOS=18000907;//jseditor.Finder:907
-                    Tonyu.globals.$editorSet.open(f);
+                    Tonyu.globals.$fileList.open(f);
                   })}},f.name());
                 }));
               }));
@@ -346,30 +346,30 @@ define(function (require) {
         var res;
         var k;
         var v;
-        var _it_364;
+        var _it_344;
         
-        //$LASTPOS=18001019;//jseditor.Finder:1019
+        //$LASTPOS=18001018;//jseditor.Finder:1018
         head = key.substring(0,1);
         
-        //$LASTPOS=18001052;//jseditor.Finder:1052
+        //$LASTPOS=18001051;//jseditor.Finder:1051
         ent = _this.filesCache[head];
         
-        //$LASTPOS=18001082;//jseditor.Finder:1082
+        //$LASTPOS=18001081;//jseditor.Finder:1081
         res = [];
         
-        //$LASTPOS=18001098;//jseditor.Finder:1098
+        //$LASTPOS=18001097;//jseditor.Finder:1097
         if (! ent) {
           return res;
         }
-        //$LASTPOS=18001124;//jseditor.Finder:1124
-        _it_364=Tonyu.iterator(ent,2);
-        while(_it_364.next()) {
-          k=_it_364[0];
-          v=_it_364[1];
+        //$LASTPOS=18001123;//jseditor.Finder:1123
+        _it_344=Tonyu.iterator(ent,2);
+        while(_it_344.next()) {
+          k=_it_344[0];
+          v=_it_344[1];
           
-          //$LASTPOS=18001155;//jseditor.Finder:1155
+          //$LASTPOS=18001154;//jseditor.Finder:1154
           if (Util.startsWith(k,key)) {
-            //$LASTPOS=18001198;//jseditor.Finder:1198
+            //$LASTPOS=18001197;//jseditor.Finder:1197
             res=res.concat(v);
             
           }
@@ -387,31 +387,31 @@ define(function (require) {
         var res;
         var k;
         var v;
-        var _it_364;
+        var _it_344;
         
-        //$LASTPOS=18001019;//jseditor.Finder:1019
+        //$LASTPOS=18001018;//jseditor.Finder:1018
         head = key.substring(0,1);
         
-        //$LASTPOS=18001052;//jseditor.Finder:1052
+        //$LASTPOS=18001051;//jseditor.Finder:1051
         ent = _this.filesCache[head];
         
-        //$LASTPOS=18001082;//jseditor.Finder:1082
+        //$LASTPOS=18001081;//jseditor.Finder:1081
         res = [];
         
-        //$LASTPOS=18001098;//jseditor.Finder:1098
+        //$LASTPOS=18001097;//jseditor.Finder:1097
         if (! ent) {
           _thread.retVal=res;return;
           
         }
-        //$LASTPOS=18001124;//jseditor.Finder:1124
-        _it_364=Tonyu.iterator(ent,2);
-        while(_it_364.next()) {
-          k=_it_364[0];
-          v=_it_364[1];
+        //$LASTPOS=18001123;//jseditor.Finder:1123
+        _it_344=Tonyu.iterator(ent,2);
+        while(_it_344.next()) {
+          k=_it_344[0];
+          v=_it_344[1];
           
-          //$LASTPOS=18001155;//jseditor.Finder:1155
+          //$LASTPOS=18001154;//jseditor.Finder:1154
           if (Util.startsWith(k,key)) {
-            //$LASTPOS=18001198;//jseditor.Finder:1198
+            //$LASTPOS=18001197;//jseditor.Finder:1197
             res=res.concat(v);
             
           }
@@ -429,16 +429,16 @@ define(function (require) {
         var head;
         var ent;
         
-        //$LASTPOS=18001276;//jseditor.Finder:1276
+        //$LASTPOS=18001275;//jseditor.Finder:1275
         key = f.name();
         
-        //$LASTPOS=18001298;//jseditor.Finder:1298
+        //$LASTPOS=18001297;//jseditor.Finder:1297
         head = key.substring(0,1);
         
-        //$LASTPOS=18001331;//jseditor.Finder:1331
+        //$LASTPOS=18001330;//jseditor.Finder:1330
         ent = _this.filesCache[head]||(_this.filesCache[head]={});
         
-        //$LASTPOS=18001386;//jseditor.Finder:1386
+        //$LASTPOS=18001385;//jseditor.Finder:1385
         (ent[key]=ent[key]||[]).push(f);
       },
       fiber$addFileToCache :function _trc_Finder_f_addFileToCache(_thread,f) {
@@ -450,16 +450,16 @@ define(function (require) {
         var head;
         var ent;
         
-        //$LASTPOS=18001276;//jseditor.Finder:1276
+        //$LASTPOS=18001275;//jseditor.Finder:1275
         key = f.name();
         
-        //$LASTPOS=18001298;//jseditor.Finder:1298
+        //$LASTPOS=18001297;//jseditor.Finder:1297
         head = key.substring(0,1);
         
-        //$LASTPOS=18001331;//jseditor.Finder:1331
+        //$LASTPOS=18001330;//jseditor.Finder:1330
         ent = _this.filesCache[head]||(_this.filesCache[head]={});
         
-        //$LASTPOS=18001386;//jseditor.Finder:1386
+        //$LASTPOS=18001385;//jseditor.Finder:1385
         (ent[key]=ent[key]||[]).push(f);
         
         _thread.retVal=_this;return;
@@ -468,11 +468,11 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=18001437;//jseditor.Finder:1437
+        //$LASTPOS=18001436;//jseditor.Finder:1436
         _this.upc=(_this.upc||0)+1;
-        //$LASTPOS=18001457;//jseditor.Finder:1457
+        //$LASTPOS=18001456;//jseditor.Finder:1456
         if (_this.upc%5==0) {
-          //$LASTPOS=18001481;//jseditor.Finder:1481
+          //$LASTPOS=18001480;//jseditor.Finder:1480
           Tonyu.classes.jseditor.UIForm.prototype.update.apply( _this, []);
           
         }
@@ -483,7 +483,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=18001437;//jseditor.Finder:1437
+        //$LASTPOS=18001436;//jseditor.Finder:1436
         _this.upc=(_this.upc||0)+1;
         
         _thread.enter(function _trc_Finder_ent_update(_thread) {
@@ -491,9 +491,9 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=18001457;//jseditor.Finder:1457
+              //$LASTPOS=18001456;//jseditor.Finder:1456
               if (!(_this.upc%5==0)) { __pc=2; break; }
-              //$LASTPOS=18001481;//jseditor.Finder:1481
+              //$LASTPOS=18001480;//jseditor.Finder:1480
               Tonyu.classes.jseditor.UIForm.prototype.fiber$update.apply( _this, [_thread]);
               __pc=1;return;
             case 1:

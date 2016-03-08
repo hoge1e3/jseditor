@@ -53,6 +53,11 @@ native $;
     }
     if (curDOM) curDOM.hide();
     var inf=editors[f.path()];
+    if ($fileList) {
+        var d1=$fileList.curDir;
+        var d2=f.up();
+        if (d1 && d2 && d1.path()!=d2.path()) $fileList.open(d2);
+    }
     if (!inf) {
         var editorDOM=$("<pre>").
             css("height", (this.options.height||300)+"px").

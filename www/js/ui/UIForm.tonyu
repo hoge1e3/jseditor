@@ -13,6 +13,9 @@ native parseInt;
 \dialog(options) {
     jqdom.dialog(options);
 }
+\clear() {
+    jqdom.empty();
+}
 \tag() {
     var d=parseArray(arguments);
     (_jqdom||jqdom).append(d);
@@ -27,8 +30,16 @@ native parseInt;
 function parse(expr) {
     if (expr instanceof Array) return parseArray(expr);
     else if (typeof expr=="string") return parseString(expr);
-    else if (typeof expr=="function") return expr(_jqdom);
+    else if (isPlainFunction(expr)) return expr(_jqdom);
     else return expr;
+}
+\isPlainObject(o) {
+    return (typeof o=="object" && 
+        !(o instanceof Array) && 
+        !(o instanceof $));
+}
+\isPlainFunction(f) {
+    return (typeof f=="function") && Object.keys(f.prototype).length==0;
 }
 function parseArray(a) {
     var tag=a[0];
@@ -38,12 +49,19 @@ function parseArray(a) {
         res=_jqdom=$("<"+tag+">");
         if (!jqdom) jqdom=_jqdom;
         i=1;
-        if (typeof a[i]=="object" && 
-        !(a[i] instanceof Array) && 
-        !(a[i] instanceof $) ) {
+        if (isPlainObject(a[i])) {
             parseAttr(a[i]);
             i++;
         }
+    } else if (typeof tag=="function" && tag.prototype.parseArray) {
+        var params={parent:this, jqdom:_jqdom};
+        i=1;
+        if (isPlainObject(a[i])) {
+            Tonyu.extend(params,a[i]);
+            i++;
+        }
+        i=a.length;
+        new tag(params);
     }
     while (i<a.length) {
         var s=parse(a[i]);

@@ -38,7 +38,7 @@ extends UIForm;
         change(res) \{
             tag("div") \{
                 tag("a", {
-                    href:"javascript:;", on:{click:\{$editorSet.open(f);} }
+                    href:"javascript:;", on:{click:\{$fileList.open(f);} }
                 },f.name());
             };
         };

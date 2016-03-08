@@ -1,0 +1,16 @@
+extends UIForm;
+
+\new(ElementEditorClass) {
+    this.ElementEditorClass=ElementEditorClass;
+}
+
+\loadArray(array) {
+    model=array;
+    refreshView();
+}
+\refreshView() {
+    clear();
+    model.forEach \(e) {
+        tag(ElementEditorClass) {model:e};
+    };
+}

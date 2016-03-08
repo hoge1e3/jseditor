@@ -7,11 +7,16 @@ define(function (require) {
     var p=FileList.prototype;
     p.open=function (d) {
         var t=this;
-        var list=t.list;
         this.lastSelected=d;
         if (!d.isDir()) {
+            this.ls(d.up());
             return t.on.open(d);
         }
+        this.ls(d);
+    };
+    p.ls=function (d) {
+        var t=this;
+        var list=t.list;
         list.empty();
         addItem(d.up(),"[UP]");
         this.curDir=d;

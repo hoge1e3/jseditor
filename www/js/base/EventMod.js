@@ -39,13 +39,13 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_157;
+        var _it_2;
         
         //$LASTPOS=2000243;//jseditor.EventMod:243
-        _it_157=Tonyu.iterator(_this._eventHandlers,2);
-        while(_it_157.next()) {
-          k=_it_157[0];
-          v=_it_157[1];
+        _it_2=Tonyu.iterator(_this._eventHandlers,2);
+        while(_it_2.next()) {
+          k=_it_2[0];
+          v=_it_2[1];
           
           //$LASTPOS=2000285;//jseditor.EventMod:285
           v.release();

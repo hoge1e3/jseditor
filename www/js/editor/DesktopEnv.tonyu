@@ -5,6 +5,7 @@ tag("div") \{
     tag("div","エディタの文字の大きさ");
     tag("input") {$bind:"editorFontSize",on:{enterkey:close}};
     tag("button",{on:{click:close}},"OK");
+    //tag(MyForm) {mesg:"おまけ"};
 };
 loadModel($etc.rel("desktop.json"));
 

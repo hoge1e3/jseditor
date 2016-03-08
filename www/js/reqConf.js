@@ -117,7 +117,9 @@ var reqConf={
         "DesktopEnv": "editor/DesktopEnv",
         "EventHandler": "base/EventHandler",
         "EventHandlerCaller": "base/EventHandlerCaller",
-        "EventMod": "base/EventMod"
+        "EventMod": "base/EventMod",
+        "ListForm": "ui/ListForm",
+        "ArrayEditor": "ui/ArrayEditor"
     },
     "baseUrl": "./js/"
 };

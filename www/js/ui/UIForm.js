@@ -74,15 +74,33 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
+      clear :function _trc_UIForm_clear() {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=16000244;//jseditor.UIForm:244
+        _this.jqdom.empty();
+      },
+      fiber$clear :function _trc_UIForm_f_clear(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=16000244;//jseditor.UIForm:244
+        _this.jqdom.empty();
+        
+        _thread.retVal=_this;return;
+      },
       tag :function _trc_UIForm_tag() {
         "use strict";
         var _this=this;
         var d;
         
-        //$LASTPOS=16000242;//jseditor.UIForm:242
+        //$LASTPOS=16000277;//jseditor.UIForm:277
         d = _this.parseArray(arguments);
         
-        //$LASTPOS=16000276;//jseditor.UIForm:276
+        //$LASTPOS=16000311;//jseditor.UIForm:311
         (_this._jqdom||_this.jqdom).append(d);
         return d;
       },
@@ -99,13 +117,13 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16000242;//jseditor.UIForm:242
+              //$LASTPOS=16000277;//jseditor.UIForm:277
               _this.fiber$parseArray(_thread, _arguments);
               __pc=1;return;
             case 1:
               d=_thread.retVal;
               
-              //$LASTPOS=16000276;//jseditor.UIForm:276
+              //$LASTPOS=16000311;//jseditor.UIForm:311
               (_this._jqdom||_this.jqdom).append(d);
               _thread.exit(d);return;
               _thread.exit(_this);return;
@@ -118,14 +136,14 @@ define(function (require) {
         var _this=this;
         var sv;
         
-        //$LASTPOS=16000348;//jseditor.UIForm:348
+        //$LASTPOS=16000383;//jseditor.UIForm:383
         sv = _this._jqdom;
         
-        //$LASTPOS=16000368;//jseditor.UIForm:368
+        //$LASTPOS=16000403;//jseditor.UIForm:403
         _this._jqdom=elem;
-        //$LASTPOS=16000386;//jseditor.UIForm:386
+        //$LASTPOS=16000421;//jseditor.UIForm:421
         func();
-        //$LASTPOS=16000399;//jseditor.UIForm:399
+        //$LASTPOS=16000434;//jseditor.UIForm:434
         _this._jqdom=sv;
       },
       fiber$change :function _trc_UIForm_f_change(_thread,elem,func) {
@@ -135,14 +153,14 @@ define(function (require) {
         var __pc=0;
         var sv;
         
-        //$LASTPOS=16000348;//jseditor.UIForm:348
+        //$LASTPOS=16000383;//jseditor.UIForm:383
         sv = _this._jqdom;
         
-        //$LASTPOS=16000368;//jseditor.UIForm:368
+        //$LASTPOS=16000403;//jseditor.UIForm:403
         _this._jqdom=elem;
-        //$LASTPOS=16000386;//jseditor.UIForm:386
+        //$LASTPOS=16000421;//jseditor.UIForm:421
         func();
-        //$LASTPOS=16000399;//jseditor.UIForm:399
+        //$LASTPOS=16000434;//jseditor.UIForm:434
         _this._jqdom=sv;
         
         _thread.retVal=_this;return;
@@ -151,16 +169,16 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16000442;//jseditor.UIForm:442
+        //$LASTPOS=16000477;//jseditor.UIForm:477
         if (expr instanceof Array) {
           return _this.parseArray(expr);
         } else {
-          //$LASTPOS=16000504;//jseditor.UIForm:504
+          //$LASTPOS=16000539;//jseditor.UIForm:539
           if (typeof  expr=="string") {
             return _this.parseString(expr);
           } else {
-            //$LASTPOS=16000567;//jseditor.UIForm:567
-            if (typeof  expr=="function") {
+            //$LASTPOS=16000602;//jseditor.UIForm:602
+            if (_this.isPlainFunction(expr)) {
               return expr(_this._jqdom);
             } else {
               return expr;
@@ -174,18 +192,18 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=16000442;//jseditor.UIForm:442
+        //$LASTPOS=16000477;//jseditor.UIForm:477
         if (expr instanceof Array) {
           _thread.retVal=_this.parseArray(expr);return;
           
         } else {
-          //$LASTPOS=16000504;//jseditor.UIForm:504
+          //$LASTPOS=16000539;//jseditor.UIForm:539
           if (typeof  expr=="string") {
             _thread.retVal=_this.parseString(expr);return;
             
           } else {
-            //$LASTPOS=16000567;//jseditor.UIForm:567
-            if (typeof  expr=="function") {
+            //$LASTPOS=16000602;//jseditor.UIForm:602
+            if (_this.isPlainFunction(expr)) {
               _thread.retVal=expr(_this._jqdom);return;
               
             } else {
@@ -197,6 +215,40 @@ define(function (require) {
         
         _thread.retVal=_this;return;
       },
+      isPlainObject :function _trc_UIForm_isPlainObject(o) {
+        "use strict";
+        var _this=this;
+        
+        return (typeof  o=="object"&&! (o instanceof Array)&&! (o instanceof $));
+      },
+      fiber$isPlainObject :function _trc_UIForm_f_isPlainObject(_thread,o) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        _thread.retVal=(typeof  o=="object"&&! (o instanceof Array)&&! (o instanceof $));return;
+        
+        
+        _thread.retVal=_this;return;
+      },
+      isPlainFunction :function _trc_UIForm_isPlainFunction(f) {
+        "use strict";
+        var _this=this;
+        
+        return (typeof  f=="function")&&Object.keys(f.prototype).length==0;
+      },
+      fiber$isPlainFunction :function _trc_UIForm_f_isPlainFunction(_thread,f) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        _thread.retVal=(typeof  f=="function")&&Object.keys(f.prototype).length==0;return;
+        
+        
+        _thread.retVal=_this;return;
+      },
       parseArray :function _trc_UIForm_parseArray(a) {
         "use strict";
         var _this=this;
@@ -204,53 +256,76 @@ define(function (require) {
         var i;
         var svjq;
         var res;
+        var params;
         var s;
         
-        //$LASTPOS=16000674;//jseditor.UIForm:674
+        //$LASTPOS=16000931;//jseditor.UIForm:931
         tag = a[0];
         
-        //$LASTPOS=16000693;//jseditor.UIForm:693
+        //$LASTPOS=16000950;//jseditor.UIForm:950
         i = 0;
         
-        //$LASTPOS=16000707;//jseditor.UIForm:707
+        //$LASTPOS=16000964;//jseditor.UIForm:964
         svjq = _this._jqdom;
         
-        //$LASTPOS=16000733;//jseditor.UIForm:733
+        //$LASTPOS=16000990;//jseditor.UIForm:990
         if (typeof  tag=="string") {
-          //$LASTPOS=16000770;//jseditor.UIForm:770
+          //$LASTPOS=16001027;//jseditor.UIForm:1027
           res=_this._jqdom=$("<"+tag+">");
-          //$LASTPOS=16000806;//jseditor.UIForm:806
+          //$LASTPOS=16001063;//jseditor.UIForm:1063
           if (! _this.jqdom) {
-            //$LASTPOS=16000818;//jseditor.UIForm:818
+            //$LASTPOS=16001075;//jseditor.UIForm:1075
             _this.jqdom=_this._jqdom;
           }
-          //$LASTPOS=16000841;//jseditor.UIForm:841
+          //$LASTPOS=16001098;//jseditor.UIForm:1098
           i=1;
-          //$LASTPOS=16000855;//jseditor.UIForm:855
-          if (typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $)) {
-            //$LASTPOS=16000970;//jseditor.UIForm:970
+          //$LASTPOS=16001112;//jseditor.UIForm:1112
+          if (_this.isPlainObject(a[i])) {
+            //$LASTPOS=16001152;//jseditor.UIForm:1152
             _this.parseAttr(a[i]);
-            //$LASTPOS=16001000;//jseditor.UIForm:1000
+            //$LASTPOS=16001182;//jseditor.UIForm:1182
             i++;
             
           }
           
+        } else {
+          //$LASTPOS=16001210;//jseditor.UIForm:1210
+          if (typeof  tag=="function"&&tag.prototype.parseArray) {
+            //$LASTPOS=16001277;//jseditor.UIForm:1277
+            params = {parent: _this,jqdom: _this._jqdom};
+            
+            //$LASTPOS=16001326;//jseditor.UIForm:1326
+            i=1;
+            //$LASTPOS=16001340;//jseditor.UIForm:1340
+            if (_this.isPlainObject(a[i])) {
+              //$LASTPOS=16001380;//jseditor.UIForm:1380
+              Tonyu.extend(params,a[i]);
+              //$LASTPOS=16001420;//jseditor.UIForm:1420
+              i++;
+              
+            }
+            //$LASTPOS=16001445;//jseditor.UIForm:1445
+            i=a.length;
+            //$LASTPOS=16001466;//jseditor.UIForm:1466
+            new tag(params);
+            
+          }
         }
-        //$LASTPOS=16001028;//jseditor.UIForm:1028
+        //$LASTPOS=16001495;//jseditor.UIForm:1495
         while (i<a.length) {
-          //$LASTPOS=16001058;//jseditor.UIForm:1058
+          //$LASTPOS=16001525;//jseditor.UIForm:1525
           s = _this.parse(a[i]);
           
-          //$LASTPOS=16001086;//jseditor.UIForm:1086
+          //$LASTPOS=16001553;//jseditor.UIForm:1553
           if (s) {
-            //$LASTPOS=16001093;//jseditor.UIForm:1093
+            //$LASTPOS=16001560;//jseditor.UIForm:1560
             res.append(s);
           }
-          //$LASTPOS=16001117;//jseditor.UIForm:1117
+          //$LASTPOS=16001584;//jseditor.UIForm:1584
           i++;
           
         }
-        //$LASTPOS=16001134;//jseditor.UIForm:1134
+        //$LASTPOS=16001601;//jseditor.UIForm:1601
         _this._jqdom=svjq;
         return res;
       },
@@ -263,15 +338,16 @@ define(function (require) {
         var i;
         var svjq;
         var res;
+        var params;
         var s;
         
-        //$LASTPOS=16000674;//jseditor.UIForm:674
+        //$LASTPOS=16000931;//jseditor.UIForm:931
         tag = a[0];
         
-        //$LASTPOS=16000693;//jseditor.UIForm:693
+        //$LASTPOS=16000950;//jseditor.UIForm:950
         i = 0;
         
-        //$LASTPOS=16000707;//jseditor.UIForm:707
+        //$LASTPOS=16000964;//jseditor.UIForm:964
         svjq = _this._jqdom;
         
         
@@ -280,50 +356,73 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16000733;//jseditor.UIForm:733
+              //$LASTPOS=16000990;//jseditor.UIForm:990
               if (!(typeof  tag=="string")) { __pc=3; break; }
-              //$LASTPOS=16000770;//jseditor.UIForm:770
+              //$LASTPOS=16001027;//jseditor.UIForm:1027
               res=_this._jqdom=$("<"+tag+">");
-              //$LASTPOS=16000806;//jseditor.UIForm:806
+              //$LASTPOS=16001063;//jseditor.UIForm:1063
               if (! _this.jqdom) {
-                //$LASTPOS=16000818;//jseditor.UIForm:818
+                //$LASTPOS=16001075;//jseditor.UIForm:1075
                 _this.jqdom=_this._jqdom;
               }
-              //$LASTPOS=16000841;//jseditor.UIForm:841
+              //$LASTPOS=16001098;//jseditor.UIForm:1098
               i=1;
-              //$LASTPOS=16000855;//jseditor.UIForm:855
-              if (!(typeof  a[i]=="object"&&! (a[i] instanceof Array)&&! (a[i] instanceof $))) { __pc=2; break; }
-              //$LASTPOS=16000970;//jseditor.UIForm:970
+              //$LASTPOS=16001112;//jseditor.UIForm:1112
+              if (!(_this.isPlainObject(a[i]))) { __pc=2; break; }
+              //$LASTPOS=16001152;//jseditor.UIForm:1152
               _this.fiber$parseAttr(_thread, a[i]);
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=16001000;//jseditor.UIForm:1000
+              //$LASTPOS=16001182;//jseditor.UIForm:1182
               i++;
             case 2:
               
+              __pc=4;break;
             case 3:
-              
-              //$LASTPOS=16001028;//jseditor.UIForm:1028
+              //$LASTPOS=16001210;//jseditor.UIForm:1210
+              if (typeof  tag=="function"&&tag.prototype.parseArray) {
+                //$LASTPOS=16001277;//jseditor.UIForm:1277
+                params = {parent: _this,jqdom: _this._jqdom};
+                
+                //$LASTPOS=16001326;//jseditor.UIForm:1326
+                i=1;
+                //$LASTPOS=16001340;//jseditor.UIForm:1340
+                if (_this.isPlainObject(a[i])) {
+                  //$LASTPOS=16001380;//jseditor.UIForm:1380
+                  Tonyu.extend(params,a[i]);
+                  //$LASTPOS=16001420;//jseditor.UIForm:1420
+                  i++;
+                  
+                }
+                //$LASTPOS=16001445;//jseditor.UIForm:1445
+                i=a.length;
+                //$LASTPOS=16001466;//jseditor.UIForm:1466
+                new tag(params);
+                
+              }
             case 4:
-              if (!(i<a.length)) { __pc=6; break; }
-              //$LASTPOS=16001058;//jseditor.UIForm:1058
-              _this.fiber$parse(_thread, a[i]);
-              __pc=5;return;
+              
+              //$LASTPOS=16001495;//jseditor.UIForm:1495
             case 5:
+              if (!(i<a.length)) { __pc=7; break; }
+              //$LASTPOS=16001525;//jseditor.UIForm:1525
+              _this.fiber$parse(_thread, a[i]);
+              __pc=6;return;
+            case 6:
               s=_thread.retVal;
               
-              //$LASTPOS=16001086;//jseditor.UIForm:1086
+              //$LASTPOS=16001553;//jseditor.UIForm:1553
               if (s) {
-                //$LASTPOS=16001093;//jseditor.UIForm:1093
+                //$LASTPOS=16001560;//jseditor.UIForm:1560
                 res.append(s);
               }
-              //$LASTPOS=16001117;//jseditor.UIForm:1117
+              //$LASTPOS=16001584;//jseditor.UIForm:1584
               i++;
-              __pc=4;break;
-            case 6:
+              __pc=5;break;
+            case 7:
               
-              //$LASTPOS=16001134;//jseditor.UIForm:1134
+              //$LASTPOS=16001601;//jseditor.UIForm:1601
               _this._jqdom=svjq;
               _thread.exit(res);return;
               _thread.exit(_this);return;
@@ -336,57 +435,57 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_337;
+        var _it_317;
         var eType;
         var li;
-        var _it_338;
+        var _it_318;
         
-        //$LASTPOS=16001197;//jseditor.UIForm:1197
-        _it_337=Tonyu.iterator(o,2);
-        while(_it_337.next()) {
-          k=_it_337[0];
-          v=_it_337[1];
+        //$LASTPOS=16001664;//jseditor.UIForm:1664
+        _it_317=Tonyu.iterator(o,2);
+        while(_it_317.next()) {
+          k=_it_317[0];
+          v=_it_317[1];
           
-          //$LASTPOS=16001227;//jseditor.UIForm:1227
+          //$LASTPOS=16001694;//jseditor.UIForm:1694
           if (k=="on") {
-            //$LASTPOS=16001255;//jseditor.UIForm:1255
-            _it_338=Tonyu.iterator(o.on,2);
-            while(_it_338.next()) {
-              eType=_it_338[0];
-              li=_it_338[1];
+            //$LASTPOS=16001722;//jseditor.UIForm:1722
+            _it_318=Tonyu.iterator(o.on,2);
+            while(_it_318.next()) {
+              eType=_it_318[0];
+              li=_it_318[1];
               
-              //$LASTPOS=16001282;//jseditor.UIForm:1282
+              //$LASTPOS=16001749;//jseditor.UIForm:1749
               _this.parseOn(eType,li);
             }
             
           } else {
-            //$LASTPOS=16001317;//jseditor.UIForm:1317
+            //$LASTPOS=16001784;//jseditor.UIForm:1784
             if (k=="name") {
-              //$LASTPOS=16001347;//jseditor.UIForm:1347
+              //$LASTPOS=16001814;//jseditor.UIForm:1814
               _this[v]=_this._jqdom;
-              //$LASTPOS=16001376;//jseditor.UIForm:1376
+              //$LASTPOS=16001843;//jseditor.UIForm:1843
               _this._jqdom.attr(k,v);
               
             } else {
-              //$LASTPOS=16001410;//jseditor.UIForm:1410
+              //$LASTPOS=16001877;//jseditor.UIForm:1877
               if (k=="css"&&v!=null) {
-                //$LASTPOS=16001450;//jseditor.UIForm:1450
+                //$LASTPOS=16001917;//jseditor.UIForm:1917
                 _this._jqdom.css(v);
                 
               } else {
-                //$LASTPOS=16001481;//jseditor.UIForm:1481
+                //$LASTPOS=16001948;//jseditor.UIForm:1948
                 if (Util.startsWith(k,"$")) {
-                  //$LASTPOS=16001525;//jseditor.UIForm:1525
+                  //$LASTPOS=16001992;//jseditor.UIForm:1992
                   if (k=="$bind") {
-                    //$LASTPOS=16001560;//jseditor.UIForm:1560
+                    //$LASTPOS=16002027;//jseditor.UIForm:2027
                     _this.bind(v);
                     
                   }
                   
                 } else {
-                  //$LASTPOS=16001600;//jseditor.UIForm:1600
+                  //$LASTPOS=16002067;//jseditor.UIForm:2067
                   if (v!=null) {
-                    //$LASTPOS=16001628;//jseditor.UIForm:1628
+                    //$LASTPOS=16002095;//jseditor.UIForm:2095
                     _this._jqdom.attr(k,v);
                     
                   }
@@ -404,10 +503,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_337;
+        var _it_317;
         var eType;
         var li;
-        var _it_338;
+        var _it_318;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -415,23 +514,23 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16001197;//jseditor.UIForm:1197
-              _it_337=Tonyu.iterator(o,2);
+              //$LASTPOS=16001664;//jseditor.UIForm:1664
+              _it_317=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_337.next())) { __pc=15; break; }
-              k=_it_337[0];
-              v=_it_337[1];
+              if (!(_it_317.next())) { __pc=15; break; }
+              k=_it_317[0];
+              v=_it_317[1];
               
-              //$LASTPOS=16001227;//jseditor.UIForm:1227
+              //$LASTPOS=16001694;//jseditor.UIForm:1694
               if (!(k=="on")) { __pc=5; break; }
-              //$LASTPOS=16001255;//jseditor.UIForm:1255
-              _it_338=Tonyu.iterator(o.on,2);
+              //$LASTPOS=16001722;//jseditor.UIForm:1722
+              _it_318=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_338.next())) { __pc=4; break; }
-              eType=_it_338[0];
-              li=_it_338[1];
+              if (!(_it_318.next())) { __pc=4; break; }
+              eType=_it_318[0];
+              li=_it_318[1];
               
-              //$LASTPOS=16001282;//jseditor.UIForm:1282
+              //$LASTPOS=16001749;//jseditor.UIForm:1749
               _this.fiber$parseOn(_thread, eType, li);
               __pc=3;return;
             case 3:
@@ -441,29 +540,29 @@ define(function (require) {
               
               __pc=14;break;
             case 5:
-              //$LASTPOS=16001317;//jseditor.UIForm:1317
+              //$LASTPOS=16001784;//jseditor.UIForm:1784
               if (!(k=="name")) { __pc=6; break; }
               {
-                //$LASTPOS=16001347;//jseditor.UIForm:1347
+                //$LASTPOS=16001814;//jseditor.UIForm:1814
                 _this[v]=_this._jqdom;
-                //$LASTPOS=16001376;//jseditor.UIForm:1376
+                //$LASTPOS=16001843;//jseditor.UIForm:1843
                 _this._jqdom.attr(k,v);
               }
               __pc=13;break;
             case 6:
-              //$LASTPOS=16001410;//jseditor.UIForm:1410
+              //$LASTPOS=16001877;//jseditor.UIForm:1877
               if (!(k=="css"&&v!=null)) { __pc=7; break; }
               {
-                //$LASTPOS=16001450;//jseditor.UIForm:1450
+                //$LASTPOS=16001917;//jseditor.UIForm:1917
                 _this._jqdom.css(v);
               }
               __pc=12;break;
             case 7:
-              //$LASTPOS=16001481;//jseditor.UIForm:1481
+              //$LASTPOS=16001948;//jseditor.UIForm:1948
               if (!(Util.startsWith(k,"$"))) { __pc=10; break; }
-              //$LASTPOS=16001525;//jseditor.UIForm:1525
+              //$LASTPOS=16001992;//jseditor.UIForm:1992
               if (!(k=="$bind")) { __pc=9; break; }
-              //$LASTPOS=16001560;//jseditor.UIForm:1560
+              //$LASTPOS=16002027;//jseditor.UIForm:2027
               _this.fiber$bind(_thread, v);
               __pc=8;return;
             case 8:
@@ -472,9 +571,9 @@ define(function (require) {
               
               __pc=11;break;
             case 10:
-              //$LASTPOS=16001600;//jseditor.UIForm:1600
+              //$LASTPOS=16002067;//jseditor.UIForm:2067
               if (v!=null) {
-                //$LASTPOS=16001628;//jseditor.UIForm:1628
+                //$LASTPOS=16002095;//jseditor.UIForm:2095
                 _this._jqdom.attr(k,v);
                 
               }
@@ -501,68 +600,68 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=16001703;//jseditor.UIForm:1703
+        //$LASTPOS=16002170;//jseditor.UIForm:2170
         jqdom = _this._jqdom;
         
-        //$LASTPOS=16001726;//jseditor.UIForm:1726
+        //$LASTPOS=16002193;//jseditor.UIForm:2193
         if (! li) {
           return _this;
         }
-        //$LASTPOS=16001748;//jseditor.UIForm:1748
+        //$LASTPOS=16002215;//jseditor.UIForm:2215
         if (eType=="enterkey") {
-          //$LASTPOS=16001782;//jseditor.UIForm:1782
-          jqdom.on("keypress",(function anonymous_1803(ev) {
+          //$LASTPOS=16002249;//jseditor.UIForm:2249
+          jqdom.on("keypress",(function anonymous_2270(ev) {
             
-            //$LASTPOS=16001824;//jseditor.UIForm:1824
+            //$LASTPOS=16002291;//jseditor.UIForm:2291
             if (ev.which==13) {
-              //$LASTPOS=16001842;//jseditor.UIForm:1842
+              //$LASTPOS=16002309;//jseditor.UIForm:2309
               li.apply(jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=16001895;//jseditor.UIForm:1895
+          //$LASTPOS=16002362;//jseditor.UIForm:2362
           if (eType=="realtimechange") {
-            //$LASTPOS=16001935;//jseditor.UIForm:1935
+            //$LASTPOS=16002402;//jseditor.UIForm:2402
             first = true;
             
-            //$LASTPOS=16001966;//jseditor.UIForm:1966
-            _this.listeners.push((function anonymous_1981() {
+            //$LASTPOS=16002433;//jseditor.UIForm:2433
+            _this.listeners.push((function anonymous_2448() {
               var cur;
               
               
-              //$LASTPOS=16002022;//jseditor.UIForm:2022
+              //$LASTPOS=16002489;//jseditor.UIForm:2489
               if (jqdom.attr("type")=="checkbox") {
-                //$LASTPOS=16002077;//jseditor.UIForm:2077
+                //$LASTPOS=16002544;//jseditor.UIForm:2544
                 cur=! ! jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=16002145;//jseditor.UIForm:2145
+                //$LASTPOS=16002612;//jseditor.UIForm:2612
                 cur=jqdom.val();
                 
               }
-              //$LASTPOS=16002190;//jseditor.UIForm:2190
+              //$LASTPOS=16002657;//jseditor.UIForm:2657
               if (first||prev!=cur) {
-                //$LASTPOS=16002233;//jseditor.UIForm:2233
+                //$LASTPOS=16002700;//jseditor.UIForm:2700
                 li.apply(jqdom,[cur,prev]);
-                //$LASTPOS=16002278;//jseditor.UIForm:2278
+                //$LASTPOS=16002745;//jseditor.UIForm:2745
                 prev=cur;
                 
               }
-              //$LASTPOS=16002316;//jseditor.UIForm:2316
+              //$LASTPOS=16002783;//jseditor.UIForm:2783
               first=false;
             }));
-            //$LASTPOS=16002350;//jseditor.UIForm:2350
+            //$LASTPOS=16002817;//jseditor.UIForm:2817
             if (! _this._listenersInvoked) {
-              //$LASTPOS=16002389;//jseditor.UIForm:2389
+              //$LASTPOS=16002856;//jseditor.UIForm:2856
               _this._listenersInvoked=true;
-              //$LASTPOS=16002426;//jseditor.UIForm:2426
+              //$LASTPOS=16002893;//jseditor.UIForm:2893
               _this.parallel("listenerLoop");
               
             }
             
           } else {
-            //$LASTPOS=16002486;//jseditor.UIForm:2486
+            //$LASTPOS=16002953;//jseditor.UIForm:2953
             jqdom.on(eType,li);
             
           }
@@ -577,69 +676,69 @@ define(function (require) {
         var first;
         var prev;
         
-        //$LASTPOS=16001703;//jseditor.UIForm:1703
+        //$LASTPOS=16002170;//jseditor.UIForm:2170
         jqdom = _this._jqdom;
         
-        //$LASTPOS=16001726;//jseditor.UIForm:1726
+        //$LASTPOS=16002193;//jseditor.UIForm:2193
         if (! li) {
           _thread.retVal=_this;return;
           
         }
-        //$LASTPOS=16001748;//jseditor.UIForm:1748
+        //$LASTPOS=16002215;//jseditor.UIForm:2215
         if (eType=="enterkey") {
-          //$LASTPOS=16001782;//jseditor.UIForm:1782
-          jqdom.on("keypress",(function anonymous_1803(ev) {
+          //$LASTPOS=16002249;//jseditor.UIForm:2249
+          jqdom.on("keypress",(function anonymous_2270(ev) {
             
-            //$LASTPOS=16001824;//jseditor.UIForm:1824
+            //$LASTPOS=16002291;//jseditor.UIForm:2291
             if (ev.which==13) {
-              //$LASTPOS=16001842;//jseditor.UIForm:1842
+              //$LASTPOS=16002309;//jseditor.UIForm:2309
               li.apply(jqdom,arguments);
             }
           }));
           
         } else {
-          //$LASTPOS=16001895;//jseditor.UIForm:1895
+          //$LASTPOS=16002362;//jseditor.UIForm:2362
           if (eType=="realtimechange") {
-            //$LASTPOS=16001935;//jseditor.UIForm:1935
+            //$LASTPOS=16002402;//jseditor.UIForm:2402
             first = true;
             
-            //$LASTPOS=16001966;//jseditor.UIForm:1966
-            _this.listeners.push((function anonymous_1981() {
+            //$LASTPOS=16002433;//jseditor.UIForm:2433
+            _this.listeners.push((function anonymous_2448() {
               var cur;
               
               
-              //$LASTPOS=16002022;//jseditor.UIForm:2022
+              //$LASTPOS=16002489;//jseditor.UIForm:2489
               if (jqdom.attr("type")=="checkbox") {
-                //$LASTPOS=16002077;//jseditor.UIForm:2077
+                //$LASTPOS=16002544;//jseditor.UIForm:2544
                 cur=! ! jqdom.prop("checked");
                 
               } else {
-                //$LASTPOS=16002145;//jseditor.UIForm:2145
+                //$LASTPOS=16002612;//jseditor.UIForm:2612
                 cur=jqdom.val();
                 
               }
-              //$LASTPOS=16002190;//jseditor.UIForm:2190
+              //$LASTPOS=16002657;//jseditor.UIForm:2657
               if (first||prev!=cur) {
-                //$LASTPOS=16002233;//jseditor.UIForm:2233
+                //$LASTPOS=16002700;//jseditor.UIForm:2700
                 li.apply(jqdom,[cur,prev]);
-                //$LASTPOS=16002278;//jseditor.UIForm:2278
+                //$LASTPOS=16002745;//jseditor.UIForm:2745
                 prev=cur;
                 
               }
-              //$LASTPOS=16002316;//jseditor.UIForm:2316
+              //$LASTPOS=16002783;//jseditor.UIForm:2783
               first=false;
             }));
-            //$LASTPOS=16002350;//jseditor.UIForm:2350
+            //$LASTPOS=16002817;//jseditor.UIForm:2817
             if (! _this._listenersInvoked) {
-              //$LASTPOS=16002389;//jseditor.UIForm:2389
+              //$LASTPOS=16002856;//jseditor.UIForm:2856
               _this._listenersInvoked=true;
-              //$LASTPOS=16002426;//jseditor.UIForm:2426
+              //$LASTPOS=16002893;//jseditor.UIForm:2893
               _this.parallel("listenerLoop");
               
             }
             
           } else {
-            //$LASTPOS=16002486;//jseditor.UIForm:2486
+            //$LASTPOS=16002953;//jseditor.UIForm:2953
             jqdom.on(eType,li);
             
           }
@@ -670,33 +769,33 @@ define(function (require) {
         var jqdom;
         var vtype;
         
-        //$LASTPOS=16002609;//jseditor.UIForm:2609
+        //$LASTPOS=16003076;//jseditor.UIForm:3076
         jqdom = _this._jqdom;
         
-        //$LASTPOS=16002632;//jseditor.UIForm:2632
+        //$LASTPOS=16003099;//jseditor.UIForm:3099
         if (_this.model) {
-          //$LASTPOS=16002643;//jseditor.UIForm:2643
+          //$LASTPOS=16003110;//jseditor.UIForm:3110
           jqdom.val(_this.model[key]);
         }
-        //$LASTPOS=16002671;//jseditor.UIForm:2671
+        //$LASTPOS=16003138;//jseditor.UIForm:3138
         vtype = _this.modelType&&_this.modelType[key]||"string";
         
-        //$LASTPOS=16002727;//jseditor.UIForm:2727
-        _this.parseOn("realtimechange",(function anonymous_2753(val) {
+        //$LASTPOS=16003194;//jseditor.UIForm:3194
+        _this.parseOn("realtimechange",(function anonymous_3220(val) {
           
-          //$LASTPOS=16002771;//jseditor.UIForm:2771
+          //$LASTPOS=16003238;//jseditor.UIForm:3238
           _this.print("bind-wrt",_this.model,key,val,vtype,_this.modelType);
-          //$LASTPOS=16002829;//jseditor.UIForm:2829
+          //$LASTPOS=16003296;//jseditor.UIForm:3296
           if (_this.model) {
-            //$LASTPOS=16002855;//jseditor.UIForm:2855
+            //$LASTPOS=16003322;//jseditor.UIForm:3322
             if (vtype=="string") {
-              //$LASTPOS=16002895;//jseditor.UIForm:2895
+              //$LASTPOS=16003362;//jseditor.UIForm:3362
               _this.model[key]=val;
               
             } else {
-              //$LASTPOS=16002931;//jseditor.UIForm:2931
+              //$LASTPOS=16003398;//jseditor.UIForm:3398
               if (vtype="number") {
-                //$LASTPOS=16002969;//jseditor.UIForm:2969
+                //$LASTPOS=16003436;//jseditor.UIForm:3436
                 _this.model[key]=parseInt(val);
                 
               }
@@ -704,10 +803,10 @@ define(function (require) {
             
           }
         }));
-        //$LASTPOS=16003034;//jseditor.UIForm:3034
-        _this.binds[key]={onModelChanged: (function anonymous_3071(val) {
+        //$LASTPOS=16003501;//jseditor.UIForm:3501
+        _this.binds[key]={onModelChanged: (function anonymous_3538(val) {
           
-          //$LASTPOS=16003093;//jseditor.UIForm:3093
+          //$LASTPOS=16003560;//jseditor.UIForm:3560
           jqdom.val(val);
         })};
       },
@@ -719,15 +818,15 @@ define(function (require) {
         var jqdom;
         var vtype;
         
-        //$LASTPOS=16002609;//jseditor.UIForm:2609
+        //$LASTPOS=16003076;//jseditor.UIForm:3076
         jqdom = _this._jqdom;
         
-        //$LASTPOS=16002632;//jseditor.UIForm:2632
+        //$LASTPOS=16003099;//jseditor.UIForm:3099
         if (_this.model) {
-          //$LASTPOS=16002643;//jseditor.UIForm:2643
+          //$LASTPOS=16003110;//jseditor.UIForm:3110
           jqdom.val(_this.model[key]);
         }
-        //$LASTPOS=16002671;//jseditor.UIForm:2671
+        //$LASTPOS=16003138;//jseditor.UIForm:3138
         vtype = _this.modelType&&_this.modelType[key]||"string";
         
         
@@ -736,22 +835,22 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16002727;//jseditor.UIForm:2727
-              _this.fiber$parseOn(_thread, "realtimechange", (function anonymous_2753(val) {
+              //$LASTPOS=16003194;//jseditor.UIForm:3194
+              _this.fiber$parseOn(_thread, "realtimechange", (function anonymous_3220(val) {
                 
-                //$LASTPOS=16002771;//jseditor.UIForm:2771
+                //$LASTPOS=16003238;//jseditor.UIForm:3238
                 _this.print("bind-wrt",_this.model,key,val,vtype,_this.modelType);
-                //$LASTPOS=16002829;//jseditor.UIForm:2829
+                //$LASTPOS=16003296;//jseditor.UIForm:3296
                 if (_this.model) {
-                  //$LASTPOS=16002855;//jseditor.UIForm:2855
+                  //$LASTPOS=16003322;//jseditor.UIForm:3322
                   if (vtype=="string") {
-                    //$LASTPOS=16002895;//jseditor.UIForm:2895
+                    //$LASTPOS=16003362;//jseditor.UIForm:3362
                     _this.model[key]=val;
                     
                   } else {
-                    //$LASTPOS=16002931;//jseditor.UIForm:2931
+                    //$LASTPOS=16003398;//jseditor.UIForm:3398
                     if (vtype="number") {
-                      //$LASTPOS=16002969;//jseditor.UIForm:2969
+                      //$LASTPOS=16003436;//jseditor.UIForm:3436
                       _this.model[key]=parseInt(val);
                       
                     }
@@ -762,10 +861,10 @@ define(function (require) {
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=16003034;//jseditor.UIForm:3034
-              _this.binds[key]={onModelChanged: (function anonymous_3071(val) {
+              //$LASTPOS=16003501;//jseditor.UIForm:3501
+              _this.binds[key]={onModelChanged: (function anonymous_3538(val) {
                 
-                //$LASTPOS=16003093;//jseditor.UIForm:3093
+                //$LASTPOS=16003560;//jseditor.UIForm:3560
                 jqdom.val(val);
               })};
               _thread.exit(_this);return;
@@ -778,29 +877,29 @@ define(function (require) {
         var _this=this;
         var key;
         var handler;
-        var _it_354;
+        var _it_334;
         
-        //$LASTPOS=16003153;//jseditor.UIForm:3153
+        //$LASTPOS=16003620;//jseditor.UIForm:3620
         if (SFile["is"](m)) {
-          //$LASTPOS=16003184;//jseditor.UIForm:3184
+          //$LASTPOS=16003651;//jseditor.UIForm:3651
           _this.modelFile=m;
-          //$LASTPOS=16003206;//jseditor.UIForm:3206
+          //$LASTPOS=16003673;//jseditor.UIForm:3673
           _this.model=_this.readJSON(_this.modelFile)||{};
           
         } else {
-          //$LASTPOS=16003260;//jseditor.UIForm:3260
+          //$LASTPOS=16003727;//jseditor.UIForm:3727
           _this.model=m;
           
         }
-        //$LASTPOS=16003281;//jseditor.UIForm:3281
+        //$LASTPOS=16003748;//jseditor.UIForm:3748
         assert(_this.model,"Model load error");
-        //$LASTPOS=16003321;//jseditor.UIForm:3321
-        _it_354=Tonyu.iterator(_this.binds,2);
-        while(_it_354.next()) {
-          key=_it_354[0];
-          handler=_it_354[1];
+        //$LASTPOS=16003788;//jseditor.UIForm:3788
+        _it_334=Tonyu.iterator(_this.binds,2);
+        while(_it_334.next()) {
+          key=_it_334[0];
+          handler=_it_334[1];
           
-          //$LASTPOS=16003363;//jseditor.UIForm:3363
+          //$LASTPOS=16003830;//jseditor.UIForm:3830
           handler.onModelChanged(_this.model[key]);
           
         }
@@ -812,29 +911,29 @@ define(function (require) {
         var __pc=0;
         var key;
         var handler;
-        var _it_354;
+        var _it_334;
         
-        //$LASTPOS=16003153;//jseditor.UIForm:3153
+        //$LASTPOS=16003620;//jseditor.UIForm:3620
         if (SFile["is"](m)) {
-          //$LASTPOS=16003184;//jseditor.UIForm:3184
+          //$LASTPOS=16003651;//jseditor.UIForm:3651
           _this.modelFile=m;
-          //$LASTPOS=16003206;//jseditor.UIForm:3206
+          //$LASTPOS=16003673;//jseditor.UIForm:3673
           _this.model=_this.readJSON(_this.modelFile)||{};
           
         } else {
-          //$LASTPOS=16003260;//jseditor.UIForm:3260
+          //$LASTPOS=16003727;//jseditor.UIForm:3727
           _this.model=m;
           
         }
-        //$LASTPOS=16003281;//jseditor.UIForm:3281
+        //$LASTPOS=16003748;//jseditor.UIForm:3748
         assert(_this.model,"Model load error");
-        //$LASTPOS=16003321;//jseditor.UIForm:3321
-        _it_354=Tonyu.iterator(_this.binds,2);
-        while(_it_354.next()) {
-          key=_it_354[0];
-          handler=_it_354[1];
+        //$LASTPOS=16003788;//jseditor.UIForm:3788
+        _it_334=Tonyu.iterator(_this.binds,2);
+        while(_it_334.next()) {
+          key=_it_334[0];
+          handler=_it_334[1];
           
-          //$LASTPOS=16003363;//jseditor.UIForm:3363
+          //$LASTPOS=16003830;//jseditor.UIForm:3830
           handler.onModelChanged(_this.model[key]);
           
         }
@@ -845,11 +944,11 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16003430;//jseditor.UIForm:3430
+        //$LASTPOS=16003897;//jseditor.UIForm:3897
         if (_this.modelFile&&_this.model) {
-          //$LASTPOS=16003465;//jseditor.UIForm:3465
+          //$LASTPOS=16003932;//jseditor.UIForm:3932
           _this.writeJSON(_this.modelFile,_this.model,{indent: 4});
-          //$LASTPOS=16003513;//jseditor.UIForm:3513
+          //$LASTPOS=16003980;//jseditor.UIForm:3980
           _this.sendEvent("modelsaved",_this.model);
           
         } else {
@@ -870,14 +969,14 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16003430;//jseditor.UIForm:3430
+              //$LASTPOS=16003897;//jseditor.UIForm:3897
               if (!(_this.modelFile&&_this.model)) { __pc=2; break; }
-              //$LASTPOS=16003465;//jseditor.UIForm:3465
+              //$LASTPOS=16003932;//jseditor.UIForm:3932
               _this.fiber$writeJSON(_thread, _this.modelFile, _this.model, {indent: 4});
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=16003513;//jseditor.UIForm:3513
+              //$LASTPOS=16003980;//jseditor.UIForm:3980
               _this.sendEvent("modelsaved",_this.model);
               __pc=3;break;
             case 2:
@@ -896,11 +995,11 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16003650;//jseditor.UIForm:3650
+        //$LASTPOS=16004117;//jseditor.UIForm:4117
         _this.model[key]=val;
-        //$LASTPOS=16003671;//jseditor.UIForm:3671
+        //$LASTPOS=16004138;//jseditor.UIForm:4138
         _this.binds[key].onModelChanged(val);
-        //$LASTPOS=16003708;//jseditor.UIForm:3708
+        //$LASTPOS=16004175;//jseditor.UIForm:4175
         _this.fireEvent("modelChanged",key,val);
       },
       fiber$attr :function _trc_UIForm_f_attr(_thread,key,val) {
@@ -909,11 +1008,11 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=16003650;//jseditor.UIForm:3650
+        //$LASTPOS=16004117;//jseditor.UIForm:4117
         _this.model[key]=val;
-        //$LASTPOS=16003671;//jseditor.UIForm:3671
+        //$LASTPOS=16004138;//jseditor.UIForm:4138
         _this.binds[key].onModelChanged(val);
-        //$LASTPOS=16003708;//jseditor.UIForm:3708
+        //$LASTPOS=16004175;//jseditor.UIForm:4175
         _this.fireEvent("modelChanged",key,val);
         
         _thread.retVal=_this;return;
@@ -922,15 +1021,15 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16003772;//jseditor.UIForm:3772
+        //$LASTPOS=16004239;//jseditor.UIForm:4239
         while (true) {
-          //$LASTPOS=16003795;//jseditor.UIForm:3795
-          _this.listeners.forEach((function anonymous_3812(f) {
+          //$LASTPOS=16004262;//jseditor.UIForm:4262
+          _this.listeners.forEach((function anonymous_4279(f) {
             
-            //$LASTPOS=16003832;//jseditor.UIForm:3832
+            //$LASTPOS=16004299;//jseditor.UIForm:4299
             f();
           }));
-          //$LASTPOS=16003858;//jseditor.UIForm:3858
+          //$LASTPOS=16004325;//jseditor.UIForm:4325
           _this.update(100);
           
         }
@@ -947,15 +1046,15 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16003772;//jseditor.UIForm:3772
+              //$LASTPOS=16004239;//jseditor.UIForm:4239
             case 1:
-              //$LASTPOS=16003795;//jseditor.UIForm:3795
-              _this.listeners.forEach((function anonymous_3812(f) {
+              //$LASTPOS=16004262;//jseditor.UIForm:4262
+              _this.listeners.forEach((function anonymous_4279(f) {
                 
-                //$LASTPOS=16003832;//jseditor.UIForm:3832
+                //$LASTPOS=16004299;//jseditor.UIForm:4299
                 f();
               }));
-              //$LASTPOS=16003858;//jseditor.UIForm:3858
+              //$LASTPOS=16004325;//jseditor.UIForm:4325
               _this.fiber$update(_thread, 100);
               __pc=2;return;
             case 2:
@@ -970,6 +1069,6 @@ define(function (require) {
       },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"tag":{"nowait":false},"change":{"nowait":false},"parse":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false},"bind":{"nowait":false},"loadModel":{"nowait":false},"saveModel":{"nowait":false},"attr":{"nowait":false},"listenerLoop":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"clear":{"nowait":false},"tag":{"nowait":false},"change":{"nowait":false},"parse":{"nowait":false},"isPlainObject":{"nowait":false},"isPlainFunction":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false},"bind":{"nowait":false},"loadModel":{"nowait":false},"saveModel":{"nowait":false},"attr":{"nowait":false},"listenerLoop":{"nowait":false}}}
   });
 });

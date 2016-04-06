@@ -119,7 +119,8 @@ var reqConf={
         "EventHandlerCaller": "base/EventHandlerCaller",
         "EventMod": "base/EventMod",
         "ListForm": "ui/ListForm",
-        "ArrayEditor": "ui/ArrayEditor"
+        "ArrayEditor": "ui/ArrayEditor",
+        "ProjectItemEditor": "editor/ProjectItemEditor"
     },
     "baseUrl": "./js/"
 };

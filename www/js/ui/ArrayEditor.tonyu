@@ -1,16 +1,29 @@
 extends UIForm;
-
-\new(ElementEditorClass) {
-    this.ElementEditorClass=ElementEditorClass;
+\new(opt) {
+    super(opt);
+    assert(ElementEditorClass,"ElementEditorClass not set");
 }
 
-\loadArray(array) {
-    model=array;
+\loadModel(array) {
+    super.loadModel(array);
     refreshView();
 }
 \refreshView() {
     clear();
-    model.forEach \(e) {
+    if (model) {
+        model.forEach \(e) {
+            tag(ElementEditorClass) {model:e};
+        };
+    }
+}
+ElementEditorClass=ElementEditorClass||elem;
+tag("span") \{
+    refreshView();
+};
+
+\push(e) {
+    model.push(e);
+    change(jqdom) \{
         tag(ElementEditorClass) {model:e};
     };
 }

@@ -7,33 +7,28 @@ native location;
 }
 
 etc=new Etc;
+prjFile=etc.rel("projects.json");
+prjList=readJSON(prjFile);
 tag("div") \{
     tag("h1","プロジェクト一覧...");
-    plist=tag("div");
-    parallel("list");
-    //tag("button", {on:{click:edit}}, "編集");
+    editor=tag(ArrayEditor) {elem:ProjectItemEditor,model:prjList};
+    tag("button", {on:{click:add}}, "新規プロジェクト");
+    tag("button", {on:{click:\{
+        writeJSON(prjFile,prjList) {indent:2};
+    } }}, "保存");
 };
+
 
 \edit() {
     $editorSet.open(prjFile);
 }
 \add() {
-    var e={name:"Name", path:process.cwd()};
-    prjList.push(e);
-    writeFile(prjFile,prjList);
-    addItem(e);
-}
-
-\list() {
-    prjFile=etc.rel("projects.json");
-    prjList=readJSON(prjFile); //waitFor(prj.load());
-    prjList.forEach(addItem);
-}
-\addItem(e) {
-    var url=location.href.replace(/\?.*/,"");
-    change(plist) \{
-        tag("div") \{
-            tag("a",{href:url+"?prj="+e.name},e.name);
-        };
+    editor.push{
+        name:"Name", 
+        path:process.cwd().replace(/\\/g,"/"),
+        tonyuC: "www/js/",
+        www: "www/",
+        reqConf: "www/js/reqConf.js"
     };
 }
+

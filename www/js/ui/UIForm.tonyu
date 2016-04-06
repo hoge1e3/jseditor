@@ -3,12 +3,14 @@ native $;
 native parseInt;
 \new(o) {
     super(o);
+    inputable={"input":1,"textarea":1,"select":1};
     listeners=[];
     binds={};
     parallel("main");
 }
 \appendTo(dom) {
-    jqdom.appendTo(dom);
+    parentJqdom=$(dom);
+    if (jqdom) jqdom.appendTo(parentJqdom);
 }
 \dialog(options) {
     jqdom.dialog(options);
@@ -18,7 +20,9 @@ native parseInt;
 }
 \tag() {
     var d=parseArray(arguments);
-    (_jqdom||jqdom).append(d);
+    if (d instanceof $) {
+        (_jqdom||jqdom).append(d);
+    }
     return d;
 }
 \change(elem,func) {
@@ -47,21 +51,27 @@ function parseArray(a) {
     var svjq=_jqdom,res;
     if (typeof tag=="string") {
         res=_jqdom=$("<"+tag+">");
-        if (!jqdom) jqdom=_jqdom;
+        if (!jqdom) {
+            jqdom=_jqdom;
+            if (parentJqdom) parentJqdom.append(jqdom);
+        }
         i=1;
         if (isPlainObject(a[i])) {
             parseAttr(a[i]);
             i++;
         }
     } else if (typeof tag=="function" && tag.prototype.parseArray) {
-        var params={parent:this, jqdom:_jqdom};
+        var params={parent:this, parentJqdom:_jqdom};
         i=1;
         if (isPlainObject(a[i])) {
             Tonyu.extend(params,a[i]);
             i++;
         }
         i=a.length;
-        new tag(params);
+        res=new tag(params);
+    } else {
+        print("Errortag",a);
+        throw new Error("Invalid tag "+tag);
     }
     while (i<a.length) {
         var s=parse(a[i]);
@@ -89,6 +99,9 @@ function parseAttr(o) {
         }
     }
 }
+\isInputable(dom) {
+    return inputable[dom[0].tagName.toLowerCase()];
+}
 function parseOn(eType, li) {
     var jqdom=_jqdom;
     if (!li) return;
@@ -97,7 +110,12 @@ function parseOn(eType, li) {
             if (ev.which==13) li.apply(jqdom,arguments);
         };  
     } else if (eType=="realtimechange") {
+        if (!isInputable(jqdom)) return;
         var first=true, prev;
+        if (!_listenersInvoked) {
+            _listenersInvoked=true;
+            parallel("listenerLoop");
+        }
         listeners.push \() {
             var cur;
             if (jqdom.attr("type")=="checkbox") {
@@ -111,10 +129,6 @@ function parseOn(eType, li) {
             }
             first=false;
         };
-        if (!_listenersInvoked) {
-            _listenersInvoked=true;
-            parallel("listenerLoop");
-        }
     } else {
         jqdom.on(eType, li);
     }
@@ -122,25 +136,41 @@ function parseOn(eType, li) {
 function parseString(str) {
     return str;//$("<span>").text(str);
 }
+\setVal(dom, val) {
+    if (isInputable(dom)) dom.val(val);
+    else dom.text(val);
+}
 \bind(key) {
     var jqdom=_jqdom;
-    if (model) jqdom.val(model[key]);
+    if (model) setVal(jqdom,model[key]);
     var vtype=modelType && modelType[key] || "string";
+    var bindObj;
+    bindObj=binds[key]|| {
+        jqdoms:[],
+        onModelChanged:\(val, from) {
+            bindObj.jqdoms.forEach \(d) {
+                if (from!==d) setVal(d,val);
+            };
+        }
+    };
+    binds[key]=bindObj;
     parseOn("realtimechange") \(val) {
-        print("bind-wrt",model,key,val,vtype,modelType);
+        //print("bind-wrt",model,key,val,vtype,modelType);
         if (model) {
             if (vtype=="string") {
                 model[key]=val;
             } else if(vtype="number") {
                 model[key]=parseInt(val);
             }
+            bindObj.onModelChanged(val,jqdom);
         }
     };
-    binds[key]={
+    bindObj.jqdoms.push(jqdom);
+    /*binds[key]={
         onModelChanged:\(val) {
             jqdom.val(val);
         }
-    };
+    };*/
 }
 \loadModel(m) {
     if (SFile["is"](m)) {
@@ -164,7 +194,7 @@ function parseString(str) {
 }
 \attr(key,val) {
     model[key]=val;
-    binds[key].onModelChanged(val);
+    if (binds[key]) binds[key].onModelChanged(val);
     fireEvent("modelChanged", key, val);
 }
 \listenerLoop() {

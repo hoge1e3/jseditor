@@ -41,7 +41,7 @@ requirejs.config(reqConf);
 SplashScreen.show();
 requirejs(["Util"],function (Util){
     var run=Util.getQueryString("r");
-    if (!run) run="editor/main";
+    if (!run) run="ProjectSel";//"editor/main";
     var noconcat=Util.getQueryString("noconcat","emp");
     if (noconcat=="emp" ) noconcat=!!(typeof process=="object" && process.__node_webkit);
     console.log("noconcat",noconcat);

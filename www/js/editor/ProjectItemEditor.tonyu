@@ -1,0 +1,13 @@
+extends UIForm;
+native location;
+
+tag("div") \{
+    var url=location.href.replace(/\?.*/,"");
+    tag("a",{href:url+"?r=TEdit&prj="+model.name,$bind:"name"});
+    tag("div") \{
+        tag("span","名前：");
+        tag("input") {$bind:"name"};
+        tag("span","ディレクトリ：");
+        tag("input") {$bind:"path",size:80};
+    };
+};

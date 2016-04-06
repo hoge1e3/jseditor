@@ -1,5 +1,5 @@
 native localStorage;
-
+native process;
 \new() {
     dir=localStorage.etc ? 
     FS.get(localStorage.etc) : 

@@ -27,7 +27,7 @@ define(function (require) {
         var _this=this;
         
         //$LASTPOS=4000035;//jseditor.Etc:35
-        _this.dir=localStorage.etc?FS.get(localStorage.etc):FS.get(_this.process.cwd()).rel(".jsetc/");
+        _this.dir=localStorage.etc?FS.get(localStorage.etc):FS.get(process.cwd()).rel(".jsetc/");
       },
       conf :function _trc_Etc_conf(path) {
         "use strict";

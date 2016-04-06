@@ -60,15 +60,13 @@ var fileMenu;
 var es;
 var etc=new Etc;
 $etc=etc;
-//var desktopEnvFile=etc.rel("desktop.json");
-//var desktopEnv=readJSON(desktopEnvFile);
 $desktopEnvEditor=new DesktopEnv;
 update(10);
-//$desktopEnvEditor.loadModel(desktopEnv);
 
 var prjs=readJSON(etc.rel("projects.json"));
 var prj=new JSEProject(prjs, Util.getQueryString("prj"));
 $jsePrj=prj;
+$("title").text(Util.getQueryString("prj")+" - JS Editor");
 //var name, path, www, tonyuC, reqConf;
 var tc=new TonyuC(prj);
 var fl=$fileList=new FileList($("#fileItemList")) {
@@ -100,18 +98,6 @@ function newWindow() {
     window.open(location.href,genID,
     'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
 }
-/*function textSize() {
-    parallel("textSizeP");
-}
-function textSizeP() {
-    var s=prompt(
-        "エディタの文字の大きさ", 
-        desktopEnv.editorFontSize||12
-    );  
-    desktopEnv.editorFontSize=window.parseInt(s);
-    if (es) es.setFontSize(desktopEnv.editorFontSize||12);
-    return writeJSON(desktopEnvFile, desktopEnv);
-}*/
 var screenH,editorH;
 function onResize() {
     var h=$(window).height()-$("#navBar").height()-$("#tabTop").height();

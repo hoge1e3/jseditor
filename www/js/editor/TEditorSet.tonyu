@@ -30,6 +30,7 @@ native $;
 \watch() {
     var inf=getCurrentEditorInfo();
     if (!inf) return;
+    if (!inf.file.exists()) return;
     if (inf.lastTimeStamp<inf.file.lastUpdate()) {
         inf.editor.setValue(inf.file.text());
         inf.editor.clearSelection();

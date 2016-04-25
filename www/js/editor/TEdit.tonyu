@@ -2,6 +2,7 @@ extends Base;
 native process;
 native Math;
 native $;
+native require;
 native requirejs;
 native console;
 native window;
@@ -42,7 +43,8 @@ var finder;
     ]},
     {label:"ウィンドウ",sub:[
         {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
-        {label:"ブックマーク...",id:"bookmark",action:"$bookmark.open"}
+        {label:"ブックマーク...",id:"bookmark",action:"$bookmark.open"},
+        {label:"フォルダを開く",id:"openFolder",action:openFolder}
     ]},
     /*{label:"実行",sub:[
           {label:"実行(F9)",id:"runMenu",action:run},
@@ -135,6 +137,15 @@ requirejs(["ace"],function (){
         return "保存しないで終了しますか？: "+m.map \(f) {
             return f.name();
         }.join(",");
+    }
+}
+\openFolder() {
+    // Open a file in file explorer.
+    var f=$editorSet.curFile;
+    console.log(f);
+    if (f) {
+        console.log(f.path());
+        gui.Shell.showItemInFolder(f.path().replace(/\//g,"\\"));
     }
 }
 $(window).on("beforeunload") \(e) {

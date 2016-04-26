@@ -9,5 +9,9 @@ tag("div") \{
         tag("input") {$bind:"name"};
         tag("span","ディレクトリ：");
         tag("input") {$bind:"path",size:80};
+        tag("button", {on:{click:\{ 
+            parent.remove(model); 
+        }}} ,"削除");
     };
 };
+

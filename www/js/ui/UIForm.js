@@ -479,24 +479,24 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_122;
+        var _it_182;
         var eType;
         var li;
-        var _it_123;
+        var _it_183;
         
         //$LASTPOS=16001981;//jseditor.UIForm:1981
-        _it_122=Tonyu.iterator(o,2);
-        while(_it_122.next()) {
-          k=_it_122[0];
-          v=_it_122[1];
+        _it_182=Tonyu.iterator(o,2);
+        while(_it_182.next()) {
+          k=_it_182[0];
+          v=_it_182[1];
           
           //$LASTPOS=16002011;//jseditor.UIForm:2011
           if (k=="on") {
             //$LASTPOS=16002039;//jseditor.UIForm:2039
-            _it_123=Tonyu.iterator(o.on,2);
-            while(_it_123.next()) {
-              eType=_it_123[0];
-              li=_it_123[1];
+            _it_183=Tonyu.iterator(o.on,2);
+            while(_it_183.next()) {
+              eType=_it_183[0];
+              li=_it_183[1];
               
               //$LASTPOS=16002066;//jseditor.UIForm:2066
               _this.parseOn(eType,li);
@@ -547,10 +547,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_122;
+        var _it_182;
         var eType;
         var li;
-        var _it_123;
+        var _it_183;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -559,20 +559,20 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=16001981;//jseditor.UIForm:1981
-              _it_122=Tonyu.iterator(o,2);
+              _it_182=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_122.next())) { __pc=15; break; }
-              k=_it_122[0];
-              v=_it_122[1];
+              if (!(_it_182.next())) { __pc=15; break; }
+              k=_it_182[0];
+              v=_it_182[1];
               
               //$LASTPOS=16002011;//jseditor.UIForm:2011
               if (!(k=="on")) { __pc=5; break; }
               //$LASTPOS=16002039;//jseditor.UIForm:2039
-              _it_123=Tonyu.iterator(o.on,2);
+              _it_183=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_123.next())) { __pc=4; break; }
-              eType=_it_123[0];
-              li=_it_123[1];
+              if (!(_it_183.next())) { __pc=4; break; }
+              eType=_it_183[0];
+              li=_it_183[1];
               
               //$LASTPOS=16002066;//jseditor.UIForm:2066
               _this.fiber$parseOn(_thread, eType, li);
@@ -1007,7 +1007,7 @@ define(function (require) {
         var _this=this;
         var key;
         var handler;
-        var _it_142;
+        var _it_202;
         
         //$LASTPOS=16004490;//jseditor.UIForm:4490
         if (SFile["is"](m)) {
@@ -1024,10 +1024,10 @@ define(function (require) {
         //$LASTPOS=16004618;//jseditor.UIForm:4618
         assert(_this.model,"Model load error");
         //$LASTPOS=16004658;//jseditor.UIForm:4658
-        _it_142=Tonyu.iterator(_this.binds,2);
-        while(_it_142.next()) {
-          key=_it_142[0];
-          handler=_it_142[1];
+        _it_202=Tonyu.iterator(_this.binds,2);
+        while(_it_202.next()) {
+          key=_it_202[0];
+          handler=_it_202[1];
           
           //$LASTPOS=16004700;//jseditor.UIForm:4700
           handler.onModelChanged(_this.model[key]);
@@ -1041,7 +1041,7 @@ define(function (require) {
         var __pc=0;
         var key;
         var handler;
-        var _it_142;
+        var _it_202;
         
         //$LASTPOS=16004490;//jseditor.UIForm:4490
         if (SFile["is"](m)) {
@@ -1058,10 +1058,10 @@ define(function (require) {
         //$LASTPOS=16004618;//jseditor.UIForm:4618
         assert(_this.model,"Model load error");
         //$LASTPOS=16004658;//jseditor.UIForm:4658
-        _it_142=Tonyu.iterator(_this.binds,2);
-        while(_it_142.next()) {
-          key=_it_142[0];
-          handler=_it_142[1];
+        _it_202=Tonyu.iterator(_this.binds,2);
+        while(_it_202.next()) {
+          key=_it_202[0];
+          handler=_it_202[1];
           
           //$LASTPOS=16004700;//jseditor.UIForm:4700
           handler.onModelChanged(_this.model[key]);
@@ -1158,14 +1158,14 @@ define(function (require) {
         var _this=this;
         
         //$LASTPOS=16005125;//jseditor.UIForm:5125
-        while (true) {
-          //$LASTPOS=16005148;//jseditor.UIForm:5148
-          _this.listeners.forEach((function anonymous_5165(f) {
+        while (! _this.isDead) {
+          //$LASTPOS=16005151;//jseditor.UIForm:5151
+          _this.listeners.forEach((function anonymous_5168(f) {
             
-            //$LASTPOS=16005185;//jseditor.UIForm:5185
+            //$LASTPOS=16005188;//jseditor.UIForm:5188
             f();
           }));
-          //$LASTPOS=16005211;//jseditor.UIForm:5211
+          //$LASTPOS=16005214;//jseditor.UIForm:5214
           _this.update(100);
           
         }
@@ -1184,13 +1184,14 @@ define(function (require) {
             case 0:
               //$LASTPOS=16005125;//jseditor.UIForm:5125
             case 1:
-              //$LASTPOS=16005148;//jseditor.UIForm:5148
-              _this.listeners.forEach((function anonymous_5165(f) {
+              if (!(! _this.isDead)) { __pc=3; break; }
+              //$LASTPOS=16005151;//jseditor.UIForm:5151
+              _this.listeners.forEach((function anonymous_5168(f) {
                 
-                //$LASTPOS=16005185;//jseditor.UIForm:5185
+                //$LASTPOS=16005188;//jseditor.UIForm:5188
                 f();
               }));
-              //$LASTPOS=16005211;//jseditor.UIForm:5211
+              //$LASTPOS=16005214;//jseditor.UIForm:5214
               _this.fiber$update(_thread, 100);
               __pc=2;return;
             case 2:
@@ -1203,8 +1204,38 @@ define(function (require) {
           }
         });
       },
+      die :function _trc_UIForm_die() {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=16005252;//jseditor.UIForm:5252
+        _this._isDead=true;
+        //$LASTPOS=16005271;//jseditor.UIForm:5271
+        if (_this.jqdom) {
+          //$LASTPOS=16005293;//jseditor.UIForm:5293
+          _this.jqdom.remove();
+          
+        }
+      },
+      fiber$die :function _trc_UIForm_f_die(_thread) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=16005252;//jseditor.UIForm:5252
+        _this._isDead=true;
+        //$LASTPOS=16005271;//jseditor.UIForm:5271
+        if (_this.jqdom) {
+          //$LASTPOS=16005293;//jseditor.UIForm:5293
+          _this.jqdom.remove();
+          
+        }
+        
+        _thread.retVal=_this;return;
+      },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"clear":{"nowait":false},"tag":{"nowait":false},"change":{"nowait":false},"parse":{"nowait":false},"isPlainObject":{"nowait":false},"isPlainFunction":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"isInputable":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false},"setVal":{"nowait":false},"bind":{"nowait":false},"loadModel":{"nowait":false},"saveModel":{"nowait":false},"attr":{"nowait":false},"listenerLoop":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"new":{"nowait":false},"appendTo":{"nowait":false},"dialog":{"nowait":false},"clear":{"nowait":false},"tag":{"nowait":false},"change":{"nowait":false},"parse":{"nowait":false},"isPlainObject":{"nowait":false},"isPlainFunction":{"nowait":false},"parseArray":{"nowait":false},"parseAttr":{"nowait":false},"isInputable":{"nowait":false},"parseOn":{"nowait":false},"parseString":{"nowait":false},"setVal":{"nowait":false},"bind":{"nowait":false},"loadModel":{"nowait":false},"saveModel":{"nowait":false},"attr":{"nowait":false},"listenerLoop":{"nowait":false},"die":{"nowait":false}}}
   });
 });

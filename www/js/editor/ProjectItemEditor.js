@@ -32,6 +32,12 @@ define(function (require) {
             _this.tag("span","ディレクトリ：");
             //$LASTPOS=19000280;//jseditor.ProjectItemEditor:280
             _this.tag("input",{$bind: "path",size: 80});
+            //$LASTPOS=19000325;//jseditor.ProjectItemEditor:325
+            _this.tag("button",{on: {click: (function anonymous_350() {
+              
+              //$LASTPOS=19000366;//jseditor.ProjectItemEditor:366
+              _this.parent.remove(_this.model);
+            })}},"削除");
           }));
         }));
       },
@@ -67,6 +73,12 @@ define(function (require) {
                   _this.tag("span","ディレクトリ：");
                   //$LASTPOS=19000280;//jseditor.ProjectItemEditor:280
                   _this.tag("input",{$bind: "path",size: 80});
+                  //$LASTPOS=19000325;//jseditor.ProjectItemEditor:325
+                  _this.tag("button",{on: {click: (function anonymous_350() {
+                    
+                    //$LASTPOS=19000366;//jseditor.ProjectItemEditor:366
+                    _this.parent.remove(_this.model);
+                  })}},"削除");
                 }));
               }));
               __pc=1;return;

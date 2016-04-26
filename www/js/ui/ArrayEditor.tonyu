@@ -11,9 +11,7 @@ extends UIForm;
 \refreshView() {
     clear();
     if (model) {
-        model.forEach \(e) {
-            tag(ElementEditorClass) {model:e};
-        };
+        model.forEach(addSubView);
     }
 }
 ElementEditorClass=ElementEditorClass||elem;
@@ -24,6 +22,35 @@ tag("span") \{
 \push(e) {
     model.push(e);
     change(jqdom) \{
-        tag(ElementEditorClass) {model:e};
+        addSubView(e);
     };
+}
+\addSubView(model) {
+    subViews=subViews||[];
+    subViews.push( tag(ElementEditorClass) {model} );
+}
+\clear() {
+    super.clear();
+    subViews=[];
+}
+\remove(e) {//e:model (element of model)
+    print("prev", subViews);
+    if (!subViews) return;
+    var vidx=-1;
+    for (var i=0;i<subViews.length;i++) {
+        if (subViews[i].model===e) {
+            vidx=i;
+            break;
+        }
+    }
+    if (vidx>=0) { 
+        subViews[vidx].die(); 
+        subViews.splice(vidx,1);
+    }
+    var midx=model.indexOf(e);
+    if (midx>=0) {
+        model.splice(midx,1);
+    }
+    print("rmed", vidx,midx,model);
+
 }

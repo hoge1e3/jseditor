@@ -198,10 +198,16 @@ function parseString(str) {
     fireEvent("modelChanged", key, val);
 }
 \listenerLoop() {
-    while(true) {
+    while(!isDead) {
         listeners.forEach\(f) {
             f();
         };
         update(100);
+    }
+}
+\die() {
+    _isDead=true;
+    if (jqdom) {
+        jqdom.remove();
     }
 }

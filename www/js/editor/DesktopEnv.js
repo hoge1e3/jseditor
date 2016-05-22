@@ -25,7 +25,7 @@ define(function (require) {
           _this.tag("button",{on: {click: Tonyu.bindFunc(_this,_this.close)}},"OK");
         }));
         //$LASTPOS=17000239;//jseditor.DesktopEnv:239
-        _this.loadModel(Tonyu.globals.$etc.rel("desktop.json"));
+        _this.loadModel(Tonyu.globals.$etc.rel("desktop.json"),{});
       },
       fiber$main :function _trc_DesktopEnv_f_main(_thread) {
         "use strict";
@@ -55,7 +55,7 @@ define(function (require) {
             case 1:
               
               //$LASTPOS=17000239;//jseditor.DesktopEnv:239
-              _this.fiber$loadModel(_thread, Tonyu.globals.$etc.rel("desktop.json"));
+              _this.fiber$loadModel(_thread, Tonyu.globals.$etc.rel("desktop.json"), {});
               __pc=2;return;
             case 2:
               
@@ -68,9 +68,9 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=17000292;//jseditor.DesktopEnv:292
+        //$LASTPOS=17000295;//jseditor.DesktopEnv:295
         _this.saveModel();
-        //$LASTPOS=17000309;//jseditor.DesktopEnv:309
+        //$LASTPOS=17000312;//jseditor.DesktopEnv:312
         _this.dialog("close");
       },
       fiber$close :function _trc_DesktopEnv_f_close(_thread) {
@@ -85,12 +85,12 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=17000292;//jseditor.DesktopEnv:292
+              //$LASTPOS=17000295;//jseditor.DesktopEnv:295
               _this.fiber$saveModel(_thread);
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=17000309;//jseditor.DesktopEnv:309
+              //$LASTPOS=17000312;//jseditor.DesktopEnv:312
               _this.fiber$dialog(_thread, "close");
               __pc=2;return;
             case 2:

@@ -172,10 +172,10 @@ function parseString(str) {
         }
     };*/
 }
-\loadModel(m) {
+\loadModel(m,def) {
     if (SFile["is"](m)) {
         modelFile=m;
-        model=readJSON(modelFile)||{};
+        model=readJSON(modelFile,def);
     } else {
         model=m;
     }

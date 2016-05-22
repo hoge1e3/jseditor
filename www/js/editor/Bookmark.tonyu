@@ -6,7 +6,7 @@ native JSON;
     //conf=new JSONConf(file);
 }
 \open() {
-    data=readJSON(file);
+    data=readJSON(file,[]);
     //conf.load();
     var items=UI("div");
     var d=UI("div",{title:"ブックマーク"},

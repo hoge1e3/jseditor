@@ -86,7 +86,7 @@ $bookmark=new Bookmark{
     parallel(setEtcP);
 }
 \setEtcP() {
-    var np=prompt("ワークスペースのディレクトリ", etc.path());
+    var np=prompt("ワークスペースのディレクトリ", localStorage.etc||"");
     if (np) {
         localStorage.etc=np;
         location.reload();

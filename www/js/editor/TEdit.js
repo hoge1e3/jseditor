@@ -68,84 +68,84 @@ define(function (require) {
         //$LASTPOS=13002300;//jseditor.TEdit:2300
         Tonyu.globals.$bookmark=new Tonyu.classes.jseditor.Bookmark({file: _this.etc.rel("bookmark.json"),fileList: _this.fl});
         
-        //$LASTPOS=13003181;//jseditor.TEdit:3181
+        //$LASTPOS=13003191;//jseditor.TEdit:3191
         _this.onResize();
-        //$LASTPOS=13003194;//jseditor.TEdit:3194
+        //$LASTPOS=13003204;//jseditor.TEdit:3204
         $(window).resize(Tonyu.bindFunc(_this,_this.onResize));
-        //$LASTPOS=13003223;//jseditor.TEdit:3223
-        requirejs(["ace"],(function anonymous_3241() {
+        //$LASTPOS=13003233;//jseditor.TEdit:3233
+        requirejs(["ace"],(function anonymous_3251() {
           var desktopEnv;
           
-          //$LASTPOS=13003259;//jseditor.TEdit:3259
+          //$LASTPOS=13003269;//jseditor.TEdit:3269
           desktopEnv = Tonyu.globals.$desktopEnvEditor.model;
           
-          //$LASTPOS=13003304;//jseditor.TEdit:3304
+          //$LASTPOS=13003314;//jseditor.TEdit:3314
           _this.print("denv",desktopEnv&&desktopEnv.editorFontSize||12);
-          //$LASTPOS=13003370;//jseditor.TEdit:3370
+          //$LASTPOS=13003380;//jseditor.TEdit:3380
           console.log("ace loaded:",ace);
-          //$LASTPOS=13003407;//jseditor.TEdit:3407
+          //$LASTPOS=13003417;//jseditor.TEdit:3417
           Tonyu.globals.$editorSet=_this.es=new Tonyu.classes.jseditor.TEditorSet($("#progs"),$("#fileLabel"),{height: _this.editorH,fontSize: (desktopEnv&&desktopEnv.editorFontSize||12)});
-          //$LASTPOS=13003576;//jseditor.TEdit:3576
+          //$LASTPOS=13003586;//jseditor.TEdit:3586
           Tonyu.globals.$finder=new Tonyu.classes.jseditor.Finder;
-          //$LASTPOS=13003601;//jseditor.TEdit:3601
+          //$LASTPOS=13003611;//jseditor.TEdit:3611
           if (typeof  _this.SplashScreen!="undefined") {
-            //$LASTPOS=13003639;//jseditor.TEdit:3639
+            //$LASTPOS=13003649;//jseditor.TEdit:3649
             _this.SplashScreen.hide();
           }
-          //$LASTPOS=13003665;//jseditor.TEdit:3665
+          //$LASTPOS=13003675;//jseditor.TEdit:3675
           Tonyu.globals.$fileMenu=_this.fileMenu=new Tonyu.classes.jseditor.FileMenu({editorSet: _this.es,fileList: _this.fl});
-          //$LASTPOS=13003731;//jseditor.TEdit:3731
+          //$LASTPOS=13003741;//jseditor.TEdit:3741
           _this.fl.open(_this.prj.path);
-          //$LASTPOS=13003761;//jseditor.TEdit:3761
-          Tonyu.globals.$desktopEnvEditor.on("modelsaved",(function anonymous_3796(model) {
+          //$LASTPOS=13003771;//jseditor.TEdit:3771
+          Tonyu.globals.$desktopEnvEditor.on("modelsaved",(function anonymous_3806(model) {
             
-            //$LASTPOS=13003816;//jseditor.TEdit:3816
+            //$LASTPOS=13003826;//jseditor.TEdit:3826
             _this.print("SAVED",model);
-            //$LASTPOS=13003847;//jseditor.TEdit:3847
+            //$LASTPOS=13003857;//jseditor.TEdit:3857
             Tonyu.globals.$editorSet.setFontSize(desktopEnv.editorFontSize);
           }));
         }));
-        //$LASTPOS=13004358;//jseditor.TEdit:4358
-        $(window).on("beforeunload",(function anonymous_4387(e) {
+        //$LASTPOS=13004368;//jseditor.TEdit:4368
+        $(window).on("beforeunload",(function anonymous_4397(e) {
           var s;
           
-          //$LASTPOS=13004399;//jseditor.TEdit:4399
+          //$LASTPOS=13004409;//jseditor.TEdit:4409
           s = _this.shouldConfirmClose();
           
-          //$LASTPOS=13004432;//jseditor.TEdit:4432
+          //$LASTPOS=13004442;//jseditor.TEdit:4442
           if (s) {
             return s;
             
           } else {
-            //$LASTPOS=13004483;//jseditor.TEdit:4483
+            //$LASTPOS=13004493;//jseditor.TEdit:4493
             e.preventDefault();
             
           }
         }));
-        //$LASTPOS=13004515;//jseditor.TEdit:4515
+        //$LASTPOS=13004525;//jseditor.TEdit:4525
         _this.gui = nwDispatcher.requireNwGui();
         
-        //$LASTPOS=13004556;//jseditor.TEdit:4556
+        //$LASTPOS=13004566;//jseditor.TEdit:4566
         _this.win = _this.gui.Window.get();
         
-        //$LASTPOS=13004585;//jseditor.TEdit:4585
-        _this.win.on('close',(function anonymous_4601() {
+        //$LASTPOS=13004595;//jseditor.TEdit:4595
+        _this.win.on('close',(function anonymous_4611() {
           var s;
           
-          //$LASTPOS=13004619;//jseditor.TEdit:4619
+          //$LASTPOS=13004629;//jseditor.TEdit:4629
           s = _this.shouldConfirmClose();
           
-          //$LASTPOS=13004652;//jseditor.TEdit:4652
+          //$LASTPOS=13004662;//jseditor.TEdit:4662
           if (s) {
-            //$LASTPOS=13004670;//jseditor.TEdit:4670
+            //$LASTPOS=13004680;//jseditor.TEdit:4680
             if (window.confirm(s)) {
-              //$LASTPOS=13004707;//jseditor.TEdit:4707
+              //$LASTPOS=13004717;//jseditor.TEdit:4717
               _this.win.close(true);
               
             }
             
           } else {
-            //$LASTPOS=13004758;//jseditor.TEdit:4758
+            //$LASTPOS=13004768;//jseditor.TEdit:4768
             _this.win.close(true);
             
           }
@@ -212,87 +212,87 @@ define(function (require) {
               //$LASTPOS=13002300;//jseditor.TEdit:2300
               Tonyu.globals.$bookmark=new Tonyu.classes.jseditor.Bookmark({file: _this.etc.rel("bookmark.json"),fileList: _this.fl});
               
-              //$LASTPOS=13003181;//jseditor.TEdit:3181
+              //$LASTPOS=13003191;//jseditor.TEdit:3191
               _this.fiber$onResize(_thread);
               __pc=3;return;
             case 3:
               
-              //$LASTPOS=13003194;//jseditor.TEdit:3194
+              //$LASTPOS=13003204;//jseditor.TEdit:3204
               $(window).resize(Tonyu.bindFunc(_this,_this.onResize));
-              //$LASTPOS=13003223;//jseditor.TEdit:3223
-              requirejs(["ace"],(function anonymous_3241() {
+              //$LASTPOS=13003233;//jseditor.TEdit:3233
+              requirejs(["ace"],(function anonymous_3251() {
                 var desktopEnv;
                 
-                //$LASTPOS=13003259;//jseditor.TEdit:3259
+                //$LASTPOS=13003269;//jseditor.TEdit:3269
                 desktopEnv = Tonyu.globals.$desktopEnvEditor.model;
                 
-                //$LASTPOS=13003304;//jseditor.TEdit:3304
+                //$LASTPOS=13003314;//jseditor.TEdit:3314
                 _this.print("denv",desktopEnv&&desktopEnv.editorFontSize||12);
-                //$LASTPOS=13003370;//jseditor.TEdit:3370
+                //$LASTPOS=13003380;//jseditor.TEdit:3380
                 console.log("ace loaded:",ace);
-                //$LASTPOS=13003407;//jseditor.TEdit:3407
+                //$LASTPOS=13003417;//jseditor.TEdit:3417
                 Tonyu.globals.$editorSet=_this.es=new Tonyu.classes.jseditor.TEditorSet($("#progs"),$("#fileLabel"),{height: _this.editorH,fontSize: (desktopEnv&&desktopEnv.editorFontSize||12)});
-                //$LASTPOS=13003576;//jseditor.TEdit:3576
+                //$LASTPOS=13003586;//jseditor.TEdit:3586
                 Tonyu.globals.$finder=new Tonyu.classes.jseditor.Finder;
-                //$LASTPOS=13003601;//jseditor.TEdit:3601
+                //$LASTPOS=13003611;//jseditor.TEdit:3611
                 if (typeof  _this.SplashScreen!="undefined") {
-                  //$LASTPOS=13003639;//jseditor.TEdit:3639
+                  //$LASTPOS=13003649;//jseditor.TEdit:3649
                   _this.SplashScreen.hide();
                 }
-                //$LASTPOS=13003665;//jseditor.TEdit:3665
+                //$LASTPOS=13003675;//jseditor.TEdit:3675
                 Tonyu.globals.$fileMenu=_this.fileMenu=new Tonyu.classes.jseditor.FileMenu({editorSet: _this.es,fileList: _this.fl});
-                //$LASTPOS=13003731;//jseditor.TEdit:3731
+                //$LASTPOS=13003741;//jseditor.TEdit:3741
                 _this.fl.open(_this.prj.path);
-                //$LASTPOS=13003761;//jseditor.TEdit:3761
-                Tonyu.globals.$desktopEnvEditor.on("modelsaved",(function anonymous_3796(model) {
+                //$LASTPOS=13003771;//jseditor.TEdit:3771
+                Tonyu.globals.$desktopEnvEditor.on("modelsaved",(function anonymous_3806(model) {
                   
-                  //$LASTPOS=13003816;//jseditor.TEdit:3816
+                  //$LASTPOS=13003826;//jseditor.TEdit:3826
                   _this.print("SAVED",model);
-                  //$LASTPOS=13003847;//jseditor.TEdit:3847
+                  //$LASTPOS=13003857;//jseditor.TEdit:3857
                   Tonyu.globals.$editorSet.setFontSize(desktopEnv.editorFontSize);
                 }));
               }));
-              //$LASTPOS=13004358;//jseditor.TEdit:4358
-              $(window).on("beforeunload",(function anonymous_4387(e) {
+              //$LASTPOS=13004368;//jseditor.TEdit:4368
+              $(window).on("beforeunload",(function anonymous_4397(e) {
                 var s;
                 
-                //$LASTPOS=13004399;//jseditor.TEdit:4399
+                //$LASTPOS=13004409;//jseditor.TEdit:4409
                 s = _this.shouldConfirmClose();
                 
-                //$LASTPOS=13004432;//jseditor.TEdit:4432
+                //$LASTPOS=13004442;//jseditor.TEdit:4442
                 if (s) {
                   return s;
                   
                 } else {
-                  //$LASTPOS=13004483;//jseditor.TEdit:4483
+                  //$LASTPOS=13004493;//jseditor.TEdit:4493
                   e.preventDefault();
                   
                 }
               }));
-              //$LASTPOS=13004515;//jseditor.TEdit:4515
+              //$LASTPOS=13004525;//jseditor.TEdit:4525
               _this.gui = nwDispatcher.requireNwGui();
               
-              //$LASTPOS=13004556;//jseditor.TEdit:4556
+              //$LASTPOS=13004566;//jseditor.TEdit:4566
               _this.win = _this.gui.Window.get();
               
-              //$LASTPOS=13004585;//jseditor.TEdit:4585
-              _this.win.on('close',(function anonymous_4601() {
+              //$LASTPOS=13004595;//jseditor.TEdit:4595
+              _this.win.on('close',(function anonymous_4611() {
                 var s;
                 
-                //$LASTPOS=13004619;//jseditor.TEdit:4619
+                //$LASTPOS=13004629;//jseditor.TEdit:4629
                 s = _this.shouldConfirmClose();
                 
-                //$LASTPOS=13004652;//jseditor.TEdit:4652
+                //$LASTPOS=13004662;//jseditor.TEdit:4662
                 if (s) {
-                  //$LASTPOS=13004670;//jseditor.TEdit:4670
+                  //$LASTPOS=13004680;//jseditor.TEdit:4680
                   if (window.confirm(s)) {
-                    //$LASTPOS=13004707;//jseditor.TEdit:4707
+                    //$LASTPOS=13004717;//jseditor.TEdit:4717
                     _this.win.close(true);
                     
                   }
                   
                 } else {
-                  //$LASTPOS=13004758;//jseditor.TEdit:4758
+                  //$LASTPOS=13004768;//jseditor.TEdit:4768
                   _this.win.close(true);
                   
                 }
@@ -344,13 +344,13 @@ define(function (require) {
         var np;
         
         //$LASTPOS=13002440;//jseditor.TEdit:2440
-        np = _this.prompt("ワークスペースのディレクトリ",_this.etc.path());
+        np = _this.prompt("ワークスペースのディレクトリ",localStorage.etc||"");
         
-        //$LASTPOS=13002490;//jseditor.TEdit:2490
+        //$LASTPOS=13002500;//jseditor.TEdit:2500
         if (np) {
-          //$LASTPOS=13002509;//jseditor.TEdit:2509
+          //$LASTPOS=13002519;//jseditor.TEdit:2519
           localStorage.etc=np;
-          //$LASTPOS=13002539;//jseditor.TEdit:2539
+          //$LASTPOS=13002549;//jseditor.TEdit:2549
           location.reload();
           
         }
@@ -369,16 +369,16 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=13002440;//jseditor.TEdit:2440
-              _this.fiber$prompt(_thread, "ワークスペースのディレクトリ", _this.etc.path());
+              _this.fiber$prompt(_thread, "ワークスペースのディレクトリ", localStorage.etc||"");
               __pc=1;return;
             case 1:
               np=_thread.retVal;
               
-              //$LASTPOS=13002490;//jseditor.TEdit:2490
+              //$LASTPOS=13002500;//jseditor.TEdit:2500
               if (np) {
-                //$LASTPOS=13002509;//jseditor.TEdit:2509
+                //$LASTPOS=13002519;//jseditor.TEdit:2519
                 localStorage.etc=np;
-                //$LASTPOS=13002539;//jseditor.TEdit:2539
+                //$LASTPOS=13002549;//jseditor.TEdit:2549
                 location.reload();
                 
               }
@@ -391,7 +391,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=13002594;//jseditor.TEdit:2594
+        //$LASTPOS=13002604;//jseditor.TEdit:2604
         _this.tc.parallel("compile");
       },
       fiber$tonyuC :function _trc_TEdit_f_tonyuC(_thread) {
@@ -400,7 +400,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=13002594;//jseditor.TEdit:2594
+        //$LASTPOS=13002604;//jseditor.TEdit:2604
         _this.tc.parallel("compile");
         
         _thread.retVal=_this;return;
@@ -410,10 +410,10 @@ define(function (require) {
         var _this=this;
         var genID;
         
-        //$LASTPOS=13002650;//jseditor.TEdit:2650
+        //$LASTPOS=13002660;//jseditor.TEdit:2660
         genID = ""+Math.random();
         
-        //$LASTPOS=13002683;//jseditor.TEdit:2683
+        //$LASTPOS=13002693;//jseditor.TEdit:2693
         window.open(location.href,genID,'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
       },
       fiber$newWindow :function _trc_TEdit_f_newWindow(_thread) {
@@ -423,10 +423,10 @@ define(function (require) {
         var __pc=0;
         var genID;
         
-        //$LASTPOS=13002650;//jseditor.TEdit:2650
+        //$LASTPOS=13002660;//jseditor.TEdit:2660
         genID = ""+Math.random();
         
-        //$LASTPOS=13002683;//jseditor.TEdit:2683
+        //$LASTPOS=13002693;//jseditor.TEdit:2693
         window.open(location.href,genID,'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
         
         _thread.retVal=_this;return;
@@ -436,25 +436,25 @@ define(function (require) {
         var _this=this;
         var h;
         
-        //$LASTPOS=13002864;//jseditor.TEdit:2864
+        //$LASTPOS=13002874;//jseditor.TEdit:2874
         h = $(window).height()-$("#navBar").height()-$("#tabTop").height();
         
-        //$LASTPOS=13002939;//jseditor.TEdit:2939
+        //$LASTPOS=13002949;//jseditor.TEdit:2949
         h-=20;
-        //$LASTPOS=13002951;//jseditor.TEdit:2951
+        //$LASTPOS=13002961;//jseditor.TEdit:2961
         _this.screenH=h;
-        //$LASTPOS=13002967;//jseditor.TEdit:2967
+        //$LASTPOS=13002977;//jseditor.TEdit:2977
         _this.editorH=_this.screenH-$("#fileLabel").height();
-        //$LASTPOS=13003014;//jseditor.TEdit:3014
+        //$LASTPOS=13003024;//jseditor.TEdit:3024
         if (_this.es) {
-          //$LASTPOS=13003022;//jseditor.TEdit:3022
+          //$LASTPOS=13003032;//jseditor.TEdit:3032
           _this.es.options.height=_this.editorH;
         }
-        //$LASTPOS=13003054;//jseditor.TEdit:3054
+        //$LASTPOS=13003064;//jseditor.TEdit:3064
         $("#progs pre").css("height",_this.editorH+"px");
-        //$LASTPOS=13003103;//jseditor.TEdit:3103
+        //$LASTPOS=13003113;//jseditor.TEdit:3113
         console.log("canvas size",h,_this.editorH);
-        //$LASTPOS=13003147;//jseditor.TEdit:3147
+        //$LASTPOS=13003157;//jseditor.TEdit:3157
         $("#fileItemList").height(h);
       },
       fiber$onResize :function _trc_TEdit_f_onResize(_thread) {
@@ -464,25 +464,25 @@ define(function (require) {
         var __pc=0;
         var h;
         
-        //$LASTPOS=13002864;//jseditor.TEdit:2864
+        //$LASTPOS=13002874;//jseditor.TEdit:2874
         h = $(window).height()-$("#navBar").height()-$("#tabTop").height();
         
-        //$LASTPOS=13002939;//jseditor.TEdit:2939
+        //$LASTPOS=13002949;//jseditor.TEdit:2949
         h-=20;
-        //$LASTPOS=13002951;//jseditor.TEdit:2951
+        //$LASTPOS=13002961;//jseditor.TEdit:2961
         _this.screenH=h;
-        //$LASTPOS=13002967;//jseditor.TEdit:2967
+        //$LASTPOS=13002977;//jseditor.TEdit:2977
         _this.editorH=_this.screenH-$("#fileLabel").height();
-        //$LASTPOS=13003014;//jseditor.TEdit:3014
+        //$LASTPOS=13003024;//jseditor.TEdit:3024
         if (_this.es) {
-          //$LASTPOS=13003022;//jseditor.TEdit:3022
+          //$LASTPOS=13003032;//jseditor.TEdit:3032
           _this.es.options.height=_this.editorH;
         }
-        //$LASTPOS=13003054;//jseditor.TEdit:3054
+        //$LASTPOS=13003064;//jseditor.TEdit:3064
         $("#progs pre").css("height",_this.editorH+"px");
-        //$LASTPOS=13003103;//jseditor.TEdit:3103
+        //$LASTPOS=13003113;//jseditor.TEdit:3113
         console.log("canvas size",h,_this.editorH);
-        //$LASTPOS=13003147;//jseditor.TEdit:3147
+        //$LASTPOS=13003157;//jseditor.TEdit:3157
         $("#fileItemList").height(h);
         
         _thread.retVal=_this;return;
@@ -492,12 +492,12 @@ define(function (require) {
         var _this=this;
         var m;
         
-        //$LASTPOS=13003941;//jseditor.TEdit:3941
+        //$LASTPOS=13003951;//jseditor.TEdit:3951
         m = (Tonyu.globals.$editorSet&&Tonyu.globals.$editorSet.allModified())||[];
         
-        //$LASTPOS=13004000;//jseditor.TEdit:4000
+        //$LASTPOS=13004010;//jseditor.TEdit:4010
         if (m.length>0) {
-          return "保存しないで終了しますか？: "+m.map((function anonymous_4058(f) {
+          return "保存しないで終了しますか？: "+m.map((function anonymous_4068(f) {
             
             return f.name();
           })).join(",");
@@ -511,12 +511,12 @@ define(function (require) {
         var __pc=0;
         var m;
         
-        //$LASTPOS=13003941;//jseditor.TEdit:3941
+        //$LASTPOS=13003951;//jseditor.TEdit:3951
         m = (Tonyu.globals.$editorSet&&Tonyu.globals.$editorSet.allModified())||[];
         
-        //$LASTPOS=13004000;//jseditor.TEdit:4000
+        //$LASTPOS=13004010;//jseditor.TEdit:4010
         if (m.length>0) {
-          _thread.retVal="保存しないで終了しますか？: "+m.map((function anonymous_4058(f) {
+          _thread.retVal="保存しないで終了しますか？: "+m.map((function anonymous_4068(f) {
             
             return f.name();
           })).join(",");return;
@@ -531,16 +531,16 @@ define(function (require) {
         var _this=this;
         var f;
         
-        //$LASTPOS=13004187;//jseditor.TEdit:4187
+        //$LASTPOS=13004197;//jseditor.TEdit:4197
         f = Tonyu.globals.$editorSet.curFile;
         
-        //$LASTPOS=13004218;//jseditor.TEdit:4218
+        //$LASTPOS=13004228;//jseditor.TEdit:4228
         console.log(f);
-        //$LASTPOS=13004239;//jseditor.TEdit:4239
+        //$LASTPOS=13004249;//jseditor.TEdit:4249
         if (f) {
-          //$LASTPOS=13004257;//jseditor.TEdit:4257
+          //$LASTPOS=13004267;//jseditor.TEdit:4267
           console.log(f.path());
-          //$LASTPOS=13004289;//jseditor.TEdit:4289
+          //$LASTPOS=13004299;//jseditor.TEdit:4299
           _this.gui.Shell.showItemInFolder(f.path().replace(/\//g,"\\"));
           
         }
@@ -552,16 +552,16 @@ define(function (require) {
         var __pc=0;
         var f;
         
-        //$LASTPOS=13004187;//jseditor.TEdit:4187
+        //$LASTPOS=13004197;//jseditor.TEdit:4197
         f = Tonyu.globals.$editorSet.curFile;
         
-        //$LASTPOS=13004218;//jseditor.TEdit:4218
+        //$LASTPOS=13004228;//jseditor.TEdit:4228
         console.log(f);
-        //$LASTPOS=13004239;//jseditor.TEdit:4239
+        //$LASTPOS=13004249;//jseditor.TEdit:4249
         if (f) {
-          //$LASTPOS=13004257;//jseditor.TEdit:4257
+          //$LASTPOS=13004267;//jseditor.TEdit:4267
           console.log(f.path());
-          //$LASTPOS=13004289;//jseditor.TEdit:4289
+          //$LASTPOS=13004299;//jseditor.TEdit:4299
           _this.gui.Shell.showItemInFolder(f.path().replace(/\//g,"\\"));
           
         }

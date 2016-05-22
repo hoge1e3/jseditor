@@ -1,6 +1,9 @@
 extends UIForm;
 native process;
 native location;
+native window;
+native $;
+native localStorage;
 
 \runApp() {
     appendTo("body");
@@ -8,19 +11,37 @@ native location;
 
 etc=new Etc;
 prjFile=etc.rel("projects.json");
-prjList=readJSON(prjFile);
+prjList=readJSON(prjFile,[]);
 tag("div") \{
-    tag("h1","プロジェクト一覧...");
-    editor=tag(ArrayEditor) {elem:ProjectItemEditor,model:prjList};
+    mesg=tag("h1","プロジェクト一覧...");
+    editor=tag(ArrayEditor) {
+        elem:ProjectItemEditor,
+        model:prjList
+    };
     tag("button", {on:{click:add}}, "新規プロジェクト");
-    tag("button", {on:{click:\{
-        writeJSON(prjFile,prjList) {indent:2};
-    } }}, "保存");
+    tag("div") {align:right} \{
+        tag("button", {on:{click:setEtc}}, "ワークスペース...");
+    };
+    //tag("button", {on:{click:save}}, "保存");
+};
+$(window).on("beforeunload") \{
+    try {
+        if (!nosave) save();
+    }catch(e) {
+        alert(e);
+    }
 };
 
-
-\edit() {
-    $editorSet.open(prjFile);
+\saveAndGo(url) {
+    mesg.text("Opening.. "+url);
+    save();
+    //alert("Going to "+url);
+    update(100);
+    nosave=true;
+    location.href=url;
+}
+\save() {
+    writeJSON(prjFile,prjList) {indent:2};
 }
 \add() {
     editor.push{
@@ -30,5 +51,15 @@ tag("div") \{
         www: "www/",
         reqConf: "www/js/reqConf.js"
     };
+}
+\setEtc() {
+    parallel(setEtcP);
+}
+\setEtcP() {
+    var np=prompt("ワークスペースのディレクトリ", localStorage.etc||"");
+    if (np) {
+        localStorage.etc=np;
+        location.reload();
+    }
 }
 

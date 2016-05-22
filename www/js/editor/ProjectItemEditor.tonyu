@@ -2,8 +2,7 @@ extends UIForm;
 native location;
 
 tag("div") \{
-    var url=location.href.replace(/\?.*/,"");
-    tag("a",{href:url+"?r=TEdit&prj="+model.name,$bind:"name"});
+    tag("a",{on:{click:openProject},$bind:"name"});
     tag("div") \{
         tag("span","名前：");
         tag("input") {$bind:"name"};
@@ -15,3 +14,8 @@ tag("div") \{
     };
 };
 
+\openProject() {
+    url=location.href.replace(/\?.*/,"");
+    url+="?r=TEdit&prj="+model.name;
+    parent.parent.parallel("saveAndGo",url);
+}

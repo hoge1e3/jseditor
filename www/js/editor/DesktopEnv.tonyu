@@ -7,7 +7,7 @@ tag("div") \{
     tag("button",{on:{click:close}},"OK");
     //tag(MyForm) {mesg:"おまけ"};
 };
-loadModel($etc.rel("desktop.json"));
+loadModel($etc.rel("desktop.json"),{});
 
 \close() {
     saveModel();

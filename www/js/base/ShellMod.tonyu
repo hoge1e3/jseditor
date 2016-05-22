@@ -14,15 +14,23 @@ nowait \resolve(f) {
     var r=waitFor(dir.listFiles());
     return r;
 }
-\readJSON(file) {
+\readJSON(file,def) {
     file=resolve(file);
+    var e=waitFor(file.exists());
+    if (!e) {
+        if (arguments.length>=2) return def; 
+    }
     var o=file.obj();
     var r=waitFor(o);
     print("rdjson",o,r);
     return r;
 }
-\readFile(file) {
+\readFile(file,def) {
     file=resolve(file);
+    var e=waitFor(file.exists());
+    if (!e) {
+        if (arguments.length>=2) return def; 
+    }
     var r=waitFor(file.text());
     return r;
 }

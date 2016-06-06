@@ -133,15 +133,15 @@ define(function (require) {
         var _this=this;
         var c;
         var f;
-        var _it_150;
+        var _it_151;
         
         //$LASTPOS=18000303;//jseditor.Finder:303
         c = 0;
         
         //$LASTPOS=18000316;//jseditor.Finder:316
-        _it_150=Tonyu.iterator(dir.listFiles(),1);
-        while(_it_150.next()) {
-          f=_it_150[0];
+        _it_151=Tonyu.iterator(dir.listFiles(),1);
+        while(_it_151.next()) {
+          f=_it_151[0];
           
           //$LASTPOS=18000357;//jseditor.Finder:357
           _this.mesg.text("Searching..."+f.name());
@@ -181,7 +181,7 @@ define(function (require) {
         var __pc=0;
         var c;
         var f;
-        var _it_150;
+        var _it_151;
         
         //$LASTPOS=18000303;//jseditor.Finder:303
         c = 0;
@@ -193,10 +193,10 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=18000316;//jseditor.Finder:316
-              _it_150=Tonyu.iterator(dir.listFiles(),1);
+              _it_151=Tonyu.iterator(dir.listFiles(),1);
             case 1:
-              if (!(_it_150.next())) { __pc=11; break; }
-              f=_it_150[0];
+              if (!(_it_151.next())) { __pc=11; break; }
+              f=_it_151[0];
               
               //$LASTPOS=18000357;//jseditor.Finder:357
               _this.mesg.text("Searching..."+f.name());
@@ -346,7 +346,7 @@ define(function (require) {
         var res;
         var k;
         var v;
-        var _it_154;
+        var _it_155;
         
         //$LASTPOS=18001018;//jseditor.Finder:1018
         head = key.substring(0,1);
@@ -362,10 +362,10 @@ define(function (require) {
           return res;
         }
         //$LASTPOS=18001123;//jseditor.Finder:1123
-        _it_154=Tonyu.iterator(ent,2);
-        while(_it_154.next()) {
-          k=_it_154[0];
-          v=_it_154[1];
+        _it_155=Tonyu.iterator(ent,2);
+        while(_it_155.next()) {
+          k=_it_155[0];
+          v=_it_155[1];
           
           //$LASTPOS=18001154;//jseditor.Finder:1154
           if (Util.startsWith(k,key)) {
@@ -387,7 +387,7 @@ define(function (require) {
         var res;
         var k;
         var v;
-        var _it_154;
+        var _it_155;
         
         //$LASTPOS=18001018;//jseditor.Finder:1018
         head = key.substring(0,1);
@@ -404,10 +404,10 @@ define(function (require) {
           
         }
         //$LASTPOS=18001123;//jseditor.Finder:1123
-        _it_154=Tonyu.iterator(ent,2);
-        while(_it_154.next()) {
-          k=_it_154[0];
-          v=_it_154[1];
+        _it_155=Tonyu.iterator(ent,2);
+        while(_it_155.next()) {
+          k=_it_155[0];
+          v=_it_155[1];
           
           //$LASTPOS=18001154;//jseditor.Finder:1154
           if (Util.startsWith(k,key)) {

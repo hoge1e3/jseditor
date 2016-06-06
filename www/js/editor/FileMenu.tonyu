@@ -19,21 +19,28 @@ native console;
 \cdfl() {
     if (curDir) cd(curDir);
 }
-\rename() {
+\renameOrCopy(rc) {
     cdfl();
     print(cwd.path());
     var f=fileList.lastSelected;
     if (!f) return;
-    var nf=prompt("ファイル名の変更",f.name());
+    var nf=prompt("ファイル"+["名の変更","のコピー"][rc],f.name());
     if (!nf) return;
     nf=resolve(nf);
-    mv(f,nf);
-    editorSet.close(f);
+    if (nf.exists()) {
+        alert(nf+"は存在します");
+        return;
+    }
+    if (rc==0) mv(f,nf); else cp(f,nf);
+    if (rc==0) editorSet.close(f);
     waitFor(fileList.open(nf));
     if (curDir) waitFor(fileList.open(curDir));
 }
+\rename(){
+    renameOrCopy(0);
+}
 \copy() {
-    
+    renameOrCopy(1);
 }
 \curDir {
     return fileList.curDir;

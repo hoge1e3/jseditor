@@ -31,7 +31,7 @@ var finder;
         {label:"新規",id:"newFile",action:"$fileMenu.create"},
         {label:"名前変更",id:"mvFile",action:"$fileMenu.rename"/*mvFile*/},
         {label:"上書き保存",id:"saveFile",action:"$editorSet.save",key:"ctrl+s"},
-        {label:"コピー",id:"cpFile"},
+        {label:"コピー",id:"cpFile",action:"$fileMenu.copy"},
         {label:"閉じる",id:"closeFile",action:"$editorSet.close"},
         {label:"削除", id:"rmFile",action:"$fileMenu.remove"}
     ]},
@@ -43,6 +43,7 @@ var finder;
     ]},
     {label:"ウィンドウ",sub:[
         {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
+        {label:"新規ウィンドウ＆Home",id:"newWindowHome",action:newWindowHome},
         {label:"ブックマーク...",id:"bookmark",action:"$bookmark.open"},
         {label:"フォルダを開く",id:"openFolder",action:openFolder}
     ]},
@@ -100,6 +101,12 @@ function newWindow() {
     window.open(location.href,genID,
     'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
 }
+function newWindowHome() {
+    var genID=""+Math.random();
+    window.open(location.href.replace(/\?.*/,""),genID,
+    'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
+}
+
 var screenH,editorH;
 function onResize() {
     var h=$(window).height()-$("#navBar").height()-$("#tabTop").height();

@@ -427,14 +427,51 @@ define(function (require) {
           }
         });
       },
+      cp :function _trc_ShellMod_cp(src,dst) {
+        "use strict";
+        var _this=this;
+        
+        //$LASTPOS=7001533;//jseditor.ShellMod:1533
+        src=_this.resolve(src);
+        //$LASTPOS=7001555;//jseditor.ShellMod:1555
+        dst=_this.resolve(dst);
+        //$LASTPOS=7001577;//jseditor.ShellMod:1577
+        _this.waitFor(dst.copyFrom(src));
+      },
+      fiber$cp :function _trc_ShellMod_f_cp(_thread,src,dst) {
+        "use strict";
+        var _this=this;
+        //var _arguments=Tonyu.A(arguments);
+        var __pc=0;
+        
+        //$LASTPOS=7001533;//jseditor.ShellMod:1533
+        src=_this.resolve(src);
+        //$LASTPOS=7001555;//jseditor.ShellMod:1555
+        dst=_this.resolve(dst);
+        
+        _thread.enter(function _trc_ShellMod_ent_cp(_thread) {
+          if (_thread.lastEx) __pc=_thread.catchPC;
+          for(var __cnt=100 ; __cnt--;) {
+            switch (__pc) {
+            case 0:
+              //$LASTPOS=7001577;//jseditor.ShellMod:1577
+              _this.fiber$waitFor(_thread, dst.copyFrom(src));
+              __pc=1;return;
+            case 1:
+              
+              _thread.exit(_this);return;
+            }
+          }
+        });
+      },
       isDir :function _trc_ShellMod_isDir(file) {
         "use strict";
         var _this=this;
         var r;
         
-        //$LASTPOS=7001533;//jseditor.ShellMod:1533
+        //$LASTPOS=7001626;//jseditor.ShellMod:1626
         file=_this.resolve(file);
-        //$LASTPOS=7001557;//jseditor.ShellMod:1557
+        //$LASTPOS=7001650;//jseditor.ShellMod:1650
         r = _this.waitFor(file.isDir());
         
         return r;
@@ -446,7 +483,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=7001533;//jseditor.ShellMod:1533
+        //$LASTPOS=7001626;//jseditor.ShellMod:1626
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_isDir(_thread) {
@@ -454,7 +491,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7001557;//jseditor.ShellMod:1557
+              //$LASTPOS=7001650;//jseditor.ShellMod:1650
               _this.fiber$waitFor(_thread, file.isDir());
               __pc=1;return;
             case 1:
@@ -471,9 +508,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=7001621;//jseditor.ShellMod:1621
+        //$LASTPOS=7001714;//jseditor.ShellMod:1714
         file=_this.resolve(file);
-        //$LASTPOS=7001645;//jseditor.ShellMod:1645
+        //$LASTPOS=7001738;//jseditor.ShellMod:1738
         r = _this.waitFor(file.mkdir());
         
         return r;
@@ -485,7 +522,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=7001621;//jseditor.ShellMod:1621
+        //$LASTPOS=7001714;//jseditor.ShellMod:1714
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_mkdir(_thread) {
@@ -493,7 +530,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7001645;//jseditor.ShellMod:1645
+              //$LASTPOS=7001738;//jseditor.ShellMod:1738
               _this.fiber$waitFor(_thread, file.mkdir());
               __pc=1;return;
             case 1:
@@ -510,9 +547,9 @@ define(function (require) {
         var _this=this;
         var r;
         
-        //$LASTPOS=7001706;//jseditor.ShellMod:1706
+        //$LASTPOS=7001799;//jseditor.ShellMod:1799
         file=_this.resolve(file);
-        //$LASTPOS=7001730;//jseditor.ShellMod:1730
+        //$LASTPOS=7001823;//jseditor.ShellMod:1823
         r = _this.waitFor(file.rm());
         
         return r;
@@ -524,7 +561,7 @@ define(function (require) {
         var __pc=0;
         var r;
         
-        //$LASTPOS=7001706;//jseditor.ShellMod:1706
+        //$LASTPOS=7001799;//jseditor.ShellMod:1799
         file=_this.resolve(file);
         
         _thread.enter(function _trc_ShellMod_ent_rm(_thread) {
@@ -532,7 +569,7 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=7001730;//jseditor.ShellMod:1730
+              //$LASTPOS=7001823;//jseditor.ShellMod:1823
               _this.fiber$waitFor(_thread, file.rm());
               __pc=1;return;
             case 1:
@@ -546,6 +583,6 @@ define(function (require) {
       },
       __dummy: false
     },
-    decls: {"methods":{"main":{"nowait":false},"cd":{"nowait":true},"resolve":{"nowait":true},"listFiles":{"nowait":false},"readJSON":{"nowait":false},"readFile":{"nowait":false},"writeJSON":{"nowait":false},"writeFile":{"nowait":false},"mv":{"nowait":false},"isDir":{"nowait":false},"mkdir":{"nowait":false},"rm":{"nowait":false}}}
+    decls: {"methods":{"main":{"nowait":false},"cd":{"nowait":true},"resolve":{"nowait":true},"listFiles":{"nowait":false},"readJSON":{"nowait":false},"readFile":{"nowait":false},"writeJSON":{"nowait":false},"writeFile":{"nowait":false},"mv":{"nowait":false},"cp":{"nowait":false},"isDir":{"nowait":false},"mkdir":{"nowait":false},"rm":{"nowait":false}}}
   });
 });

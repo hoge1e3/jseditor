@@ -162,6 +162,7 @@ function parseString(str) {
             } else if(vtype="number") {
                 model[key]=parseInt(val);
             }
+            fireEvent("modelChanged") {key, value:model[key], from:jqdom};
             bindObj.onModelChanged(val,jqdom);
         }
     };
@@ -195,7 +196,7 @@ function parseString(str) {
 \attr(key,val) {
     model[key]=val;
     if (binds[key]) binds[key].onModelChanged(val);
-    fireEvent("modelChanged", key, val);
+    fireEvent("modelChanged") {key, value:val};
 }
 \listenerLoop() {
     while(!isDead) {

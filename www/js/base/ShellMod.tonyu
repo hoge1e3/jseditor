@@ -64,6 +64,11 @@ nowait \resolve(f) {
     dst=resolve(dst);
     waitFor(dst.moveFrom(src));
 }
+\cp(src,dst) {
+    src=resolve(src);
+    dst=resolve(dst);
+    waitFor(dst.copyFrom(src));
+}
 \isDir(file) {
     file=resolve(file);
     var r=waitFor(file.isDir());

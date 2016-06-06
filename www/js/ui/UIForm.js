@@ -479,24 +479,24 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_124;
+        var _it_125;
         var eType;
         var li;
-        var _it_125;
+        var _it_126;
         
         //$LASTPOS=16001981;//jseditor.UIForm:1981
-        _it_124=Tonyu.iterator(o,2);
-        while(_it_124.next()) {
-          k=_it_124[0];
-          v=_it_124[1];
+        _it_125=Tonyu.iterator(o,2);
+        while(_it_125.next()) {
+          k=_it_125[0];
+          v=_it_125[1];
           
           //$LASTPOS=16002011;//jseditor.UIForm:2011
           if (k=="on") {
             //$LASTPOS=16002039;//jseditor.UIForm:2039
-            _it_125=Tonyu.iterator(o.on,2);
-            while(_it_125.next()) {
-              eType=_it_125[0];
-              li=_it_125[1];
+            _it_126=Tonyu.iterator(o.on,2);
+            while(_it_126.next()) {
+              eType=_it_126[0];
+              li=_it_126[1];
               
               //$LASTPOS=16002066;//jseditor.UIForm:2066
               _this.parseOn(eType,li);
@@ -547,10 +547,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_124;
+        var _it_125;
         var eType;
         var li;
-        var _it_125;
+        var _it_126;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -559,20 +559,20 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=16001981;//jseditor.UIForm:1981
-              _it_124=Tonyu.iterator(o,2);
+              _it_125=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_124.next())) { __pc=15; break; }
-              k=_it_124[0];
-              v=_it_124[1];
+              if (!(_it_125.next())) { __pc=15; break; }
+              k=_it_125[0];
+              v=_it_125[1];
               
               //$LASTPOS=16002011;//jseditor.UIForm:2011
               if (!(k=="on")) { __pc=5; break; }
               //$LASTPOS=16002039;//jseditor.UIForm:2039
-              _it_125=Tonyu.iterator(o.on,2);
+              _it_126=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_125.next())) { __pc=4; break; }
-              eType=_it_125[0];
-              li=_it_125[1];
+              if (!(_it_126.next())) { __pc=4; break; }
+              eType=_it_126[0];
+              li=_it_126[1];
               
               //$LASTPOS=16002066;//jseditor.UIForm:2066
               _this.fiber$parseOn(_thread, eType, li);
@@ -916,11 +916,13 @@ define(function (require) {
               }
             }
             //$LASTPOS=16004275;//jseditor.UIForm:4275
+            _this.fireEvent("modelChanged",{key: key,value: _this.model[key],from: jqdom});
+            //$LASTPOS=16004351;//jseditor.UIForm:4351
             bindObj.onModelChanged(val,jqdom);
             
           }
         }));
-        //$LASTPOS=16004334;//jseditor.UIForm:4334
+        //$LASTPOS=16004410;//jseditor.UIForm:4410
         bindObj.jqdoms.push(jqdom);
       },
       fiber$bind :function _trc_UIForm_f_bind(_thread,key) {
@@ -988,6 +990,8 @@ define(function (require) {
                     }
                   }
                   //$LASTPOS=16004275;//jseditor.UIForm:4275
+                  _this.fireEvent("modelChanged",{key: key,value: _this.model[key],from: jqdom});
+                  //$LASTPOS=16004351;//jseditor.UIForm:4351
                   bindObj.onModelChanged(val,jqdom);
                   
                 }
@@ -995,7 +999,7 @@ define(function (require) {
               __pc=3;return;
             case 3:
               
-              //$LASTPOS=16004334;//jseditor.UIForm:4334
+              //$LASTPOS=16004410;//jseditor.UIForm:4410
               bindObj.jqdoms.push(jqdom);
               _thread.exit(_this);return;
             }
@@ -1007,29 +1011,29 @@ define(function (require) {
         var _this=this;
         var key;
         var handler;
-        var _it_144;
+        var _it_145;
         
-        //$LASTPOS=16004494;//jseditor.UIForm:4494
+        //$LASTPOS=16004570;//jseditor.UIForm:4570
         if (SFile["is"](m)) {
-          //$LASTPOS=16004525;//jseditor.UIForm:4525
+          //$LASTPOS=16004601;//jseditor.UIForm:4601
           _this.modelFile=m;
-          //$LASTPOS=16004547;//jseditor.UIForm:4547
+          //$LASTPOS=16004623;//jseditor.UIForm:4623
           _this.model=_this.readJSON(_this.modelFile,def);
           
         } else {
-          //$LASTPOS=16004601;//jseditor.UIForm:4601
+          //$LASTPOS=16004677;//jseditor.UIForm:4677
           _this.model=m;
           
         }
-        //$LASTPOS=16004622;//jseditor.UIForm:4622
+        //$LASTPOS=16004698;//jseditor.UIForm:4698
         assert(_this.model,"Model load error");
-        //$LASTPOS=16004662;//jseditor.UIForm:4662
-        _it_144=Tonyu.iterator(_this.binds,2);
-        while(_it_144.next()) {
-          key=_it_144[0];
-          handler=_it_144[1];
+        //$LASTPOS=16004738;//jseditor.UIForm:4738
+        _it_145=Tonyu.iterator(_this.binds,2);
+        while(_it_145.next()) {
+          key=_it_145[0];
+          handler=_it_145[1];
           
-          //$LASTPOS=16004704;//jseditor.UIForm:4704
+          //$LASTPOS=16004780;//jseditor.UIForm:4780
           handler.onModelChanged(_this.model[key]);
           
         }
@@ -1041,7 +1045,7 @@ define(function (require) {
         var __pc=0;
         var key;
         var handler;
-        var _it_144;
+        var _it_145;
         
         
         _thread.enter(function _trc_UIForm_ent_loadModel(_thread) {
@@ -1049,11 +1053,11 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16004494;//jseditor.UIForm:4494
+              //$LASTPOS=16004570;//jseditor.UIForm:4570
               if (!(SFile["is"](m))) { __pc=2; break; }
-              //$LASTPOS=16004525;//jseditor.UIForm:4525
+              //$LASTPOS=16004601;//jseditor.UIForm:4601
               _this.modelFile=m;
-              //$LASTPOS=16004547;//jseditor.UIForm:4547
+              //$LASTPOS=16004623;//jseditor.UIForm:4623
               _this.fiber$readJSON(_thread, _this.modelFile, def);
               __pc=1;return;
             case 1:
@@ -1062,20 +1066,20 @@ define(function (require) {
               __pc=3;break;
             case 2:
               {
-                //$LASTPOS=16004601;//jseditor.UIForm:4601
+                //$LASTPOS=16004677;//jseditor.UIForm:4677
                 _this.model=m;
               }
             case 3:
               
-              //$LASTPOS=16004622;//jseditor.UIForm:4622
+              //$LASTPOS=16004698;//jseditor.UIForm:4698
               assert(_this.model,"Model load error");
-              //$LASTPOS=16004662;//jseditor.UIForm:4662
-              _it_144=Tonyu.iterator(_this.binds,2);
-              while(_it_144.next()) {
-                key=_it_144[0];
-                handler=_it_144[1];
+              //$LASTPOS=16004738;//jseditor.UIForm:4738
+              _it_145=Tonyu.iterator(_this.binds,2);
+              while(_it_145.next()) {
+                key=_it_145[0];
+                handler=_it_145[1];
                 
-                //$LASTPOS=16004704;//jseditor.UIForm:4704
+                //$LASTPOS=16004780;//jseditor.UIForm:4780
                 handler.onModelChanged(_this.model[key]);
                 
               }
@@ -1088,11 +1092,11 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16004771;//jseditor.UIForm:4771
+        //$LASTPOS=16004847;//jseditor.UIForm:4847
         if (_this.modelFile&&_this.model) {
-          //$LASTPOS=16004806;//jseditor.UIForm:4806
+          //$LASTPOS=16004882;//jseditor.UIForm:4882
           _this.writeJSON(_this.modelFile,_this.model,{indent: 4});
-          //$LASTPOS=16004854;//jseditor.UIForm:4854
+          //$LASTPOS=16004930;//jseditor.UIForm:4930
           _this.sendEvent("modelsaved",_this.model);
           
         } else {
@@ -1113,14 +1117,14 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16004771;//jseditor.UIForm:4771
+              //$LASTPOS=16004847;//jseditor.UIForm:4847
               if (!(_this.modelFile&&_this.model)) { __pc=2; break; }
-              //$LASTPOS=16004806;//jseditor.UIForm:4806
+              //$LASTPOS=16004882;//jseditor.UIForm:4882
               _this.fiber$writeJSON(_thread, _this.modelFile, _this.model, {indent: 4});
               __pc=1;return;
             case 1:
               
-              //$LASTPOS=16004854;//jseditor.UIForm:4854
+              //$LASTPOS=16004930;//jseditor.UIForm:4930
               _this.sendEvent("modelsaved",_this.model);
               __pc=3;break;
             case 2:
@@ -1139,15 +1143,15 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16004991;//jseditor.UIForm:4991
+        //$LASTPOS=16005067;//jseditor.UIForm:5067
         _this.model[key]=val;
-        //$LASTPOS=16005012;//jseditor.UIForm:5012
+        //$LASTPOS=16005088;//jseditor.UIForm:5088
         if (_this.binds[key]) {
-          //$LASTPOS=16005028;//jseditor.UIForm:5028
+          //$LASTPOS=16005104;//jseditor.UIForm:5104
           _this.binds[key].onModelChanged(val);
         }
-        //$LASTPOS=16005065;//jseditor.UIForm:5065
-        _this.fireEvent("modelChanged",key,val);
+        //$LASTPOS=16005141;//jseditor.UIForm:5141
+        _this.fireEvent("modelChanged",{key: key,value: val});
       },
       fiber$attr :function _trc_UIForm_f_attr(_thread,key,val) {
         "use strict";
@@ -1155,15 +1159,15 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=16004991;//jseditor.UIForm:4991
+        //$LASTPOS=16005067;//jseditor.UIForm:5067
         _this.model[key]=val;
-        //$LASTPOS=16005012;//jseditor.UIForm:5012
+        //$LASTPOS=16005088;//jseditor.UIForm:5088
         if (_this.binds[key]) {
-          //$LASTPOS=16005028;//jseditor.UIForm:5028
+          //$LASTPOS=16005104;//jseditor.UIForm:5104
           _this.binds[key].onModelChanged(val);
         }
-        //$LASTPOS=16005065;//jseditor.UIForm:5065
-        _this.fireEvent("modelChanged",key,val);
+        //$LASTPOS=16005141;//jseditor.UIForm:5141
+        _this.fireEvent("modelChanged",{key: key,value: val});
         
         _thread.retVal=_this;return;
       },
@@ -1171,15 +1175,15 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16005129;//jseditor.UIForm:5129
+        //$LASTPOS=16005212;//jseditor.UIForm:5212
         while (! _this.isDead) {
-          //$LASTPOS=16005155;//jseditor.UIForm:5155
-          _this.listeners.forEach((function anonymous_5172(f) {
+          //$LASTPOS=16005238;//jseditor.UIForm:5238
+          _this.listeners.forEach((function anonymous_5255(f) {
             
-            //$LASTPOS=16005192;//jseditor.UIForm:5192
+            //$LASTPOS=16005275;//jseditor.UIForm:5275
             f();
           }));
-          //$LASTPOS=16005218;//jseditor.UIForm:5218
+          //$LASTPOS=16005301;//jseditor.UIForm:5301
           _this.update(100);
           
         }
@@ -1196,16 +1200,16 @@ define(function (require) {
           for(var __cnt=100 ; __cnt--;) {
             switch (__pc) {
             case 0:
-              //$LASTPOS=16005129;//jseditor.UIForm:5129
+              //$LASTPOS=16005212;//jseditor.UIForm:5212
             case 1:
               if (!(! _this.isDead)) { __pc=3; break; }
-              //$LASTPOS=16005155;//jseditor.UIForm:5155
-              _this.listeners.forEach((function anonymous_5172(f) {
+              //$LASTPOS=16005238;//jseditor.UIForm:5238
+              _this.listeners.forEach((function anonymous_5255(f) {
                 
-                //$LASTPOS=16005192;//jseditor.UIForm:5192
+                //$LASTPOS=16005275;//jseditor.UIForm:5275
                 f();
               }));
-              //$LASTPOS=16005218;//jseditor.UIForm:5218
+              //$LASTPOS=16005301;//jseditor.UIForm:5301
               _this.fiber$update(_thread, 100);
               __pc=2;return;
             case 2:
@@ -1222,11 +1226,11 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=16005256;//jseditor.UIForm:5256
+        //$LASTPOS=16005339;//jseditor.UIForm:5339
         _this._isDead=true;
-        //$LASTPOS=16005275;//jseditor.UIForm:5275
+        //$LASTPOS=16005358;//jseditor.UIForm:5358
         if (_this.jqdom) {
-          //$LASTPOS=16005297;//jseditor.UIForm:5297
+          //$LASTPOS=16005380;//jseditor.UIForm:5380
           _this.jqdom.remove();
           
         }
@@ -1237,11 +1241,11 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=16005256;//jseditor.UIForm:5256
+        //$LASTPOS=16005339;//jseditor.UIForm:5339
         _this._isDead=true;
-        //$LASTPOS=16005275;//jseditor.UIForm:5275
+        //$LASTPOS=16005358;//jseditor.UIForm:5358
         if (_this.jqdom) {
-          //$LASTPOS=16005297;//jseditor.UIForm:5297
+          //$LASTPOS=16005380;//jseditor.UIForm:5380
           _this.jqdom.remove();
           
         }

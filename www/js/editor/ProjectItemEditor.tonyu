@@ -2,7 +2,7 @@ extends UIForm;
 native location;
 
 tag("div") \{
-    tag("a",{on:{click:openProject},$bind:"name"});
+    link=tag("a") {/*href:url(model.name),*/$bind:"name"};
     tag("div") \{
         tag("span","名前：");
         tag("input") {$bind:"name"};
@@ -13,9 +13,17 @@ tag("div") \{
         }}} ,"削除");
     };
 };
+on("modelChanged") \(e) {
+    if (e.key=="name") {
+        link.attr("href",url(e.value));
+    }
+};
+\url(name) {
+    var url=location.href.replace(/\?.*/,"");
+    url+="?r=TEdit&prj="+name;
+    return url;
+}
 
 \openProject() {
-    url=location.href.replace(/\?.*/,"");
-    url+="?r=TEdit&prj="+model.name;
     parent.parent.parallel("saveAndGo",url);
 }

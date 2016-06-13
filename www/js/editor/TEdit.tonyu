@@ -44,7 +44,7 @@ var finder;
     {label:"ウィンドウ",sub:[
         {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
         {label:"新規ウィンドウ＆Home",id:"newWindowHome",action:newWindowHome},
-        {label:"ブックマーク...",id:"bookmark",action:"$bookmark.open"},
+        //{label:"ブックマーク...",id:"bookmark",action:"$bookmark.open"},
         {label:"フォルダを開く",id:"openFolder",action:openFolder}
     ]},
     /*{label:"実行",sub:[

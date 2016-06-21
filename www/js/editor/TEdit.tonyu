@@ -38,7 +38,8 @@ var finder;
     {label:"ツール",sub:[
         //{label:"検索",id:"find",action:"$finder.find",key:"ctrl+f"},
         //{label:"新規ツール...",id:"newTool"}
-        {label:"TonyuC", id:"tonyuC",action:tonyuC, key:"f9"}
+        {label:"TonyuC", id:"tonyuC",action:tonyuC, key:"f9"},
+        {label:"実行", id:"run",action:runHTML, key:"f5"}
         
     ]},
     {label:"ウィンドウ",sub:[
@@ -83,6 +84,13 @@ $bookmark=new Bookmark{
     file:etc.rel("bookmark.json"),
     fileList:fl
 };
+\runHTML() {
+    var f=$editorSet.curFile;
+    var genID=""+Math.random();
+    window.open("file://"+f.path(),genID,
+    'width=800,height=400,menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes');
+
+}
 \setEtc() {
     parallel(setEtcP);
 }
@@ -148,11 +156,12 @@ requirejs(["ace"],function (){
 }
 \openFolder() {
     // Open a file in file explorer.
-    var f=$editorSet.curFile;
+    var f=$editorSet.curFile || fl.lastSelected;
     console.log(f);
     if (f) {
         console.log(f.path());
         gui.Shell.showItemInFolder(f.path().replace(/\//g,"\\"));
+        return;
     }
 }
 $(window).on("beforeunload") \(e) {

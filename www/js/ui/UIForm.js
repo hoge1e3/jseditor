@@ -479,24 +479,24 @@ define(function (require) {
         var _this=this;
         var k;
         var v;
-        var _it_125;
+        var _it_127;
         var eType;
         var li;
-        var _it_126;
+        var _it_128;
         
         //$LASTPOS=16001981;//jseditor.UIForm:1981
-        _it_125=Tonyu.iterator(o,2);
-        while(_it_125.next()) {
-          k=_it_125[0];
-          v=_it_125[1];
+        _it_127=Tonyu.iterator(o,2);
+        while(_it_127.next()) {
+          k=_it_127[0];
+          v=_it_127[1];
           
           //$LASTPOS=16002011;//jseditor.UIForm:2011
           if (k=="on") {
             //$LASTPOS=16002039;//jseditor.UIForm:2039
-            _it_126=Tonyu.iterator(o.on,2);
-            while(_it_126.next()) {
-              eType=_it_126[0];
-              li=_it_126[1];
+            _it_128=Tonyu.iterator(o.on,2);
+            while(_it_128.next()) {
+              eType=_it_128[0];
+              li=_it_128[1];
               
               //$LASTPOS=16002066;//jseditor.UIForm:2066
               _this.parseOn(eType,li);
@@ -547,10 +547,10 @@ define(function (require) {
         var __pc=0;
         var k;
         var v;
-        var _it_125;
+        var _it_127;
         var eType;
         var li;
-        var _it_126;
+        var _it_128;
         
         
         _thread.enter(function _trc_UIForm_ent_parseAttr(_thread) {
@@ -559,20 +559,20 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=16001981;//jseditor.UIForm:1981
-              _it_125=Tonyu.iterator(o,2);
+              _it_127=Tonyu.iterator(o,2);
             case 1:
-              if (!(_it_125.next())) { __pc=15; break; }
-              k=_it_125[0];
-              v=_it_125[1];
+              if (!(_it_127.next())) { __pc=15; break; }
+              k=_it_127[0];
+              v=_it_127[1];
               
               //$LASTPOS=16002011;//jseditor.UIForm:2011
               if (!(k=="on")) { __pc=5; break; }
               //$LASTPOS=16002039;//jseditor.UIForm:2039
-              _it_126=Tonyu.iterator(o.on,2);
+              _it_128=Tonyu.iterator(o.on,2);
             case 2:
-              if (!(_it_126.next())) { __pc=4; break; }
-              eType=_it_126[0];
-              li=_it_126[1];
+              if (!(_it_128.next())) { __pc=4; break; }
+              eType=_it_128[0];
+              li=_it_128[1];
               
               //$LASTPOS=16002066;//jseditor.UIForm:2066
               _this.fiber$parseOn(_thread, eType, li);
@@ -1011,7 +1011,7 @@ define(function (require) {
         var _this=this;
         var key;
         var handler;
-        var _it_145;
+        var _it_147;
         
         //$LASTPOS=16004570;//jseditor.UIForm:4570
         if (SFile["is"](m)) {
@@ -1028,10 +1028,10 @@ define(function (require) {
         //$LASTPOS=16004698;//jseditor.UIForm:4698
         assert(_this.model,"Model load error");
         //$LASTPOS=16004738;//jseditor.UIForm:4738
-        _it_145=Tonyu.iterator(_this.binds,2);
-        while(_it_145.next()) {
-          key=_it_145[0];
-          handler=_it_145[1];
+        _it_147=Tonyu.iterator(_this.binds,2);
+        while(_it_147.next()) {
+          key=_it_147[0];
+          handler=_it_147[1];
           
           //$LASTPOS=16004780;//jseditor.UIForm:4780
           handler.onModelChanged(_this.model[key]);
@@ -1045,7 +1045,7 @@ define(function (require) {
         var __pc=0;
         var key;
         var handler;
-        var _it_145;
+        var _it_147;
         
         
         _thread.enter(function _trc_UIForm_ent_loadModel(_thread) {
@@ -1074,10 +1074,10 @@ define(function (require) {
               //$LASTPOS=16004698;//jseditor.UIForm:4698
               assert(_this.model,"Model load error");
               //$LASTPOS=16004738;//jseditor.UIForm:4738
-              _it_145=Tonyu.iterator(_this.binds,2);
-              while(_it_145.next()) {
-                key=_it_145[0];
-                handler=_it_145[1];
+              _it_147=Tonyu.iterator(_this.binds,2);
+              while(_it_147.next()) {
+                key=_it_147[0];
+                handler=_it_147[1];
                 
                 //$LASTPOS=16004780;//jseditor.UIForm:4780
                 handler.onModelChanged(_this.model[key]);

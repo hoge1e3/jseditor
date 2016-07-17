@@ -114,17 +114,17 @@ define(function (require) {
         var newPaths;
         var k;
         var v;
-        var _it_50;
+        var _it_51;
         var f;
         
         //$LASTPOS=9000532;//jseditor.ReqConfBuilder:532
         newPaths = {};
         
         //$LASTPOS=9000553;//jseditor.ReqConfBuilder:553
-        _it_50=Tonyu.iterator(reqConf.paths,2);
-        while(_it_50.next()) {
-          k=_it_50[0];
-          v=_it_50[1];
+        _it_51=Tonyu.iterator(reqConf.paths,2);
+        while(_it_51.next()) {
+          k=_it_51[0];
+          v=_it_51[1];
           
           //$LASTPOS=9000594;//jseditor.ReqConfBuilder:594
           f = _this.base.rel(v+".js");
@@ -148,17 +148,17 @@ define(function (require) {
         var newPaths;
         var k;
         var v;
-        var _it_50;
+        var _it_51;
         var f;
         
         //$LASTPOS=9000532;//jseditor.ReqConfBuilder:532
         newPaths = {};
         
         //$LASTPOS=9000553;//jseditor.ReqConfBuilder:553
-        _it_50=Tonyu.iterator(reqConf.paths,2);
-        while(_it_50.next()) {
-          k=_it_50[0];
-          v=_it_50[1];
+        _it_51=Tonyu.iterator(reqConf.paths,2);
+        while(_it_51.next()) {
+          k=_it_51[0];
+          v=_it_51[1];
           
           //$LASTPOS=9000594;//jseditor.ReqConfBuilder:594
           f = _this.base.rel(v+".js");

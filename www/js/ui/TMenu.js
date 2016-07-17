@@ -137,7 +137,7 @@ define(function (require) {
         var _this=this;
         var ul1;
         var mainMenuItem;
-        var _it_23;
+        var _it_24;
         var li;
         var ul2;
         var menu;
@@ -146,9 +146,9 @@ define(function (require) {
         ul1 = UI("ul",{"class": "nav navbar-nav"});
         
         //$LASTPOS=5000744;//jseditor.TMenu:744
-        _it_23=Tonyu.iterator(hier,1);
-        while(_it_23.next()) {
-          mainMenuItem=_it_23[0];
+        _it_24=Tonyu.iterator(hier,1);
+        while(_it_24.next()) {
+          mainMenuItem=_it_24[0];
           
           //$LASTPOS=5000786;//jseditor.TMenu:786
           li = UI("li",["a",{href: (mainMenuItem.href||"#"),id: mainMenuItem.id,"class": (mainMenuItem.sub?"dropdown-toggle":null),"data-toggle": (mainMenuItem.sub?"dropdown":null)},mainMenuItem.label]);
@@ -204,7 +204,7 @@ define(function (require) {
         var __pc=0;
         var ul1;
         var mainMenuItem;
-        var _it_23;
+        var _it_24;
         var li;
         var ul2;
         var menu;
@@ -219,10 +219,10 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=5000744;//jseditor.TMenu:744
-              _it_23=Tonyu.iterator(hier,1);
+              _it_24=Tonyu.iterator(hier,1);
             case 1:
-              if (!(_it_23.next())) { __pc=3; break; }
-              mainMenuItem=_it_23[0];
+              if (!(_it_24.next())) { __pc=3; break; }
+              mainMenuItem=_it_24[0];
               
               //$LASTPOS=5000786;//jseditor.TMenu:786
               li = UI("li",["a",{href: (mainMenuItem.href||"#"),id: mainMenuItem.id,"class": (mainMenuItem.sub?"dropdown-toggle":null),"data-toggle": (mainMenuItem.sub?"dropdown":null)},mainMenuItem.label]);

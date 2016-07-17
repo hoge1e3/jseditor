@@ -25,9 +25,27 @@ define(function (require) {
       initialize :function _trc_Etc_initialize() {
         "use strict";
         var _this=this;
+        var d;
         
         //$LASTPOS=4000050;//jseditor.Etc:50
-        _this.dir=localStorage.etc?FS.get(localStorage.etc):FS.get(process.cwd()).rel(".jsetc/");
+        if (localStorage.etc) {
+          //$LASTPOS=4000082;//jseditor.Etc:82
+          d = FS.get(localStorage.etc);
+          
+          //$LASTPOS=4000122;//jseditor.Etc:122
+          if (d.exists()&&d.isDir()) {
+            //$LASTPOS=4000165;//jseditor.Etc:165
+            _this.dir=d;
+            
+          }
+          
+        }
+        //$LASTPOS=4000193;//jseditor.Etc:193
+        if (! _this.dir) {
+          //$LASTPOS=4000213;//jseditor.Etc:213
+          _this.dir=FS.get(process.cwd()).rel(".jsetc/");
+          
+        }
       },
       conf :function _trc_Etc_conf(path) {
         "use strict";

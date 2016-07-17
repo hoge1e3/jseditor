@@ -117,7 +117,7 @@ define(function (require) {
         var _this=this;
         var t;
         var h;
-        var _it_33;
+        var _it_34;
         
         //$LASTPOS=6000505;//jseditor.EventHandler:505
         if (_this.released) {
@@ -125,9 +125,9 @@ define(function (require) {
         }
         
         //$LASTPOS=6000544;//jseditor.EventHandler:544
-        _it_33=Tonyu.iterator(_this.listeners,1);
-        while(_it_33.next()) {
-          h=_it_33[0];
+        _it_34=Tonyu.iterator(_this.listeners,1);
+        while(_it_34.next()) {
+          h=_it_34[0];
           
           //$LASTPOS=6000788;//jseditor.EventHandler:788
           _this.callEventHandler(h,args);
@@ -141,7 +141,7 @@ define(function (require) {
         var __pc=0;
         var t;
         var h;
-        var _it_33;
+        var _it_34;
         
         //$LASTPOS=6000505;//jseditor.EventHandler:505
         if (_this.released) {
@@ -156,10 +156,10 @@ define(function (require) {
             switch (__pc) {
             case 0:
               //$LASTPOS=6000544;//jseditor.EventHandler:544
-              _it_33=Tonyu.iterator(_this.listeners,1);
+              _it_34=Tonyu.iterator(_this.listeners,1);
             case 1:
-              if (!(_it_33.next())) { __pc=3; break; }
-              h=_it_33[0];
+              if (!(_it_34.next())) { __pc=3; break; }
+              h=_it_34[0];
               
               //$LASTPOS=6000788;//jseditor.EventHandler:788
               _this.fiber$callEventHandler(_thread, h, args);

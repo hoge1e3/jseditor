@@ -1,9 +1,15 @@
 native localStorage;
 native process;
 \new() {
-    dir=localStorage.etc ? 
-    FS.get(localStorage.etc) : 
-    FS.get(process.cwd()).rel(".jsetc/");
+    if (localStorage.etc) {
+        var d=FS.get(localStorage.etc);
+        if (d.exists() && d.isDir()) {
+            dir=d;
+        }
+    } 
+    if (!dir) {
+        dir=FS.get(process.cwd()).rel(".jsetc/");
+    }
 }
 \conf(path) {
     return new JSONConf(rel(path));

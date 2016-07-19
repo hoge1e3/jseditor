@@ -1,23 +1,104 @@
 extends Base;
 native process;
+native Date;
 
 var name, path, www, tonyuC, reqConf;
-\new(prjs, name) {
+\findProject(name) {
     var prj;
-    prjs.forEach \(p) {
+    projects.forEach \(p) {
         if (p.name==name) prj=p;
     };
+    return prj;    
+}
+\new(prjs, name) {
+    //var prj;
+    this.projects=prjs;
+    prj=findProject(name);
     if (!prj) {
-        this.name="JSEditor"; 
+        alert("Project "+name+" not found");
+        location.href="index.html";
+        /*this.name="JSEditor"; 
         path=FS.get(process.cwd().replace(/\\/g,"/"));
         www=path.rel("www/");
         tonyuC=www.rel("js/");
-        reqConf=www.rel("js/reqConf.js");
+        reqConf=www.rel("js/reqConf.js");*/
     } else {
         this.name=prj.name;
         path=FS.get(prj.path.replace(/\\/g,"/"));
-        www=path.rel(prj.www);
-        tonyuC=path.rel(prj.tonyuC);
-        reqConf=path.rel(prj.reqConf);
+        readInfoDir();
+        //www=path.rel(prj.www);
+        //tonyuC=path.rel(prj.tonyuC);
+        //reqConf=path.rel(prj.reqConf);
+        print("PRJ=",this);
+    }
+}
+\www {
+    var v=prj.www || (build && build.htmlDir);
+    //if (!v) throw new Error("htmlDir not set");
+    return v && path.rel(v);
+}
+\htmlDir { return www;}
+
+\tonyuC {
+    var v=prj.tonyuC || (build && build.tonyuC);
+    //if (!v) throw new Error("tonyuC not set");
+    return v && path.rel(v);
+}
+\reqConf {
+    var v=prj.reqConf || (build && build.reqConf);
+    //if (!v) throw new Error("reqConf not set");
+    return v && path.rel(v);
+}
+
+\readInfoDir() {
+    var e=infoDir.exists();
+    if (!e) return;
+    for (var f in infoDir.listFiles()) {
+        var n=f.truncExt();
+        if (this[n]!=null) {
+            print(f+" is ignored");
+            continue;
+        }
+        try {
+            this[n]=f.obj();
+        } catch(e) {
+            print("Invalid json on "+f+". Ignored");
+        }
+    }
+}
+\infoDir {
+    return path.rel(".jseprj/");
+}
+
+\doSync() {
+    if (!sync) { alert("sync is not configured"); return ;}
+    for (var se in sync) {
+        var sef=se.map(resolve);
+        var max=0,maxf;
+        for (var f in sef) {
+            if (!f.exists()) continue;
+            if (f.lastUpdate()>max) {
+                max=f.lastUpdate();
+                maxf=f;
+            }
+        }
+        if (maxf) {
+            for (var f in sef) {
+                if (!f.exists()) continue;
+                if (f.lastUpdate()<=max-1000) {
+                    print("cp ", maxf, max, new Date(max),  f, f.lastUpdate(),new Date(f.lastUpdate()));
+                    f.copyFrom(maxf,{a:true});
+                }
+            }
+        }
+    }
+    \resolve(p) {
+        p=p.replace(/\$\{projects:([^\}]+)\}\/?/g, function (_,prjn) {
+            var pr=findProject(prjn);
+            if (!pr) throw new Error("Project "+prjn+" not found");
+            return FS.PathUtil.directorify(pr.path);
+        });
+        if (FS.PathUtil.isAbsolutePath(p)) return FS.get(p);
+        return path.rel(p);
     }
 }

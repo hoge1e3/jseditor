@@ -2,6 +2,7 @@ extends Base;
 native reqConf;
 native JSON;
 
+var output, htmlDir;
 \new(o) {
     super(o);
     base=htmlDir.rel(reqConf.baseUrl);

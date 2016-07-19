@@ -39,8 +39,8 @@ var finder;
         //{label:"検索",id:"find",action:"$finder.find",key:"ctrl+f"},
         //{label:"新規ツール...",id:"newTool"}
         {label:"TonyuC", id:"tonyuC",action:tonyuC, key:"f9"},
-        {label:"実行", id:"run",action:runHTML, key:"f5"}
-        
+        {label:"実行", id:"run",action:runHTML, key:"f5"},
+        {label:"sync", id:"sync",action:sync, key:"f8"}
     ]},
     {label:"ウィンドウ",sub:[
         {label:"新規ウィンドウ",id:"newWindow",action:newWindow},
@@ -71,8 +71,11 @@ var prjs=readJSON(etc.rel("projects.json"));
 var prj=new JSEProject(prjs, Util.getQueryString("prj"));
 $jsePrj=prj;
 $("title").text(Util.getQueryString("prj")+" - JS Editor");
+$finder=new Finder;
+$finder.parallel("findFileLoop",$jsePrj.path);
+
 //var name, path, www, tonyuC, reqConf;
-var tc=new TonyuC(prj);
+var tc=prj.tonyuC && new TonyuC(prj);
 var fl=$fileList=new FileList($("#fileItemList")) {
     open:function (f) {
         console.log("opening",f);
@@ -101,8 +104,12 @@ $bookmark=new Bookmark{
         location.reload();
     }
 }
+\sync() {
+    prj.parallel("doSync");
+}
 function tonyuC() {
-    tc.parallel("compile");
+    if (!tc) alert("TonyuC is not configured");
+    else tc.parallel("compile");
 }
 function newWindow() {
     var genID=""+Math.random();
@@ -136,7 +143,6 @@ requirejs(["ace"],function (){
         height:editorH, 
         fontSize:( desktopEnv && desktopEnv.editorFontSize || 12 )
     };
-    $finder=new Finder;
     if (typeof SplashScreen!="undefined") SplashScreen.hide();
     $fileMenu=fileMenu=new FileMenu({editorSet:es,fileList:fl});
     fl.open(prj.path);

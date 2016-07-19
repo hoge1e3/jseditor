@@ -4,15 +4,25 @@ extends UIForm;
     dialog();//{width:600};
     clearResult();
     var c;
-    if (filesCache) {
+    switch(loopStatus) {
+    case "progress":
+        this.word=word;
+    case "complete":
         findFromCache(word).forEach(addResult);
-    } else {
+        break;        
+    default:
         filesCache={};
-        c=findFileLoop(word,$jsePrj.path);
+        this.word=word;
+        c=findFileLoop($jsePrj.path);
     }
+}
+\findFileLoop(dir) {
+    loopStatus="progress";
+    findFileLoop2(dir);    
+    loopStatus="complete";
     mesg.text("Done");
 }
-\findFileLoop(word,dir) {
+\findFileLoop2(dir) {
     var c=0;
     for (var f in dir.listFiles()) {
         mesg.text("Searching..."+f.name());
@@ -20,8 +30,8 @@ extends UIForm;
         addFileToCache(f);
         if (excludeDir[f.name()]) {
         } else if (f.isDir()) {
-            c+=findFileLoop(word,f);
-        } else if (Util.startsWith(f.name(), word)) {
+            c+=findFileLoop2(f);
+        } else if (word && Util.startsWith(f.name(), word)) {
             addResult(f);           
             c++;
         }
@@ -57,6 +67,7 @@ extends UIForm;
     return res;
 }
 \addFileToCache(f) {
+    filesCache=filesCache||{};
     var key=f.name();
     var head=key.substring(0,1);
     var ent=filesCache[head] || (filesCache[head]={});

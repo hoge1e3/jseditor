@@ -1,5 +1,6 @@
 define(function (require) {
   var Tonyu=require('Tonyu');
+  var FS=require('FS');
   var UIForm=require('UIForm');
   return Tonyu.klass.define({
     fullName: 'jseditor.ProjectItemEditor',
@@ -38,11 +39,29 @@ define(function (require) {
         }));
         //$LASTPOS=19000367;//jseditor.ProjectItemEditor:367
         _this.on("modelChanged",(function anonymous_386(e) {
+          var e;
           
           //$LASTPOS=19000397;//jseditor.ProjectItemEditor:397
           if (e.key=="name") {
             //$LASTPOS=19000426;//jseditor.ProjectItemEditor:426
             _this.link.attr("href",_this.url(e.value));
+            
+          }
+          //$LASTPOS=19000468;//jseditor.ProjectItemEditor:468
+          if (e.key=="path") {
+            try {
+              //$LASTPOS=19000515;//jseditor.ProjectItemEditor:515
+              if (! _this.model.name) {
+                //$LASTPOS=19000550;//jseditor.ProjectItemEditor:550
+                _this.attr("name",FS.PathUtil.name(e.value));
+                
+              }
+              
+            } catch (e) {
+              //$LASTPOS=19000638;//jseditor.ProjectItemEditor:638
+              _this.console.log(e);
+              
+            }
             
           }
         }));
@@ -88,11 +107,29 @@ define(function (require) {
               
               //$LASTPOS=19000367;//jseditor.ProjectItemEditor:367
               _this.on("modelChanged",(function anonymous_386(e) {
+                var e;
                 
                 //$LASTPOS=19000397;//jseditor.ProjectItemEditor:397
                 if (e.key=="name") {
                   //$LASTPOS=19000426;//jseditor.ProjectItemEditor:426
                   _this.link.attr("href",_this.url(e.value));
+                  
+                }
+                //$LASTPOS=19000468;//jseditor.ProjectItemEditor:468
+                if (e.key=="path") {
+                  try {
+                    //$LASTPOS=19000515;//jseditor.ProjectItemEditor:515
+                    if (! _this.model.name) {
+                      //$LASTPOS=19000550;//jseditor.ProjectItemEditor:550
+                      _this.attr("name",FS.PathUtil.name(e.value));
+                      
+                    }
+                    
+                  } catch (e) {
+                    //$LASTPOS=19000638;//jseditor.ProjectItemEditor:638
+                    _this.console.log(e);
+                    
+                  }
                   
                 }
               }));
@@ -106,10 +143,10 @@ define(function (require) {
         var _this=this;
         var url;
         
-        //$LASTPOS=19000484;//jseditor.ProjectItemEditor:484
+        //$LASTPOS=19000690;//jseditor.ProjectItemEditor:690
         url = location.href.replace(/\?.*/,"");
         
-        //$LASTPOS=19000530;//jseditor.ProjectItemEditor:530
+        //$LASTPOS=19000736;//jseditor.ProjectItemEditor:736
         url+="?r=TEdit&prj="+name;
         return url;
       },
@@ -120,10 +157,10 @@ define(function (require) {
         var __pc=0;
         var url;
         
-        //$LASTPOS=19000484;//jseditor.ProjectItemEditor:484
+        //$LASTPOS=19000690;//jseditor.ProjectItemEditor:690
         url = location.href.replace(/\?.*/,"");
         
-        //$LASTPOS=19000530;//jseditor.ProjectItemEditor:530
+        //$LASTPOS=19000736;//jseditor.ProjectItemEditor:736
         url+="?r=TEdit&prj="+name;
         _thread.retVal=url;return;
         
@@ -134,7 +171,7 @@ define(function (require) {
         "use strict";
         var _this=this;
         
-        //$LASTPOS=19000597;//jseditor.ProjectItemEditor:597
+        //$LASTPOS=19000803;//jseditor.ProjectItemEditor:803
         _this.parent.parent.parallel("saveAndGo",Tonyu.bindFunc(_this,_this.url));
       },
       fiber$openProject :function _trc_ProjectItemEditor_f_openProject(_thread) {
@@ -143,7 +180,7 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         
-        //$LASTPOS=19000597;//jseditor.ProjectItemEditor:597
+        //$LASTPOS=19000803;//jseditor.ProjectItemEditor:803
         _this.parent.parent.parallel("saveAndGo",Tonyu.bindFunc(_this,_this.url));
         
         _thread.retVal=_this;return;

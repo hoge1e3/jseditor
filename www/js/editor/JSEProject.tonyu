@@ -73,9 +73,33 @@ var name, path, www, tonyuC, reqConf;
 \doSync() {
     if (!sync) { alert("sync is not configured"); return ;}
     for (var se in sync) {
-        var sef=se.map(resolve);
+        var files=se.map(resolve);
+        syncDirsOrFiles(files);
+    }
+    \syncDirsOrFiles(files) {
+        if (files[0] && files[0].isDir()) {
+            syncDirs(files);    
+        } else {
+            syncFiles(files);
+        }
+    }
+    \syncDirs(dirs) {
+        var names={};
+        for (var d in dirs) {
+            for (var f in d.listFiles()) {
+                names[f.name()]=1;
+            }
+        }
+        for (var n,v in names) {
+            var df=dirs.map(function (d) {
+                return d.rel(n);
+            });
+            syncDirsOrFiles(df);
+        }
+    }
+    \syncFiles(files) {
         var max=0,maxf;
-        for (var f in sef) {
+        for (var f in files) {
             if (!f.exists()) continue;
             if (f.lastUpdate()>max) {
                 max=f.lastUpdate();
@@ -83,9 +107,9 @@ var name, path, www, tonyuC, reqConf;
             }
         }
         if (maxf) {
-            for (var f in sef) {
-                if (!f.exists()) continue;
-                if (f.lastUpdate()<=max-1000) {
+            for (var f in files) {
+                var lu=f.exists() ? f.lastUpdate() : 0;
+                if (lu<=max-1000) {
                     print("cp ", maxf, max, new Date(max),  f, f.lastUpdate(),new Date(f.lastUpdate()));
                     f.copyFrom(maxf,{a:true});
                 }

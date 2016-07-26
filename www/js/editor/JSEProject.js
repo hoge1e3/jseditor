@@ -132,7 +132,7 @@ define(function (require) {
         var _this=this;
         var e;
         var f;
-        var _it_80;
+        var _it_340;
         var n;
         
         //$LASTPOS=12001308;//jseditor.JSEProject:1308
@@ -143,9 +143,9 @@ define(function (require) {
           return _this;
         }
         //$LASTPOS=12001356;//jseditor.JSEProject:1356
-        _it_80=Tonyu.iterator(_this.infoDir.listFiles(),1);
-        while(_it_80.next()) {
-          f=_it_80[0];
+        _it_340=Tonyu.iterator(_this.infoDir.listFiles(),1);
+        while(_it_340.next()) {
+          f=_it_340[0];
           
           //$LASTPOS=12001401;//jseditor.JSEProject:1401
           n = f.truncExt();
@@ -177,7 +177,7 @@ define(function (require) {
         var __pc=0;
         var e;
         var f;
-        var _it_80;
+        var _it_340;
         var n;
         
         //$LASTPOS=12001308;//jseditor.JSEProject:1308
@@ -189,9 +189,9 @@ define(function (require) {
           
         }
         //$LASTPOS=12001356;//jseditor.JSEProject:1356
-        _it_80=Tonyu.iterator(_this.infoDir.listFiles(),1);
-        while(_it_80.next()) {
-          f=_it_80[0];
+        _it_340=Tonyu.iterator(_this.infoDir.listFiles(),1);
+        while(_it_340.next()) {
+          f=_it_340[0];
           
           //$LASTPOS=12001401;//jseditor.JSEProject:1401
           n = f.truncExt();
@@ -228,30 +228,136 @@ define(function (require) {
         "use strict";
         var _this=this;
         var se;
-        var _it_85;
-        var sef;
-        var max;
-        var maxf;
-        var f;
-        var _it_86;
-        var _it_87;
-        function resolve(p) {
+        var _it_345;
+        var files;
+        function syncDirsOrFiles(files) {
           
-          //$LASTPOS=12002416;//jseditor.JSEProject:2416
-          p=p.replace(/\$\{projects:([^\}]+)\}\/?/g,(function anonymous_2459(_,prjn) {
+          //$LASTPOS=12001910;//jseditor.JSEProject:1910
+          if (files[0]&&files[0].isDir()) {
+            //$LASTPOS=12001958;//jseditor.JSEProject:1958
+            syncDirs(files);
+            
+          } else {
+            //$LASTPOS=12002008;//jseditor.JSEProject:2008
+            syncFiles(files);
+            
+          }
+        }function syncDirs(dirs) {
+          var names;
+          var d;
+          var _it_355;
+          var f;
+          var _it_356;
+          var n;
+          var v;
+          var _it_357;
+          var df;
+          
+          //$LASTPOS=12002072;//jseditor.JSEProject:2072
+          names = {};
+          
+          //$LASTPOS=12002094;//jseditor.JSEProject:2094
+          _it_355=Tonyu.iterator(dirs,1);
+          while(_it_355.next()) {
+            d=_it_355[0];
+            
+            //$LASTPOS=12002128;//jseditor.JSEProject:2128
+            _it_356=Tonyu.iterator(d.listFiles(),1);
+            while(_it_356.next()) {
+              f=_it_356[0];
+              
+              //$LASTPOS=12002175;//jseditor.JSEProject:2175
+              names[f.name()]=1;
+              
+            }
+            
+          }
+          //$LASTPOS=12002226;//jseditor.JSEProject:2226
+          _it_357=Tonyu.iterator(names,2);
+          while(_it_357.next()) {
+            n=_it_357[0];
+            v=_it_357[1];
+            
+            //$LASTPOS=12002263;//jseditor.JSEProject:2263
+            df = dirs.map((function anonymous_2279(d) {
+              
+              return d.rel(n);
+            }));
+            
+            //$LASTPOS=12002355;//jseditor.JSEProject:2355
+            syncDirsOrFiles(df);
+            
+          }
+        }function syncFiles(files) {
+          var max;
+          var maxf;
+          var f;
+          var _it_369;
+          var _it_370;
+          var lu;
+          
+          //$LASTPOS=12002424;//jseditor.JSEProject:2424
+          max = 0;
+          
+          //$LASTPOS=12002448;//jseditor.JSEProject:2448
+          _it_369=Tonyu.iterator(files,1);
+          while(_it_369.next()) {
+            f=_it_369[0];
+            
+            //$LASTPOS=12002483;//jseditor.JSEProject:2483
+            if (! f.exists()) {
+              continue;
+              
+            }
+            //$LASTPOS=12002522;//jseditor.JSEProject:2522
+            if (f.lastUpdate()>max) {
+              //$LASTPOS=12002564;//jseditor.JSEProject:2564
+              max=f.lastUpdate();
+              //$LASTPOS=12002600;//jseditor.JSEProject:2600
+              maxf=f;
+              
+            }
+            
+          }
+          //$LASTPOS=12002640;//jseditor.JSEProject:2640
+          if (maxf) {
+            //$LASTPOS=12002664;//jseditor.JSEProject:2664
+            _it_370=Tonyu.iterator(files,1);
+            while(_it_370.next()) {
+              f=_it_370[0];
+              
+              //$LASTPOS=12002703;//jseditor.JSEProject:2703
+              lu = f.exists()?f.lastUpdate():0;
+              
+              //$LASTPOS=12002759;//jseditor.JSEProject:2759
+              if (lu<=max-1000) {
+                //$LASTPOS=12002799;//jseditor.JSEProject:2799
+                _this.print("cp ",maxf,max,new Date(max),f,f.lastUpdate(),new Date(f.lastUpdate()));
+                //$LASTPOS=12002904;//jseditor.JSEProject:2904
+                f.copyFrom(maxf,{a: true});
+                
+              }
+              
+            }
+            
+          }
+        }function resolve(p) {
+          
+          //$LASTPOS=12003005;//jseditor.JSEProject:3005
+          p=p.replace(/\$\{projects:([^\}]+)\}\/?/g,(function anonymous_3048(_,prjn) {
             var pr;
             
-            //$LASTPOS=12002491;//jseditor.JSEProject:2491
+            //$LASTPOS=12003080;//jseditor.JSEProject:3080
             pr = _this.findProject(prjn);
             
-            //$LASTPOS=12002529;//jseditor.JSEProject:2529
+            //$LASTPOS=12003118;//jseditor.JSEProject:3118
             if (! pr) {
               throw new Error("Project "+prjn+" not found");
               
             }
             return FS.PathUtil.directorify(pr.path);
           }));
-          //$LASTPOS=12002658;//jseditor.JSEProject:2658
+          //$LASTPOS=12003247;//jseditor.JSEProject:3247
           if (FS.PathUtil.isAbsolutePath(p)) {
             return FS.get(p);
           }
@@ -265,62 +371,20 @@ define(function (require) {
           
         }
         //$LASTPOS=12001776;//jseditor.JSEProject:1776
-        _it_85=Tonyu.iterator(_this.sync,1);
-        while(_it_85.next()) {
-          se=_it_85[0];
+        _it_345=Tonyu.iterator(_this.sync,1);
+        while(_it_345.next()) {
+          se=_it_345[0];
           
           //$LASTPOS=12001807;//jseditor.JSEProject:1807
-          sef = se.map(resolve);
+          files = se.map(resolve);
           
-          //$LASTPOS=12001840;//jseditor.JSEProject:1840
-          max = 0;
-          
-          //$LASTPOS=12001864;//jseditor.JSEProject:1864
-          _it_86=Tonyu.iterator(sef,1);
-          while(_it_86.next()) {
-            f=_it_86[0];
-            
-            //$LASTPOS=12001897;//jseditor.JSEProject:1897
-            if (! f.exists()) {
-              continue;
-              
-            }
-            //$LASTPOS=12001936;//jseditor.JSEProject:1936
-            if (f.lastUpdate()>max) {
-              //$LASTPOS=12001978;//jseditor.JSEProject:1978
-              max=f.lastUpdate();
-              //$LASTPOS=12002014;//jseditor.JSEProject:2014
-              maxf=f;
-              
-            }
-            
-          }
-          //$LASTPOS=12002054;//jseditor.JSEProject:2054
-          if (maxf) {
-            //$LASTPOS=12002078;//jseditor.JSEProject:2078
-            _it_87=Tonyu.iterator(sef,1);
-            while(_it_87.next()) {
-              f=_it_87[0];
-              
-              //$LASTPOS=12002115;//jseditor.JSEProject:2115
-              if (! f.exists()) {
-                continue;
-                
-              }
-              //$LASTPOS=12002158;//jseditor.JSEProject:2158
-              if (f.lastUpdate()<=max-1000) {
-                //$LASTPOS=12002210;//jseditor.JSEProject:2210
-                _this.print("cp ",maxf,max,new Date(max),f,f.lastUpdate(),new Date(f.lastUpdate()));
-                //$LASTPOS=12002315;//jseditor.JSEProject:2315
-                f.copyFrom(maxf,{a: true});
-                
-              }
-              
-            }
-            
-          }
+          //$LASTPOS=12001842;//jseditor.JSEProject:1842
+          syncDirsOrFiles(files);
           
         }
+        
+        
+        
         
       },
       fiber$doSync :function _trc_JSEProject_f_doSync(_thread) {
@@ -329,30 +393,136 @@ define(function (require) {
         //var _arguments=Tonyu.A(arguments);
         var __pc=0;
         var se;
-        var _it_85;
-        var sef;
-        var max;
-        var maxf;
-        var f;
-        var _it_86;
-        var _it_87;
-        function resolve(p) {
+        var _it_345;
+        var files;
+        function syncDirsOrFiles(files) {
           
-          //$LASTPOS=12002416;//jseditor.JSEProject:2416
-          p=p.replace(/\$\{projects:([^\}]+)\}\/?/g,(function anonymous_2459(_,prjn) {
+          //$LASTPOS=12001910;//jseditor.JSEProject:1910
+          if (files[0]&&files[0].isDir()) {
+            //$LASTPOS=12001958;//jseditor.JSEProject:1958
+            syncDirs(files);
+            
+          } else {
+            //$LASTPOS=12002008;//jseditor.JSEProject:2008
+            syncFiles(files);
+            
+          }
+        }function syncDirs(dirs) {
+          var names;
+          var d;
+          var _it_355;
+          var f;
+          var _it_356;
+          var n;
+          var v;
+          var _it_357;
+          var df;
+          
+          //$LASTPOS=12002072;//jseditor.JSEProject:2072
+          names = {};
+          
+          //$LASTPOS=12002094;//jseditor.JSEProject:2094
+          _it_355=Tonyu.iterator(dirs,1);
+          while(_it_355.next()) {
+            d=_it_355[0];
+            
+            //$LASTPOS=12002128;//jseditor.JSEProject:2128
+            _it_356=Tonyu.iterator(d.listFiles(),1);
+            while(_it_356.next()) {
+              f=_it_356[0];
+              
+              //$LASTPOS=12002175;//jseditor.JSEProject:2175
+              names[f.name()]=1;
+              
+            }
+            
+          }
+          //$LASTPOS=12002226;//jseditor.JSEProject:2226
+          _it_357=Tonyu.iterator(names,2);
+          while(_it_357.next()) {
+            n=_it_357[0];
+            v=_it_357[1];
+            
+            //$LASTPOS=12002263;//jseditor.JSEProject:2263
+            df = dirs.map((function anonymous_2279(d) {
+              
+              return d.rel(n);
+            }));
+            
+            //$LASTPOS=12002355;//jseditor.JSEProject:2355
+            syncDirsOrFiles(df);
+            
+          }
+        }function syncFiles(files) {
+          var max;
+          var maxf;
+          var f;
+          var _it_369;
+          var _it_370;
+          var lu;
+          
+          //$LASTPOS=12002424;//jseditor.JSEProject:2424
+          max = 0;
+          
+          //$LASTPOS=12002448;//jseditor.JSEProject:2448
+          _it_369=Tonyu.iterator(files,1);
+          while(_it_369.next()) {
+            f=_it_369[0];
+            
+            //$LASTPOS=12002483;//jseditor.JSEProject:2483
+            if (! f.exists()) {
+              continue;
+              
+            }
+            //$LASTPOS=12002522;//jseditor.JSEProject:2522
+            if (f.lastUpdate()>max) {
+              //$LASTPOS=12002564;//jseditor.JSEProject:2564
+              max=f.lastUpdate();
+              //$LASTPOS=12002600;//jseditor.JSEProject:2600
+              maxf=f;
+              
+            }
+            
+          }
+          //$LASTPOS=12002640;//jseditor.JSEProject:2640
+          if (maxf) {
+            //$LASTPOS=12002664;//jseditor.JSEProject:2664
+            _it_370=Tonyu.iterator(files,1);
+            while(_it_370.next()) {
+              f=_it_370[0];
+              
+              //$LASTPOS=12002703;//jseditor.JSEProject:2703
+              lu = f.exists()?f.lastUpdate():0;
+              
+              //$LASTPOS=12002759;//jseditor.JSEProject:2759
+              if (lu<=max-1000) {
+                //$LASTPOS=12002799;//jseditor.JSEProject:2799
+                _this.print("cp ",maxf,max,new Date(max),f,f.lastUpdate(),new Date(f.lastUpdate()));
+                //$LASTPOS=12002904;//jseditor.JSEProject:2904
+                f.copyFrom(maxf,{a: true});
+                
+              }
+              
+            }
+            
+          }
+        }function resolve(p) {
+          
+          //$LASTPOS=12003005;//jseditor.JSEProject:3005
+          p=p.replace(/\$\{projects:([^\}]+)\}\/?/g,(function anonymous_3048(_,prjn) {
             var pr;
             
-            //$LASTPOS=12002491;//jseditor.JSEProject:2491
+            //$LASTPOS=12003080;//jseditor.JSEProject:3080
             pr = _this.findProject(prjn);
             
-            //$LASTPOS=12002529;//jseditor.JSEProject:2529
+            //$LASTPOS=12003118;//jseditor.JSEProject:3118
             if (! pr) {
               throw new Error("Project "+prjn+" not found");
               
             }
             return FS.PathUtil.directorify(pr.path);
           }));
-          //$LASTPOS=12002658;//jseditor.JSEProject:2658
+          //$LASTPOS=12003247;//jseditor.JSEProject:3247
           if (FS.PathUtil.isAbsolutePath(p)) {
             return FS.get(p);
           }
@@ -375,62 +545,20 @@ define(function (require) {
             case 2:
               
               //$LASTPOS=12001776;//jseditor.JSEProject:1776
-              _it_85=Tonyu.iterator(_this.sync,1);
-              while(_it_85.next()) {
-                se=_it_85[0];
+              _it_345=Tonyu.iterator(_this.sync,1);
+              while(_it_345.next()) {
+                se=_it_345[0];
                 
                 //$LASTPOS=12001807;//jseditor.JSEProject:1807
-                sef = se.map(resolve);
+                files = se.map(resolve);
                 
-                //$LASTPOS=12001840;//jseditor.JSEProject:1840
-                max = 0;
-                
-                //$LASTPOS=12001864;//jseditor.JSEProject:1864
-                _it_86=Tonyu.iterator(sef,1);
-                while(_it_86.next()) {
-                  f=_it_86[0];
-                  
-                  //$LASTPOS=12001897;//jseditor.JSEProject:1897
-                  if (! f.exists()) {
-                    continue;
-                    
-                  }
-                  //$LASTPOS=12001936;//jseditor.JSEProject:1936
-                  if (f.lastUpdate()>max) {
-                    //$LASTPOS=12001978;//jseditor.JSEProject:1978
-                    max=f.lastUpdate();
-                    //$LASTPOS=12002014;//jseditor.JSEProject:2014
-                    maxf=f;
-                    
-                  }
-                  
-                }
-                //$LASTPOS=12002054;//jseditor.JSEProject:2054
-                if (maxf) {
-                  //$LASTPOS=12002078;//jseditor.JSEProject:2078
-                  _it_87=Tonyu.iterator(sef,1);
-                  while(_it_87.next()) {
-                    f=_it_87[0];
-                    
-                    //$LASTPOS=12002115;//jseditor.JSEProject:2115
-                    if (! f.exists()) {
-                      continue;
-                      
-                    }
-                    //$LASTPOS=12002158;//jseditor.JSEProject:2158
-                    if (f.lastUpdate()<=max-1000) {
-                      //$LASTPOS=12002210;//jseditor.JSEProject:2210
-                      _this.print("cp ",maxf,max,new Date(max),f,f.lastUpdate(),new Date(f.lastUpdate()));
-                      //$LASTPOS=12002315;//jseditor.JSEProject:2315
-                      f.copyFrom(maxf,{a: true});
-                      
-                    }
-                    
-                  }
-                  
-                }
+                //$LASTPOS=12001842;//jseditor.JSEProject:1842
+                syncDirsOrFiles(files);
                 
               }
+              
+              
+              
               
               _thread.exit(_this);return;
             }

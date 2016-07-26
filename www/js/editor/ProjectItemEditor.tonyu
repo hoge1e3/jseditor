@@ -17,6 +17,15 @@ on("modelChanged") \(e) {
     if (e.key=="name") {
         link.attr("href",url(e.value));
     }
+    if (e.key=="path") {
+        try {
+            if (!model.name) {
+                attr("name",FS.PathUtil.name(e.value));
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
 };
 \url(name) {
     var url=location.href.replace(/\?.*/,"");
